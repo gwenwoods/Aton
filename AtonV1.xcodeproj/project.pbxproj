@@ -18,6 +18,9 @@
 		BD940B94153A1F0500660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B9C153A1F0500660B35 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD940B9A153A1F0500660B35 /* InfoPlist.strings */; };
 		BD940B9F153A1F0500660B35 /* AtonV1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940B9E153A1F0500660B35 /* AtonV1Tests.m */; };
+		BD940BAB153A1F9300660B35 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940BA9153A1F9300660B35 /* BoardViewController.m */; };
+		BD940BAC153A1F9300660B35 /* BoardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */; };
+		BDAE7111153A2E11001848F8 /* Aton_gameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7110153A2E11001848F8 /* Aton_gameBoard.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +38,22 @@
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BD940B7D153A1F0400660B35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		BD940B81153A1F0400660B35 /* AtonV1-Info.plist */ = {isa = PBXFileReference; path = "AtonV1-Info.plist"; sourceTree = "<group>"; };
+		BD940B81153A1F0400660B35 /* AtonV1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AtonV1-Info.plist"; sourceTree = "<group>"; };
 		BD940B83153A1F0400660B35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD940B85153A1F0400660B35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BD940B87153A1F0400660B35 /* AtonV1-Prefix.pch */ = {isa = PBXFileReference; path = "AtonV1-Prefix.pch"; sourceTree = "<group>"; };
-		BD940B88153A1F0400660B35 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		BD940B87153A1F0400660B35 /* AtonV1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AtonV1-Prefix.pch"; sourceTree = "<group>"; };
+		BD940B88153A1F0400660B35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BD940B89153A1F0400660B35 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BD940B90153A1F0500660B35 /* AtonV1Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtonV1Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B91153A1F0500660B35 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		BD940B99153A1F0500660B35 /* AtonV1Tests-Info.plist */ = {isa = PBXFileReference; path = "AtonV1Tests-Info.plist"; sourceTree = "<group>"; };
+		BD940B99153A1F0500660B35 /* AtonV1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AtonV1Tests-Info.plist"; sourceTree = "<group>"; };
 		BD940B9B153A1F0500660B35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BD940B9D153A1F0500660B35 /* AtonV1Tests.h */ = {isa = PBXFileReference; path = AtonV1Tests.h; sourceTree = "<group>"; };
+		BD940B9D153A1F0500660B35 /* AtonV1Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtonV1Tests.h; sourceTree = "<group>"; };
 		BD940B9E153A1F0500660B35 /* AtonV1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtonV1Tests.m; sourceTree = "<group>"; };
+		BD940BA8153A1F9300660B35 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
+		BD940BA9153A1F9300660B35 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
+		BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardViewController_iPad.xib; sourceTree = "<group>"; };
+		BDAE7110153A2E11001848F8 /* Aton_gameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_gameBoard.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +113,13 @@
 		BD940B7F153A1F0400660B35 /* AtonV1 */ = {
 			isa = PBXGroup;
 			children = (
+				BDAE7112153A2EEF001848F8 /* Images */,
 				BD940B88153A1F0400660B35 /* AppDelegate.h */,
 				BD940B89153A1F0400660B35 /* AppDelegate.m */,
 				BD940B80153A1F0400660B35 /* Supporting Files */,
+				BD940BA8153A1F9300660B35 /* BoardViewController.h */,
+				BD940BA9153A1F9300660B35 /* BoardViewController.m */,
+				BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -141,6 +152,14 @@
 				BD940B9A153A1F0500660B35 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BDAE7112153A2EEF001848F8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BDAE7110153A2E11001848F8 /* Aton_gameBoard.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +233,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD940B84153A1F0400660B35 /* InfoPlist.strings in Resources */,
+				BD940BAC153A1F9300660B35 /* BoardViewController_iPad.xib in Resources */,
+				BDAE7111153A2E11001848F8 /* Aton_gameBoard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +271,7 @@
 			files = (
 				BD940B86153A1F0400660B35 /* main.m in Sources */,
 				BD940B8A153A1F0400660B35 /* AppDelegate.m in Sources */,
+				BD940BAB153A1F9300660B35 /* BoardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +435,7 @@
 				BD940BA4153A1F0500660B35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BD940BA5153A1F0500660B35 /* Build configuration list for PBXNativeTarget "AtonV1Tests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +444,7 @@
 				BD940BA7153A1F0500660B35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
