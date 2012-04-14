@@ -20,7 +20,17 @@
 		BD940B9F153A1F0500660B35 /* AtonV1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940B9E153A1F0500660B35 /* AtonV1Tests.m */; };
 		BD940BAB153A1F9300660B35 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940BA9153A1F9300660B35 /* BoardViewController.m */; };
 		BD940BAC153A1F9300660B35 /* BoardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */; };
-		BDAE7111153A2E11001848F8 /* Aton_gameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7110153A2E11001848F8 /* Aton_gameBoard.png */; };
+		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
+		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
+		BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7122153A3BED001848F8 /* Blue_Card3.png */; };
+		BDAE712D153A3BED001848F8 /* Blue_Card4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7123153A3BED001848F8 /* Blue_Card4.png */; };
+		BDAE712E153A3BED001848F8 /* Blue_CardBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7124153A3BED001848F8 /* Blue_CardBack.png */; };
+		BDAE712F153A3BED001848F8 /* Red_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7125153A3BED001848F8 /* Red_Card1.png */; };
+		BDAE7130153A3BED001848F8 /* Red_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7126153A3BED001848F8 /* Red_Card2.png */; };
+		BDAE7131153A3BED001848F8 /* Red_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7127153A3BED001848F8 /* Red_Card3.png */; };
+		BDAE7132153A3BED001848F8 /* Red_Card4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7128153A3BED001848F8 /* Red_Card4.png */; };
+		BDAE7133153A3BED001848F8 /* Red_CardBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7129153A3BED001848F8 /* Red_CardBack.png */; };
+		BDAE7135153A3C90001848F8 /* Aton_gameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +63,17 @@
 		BD940BA8153A1F9300660B35 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		BD940BA9153A1F9300660B35 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardViewController_iPad.xib; sourceTree = "<group>"; };
-		BDAE7110153A2E11001848F8 /* Aton_gameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_gameBoard.png; sourceTree = "<group>"; };
+		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
+		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
+		BDAE7122153A3BED001848F8 /* Blue_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card3.png; sourceTree = "<group>"; };
+		BDAE7123153A3BED001848F8 /* Blue_Card4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card4.png; sourceTree = "<group>"; };
+		BDAE7124153A3BED001848F8 /* Blue_CardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_CardBack.png; sourceTree = "<group>"; };
+		BDAE7125153A3BED001848F8 /* Red_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Card1.png; sourceTree = "<group>"; };
+		BDAE7126153A3BED001848F8 /* Red_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Card2.png; sourceTree = "<group>"; };
+		BDAE7127153A3BED001848F8 /* Red_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Card3.png; sourceTree = "<group>"; };
+		BDAE7128153A3BED001848F8 /* Red_Card4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Card4.png; sourceTree = "<group>"; };
+		BDAE7129153A3BED001848F8 /* Red_CardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_CardBack.png; sourceTree = "<group>"; };
+		BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_gameBoard.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,9 +177,35 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BDAE7110153A2E11001848F8 /* Aton_gameBoard.png */,
+				BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */,
+				BDAE711F153A3BED001848F8 /* Aton_card */,
+				BDAE7113153A3472001848F8 /* BlueCards */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		BDAE7113153A3472001848F8 /* BlueCards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = BlueCards;
+			sourceTree = "<group>";
+		};
+		BDAE711F153A3BED001848F8 /* Aton_card */ = {
+			isa = PBXGroup;
+			children = (
+				BDAE7120153A3BED001848F8 /* Blue_Card1.png */,
+				BDAE7121153A3BED001848F8 /* Blue_Card2.png */,
+				BDAE7122153A3BED001848F8 /* Blue_Card3.png */,
+				BDAE7123153A3BED001848F8 /* Blue_Card4.png */,
+				BDAE7124153A3BED001848F8 /* Blue_CardBack.png */,
+				BDAE7125153A3BED001848F8 /* Red_Card1.png */,
+				BDAE7126153A3BED001848F8 /* Red_Card2.png */,
+				BDAE7127153A3BED001848F8 /* Red_Card3.png */,
+				BDAE7128153A3BED001848F8 /* Red_Card4.png */,
+				BDAE7129153A3BED001848F8 /* Red_CardBack.png */,
+			);
+			path = Aton_card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +280,17 @@
 			files = (
 				BD940B84153A1F0400660B35 /* InfoPlist.strings in Resources */,
 				BD940BAC153A1F9300660B35 /* BoardViewController_iPad.xib in Resources */,
-				BDAE7111153A2E11001848F8 /* Aton_gameBoard.png in Resources */,
+				BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */,
+				BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */,
+				BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */,
+				BDAE712D153A3BED001848F8 /* Blue_Card4.png in Resources */,
+				BDAE712E153A3BED001848F8 /* Blue_CardBack.png in Resources */,
+				BDAE712F153A3BED001848F8 /* Red_Card1.png in Resources */,
+				BDAE7130153A3BED001848F8 /* Red_Card2.png in Resources */,
+				BDAE7131153A3BED001848F8 /* Red_Card3.png in Resources */,
+				BDAE7132153A3BED001848F8 /* Red_Card4.png in Resources */,
+				BDAE7133153A3BED001848F8 /* Red_CardBack.png in Resources */,
+				BDAE7135153A3C90001848F8 /* Aton_gameBoard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
