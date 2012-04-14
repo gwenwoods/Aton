@@ -7,15 +7,26 @@
 //
 
 #import "AppDelegate.h"
+#import "BoardViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize boardViewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // Override point for customization after application launch.
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.boardViewController = [[BoardViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+    } else {
+        self.boardViewController = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
+    }
+    self.window.rootViewController = self.boardViewController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
