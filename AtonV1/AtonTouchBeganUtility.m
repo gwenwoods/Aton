@@ -39,7 +39,6 @@
     NSMutableArray *tempCardElementArray = [player tempCardElementArray];
     for (int i=0; i<[tempCardElementArray count]; i++) {
         CardElement *ce = [tempCardElementArray objectAtIndex:i];
-       // UIImageView *iv = ce.iv;
         if([touch view] == ce.iv) {
 
             CGPoint localLaction = [touch locationInView:ce.iv];

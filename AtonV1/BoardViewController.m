@@ -8,9 +8,6 @@
 
 #import "BoardViewController.h"
 
-//@interface BoardViewController ()
-
-//@end
 
 @implementation BoardViewController
 
@@ -33,9 +30,7 @@
     redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :nil:self];
     bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:self];
     
-    int *redStartNumArray[] = {1,2,3,4};
- //   [redPlayer setStartCardNumArray:redStartNumArray];
- //   [redPlayer displayStartCards];
+    int redStartNumArray[] = {1,2,3,4};
     [redPlayer initilizeCardElement:redStartNumArray];
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
@@ -69,7 +64,6 @@
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	
 	UITouch *touch = [[event allTouches] anyObject];
-    
     [AtonTouchBeganUtility playerArrangeCard:touch:touchElement:redPlayer];
 }
 
