@@ -25,8 +25,8 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 @synthesize baseView;
 @synthesize playerEnum, playerName;
 @synthesize score;
-@synthesize startCardNumArray, endCardNumArray;
-@synthesize startCardIVArray, endCardIVArray;
+@synthesize startCardNumArray;
+@synthesize startCardIVArray;
 
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
@@ -46,13 +46,16 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
             iv.image = [UIImage imageNamed:[self getCardBackName]];
             iv.userInteractionEnabled = YES;
             
-            iv.backgroundColor = [UIColor whiteColor];
+            [iv.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+            [iv.layer setBorderWidth: 2.0];
+
+           // iv.backgroundColor = [UIColor whiteColor];
             [baseView addSubview:iv];
             
             [startCardIVArray addObject:iv];
         }
         
-        endOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
+      /*  endOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
         endOriginArray[0] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 70.0);
         endOriginArray[1] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 244.0);
         endOriginArray[2] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 418.0);
@@ -66,7 +69,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
             [baseView addSubview:iv];
             
             [endCardIVArray addObject:iv];
-        }
+        }*/
 
     }  
     return self;
@@ -80,12 +83,12 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
         iv.image = [UIImage imageNamed:[self getCardName:cardNum]];
     }
     
-    for (int i=0; i<4; i++) {
+  /*  for (int i=0; i<4; i++) {
         UIImageView *iv = [endCardIVArray objectAtIndex:i];
         iv.image = nil;
         [iv setBackgroundColor:[UIColor whiteColor]];
         iv.alpha = 0.5;
-    }
+    }*/
 }
 
 -(NSString*) getCardBackName {

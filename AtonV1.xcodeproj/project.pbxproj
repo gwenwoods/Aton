@@ -31,6 +31,11 @@
 		BDAE7132153A3BED001848F8 /* Red_Card4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7128153A3BED001848F8 /* Red_Card4.png */; };
 		BDAE7133153A3BED001848F8 /* Red_CardBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7129153A3BED001848F8 /* Red_CardBack.png */; };
 		BDAE7135153A3C90001848F8 /* Aton_gameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */; };
+		BDAE7139153A4277001848F8 /* AtonPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7138153A4277001848F8 /* AtonPlayer.m */; };
+		BDAE7140153A6BE4001848F8 /* AtonTouchEndUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE713F153A6BE4001848F8 /* AtonTouchEndUtility.m */; };
+		BDAE7143153A7853001848F8 /* AtonTouchElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7142153A7853001848F8 /* AtonTouchElement.m */; };
+		BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */; };
+		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +79,15 @@
 		BDAE7128153A3BED001848F8 /* Red_Card4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Card4.png; sourceTree = "<group>"; };
 		BDAE7129153A3BED001848F8 /* Red_CardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_CardBack.png; sourceTree = "<group>"; };
 		BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_gameBoard.png; sourceTree = "<group>"; };
+		BDAE7137153A4277001848F8 /* AtonPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonPlayer.h; sourceTree = "<group>"; };
+		BDAE7138153A4277001848F8 /* AtonPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonPlayer.m; sourceTree = "<group>"; };
+		BDAE713E153A6BE4001848F8 /* AtonTouchEndUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchEndUtility.h; sourceTree = "<group>"; };
+		BDAE713F153A6BE4001848F8 /* AtonTouchEndUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchEndUtility.m; sourceTree = "<group>"; };
+		BDAE7141153A7853001848F8 /* AtonTouchElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchElement.h; sourceTree = "<group>"; };
+		BDAE7142153A7853001848F8 /* AtonTouchElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchElement.m; sourceTree = "<group>"; };
+		BDAE7144153A79CA001848F8 /* AtonTouchBeganUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchBeganUtility.h; sourceTree = "<group>"; };
+		BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchBeganUtility.m; sourceTree = "<group>"; };
+		BDAE7147153A8BEF001848F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */,
 				BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */,
 				BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */,
 				BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */,
@@ -103,6 +118,7 @@
 		BD940B6A153A1F0400660B35 = {
 			isa = PBXGroup;
 			children = (
+				BDAE7147153A8BEF001848F8 /* QuartzCore.framework */,
 				BD940B7F153A1F0400660B35 /* AtonV1 */,
 				BD940B97153A1F0500660B35 /* AtonV1Tests */,
 				BD940B78153A1F0400660B35 /* Frameworks */,
@@ -133,6 +149,8 @@
 		BD940B7F153A1F0400660B35 /* AtonV1 */ = {
 			isa = PBXGroup;
 			children = (
+				BDAE713D153A6BB4001848F8 /* TouchClass */,
+				BDAE7136153A4229001848F8 /* ElementClass */,
 				BDAE7112153A2EEF001848F8 /* Images */,
 				BD940B88153A1F0400660B35 /* AppDelegate.h */,
 				BD940B89153A1F0400660B35 /* AppDelegate.m */,
@@ -206,6 +224,28 @@
 				BDAE7129153A3BED001848F8 /* Red_CardBack.png */,
 			);
 			path = Aton_card;
+			sourceTree = "<group>";
+		};
+		BDAE7136153A4229001848F8 /* ElementClass */ = {
+			isa = PBXGroup;
+			children = (
+				BDAE7137153A4277001848F8 /* AtonPlayer.h */,
+				BDAE7138153A4277001848F8 /* AtonPlayer.m */,
+			);
+			name = ElementClass;
+			sourceTree = "<group>";
+		};
+		BDAE713D153A6BB4001848F8 /* TouchClass */ = {
+			isa = PBXGroup;
+			children = (
+				BDAE7144153A79CA001848F8 /* AtonTouchBeganUtility.h */,
+				BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */,
+				BDAE713E153A6BE4001848F8 /* AtonTouchEndUtility.h */,
+				BDAE713F153A6BE4001848F8 /* AtonTouchEndUtility.m */,
+				BDAE7141153A7853001848F8 /* AtonTouchElement.h */,
+				BDAE7142153A7853001848F8 /* AtonTouchElement.m */,
+			);
+			name = TouchClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +368,10 @@
 				BD940B86153A1F0400660B35 /* main.m in Sources */,
 				BD940B8A153A1F0400660B35 /* AppDelegate.m in Sources */,
 				BD940BAB153A1F9300660B35 /* BoardViewController.m in Sources */,
+				BDAE7139153A4277001848F8 /* AtonPlayer.m in Sources */,
+				BDAE7140153A6BE4001848F8 /* AtonTouchEndUtility.m in Sources */,
+				BDAE7143153A7853001848F8 /* AtonTouchElement.m in Sources */,
+				BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

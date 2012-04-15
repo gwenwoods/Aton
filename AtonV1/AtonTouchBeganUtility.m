@@ -12,7 +12,7 @@
 
 +(void) playerArrangeCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player {
     
-    if ([touchElement touchElementEnum] != TOUCH_ELEMENT_NONE) {
+    if ([touchElement cardIndex] > 0) {
         return;
     }
     
@@ -24,8 +24,8 @@
             touchElement.touchIV.center = iv.center;
             touchElement.touchIV.image = iv.image;
             iv.image = nil;
-            iv.alpha = 0.5;
-            touchElement.touchElementEnum = i+1;
+            //touchElement.touchElementEnum = i+1;
+            touchElement.cardIndex = i;
         }
     }
 }

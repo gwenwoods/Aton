@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 
 @interface AtonPlayer : NSObject {
     
-    CGPoint *startOriginArray, *endOriginArray;
+    CGPoint *startOriginArray;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;
@@ -21,7 +23,7 @@
 @property (nonatomic) int playerEnum;
 @property (strong, nonatomic) NSString *playerName;
 @property (nonatomic) int score;
-@property (nonatomic) int *startCardNumArray, *endCardNumArray;
-@property (strong, nonatomic) NSMutableArray *startCardIVArray, *endCardIVArray;
+@property (nonatomic) int *startCardNumArray;
+@property (strong, nonatomic) NSMutableArray *startCardIVArray;
 
 @end

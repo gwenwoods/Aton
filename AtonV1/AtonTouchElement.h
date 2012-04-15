@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-enum TOUCH_ELEMENT_ENUM {
-    TOUCH_ELEMENT_NONE, TOUCH_ELEMENT_CARD_1, TOUCH_ELEMENT_CARD_2
-};
+//enum TOUCH_ELEMENT_ENUM {
+//    TOUCH_ELEMENT_NONE, TOUCH_ELEMENT_CARD_1, TOUCH_ELEMENT_CARD_2
+//};
 
 @interface AtonTouchElement : NSObject {
     
@@ -21,7 +21,8 @@ enum TOUCH_ELEMENT_ENUM {
 -(void) reset;
 
 @property(nonatomic,retain) UIImageView* touchIV;
-@property(nonatomic) int touchElementEnum;
+//@property(nonatomic) int touchElementEnum;
+@property(nonatomic) int cardIndex;
 @property(nonatomic) int cardNum;
 
 @end

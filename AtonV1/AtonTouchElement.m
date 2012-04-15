@@ -11,7 +11,7 @@
 @implementation AtonTouchElement
 
 
-@synthesize touchIV, touchElementEnum, cardNum;
+@synthesize touchIV, cardNum, cardIndex;
 
 -(id)initializeWithParameters:(UIViewController*) controller {
     
@@ -26,9 +26,10 @@
 
 -(void) reset {
     
-    touchElementEnum = TOUCH_ELEMENT_NONE;
+   // touchElementEnum = TOUCH_ELEMENT_NONE;
     touchIV.image = nil;
     cardNum = -1;
+    cardIndex = -1;
 }
 
 

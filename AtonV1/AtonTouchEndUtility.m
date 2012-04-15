@@ -13,16 +13,24 @@
 
 +(void) playerPlaceCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player {
     
-    if ([touchElement touchElementEnum] == TOUCH_ELEMENT_NONE) {
+    if ([touchElement cardIndex] < 0) {
         return;
     }
     
-    NSMutableArray *endCardIVArray = [player endCardIVArray];
+    NSMutableArray *startCardIVArray = [player startCardIVArray];
     for (int i=0; i<4; i++) {
-        UIImageView *iv = [endCardIVArray objectAtIndex:i];
+        UIImageView *iv = [startCardIVArray objectAtIndex:i];
         if([self isWithinImgView:[touchElement touchIV]:iv]) {
+            int currentNum = [player startCardNumArray][i];
+            
+            int fromIndex = touchElement.cardIndex;
+            UIImageView *fromIV = [startCardIVArray objectAtIndex:fromIndex];
+            fromIV.image = iv.image;
+            [player startCardNumArray][fromIndex] = currentNum;
+            
             iv.image = touchElement.touchIV.image;
-            iv.alpha = 1.0;
+            [player startCardNumArray][i] = [touchElement cardNum];
+            
             [touchElement reset];
         }
     }
