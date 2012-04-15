@@ -12,6 +12,7 @@
 
 @synthesize baseView;
 @synthesize touchIV, cardNum, fromIndex;
+@synthesize localLaction;
 
 -(id)initializeWithParameters:(UIViewController*) controller {
     if (self) {
@@ -24,6 +25,7 @@
 }
 
 -(void) takeCardElement:(CardElement*) ce {
+    
     touchIV.center = ce.iv.center;
     touchIV.image = ce.iv.image;
     cardNum = ce.number;

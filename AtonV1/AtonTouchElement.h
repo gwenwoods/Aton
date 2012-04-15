@@ -21,5 +21,6 @@
 @property(strong, nonatomic) UIImageView *touchIV;
 @property(nonatomic) int cardNum;
 @property(nonatomic) int fromIndex;
+@property(nonatomic) CGPoint localLaction;
 
 @end

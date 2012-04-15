@@ -41,8 +41,6 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
             iv.image = [UIImage imageNamed:[self getCardBackName]];
             iv.userInteractionEnabled = YES;
             
-            [iv.layer setBorderColor: [[UIColor whiteColor] CGColor]];
-            [iv.layer setBorderWidth: 2.0];
             [baseView addSubview:iv];
            
             CardElement *ce = [[CardElement alloc] initializeWithParameters:iv:0:(i+1)];
@@ -51,7 +49,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
         
         emptyCardElementArray = [[NSMutableArray alloc] init];
         for (int i=0; i<4; i++) {
-            UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT)];
+            UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(-200, -200, CARD_WIDTH, CARD_HEIGHT)];
             iv.image = nil;
             iv.userInteractionEnabled = YES;
             [baseView addSubview:iv];
@@ -97,7 +95,12 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
     CardElement *fromCE = [cardElementArray objectAtIndex:(fromIndex-1)];
     fromCE.iv.image = targetCE.iv.image;
     fromCE.number = targetCE.number;
+    if(fromCE.iv.image != nil) {
+        fromCE.subIV.hidden = YES;
+    }
+    
     targetCE.iv.image = touchElement.touchIV.image;
+    targetCE.subIV.hidden = YES;
     targetCE.number = [touchElement cardNum];
     
     [baseView bringSubviewToFront:fromCE.iv];
@@ -121,7 +124,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 -(void) releaseTempCardElement:(CardElement*) ce {
     [tempCardElementArray removeObject:ce];
     ce.iv.image = nil;
-    ce.iv.center = CGPointMake(0,0);
+    ce.iv.center = CGPointMake(-200,-200);
     ce.number = 0;
     [emptyCardElementArray addObject:ce];
 }
@@ -140,6 +143,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 
 -(void) placeCardElementFromTouch:(AtonTouchElement*) touchElement:(CardElement*) targetCE {
     targetCE.iv.image = touchElement.touchIV.image;
+    targetCE.subIV.hidden = YES;
     targetCE.number = [touchElement cardNum];
     [touchElement reset];
 }

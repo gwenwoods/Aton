@@ -28,6 +28,8 @@
             
             // if a card is available in the regular spot
             // take it to touch element
+            CGPoint localLaction = [touch locationInView:ce.iv];
+            [touchElement setLocalLaction:localLaction];
             [touchElement takeCardElement:ce];
             [ce taken];
             return;
@@ -37,10 +39,11 @@
     NSMutableArray *tempCardElementArray = [player tempCardElementArray];
     for (int i=0; i<[tempCardElementArray count]; i++) {
         CardElement *ce = [tempCardElementArray objectAtIndex:i];
-        UIImageView *iv = ce.iv;
-        [[player baseView] bringSubviewToFront:iv];
-        if([touch view] == iv) {
+       // UIImageView *iv = ce.iv;
+        if([touch view] == ce.iv) {
 
+            CGPoint localLaction = [touch locationInView:ce.iv];
+            [touchElement setLocalLaction:localLaction];
             [touchElement takeCardElement:ce];
             
             [player releaseTempCardElement:ce];

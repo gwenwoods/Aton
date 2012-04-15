@@ -57,10 +57,13 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
 	UITouch *touch = [[event allTouches] anyObject];
-	
-	touchLocation = [touch locationInView:nil];
+    
+    touchLocation = [touch locationInView:self.view];
+    CGPoint localLaction = [touchElement localLaction];
     UIImageView *tIV = [touchElement touchIV];
-    tIV.center = CGPointMake(touchLocation.y , 768-touchLocation.x - tIV.frame.size.height/2.0);
+    int dx = (int)localLaction.x - (int)tIV.frame.size.width/2;
+    int dy = (int)localLaction.y - (int)tIV.frame.size.height/2;
+    tIV.center = CGPointMake(touchLocation.x -dx, touchLocation.y -dy);
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

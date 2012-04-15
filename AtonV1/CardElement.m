@@ -9,7 +9,7 @@
 #import "CardElement.h"
 
 @implementation CardElement
-@synthesize iv, number;
+@synthesize iv, subIV, number;
 @synthesize locationIndex;
 
 -(id)initializeWithParameters:(UIImageView*) imageView:(int) cardNumber:(int) index {
@@ -17,11 +17,21 @@
         iv = imageView;
         number = cardNumber;
         locationIndex = index;
+        if (locationIndex < 5) {
+            subIV = [[UIImageView alloc]initWithFrame:CGRectMake(8,12, 72, 108)];
+            [iv addSubview:subIV];
+            [subIV.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+            [subIV.layer setBorderWidth: 2.0];
+            subIV.hidden = YES;
+        }
     }
     return self;
 }
 
 -(void) taken {
+    if (subIV != nil) {
+        subIV.hidden = NO;
+    }
     iv.image = nil;
     number = 0;
 }

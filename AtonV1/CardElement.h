@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface CardElement : NSObject
+@interface CardElement : NSObject {
+}
 
 -(id)initializeWithParameters:(UIImageView*) imageView:(int) cardNumber:(int) index;
 -(void) taken;
 
-@property(strong, nonatomic) UIImageView *iv;
+@property(strong, nonatomic) UIImageView *iv, *subIV;
 @property(nonatomic) int number;
 
 // location index are: 1,2,3,4 and 5
