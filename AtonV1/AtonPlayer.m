@@ -35,7 +35,6 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
         startOriginArray[3] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 592.0);
         
         cardElementArray = [[NSMutableArray alloc] init];
-        int *cardNumArray = {1,2,3,4};
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH, CARD_HEIGHT)];
             iv.image = [UIImage imageNamed:[self getCardBackName]];
@@ -132,7 +131,8 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 -(void) pushTargetToTemp:(CardElement*) targetCE {
     CardElement *tempCE= [emptyCardElementArray objectAtIndex:0];
     tempCE.number = targetCE.number;
-    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x+100, targetCE.iv.center.y);
+    int count = [self findNumTempCardsAtCurrentRight:targetCE];
+    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x + 100 + count*10, targetCE.iv.center.y);
     tempCE.iv.center = tempCenter;
     tempCE.iv.image = targetCE.iv.image;
     [baseView bringSubviewToFront:tempCE.iv];
@@ -146,5 +146,17 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
     targetCE.subIV.hidden = YES;
     targetCE.number = [touchElement cardNum];
     [touchElement reset];
+}
+
+-(int) findNumTempCardsAtCurrentRight:(CardElement*) targetCE {
+    int count = 0;
+    int currentY = targetCE.iv.center.y;
+    for (int i=0; i<[tempCardElementArray count]; i++) {
+        CardElement* tmpElement = [tempCardElementArray objectAtIndex:i];
+        if (tmpElement.iv.center.y == currentY) {
+            count ++;
+        }
+    }
+    return count;
 }
 @end

@@ -36,6 +36,7 @@
 		BDAE7143153A7853001848F8 /* AtonTouchElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7142153A7853001848F8 /* AtonTouchElement.m */; };
 		BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */; };
 		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
+		BDAE714B153A9C81001848F8 /* CardElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE714A153A9C81001848F8 /* CardElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		BDAE7144153A79CA001848F8 /* AtonTouchBeganUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchBeganUtility.h; sourceTree = "<group>"; };
 		BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchBeganUtility.m; sourceTree = "<group>"; };
 		BDAE7147153A8BEF001848F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BDAE7149153A9C81001848F8 /* CardElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardElement.h; sourceTree = "<group>"; };
+		BDAE714A153A9C81001848F8 /* CardElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 			children = (
 				BDAE7137153A4277001848F8 /* AtonPlayer.h */,
 				BDAE7138153A4277001848F8 /* AtonPlayer.m */,
+				BDAE7149153A9C81001848F8 /* CardElement.h */,
+				BDAE714A153A9C81001848F8 /* CardElement.m */,
 			);
 			name = ElementClass;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				BDAE7140153A6BE4001848F8 /* AtonTouchEndUtility.m in Sources */,
 				BDAE7143153A7853001848F8 /* AtonTouchElement.m in Sources */,
 				BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */,
+				BDAE714B153A9C81001848F8 /* CardElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
