@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AtonPlayer.h"
+#import "AtonTouchMoveUtility.h"
 
 @interface BoardViewController : UIViewController
 
+@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
 @end
