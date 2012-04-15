@@ -10,14 +10,10 @@
 
 @implementation AtonPlayer
 
-static int CARD_WIDTH_START = 88;
-static int CARD_HEIGHT_START = 134;
-
-static int CARD_WIDTH_END = 78;
-static int CARD_HEIGHT_END = 118;
+static int CARD_WIDTH = 88;
+static int CARD_HEIGHT = 134;
 
 static int START_SPACE = 818;
-static int END_SPACE = 648;
 
 static NSString *redCardNames[4] = {@"Red_Card1",@"Red_Card2",@"Red_Card3",@"Red_Card4"};
 static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@"Blue_Card4"};
@@ -25,9 +21,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 @synthesize baseView;
 @synthesize playerEnum, playerName;
 @synthesize score;
-@synthesize startCardNumArray;
-@synthesize startCardIVArray;
-
+@synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
 	if (self) {
@@ -40,55 +34,43 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
         startOriginArray[2] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 418.0);
         startOriginArray[3] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 592.0);
         
-        startCardIVArray = [[NSMutableArray alloc] init];
+        cardElementArray = [[NSMutableArray alloc] init];
+        int *cardNumArray = {1,2,3,4};
         for (int i=0; i<4; i++) {
-            UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH_START, CARD_HEIGHT_START)];
+            UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH, CARD_HEIGHT)];
             iv.image = [UIImage imageNamed:[self getCardBackName]];
             iv.userInteractionEnabled = YES;
             
             [iv.layer setBorderColor: [[UIColor whiteColor] CGColor]];
             [iv.layer setBorderWidth: 2.0];
-
-           // iv.backgroundColor = [UIColor whiteColor];
             [baseView addSubview:iv];
-            
-            [startCardIVArray addObject:iv];
+           
+            CardElement *ce = [[CardElement alloc] initializeWithParameters:iv:0:(i+1)];
+            [cardElementArray addObject:ce];
         }
         
-      /*  endOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
-        endOriginArray[0] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 70.0);
-        endOriginArray[1] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 244.0);
-        endOriginArray[2] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 418.0);
-        endOriginArray[3] =  CGPointMake(100.0 + thisPlayerEnum * END_SPACE, 592.0);
-        
-        endCardIVArray = [[NSMutableArray alloc] init];
+        emptyCardElementArray = [[NSMutableArray alloc] init];
         for (int i=0; i<4; i++) {
-            UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(endOriginArray[i].x, endOriginArray[i].y, CARD_WIDTH_END, CARD_HEIGHT_END)];
-            iv.image = [UIImage imageNamed:[self getCardBackName]];
+            UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT)];
+            iv.image = nil;
             iv.userInteractionEnabled = YES;
             [baseView addSubview:iv];
             
-            [endCardIVArray addObject:iv];
-        }*/
+            CardElement *ce = [[CardElement alloc] initializeWithParameters:iv:0:5];
+            [emptyCardElementArray addObject:ce];
+        }
 
+        tempCardElementArray = [[NSMutableArray alloc] init];
     }  
     return self;
 }
 
-
--(void) displayStartCards {
+-(void) initilizeCardElement:(int*) cardNumberArray {
     for (int i=0; i<4; i++) {
-        UIImageView *iv = [startCardIVArray objectAtIndex:i];
-        int cardNum = startCardNumArray[i];
-        iv.image = [UIImage imageNamed:[self getCardName:cardNum]];
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        ce.number = cardNumberArray[i];
+        ce.iv.image = [UIImage imageNamed:[self getCardName:ce.number]];
     }
-    
-  /*  for (int i=0; i<4; i++) {
-        UIImageView *iv = [endCardIVArray objectAtIndex:i];
-        iv.image = nil;
-        [iv setBackgroundColor:[UIColor whiteColor]];
-        iv.alpha = 0.5;
-    }*/
 }
 
 -(NSString*) getCardBackName {
@@ -107,5 +89,58 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
     } else {
         return blueCardNames[cardNum-1];
     }
+}
+
+-(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE {
+    
+    int fromIndex = touchElement.fromIndex;
+    CardElement *fromCE = [cardElementArray objectAtIndex:(fromIndex-1)];
+    fromCE.iv.image = targetCE.iv.image;
+    fromCE.number = targetCE.number;
+    targetCE.iv.image = touchElement.touchIV.image;
+    targetCE.number = [touchElement cardNum];
+    
+    [baseView bringSubviewToFront:fromCE.iv];
+    [baseView bringSubviewToFront:targetCE.iv];
+    [touchElement reset];
+}
+
+-(void) placeTempCardElementFromTouch:(AtonTouchElement*) touchElement {
+
+    CardElement *ce = [emptyCardElementArray objectAtIndex:0];
+    ce.number = touchElement.cardNum;
+    ce.iv.image = touchElement.touchIV.image;
+    ce.iv.center = touchElement.touchIV.center;
+    [baseView bringSubviewToFront:ce.iv];
+    
+    [emptyCardElementArray removeObjectAtIndex:0];
+    [tempCardElementArray addObject:ce];
+    [touchElement reset];
+}
+
+-(void) releaseTempCardElement:(CardElement*) ce {
+    [tempCardElementArray removeObject:ce];
+    ce.iv.image = nil;
+    ce.iv.center = CGPointMake(0,0);
+    ce.number = 0;
+    [emptyCardElementArray addObject:ce];
+}
+
+-(void) pushTargetToTemp:(CardElement*) targetCE {
+    CardElement *tempCE= [emptyCardElementArray objectAtIndex:0];
+    tempCE.number = targetCE.number;
+    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x+100, targetCE.iv.center.y);
+    tempCE.iv.center = tempCenter;
+    tempCE.iv.image = targetCE.iv.image;
+    [baseView bringSubviewToFront:tempCE.iv];
+    
+    [emptyCardElementArray removeObject:tempCE];
+    [tempCardElementArray addObject:tempCE];
+}
+
+-(void) placeCardElementFromTouch:(AtonTouchElement*) touchElement:(CardElement*) targetCE {
+    targetCE.iv.image = touchElement.touchIV.image;
+    targetCE.number = [touchElement cardNum];
+    [touchElement reset];
 }
 @end

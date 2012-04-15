@@ -13,27 +13,32 @@
 
 +(void) playerPlaceCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player {
     
-    if ([touchElement cardIndex] < 0) {
+    if ([touchElement fromIndex] < 0) {
         return;
     }
     
-    NSMutableArray *startCardIVArray = [player startCardIVArray];
+    NSMutableArray *playerCardElement = [player cardElementArray];
     for (int i=0; i<4; i++) {
-        UIImageView *iv = [startCardIVArray objectAtIndex:i];
-        if([self isWithinImgView:[touchElement touchIV]:iv]) {
-            int currentNum = [player startCardNumArray][i];
-            
-            int fromIndex = touchElement.cardIndex;
-            UIImageView *fromIV = [startCardIVArray objectAtIndex:fromIndex];
-            fromIV.image = iv.image;
-            [player startCardNumArray][fromIndex] = currentNum;
-            
-            iv.image = touchElement.touchIV.image;
-            [player startCardNumArray][i] = [touchElement cardNum];
-            
-            [touchElement reset];
+        CardElement *ce = [playerCardElement objectAtIndex:i];
+        if([self isWithinImgView:[touchElement touchIV]:[ce iv]]) {
+
+            if (touchElement.fromIndex < 5) {
+                [player switchCardElement:touchElement:ce];
+                
+            } else {
+                if (ce.iv.image != nil) {
+                    [player pushTargetToTemp:ce];
+
+                }
+                [player placeCardElementFromTouch:touchElement:ce];
+            }
+ 
+            return;
         }
     }
+
+    // when the touch element is not empty, put it in the temp card
+    [player placeTempCardElementFromTouch:touchElement];
 }
 
 +(BOOL) isWithinImgView:(UIImageView*)iv0:(UIImageView*)iv1 {

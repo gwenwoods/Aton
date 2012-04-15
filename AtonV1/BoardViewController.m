@@ -34,8 +34,9 @@
     bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:self];
     
     int *redStartNumArray[] = {1,2,3,4};
-    [redPlayer setStartCardNumArray:redStartNumArray];
-    [redPlayer displayStartCards];
+ //   [redPlayer setStartCardNumArray:redStartNumArray];
+ //   [redPlayer displayStartCards];
+    [redPlayer initilizeCardElement:redStartNumArray];
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
 }

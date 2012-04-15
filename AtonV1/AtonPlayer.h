@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "CardElement.h"
+#import "AtonTouchElement.h"
+
 
 
 @interface AtonPlayer : NSObject {
@@ -17,13 +20,21 @@
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;
--(void) displayStartCards;
+-(void) initilizeCardElement:(int*) cardNumberArray;
+
+// arrange cards functions
+-(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;
+-(void) placeTempCardElementFromTouch:(AtonTouchElement*) touchElement;
+-(void) releaseTempCardElement:(CardElement*) ce;
+-(void) pushTargetToTemp:(CardElement*) targetCE;
+-(void) placeCardElementFromTouch:(AtonTouchElement*) touchElement:(CardElement*) targetCE;
+
 
 @property (strong, nonatomic) UIView *baseView;
 @property (nonatomic) int playerEnum;
 @property (strong, nonatomic) NSString *playerName;
 @property (nonatomic) int score;
-@property (nonatomic) int *startCardNumArray;
-@property (strong, nonatomic) NSMutableArray *startCardIVArray;
+@property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
+
 
 @end

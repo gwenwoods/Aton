@@ -7,22 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-//enum TOUCH_ELEMENT_ENUM {
-//    TOUCH_ELEMENT_NONE, TOUCH_ELEMENT_CARD_1, TOUCH_ELEMENT_CARD_2
-//};
+#import "CardElement.h"
 
 @interface AtonTouchElement : NSObject {
     
 }
 
 -(id)initializeWithParameters:(UIViewController*) controller;
+-(void) takeCardElement:(CardElement*) ce;
 -(void) reset;
 
-@property(nonatomic,retain) UIImageView* touchIV;
-//@property(nonatomic) int touchElementEnum;
-@property(nonatomic) int cardIndex;
+@property(strong, nonatomic) UIView *baseView;
+@property(strong, nonatomic) UIImageView *touchIV;
 @property(nonatomic) int cardNum;
+@property(nonatomic) int fromIndex;
 
 @end

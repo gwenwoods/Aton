@@ -10,26 +10,31 @@
 
 @implementation AtonTouchElement
 
-
-@synthesize touchIV, cardNum, cardIndex;
+@synthesize baseView;
+@synthesize touchIV, cardNum, fromIndex;
 
 -(id)initializeWithParameters:(UIViewController*) controller {
-    
     if (self) {
+        baseView = controller.view;
         touchIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 88, 134)];
-        [controller.view addSubview:touchIV];
-        [controller.view bringSubviewToFront:touchIV];
+        [baseView addSubview:touchIV];
+        [baseView bringSubviewToFront:touchIV];
     }
     return self;
-    
+}
+
+-(void) takeCardElement:(CardElement*) ce {
+    touchIV.center = ce.iv.center;
+    touchIV.image = ce.iv.image;
+    cardNum = ce.number;
+    fromIndex = ce.locationIndex;
+    [baseView bringSubviewToFront:touchIV];
 }
 
 -(void) reset {
-    
-   // touchElementEnum = TOUCH_ELEMENT_NONE;
     touchIV.image = nil;
-    cardNum = -1;
-    cardIndex = -1;
+    cardNum = 0;
+    fromIndex = -1;
 }
 
 
