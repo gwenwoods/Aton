@@ -13,6 +13,8 @@
 //@end
 
 @implementation BoardViewController
+
+@synthesize touchElement;
 @synthesize  redPlayer, bluePlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,11 +32,18 @@
     // Do any additional setup after loading the view from its nib.
     redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :nil:self];
     bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:self];
+    
+    int *redStartNumArray[] = {1,2,3,4};
+    [redPlayer setStartCardNumArray:redStartNumArray];
+    [redPlayer displayStartCards];
+    
+    touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -48,11 +57,23 @@
 	
 	UITouch *touch = [[event allTouches] anyObject];
 	
-	[AtonTouchMoveUtility playerArrangeCard:touch:redPlayer];
+	touchLocation = [touch locationInView:nil];
+    UIImageView *tIV = [touchElement touchIV];
+    tIV.center = CGPointMake(touchLocation.y , 768-touchLocation.x - tIV.frame.size.height/2.0);
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	
-	//touchLocation = [touch locationInView:nil];
-    //UIImageView *tIV = [touchElement touchIV];
-   // tIV.center = CGPointMake(touchLocation.y , 768-touchLocation.x - tIV.frame.size.height/2.0);
-    //[UIUpdate update:touchElement:gameStatus];
+	UITouch *touch = [[event allTouches] anyObject];
+    
+    [AtonTouchBeganUtility playerArrangeCard:touch:touchElement:redPlayer];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {		
+        if ([touch phase] == UITouchPhaseEnded) {
+		    [AtonTouchEndUtility playerPlaceCard:touch:touchElement:redPlayer];
+		}
+	}
 }
 @end

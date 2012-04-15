@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "AtonPlayer.h"
-#import "AtonTouchMoveUtility.h"
+#import "AtonTouchBeganUtility.h"
+#import "AtonTouchEndUtility.h"
+#import "AtonTouchElement.h"
 
-@interface BoardViewController : UIViewController
+@interface BoardViewController : UIViewController {
+    
+    CGPoint touchLocation;
+}
 
 @property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
+@property(strong, nonatomic) AtonTouchElement *touchElement;
+
 @end

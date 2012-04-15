@@ -19,6 +19,9 @@ static int CARD_HEIGHT_END = 118;
 static int START_SPACE = 818;
 static int END_SPACE = 648;
 
+static NSString *redCardNames[4] = {@"Red_Card1",@"Red_Card2",@"Red_Card3",@"Red_Card4"};
+static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@"Blue_Card4"};
+
 @synthesize baseView;
 @synthesize playerEnum, playerName;
 @synthesize score;
@@ -42,6 +45,8 @@ static int END_SPACE = 648;
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH_START, CARD_HEIGHT_START)];
             iv.image = [UIImage imageNamed:[self getCardBackName]];
             iv.userInteractionEnabled = YES;
+            
+            iv.backgroundColor = [UIColor whiteColor];
             [baseView addSubview:iv];
             
             [startCardIVArray addObject:iv];
@@ -57,6 +62,7 @@ static int END_SPACE = 648;
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(endOriginArray[i].x, endOriginArray[i].y, CARD_WIDTH_END, CARD_HEIGHT_END)];
             iv.image = [UIImage imageNamed:[self getCardBackName]];
+            iv.userInteractionEnabled = YES;
             [baseView addSubview:iv];
             
             [endCardIVArray addObject:iv];
@@ -66,12 +72,37 @@ static int END_SPACE = 648;
     return self;
 }
 
--(NSString*) getCardBackName{
+
+-(void) displayStartCards {
+    for (int i=0; i<4; i++) {
+        UIImageView *iv = [startCardIVArray objectAtIndex:i];
+        int cardNum = startCardNumArray[i];
+        iv.image = [UIImage imageNamed:[self getCardName:cardNum]];
+    }
+    
+    for (int i=0; i<4; i++) {
+        UIImageView *iv = [endCardIVArray objectAtIndex:i];
+        iv.image = nil;
+        [iv setBackgroundColor:[UIColor whiteColor]];
+        iv.alpha = 0.5;
+    }
+}
+
+-(NSString*) getCardBackName {
     
     if(playerEnum == 0) {
         return @"Red_CardBack.png";
     } else {
         return @"Blue_CardBack.png";
+    }
+}
+
+-(NSString*) getCardName: (int) cardNum {
+    
+    if (playerEnum == 0) {
+        return redCardNames[cardNum-1];
+    } else {
+        return blueCardNames[cardNum-1];
     }
 }
 @end

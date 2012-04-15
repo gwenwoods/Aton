@@ -15,6 +15,7 @@
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;
+-(void) displayStartCards;
 
 @property (strong, nonatomic) UIView *baseView;
 @property (nonatomic) int playerEnum;
