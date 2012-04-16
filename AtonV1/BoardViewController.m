@@ -41,8 +41,6 @@
     [playerArray addObject:bluePlayer];
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
-   // TempleSlot *testSlot = [[TempleSlot alloc] initializeWithParameters:0 :CGPointMake(290, 422) :self.view];
-    
     temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(236, 422) :self.view];
     
     NSMutableArray *templeArray = [[NSMutableArray alloc] init];
@@ -66,13 +64,11 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	UITouch *touch = [[event allTouches] anyObject];
-    [AtonTouchBeganUtility checkTouch:touch:touchElement:atonParameters];
+    [AtonTouchBeganUtility checkTouch:event:touchElement:atonParameters];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	UITouch *touch = [[event allTouches] anyObject];
-    [AtonTouchMovedUtility moveTouchElement:touch:touchElement:self.view];   
+    [AtonTouchMovedUtility moveTouchElement:event:touchElement:self.view];   
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

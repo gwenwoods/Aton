@@ -10,8 +10,8 @@
 
 @implementation AtonTouchBeganUtility
 
-+(void) checkTouch:(UITouch*) touch:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters {
-    
++(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters {
+    UITouch *touch = [[event allTouches] anyObject];
     NSMutableArray *playerArray = [atonParameters playerArray];
     NSMutableArray *templeArray = [atonParameters templeArray];
     [self playerArrangeCard:touch:touchElement:[playerArray objectAtIndex:0]];

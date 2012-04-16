@@ -11,7 +11,9 @@
 @implementation AtonTouchMovedUtility
 
 
-+(void) moveTouchElement:(UITouch*) touch:(AtonTouchElement*) touchElement:(UIView*) baseView {
++(void) moveTouchElement:(UIEvent *)event:(AtonTouchElement*) touchElement:(UIView*) baseView {
+    
+    UITouch *touch = [[event allTouches] anyObject];
     
     CGPoint touchLocation = [touch locationInView:baseView];
     

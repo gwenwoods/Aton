@@ -11,6 +11,6 @@
 
 @interface AtonTouchMovedUtility : NSObject
 
-+(void) moveTouchElement:(UITouch*) touch:(AtonTouchElement*) touchElement:(UIView*) baseView;
++(void) moveTouchElement:(UIEvent *)event:(AtonTouchElement*) touchElement:(UIView*) baseView;
 
 @end

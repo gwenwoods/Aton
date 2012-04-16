@@ -12,5 +12,6 @@
 
 @interface AtonTouchBeganUtility : NSObject
 
-+(void) checkTouch:(UITouch*) touch:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters;
++(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters;
+
 @end
