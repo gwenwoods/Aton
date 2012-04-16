@@ -62,13 +62,15 @@
 
 +(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray {
     
-    AtonTemple *temple1 = [templeArray objectAtIndex:0];
-    NSMutableArray *templeSlotArray = [temple1 slotArray];
-    for (int i=0; i< [templeSlotArray count]; i++) {
-        TempleSlot *slot = [templeSlotArray objectAtIndex:i];
-        if([touch view] == [slot iv]) {
-            [temple1 hideSlotBoundary];
-            slot.boundaryIV.hidden = NO;
+    for (int i=0; i<4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        NSMutableArray *templeSlotArray = [temple slotArray];
+        for (int i=0; i< [templeSlotArray count]; i++) {
+            TempleSlot *slot = [templeSlotArray objectAtIndex:i];
+            if([touch view] == [slot iv]) {
+                [TempleUtility hideAllTempleSlotBoundary:templeArray];
+                slot.boundaryIV.hidden = NO;
+            }
         }
     }
 }

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AtonTouchElement.h"
 #import "AtonGameParameters.h"
+#import "TempleUtility.h"
 
 @interface AtonTouchBeganUtility : NSObject
 

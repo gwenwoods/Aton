@@ -11,6 +11,8 @@
 		BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D220153C94BB00ED6DB9 /* TempleSlot.m */; };
 		BD16D224153CBF5A00ED6DB9 /* AtonTemple.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */; };
 		BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */; };
+		BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */; };
+		BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22E153CE08400ED6DB9 /* TempleUtility.m */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
 		BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7D153A1F0400660B35 /* CoreGraphics.framework */; };
@@ -62,6 +64,10 @@
 		BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTemple.m; sourceTree = "<group>"; };
 		BD16D225153CD4F300ED6DB9 /* AtonGameParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameParameters.h; sourceTree = "<group>"; };
 		BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameParameters.m; sourceTree = "<group>"; };
+		BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameInitializer.h; sourceTree = "<group>"; };
+		BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameInitializer.m; sourceTree = "<group>"; };
+		BD16D22D153CE08400ED6DB9 /* TempleUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleUtility.h; sourceTree = "<group>"; };
+		BD16D22E153CE08400ED6DB9 /* TempleUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleUtility.m; sourceTree = "<group>"; };
 		BD940B75153A1F0400660B35 /* AtonV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtonV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,6 +136,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD16D228153CDB0400ED6DB9 /* GameClass */ = {
+			isa = PBXGroup;
+			children = (
+				BD16D225153CD4F300ED6DB9 /* AtonGameParameters.h */,
+				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
+				BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */,
+				BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */,
+			);
+			name = GameClass;
+			sourceTree = "<group>";
+		};
+		BD16D22C153CE05900ED6DB9 /* TempleClass */ = {
+			isa = PBXGroup;
+			children = (
+				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
+				BD16D220153C94BB00ED6DB9 /* TempleSlot.m */,
+				BD16D222153CBF5A00ED6DB9 /* AtonTemple.h */,
+				BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */,
+				BD16D22D153CE08400ED6DB9 /* TempleUtility.h */,
+				BD16D22E153CE08400ED6DB9 /* TempleUtility.m */,
+			);
+			name = TempleClass;
+			sourceTree = "<group>";
+		};
 		BD940B6A153A1F0400660B35 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +194,8 @@
 		BD940B7F153A1F0400660B35 /* AtonV1 */ = {
 			isa = PBXGroup;
 			children = (
+				BD16D22C153CE05900ED6DB9 /* TempleClass */,
+				BD16D228153CDB0400ED6DB9 /* GameClass */,
 				BDAE713D153A6BB4001848F8 /* TouchClass */,
 				BDAE7136153A4229001848F8 /* ElementClass */,
 				BDAE7112153A2EEF001848F8 /* Images */,
@@ -246,14 +278,8 @@
 			children = (
 				BDAE7137153A4277001848F8 /* AtonPlayer.h */,
 				BDAE7138153A4277001848F8 /* AtonPlayer.m */,
-				BD16D225153CD4F300ED6DB9 /* AtonGameParameters.h */,
-				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
 				BDAE7149153A9C81001848F8 /* CardElement.h */,
 				BDAE714A153A9C81001848F8 /* CardElement.m */,
-				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
-				BD16D220153C94BB00ED6DB9 /* TempleSlot.m */,
-				BD16D222153CBF5A00ED6DB9 /* AtonTemple.h */,
-				BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */,
 			);
 			name = ElementClass;
 			sourceTree = "<group>";
@@ -402,6 +428,8 @@
 				BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */,
 				BD16D224153CBF5A00ED6DB9 /* AtonTemple.m in Sources */,
 				BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */,
+				BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */,
+				BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,9 +26,16 @@
     
     //------------------------
     // initialize temples
-    AtonTemple *temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(236, 422) :controller.view];
+    AtonTemple *temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(236, 144) :controller.view];
+    AtonTemple *temple2 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_2:CGPointMake(486, 144) :controller.view];
+    AtonTemple *temple3 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_3:CGPointMake(236, 422) :controller.view];
+    AtonTemple *temple4 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_4:CGPointMake(486, 422) :controller.view];
+    
     NSMutableArray *templeArray = [[NSMutableArray alloc] init];
     [templeArray addObject:temple1];
+    [templeArray addObject:temple2];
+    [templeArray addObject:temple3];
+    [templeArray addObject:temple4];
     
     //-----------------------
     // create Aton parameters
