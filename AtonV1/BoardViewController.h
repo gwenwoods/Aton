@@ -13,6 +13,8 @@
 #import "AtonTouchEndUtility.h"
 #import "AtonTouchElement.h"
 
+#import "TempleSlot.h" // temp one
+
 @interface BoardViewController : UIViewController {
     
     CGPoint touchLocation;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD16D21D153BC91F00ED6DB9 /* AtonTouchMovedUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */; };
+		BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D220153C94BB00ED6DB9 /* TempleSlot.m */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
 		BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7D153A1F0400660B35 /* CoreGraphics.framework */; };
@@ -53,6 +54,8 @@
 /* Begin PBXFileReference section */
 		BD16D21B153BC91F00ED6DB9 /* AtonTouchMovedUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchMovedUtility.h; sourceTree = "<group>"; };
 		BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchMovedUtility.m; sourceTree = "<group>"; };
+		BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleSlot.h; sourceTree = "<group>"; };
+		BD16D220153C94BB00ED6DB9 /* TempleSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleSlot.m; sourceTree = "<group>"; };
 		BD940B75153A1F0400660B35 /* AtonV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtonV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -239,6 +242,8 @@
 				BDAE7138153A4277001848F8 /* AtonPlayer.m */,
 				BDAE7149153A9C81001848F8 /* CardElement.h */,
 				BDAE714A153A9C81001848F8 /* CardElement.m */,
+				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
+				BD16D220153C94BB00ED6DB9 /* TempleSlot.m */,
 			);
 			name = ElementClass;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */,
 				BDAE714B153A9C81001848F8 /* CardElement.m in Sources */,
 				BD16D21D153BC91F00ED6DB9 /* AtonTouchMovedUtility.m in Sources */,
+				BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

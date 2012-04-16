@@ -34,6 +34,7 @@
     [redPlayer initilizeCardElement:redStartNumArray];
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
+    TempleSlot *testSlot = [[TempleSlot alloc] initializeWithParameters:0 :CGPointMake(290, 422) :self.view];
 }
 
 - (void)viewDidUnload
