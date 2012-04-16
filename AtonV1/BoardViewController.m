@@ -30,24 +30,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :nil:self];
-    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:self];
     
-    int redStartNumArray[] = {1,2,3,4};
-    [redPlayer initilizeCardElement:redStartNumArray];
-    
-    NSMutableArray *playerArray = [[NSMutableArray alloc] init];
-    [playerArray addObject:redPlayer];
-    [playerArray addObject:bluePlayer];
-    
+    atonParameters = [AtonGameInitializer initializeNewGame:self];
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
-    temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(236, 422) :self.view];
-    
-    NSMutableArray *templeArray = [[NSMutableArray alloc] init];
-    [templeArray addObject:temple1];
-    
-    atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray];
-    
 }
 
 - (void)viewDidUnload
