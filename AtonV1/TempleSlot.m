@@ -30,14 +30,16 @@ static int BOUNDARY_SIZE = 56;
         peepIV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, PEEP_SIZE, PEEP_SIZE)];
         boundaryIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4, -4, BOUNDARY_SIZE, BOUNDARY_SIZE)];
         
+        iv.userInteractionEnabled = YES;
         [iv addSubview:boundaryIV];
         [iv addSubview:peepIV];
         
-        [iv setBackgroundColor:[UIColor blueColor]];
+      //  [iv setBackgroundColor:[UIColor blueColor]];
         [boundaryIV.layer setBorderColor: [[UIColor blackColor] CGColor]];
         [boundaryIV.layer setBorderWidth: 2.0];
-        [peepIV setBackgroundColor:[UIColor redColor]];
-        iv.alpha = 0.5;
+        boundaryIV.hidden = YES;
+      //  [peepIV setBackgroundColor:[UIColor redColor]];
+      //  iv.alpha = 0.5;
 
         [baseView addSubview:iv];
     }

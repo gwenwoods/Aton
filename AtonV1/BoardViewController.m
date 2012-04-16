@@ -11,8 +11,11 @@
 
 @implementation BoardViewController
 
+@synthesize atonParameters;
 @synthesize touchElement;
-@synthesize  redPlayer, bluePlayer;
+//@synthesize redPlayer, bluePlayer;
+
+@synthesize temple1;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,14 +30,26 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :nil:self];
-    bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:self];
+    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :nil:self];
+    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:self];
     
     int redStartNumArray[] = {1,2,3,4};
     [redPlayer initilizeCardElement:redStartNumArray];
     
+    NSMutableArray *playerArray = [[NSMutableArray alloc] init];
+    [playerArray addObject:redPlayer];
+    [playerArray addObject:bluePlayer];
+    
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
-    TempleSlot *testSlot = [[TempleSlot alloc] initializeWithParameters:0 :CGPointMake(290, 422) :self.view];
+   // TempleSlot *testSlot = [[TempleSlot alloc] initializeWithParameters:0 :CGPointMake(290, 422) :self.view];
+    
+    temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(236, 422) :self.view];
+    
+    NSMutableArray *templeArray = [[NSMutableArray alloc] init];
+    [templeArray addObject:temple1];
+    
+    atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray];
+    
 }
 
 - (void)viewDidUnload
@@ -52,7 +67,7 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	UITouch *touch = [[event allTouches] anyObject];
-    [AtonTouchBeganUtility playerArrangeCard:touch:touchElement:redPlayer];
+    [AtonTouchBeganUtility checkTouch:touch:touchElement:atonParameters];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -63,7 +78,8 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {		
         if ([touch phase] == UITouchPhaseEnded) {
-		    [AtonTouchEndUtility playerPlaceCard:touch:touchElement:redPlayer];
+            NSMutableArray *playerArray = [atonParameters playerArray];
+		    [AtonTouchEndUtility playerPlaceCard:touch:touchElement:[playerArray objectAtIndex:0]];
 		}
 	}
 }

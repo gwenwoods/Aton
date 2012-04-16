@@ -7,20 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AtonPlayer.h"
+#import "AtonGameParameters.h"
 #import "AtonTouchBeganUtility.h"
 #import "AtonTouchMovedUtility.h"
 #import "AtonTouchEndUtility.h"
 #import "AtonTouchElement.h"
 
-#import "TempleSlot.h" // temp one
+#import "AtonTemple.h"
 
 @interface BoardViewController : UIViewController {
     
     CGPoint touchLocation;
 }
 
-@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
+//@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
+@property(strong, nonatomic) AtonGameParameters *atonParameters;
 @property(strong, nonatomic) AtonTouchElement *touchElement;
+
+@property(strong, nonatomic) AtonTemple* temple1;
 
 @end

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BD16D21D153BC91F00ED6DB9 /* AtonTouchMovedUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */; };
 		BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D220153C94BB00ED6DB9 /* TempleSlot.m */; };
+		BD16D224153CBF5A00ED6DB9 /* AtonTemple.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */; };
+		BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
 		BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7D153A1F0400660B35 /* CoreGraphics.framework */; };
@@ -56,6 +58,10 @@
 		BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchMovedUtility.m; sourceTree = "<group>"; };
 		BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleSlot.h; sourceTree = "<group>"; };
 		BD16D220153C94BB00ED6DB9 /* TempleSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleSlot.m; sourceTree = "<group>"; };
+		BD16D222153CBF5A00ED6DB9 /* AtonTemple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTemple.h; sourceTree = "<group>"; };
+		BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTemple.m; sourceTree = "<group>"; };
+		BD16D225153CD4F300ED6DB9 /* AtonGameParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameParameters.h; sourceTree = "<group>"; };
+		BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameParameters.m; sourceTree = "<group>"; };
 		BD940B75153A1F0400660B35 /* AtonV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtonV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -240,10 +246,14 @@
 			children = (
 				BDAE7137153A4277001848F8 /* AtonPlayer.h */,
 				BDAE7138153A4277001848F8 /* AtonPlayer.m */,
+				BD16D225153CD4F300ED6DB9 /* AtonGameParameters.h */,
+				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
 				BDAE7149153A9C81001848F8 /* CardElement.h */,
 				BDAE714A153A9C81001848F8 /* CardElement.m */,
 				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
 				BD16D220153C94BB00ED6DB9 /* TempleSlot.m */,
+				BD16D222153CBF5A00ED6DB9 /* AtonTemple.h */,
+				BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */,
 			);
 			name = ElementClass;
 			sourceTree = "<group>";
@@ -390,6 +400,8 @@
 				BDAE714B153A9C81001848F8 /* CardElement.m in Sources */,
 				BD16D21D153BC91F00ED6DB9 /* AtonTouchMovedUtility.m in Sources */,
 				BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */,
+				BD16D224153CBF5A00ED6DB9 /* AtonTemple.m in Sources */,
+				BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

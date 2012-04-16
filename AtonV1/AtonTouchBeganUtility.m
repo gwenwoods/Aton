@@ -10,6 +10,14 @@
 
 @implementation AtonTouchBeganUtility
 
++(void) checkTouch:(UITouch*) touch:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters {
+    
+    NSMutableArray *playerArray = [atonParameters playerArray];
+    NSMutableArray *templeArray = [atonParameters templeArray];
+    [self playerArrangeCard:touch:touchElement:[playerArray objectAtIndex:0]];
+    [self chooseTempleSlot:touch:templeArray];
+}
+
 +(void) playerArrangeCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player {
     
     if ([touchElement fromIndex] > 0) {
@@ -48,6 +56,19 @@
             [player releaseTempCardElement:ce];
             [[player baseView] bringSubviewToFront:[touchElement touchIV]];
             return;
+        }
+    }
+}
+
++(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray {
+    
+    AtonTemple *temple1 = [templeArray objectAtIndex:0];
+    NSMutableArray *templeSlotArray = [temple1 slotArray];
+    for (int i=0; i< [templeSlotArray count]; i++) {
+        TempleSlot *slot = [templeSlotArray objectAtIndex:i];
+        if([touch view] == [slot iv]) {
+            [temple1 hideSlotBoundary];
+            slot.boundaryIV.hidden = NO;
         }
     }
 }
