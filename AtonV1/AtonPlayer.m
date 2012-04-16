@@ -132,7 +132,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
     CardElement *tempCE= [emptyCardElementArray objectAtIndex:0];
     tempCE.number = targetCE.number;
     int count = [self findNumTempCardsAtCurrentRight:targetCE];
-    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x + 100 + count*10, targetCE.iv.center.y);
+    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x + 100 + count*28, targetCE.iv.center.y);
     tempCE.iv.center = tempCenter;
     tempCE.iv.image = targetCE.iv.image;
     [baseView bringSubviewToFront:tempCE.iv];

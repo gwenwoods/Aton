@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AtonPlayer.h"
 #import "AtonTouchBeganUtility.h"
+#import "AtonTouchMovedUtility.h"
 #import "AtonTouchEndUtility.h"
 #import "AtonTouchElement.h"
 
