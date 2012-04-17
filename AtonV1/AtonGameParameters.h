@@ -11,11 +11,17 @@
 #import "AtonTemple.h"
 #import "AtonGameManager.h"
 
+
+enum GAME_PHASE_ENUM {
+  GAME_PHASE_DISTRIBUTE_CARD, GAME_PHASE_REMOVE_PEEP, GAME_PHASE_PLACE_PEEP  
+};
+
 @interface AtonGameParameters : NSObject
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager;
 
 @property(strong, nonatomic) NSMutableArray *playerArray, *templeArray;
 @property(strong, nonatomic) AtonGameManager *gameManager;
+@property(nonatomic) int gamePhaseEnum;
 
 @end

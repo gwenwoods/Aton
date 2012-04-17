@@ -18,10 +18,13 @@ static int START_SPACE = 818;
 static NSString *redCardNames[4] = {@"Red_Card1",@"Red_Card2",@"Red_Card3",@"Red_Card4"};
 static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@"Blue_Card4"};
 
+static int CARD_NUM = 40;
+
 @synthesize baseView;
 @synthesize playerEnum, playerName;
 @synthesize score;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
+@synthesize deckIV, deckArray;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
 	if (self) {
@@ -37,7 +40,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
         cardElementArray = [[NSMutableArray alloc] init];
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH, CARD_HEIGHT)];
-            iv.image = [UIImage imageNamed:[self getCardBackName]];
+           // iv.image = [UIImage imageNamed:[self getCardBackName]];
             iv.userInteractionEnabled = YES;
             
             [baseView addSubview:iv];
@@ -58,6 +61,8 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
         }
 
         tempCardElementArray = [[NSMutableArray alloc] init];
+        [self initilizeDeck];
+        [self distributeCards];
     }  
     return self;
 }
@@ -70,6 +75,41 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
     }
 }
 
+
+-(void) initilizeDeck {
+    
+    deckIV = [[UIImageView alloc] initWithFrame:CGRectMake(16 + playerEnum * START_SPACE, 10, 32, 48)];
+    deckIV.image = [UIImage imageNamed:[self getCardBackName]];
+    [baseView addSubview:deckIV];
+    
+    deckArray = malloc(sizeof(int) * CARD_NUM);
+    for (int i=0; i<CARD_NUM; i++) {
+        deckArray[i] = i%4 + 1;
+    }
+    
+    //------------------------------
+    int n = time(0)%100;
+    srand(time(0));
+    
+    for (int count = 0; count < n; count++) {
+        for (int i=0; i<(CARD_NUM-1); i++) {
+            int r = i + (rand() % (CARD_NUM-i)); // Random remaining position.
+            int temp = deckArray[i]; 
+            deckArray[i] = deckArray[r]; 
+            deckArray[r] = temp;
+        }
+    }
+   // deckArray = MathUtility::randomizeInitialArray(INTRIGUE_CARD_NUMBER, intrigueCardIntArray);
+}
+
+-(void) distributeCards {
+    
+    for (int i=0; i<4; i++) {
+        CardElement *targetCE = [cardElementArray objectAtIndex:i];
+        [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + 2.0];
+       // [self ivTravel:deckIV:targetCE.iv];
+    }
+}
 -(NSString*) getCardBackName {
     
     if(playerEnum == 0) {
@@ -159,4 +199,45 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
     }
     return count;
 }
+
+-(void) ivTravel:(UIImageView*) fromIV:(UIImageView*) toIV {
+    
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:fromIV.frame];
+    animationIV.image = fromIV.image;
+    
+    [baseView addSubview:animationIV];    
+    [UIView animateWithDuration:2.0
+                          delay:1.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = toIV.frame;
+                         animationIV.center = toIV.center;
+                     } 
+                     completion:^(BOOL finished){
+                         //fromIV.image = nil;
+                         toIV.image = animationIV.image;
+                         [animationIV removeFromSuperview];
+                     }];
+}
+
+-(void) distributeCardFromDeck:(UIImageView*) toIV {
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:deckIV.frame];
+    animationIV.image = deckIV.image;
+    
+    [baseView addSubview:animationIV];    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = toIV.frame;
+                         animationIV.center = toIV.center;
+                     } 
+                     completion:^(BOOL finished){
+                         //fromIV.image = nil;
+                         toIV.image = animationIV.image;
+                         [animationIV removeFromSuperview];
+                     }];
+
+}
+         
 @end

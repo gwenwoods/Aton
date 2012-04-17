@@ -57,6 +57,7 @@
 		BDDA77BC153D31E8003F3530 /* under_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BB153D31E8003F3530 /* under_fabric.png */; };
 		BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */; };
 		BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BE153D3202003F3530 /* Red_Cylinder.png */; };
+		BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,8 @@
 		BDDA77BB153D31E8003F3530 /* under_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = under_fabric.png; sourceTree = "<group>"; };
 		BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77BE153D3202003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
+		BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameEngine.h; sourceTree = "<group>"; };
+		BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */,
 				BD5A54C4153D188A009F5D71 /* AtonGameManager.h */,
 				BD5A54C5153D188A009F5D71 /* AtonGameManager.m */,
+				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
+				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
 			);
 			name = GameClass;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */,
 				BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */,
 				BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */,
+				BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

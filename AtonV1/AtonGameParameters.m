@@ -12,6 +12,7 @@
 
 @synthesize playerArray, templeArray;
 @synthesize gameManager;
+@synthesize gamePhaseEnum;
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager {
     
@@ -19,6 +20,7 @@
         playerArray = atonPlayerArray;
         templeArray = atonTempleArray;
         gameManager = atonGameManager;
+        
         
     }
     return self;
