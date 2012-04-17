@@ -7,12 +7,12 @@
 //
 
 #import "AppDelegate.h"
-#import "BoardViewController.h"
+#import "StartMenuViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize boardViewController = _viewController;
+@synthesize startMenuViewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -21,11 +21,11 @@
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.boardViewController = [[BoardViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+        self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
     } else {
-        self.boardViewController = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
+        self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"StartMenuViewController" bundle:nil];
     }
-    self.window.rootViewController = self.boardViewController;
+    self.window.rootViewController = self.startMenuViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

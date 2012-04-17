@@ -20,6 +20,8 @@
     CGPoint touchLocation;
 }
 
+- (IBAction) toMenu:(id)sender;
+
 //@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
 @property(strong, nonatomic) AtonGameParameters *atonParameters;
 @property(strong, nonatomic) AtonTouchElement *touchElement;

@@ -65,4 +65,8 @@
 	}
 }
 
+- (IBAction) toMenu:(id)sender {
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

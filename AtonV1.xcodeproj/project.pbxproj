@@ -13,6 +13,10 @@
 		BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */; };
 		BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */; };
 		BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22E153CE08400ED6DB9 /* TempleUtility.m */; };
+		BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */; };
+		BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */; };
+		BD5A54BF153D0777009F5D71 /* Aton_OpenView150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BE153D0777009F5D71 /* Aton_OpenView150dpi.png */; };
+		BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C0153D126C009F5D71 /* ankh_small.png */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
 		BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7D153A1F0400660B35 /* CoreGraphics.framework */; };
@@ -68,6 +72,11 @@
 		BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameInitializer.m; sourceTree = "<group>"; };
 		BD16D22D153CE08400ED6DB9 /* TempleUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleUtility.h; sourceTree = "<group>"; };
 		BD16D22E153CE08400ED6DB9 /* TempleUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleUtility.m; sourceTree = "<group>"; };
+		BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMenuViewController.h; sourceTree = "<group>"; };
+		BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartMenuViewController.m; sourceTree = "<group>"; };
+		BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartMenuViewController.xib; sourceTree = "<group>"; };
+		BD5A54BE153D0777009F5D71 /* Aton_OpenView150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_OpenView150dpi.png; sourceTree = "<group>"; };
+		BD5A54C0153D126C009F5D71 /* ankh_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ankh_small.png; sourceTree = "<group>"; };
 		BD940B75153A1F0400660B35 /* AtonV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtonV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -205,6 +214,9 @@
 				BD940BA8153A1F9300660B35 /* BoardViewController.h */,
 				BD940BA9153A1F9300660B35 /* BoardViewController.m */,
 				BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */,
+				BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */,
+				BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */,
+				BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -242,7 +254,9 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
 				BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */,
+				BD5A54BE153D0777009F5D71 /* Aton_OpenView150dpi.png */,
 				BDAE711F153A3BED001848F8 /* Aton_card */,
 				BDAE7113153A3472001848F8 /* BlueCards */,
 			);
@@ -382,6 +396,9 @@
 				BDAE7132153A3BED001848F8 /* Red_Card4.png in Resources */,
 				BDAE7133153A3BED001848F8 /* Red_CardBack.png in Resources */,
 				BDAE7135153A3C90001848F8 /* Aton_gameBoard.png in Resources */,
+				BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */,
+				BD5A54BF153D0777009F5D71 /* Aton_OpenView150dpi.png in Resources */,
+				BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +447,7 @@
 				BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */,
 				BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */,
 				BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */,
+				BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class BoardViewController;
+//@class BoardViewController;
+@class StartMenuViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIViewController *boardViewController;
+@property (strong, nonatomic) UIViewController *startMenuViewController;
 
 @end
