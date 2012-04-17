@@ -49,13 +49,14 @@
 		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
 		BDAE714B153A9C81001848F8 /* CardElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE714A153A9C81001848F8 /* CardElement.m */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
-		BDDA77AF153D2E43003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A9153D2E43003F3530 /* Blue_Cylinder.png */; };
-		BDDA77B1153D2E43003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AB153D2E43003F3530 /* Red_Cylinder.png */; };
 		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
 		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
 		BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */; };
 		BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B7153D3038003F3530 /* Blue_Disc.png */; };
 		BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B9153D3070003F3530 /* Red_Disc.png */; };
+		BDDA77BC153D31E8003F3530 /* under_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BB153D31E8003F3530 /* under_fabric.png */; };
+		BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */; };
+		BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BE153D3202003F3530 /* Red_Cylinder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,13 +131,14 @@
 		BDAE7149153A9C81001848F8 /* CardElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardElement.h; sourceTree = "<group>"; };
 		BDAE714A153A9C81001848F8 /* CardElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardElement.m; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
-		BDDA77A9153D2E43003F3530 /* Blue_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Cylinder.png; sourceTree = "<group>"; };
-		BDDA77AB153D2E43003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
 		BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_IconPrist.png; sourceTree = "<group>"; };
 		BDDA77B7153D3038003F3530 /* Blue_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Disc.png; sourceTree = "<group>"; };
 		BDDA77B9153D3070003F3530 /* Red_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Disc.png; sourceTree = "<group>"; };
+		BDDA77BB153D31E8003F3530 /* under_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = under_fabric.png; sourceTree = "<group>"; };
+		BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Cylinder.png; sourceTree = "<group>"; };
+		BDDA77BE153D3202003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,8 +279,9 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
+				BDDA77BB153D31E8003F3530 /* under_fabric.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
+				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
 				BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */,
 				BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */,
 				BDAE711F153A3BED001848F8 /* Aton_card */,
@@ -340,8 +343,8 @@
 		BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */ = {
 			isa = PBXGroup;
 			children = (
-				BDDA77A9153D2E43003F3530 /* Blue_Cylinder.png */,
-				BDDA77AB153D2E43003F3530 /* Red_Cylinder.png */,
+				BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */,
+				BDDA77BE153D3202003F3530 /* Red_Cylinder.png */,
 				BDDA77B7153D3038003F3530 /* Blue_Disc.png */,
 				BDDA77B9153D3070003F3530 /* Red_Disc.png */,
 				BDDA77AD153D2E43003F3530 /* White_Cylinder.png */,
@@ -437,13 +440,14 @@
 				BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */,
 				BD5A54C3153D1670009F5D71 /* Aton_OpenView150dpi.png in Resources */,
 				BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */,
-				BDDA77AF153D2E43003F3530 /* Blue_Cylinder.png in Resources */,
-				BDDA77B1153D2E43003F3530 /* Red_Cylinder.png in Resources */,
 				BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */,
 				BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */,
 				BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */,
 				BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */,
 				BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */,
+				BDDA77BC153D31E8003F3530 /* under_fabric.png in Resources */,
+				BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */,
+				BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

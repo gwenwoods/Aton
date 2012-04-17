@@ -15,7 +15,7 @@
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray {
     
     if (self) {
-
+        communicationView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100,200, 200)];
     }
     return self;
 }
