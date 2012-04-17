@@ -62,7 +62,7 @@ static int CARD_NUM = 40;
 
         tempCardElementArray = [[NSMutableArray alloc] init];
         [self initilizeDeck];
-        [self distributeCards];
+        //[self distributeCards];
     }  
     return self;
 }
@@ -110,6 +110,7 @@ static int CARD_NUM = 40;
        // [self ivTravel:deckIV:targetCE.iv];
     }
 }
+
 -(NSString*) getCardBackName {
     
     if(playerEnum == 0) {

@@ -12,6 +12,15 @@
 
 @synthesize para;
 
+
+-(id)initializeWithParameters:(AtonGameParameters*) parameter {
+	if (self) {
+        para = parameter;
+    }
+    return self;
+}
+
+
 -(void) run {
     
     int gamePhaseEnum = para.gamePhaseEnum;
@@ -20,7 +29,7 @@
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
-          //  [player distributeCards];
+            [player distributeCards];
         }
     }
 }

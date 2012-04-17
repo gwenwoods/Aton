@@ -12,6 +12,7 @@
 #import "AtonTouchMovedUtility.h"
 #import "AtonTouchEndUtility.h"
 #import "AtonTouchElement.h"
+#import "AtonGameEngine.h"
 
 #import "AtonTemple.h"
 
@@ -23,6 +24,7 @@
 - (IBAction) toMenu:(id)sender;
 
 //@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
+@property(strong, nonatomic) AtonGameEngine *atonGameEngine;
 @property(strong, nonatomic) AtonGameParameters *atonParameters;
 @property(strong, nonatomic) AtonTouchElement *touchElement;
 

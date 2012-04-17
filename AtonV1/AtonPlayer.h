@@ -21,6 +21,7 @@
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;
 -(void) initilizeCardElement:(int*) cardNumberArray;
+-(void) distributeCards;
 
 // arrange cards functions
 -(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;

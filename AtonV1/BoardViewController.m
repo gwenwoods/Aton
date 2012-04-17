@@ -11,6 +11,7 @@
 
 @implementation BoardViewController
 
+@synthesize atonGameEngine;
 @synthesize atonParameters;
 @synthesize touchElement;
 //@synthesize redPlayer, bluePlayer;
@@ -31,9 +32,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    atonParameters = [AtonGameInitializer initializeNewGame:self];
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
-   // Ato
+   
+    atonParameters = [AtonGameInitializer initializeNewGame:self];
+    atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters];
+    
+    [atonGameEngine run];
 }
 
 - (void)viewDidUnload

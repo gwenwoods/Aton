@@ -11,6 +11,9 @@
 
 @interface AtonGameEngine : NSObject
 
+-(id)initializeWithParameters:(AtonGameParameters*) parameter;
+-(void) run;
+
 @property(strong, nonatomic) AtonGameParameters *para;
 
 @end
