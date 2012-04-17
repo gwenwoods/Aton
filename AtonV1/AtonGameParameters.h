@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "AtonPlayer.h"
 #import "AtonTemple.h"
+#import "AtonGameManager.h"
 
 @interface AtonGameParameters : NSObject
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray;
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager;
 
 @property(strong, nonatomic) NSMutableArray *playerArray, *templeArray;
+@property(strong, nonatomic) AtonGameManager *gameManager;
 
 @end

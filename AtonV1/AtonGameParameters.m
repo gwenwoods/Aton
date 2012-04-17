@@ -11,12 +11,15 @@
 @implementation AtonGameParameters
 
 @synthesize playerArray, templeArray;
+@synthesize gameManager;
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray {
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager {
     
     if (self) {
         playerArray = atonPlayerArray;
         templeArray = atonTempleArray;
+        gameManager = atonGameManager;
+        
     }
     return self;
 }

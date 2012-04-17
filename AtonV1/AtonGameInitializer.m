@@ -37,9 +37,14 @@
     [templeArray addObject:temple3];
     [templeArray addObject:temple4];
     
+    
+    //--------------------------
+    // initialize game manager
+    AtonGameManager *gameManager = [[AtonGameManager alloc] initializeWithParameters:controller.view];
+    
     //-----------------------
     // create Aton parameters
-    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray];
+    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray:gameManager];
     
     return  atonParameters;
 }

@@ -10,6 +10,9 @@
 
 @interface AtonGameManager : NSObject
 
+-(id)initializeWithParameters:(UIView*) atonBaseView;
+
+@property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
 @property(strong, nonatomic) UIImageView *communicationView;
 

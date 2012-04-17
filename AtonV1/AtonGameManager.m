@@ -10,12 +10,19 @@
 
 @implementation AtonGameManager
 
+@synthesize baseView;
 @synthesize activePlayer, communicationView;
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray {
+-(id)initializeWithParameters:(UIView*) atonBaseView {
     
     if (self) {
+        baseView = atonBaseView;
+        
         communicationView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100,200, 200)];
+        communicationView.image = [UIImage imageNamed:@"under_fabric.png"];
+        communicationView.hidden = YES;
+        [baseView addSubview:communicationView];
+        
     }
     return self;
 }

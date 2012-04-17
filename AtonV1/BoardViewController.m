@@ -33,6 +33,7 @@
     
     atonParameters = [AtonGameInitializer initializeNewGame:self];
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
+   // Ato
 }
 
 - (void)viewDidUnload

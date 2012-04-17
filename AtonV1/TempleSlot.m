@@ -12,7 +12,7 @@
 
 static int SLOT_WIDTH = 48;
 static int SLOT_HEIGHT = 48;
-static int PEEP_SIZE = 32;
+static int PEEP_SIZE = 40;
 static int BOUNDARY_SIZE = 56;
 
 @synthesize baseView;
@@ -27,7 +27,7 @@ static int BOUNDARY_SIZE = 56;
         int slotOriginX = templeOrigin.x;
         int slotOriginY = templeOrigin.y;
         iv = [[UIImageView alloc] initWithFrame:CGRectMake(slotOriginX, slotOriginY, SLOT_WIDTH, SLOT_HEIGHT)];
-        peepIV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, PEEP_SIZE, PEEP_SIZE)];
+        peepIV = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, PEEP_SIZE, PEEP_SIZE)];
        
         if (thisSlotID%2 == 0) {
              peepIV.image = [UIImage imageNamed:@"Red_Disc.png"];
