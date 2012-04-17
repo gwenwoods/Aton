@@ -25,6 +25,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    UILongPressGestureRecognizer *longPressRecognizer = 
+    [[UILongPressGestureRecognizer alloc]
+     initWithTarget:self 
+     action:@selector(longPressDetected:)];
+    longPressRecognizer.minimumPressDuration = 0.05;
+    longPressRecognizer.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:longPressRecognizer];
+   // [longPressRecognizer release];
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -42,34 +52,65 @@
 
 -(IBAction) playGame:(id)sender {
     
-    if (playIV.image == nil) {
-        playIV.image = [UIImage imageNamed:@"ankh_small.png"];
-        rulesIV.image = nil;
-        creditsIV.image = nil;
-        return;
-    }
+    playIV.image = [UIImage imageNamed:@"ankh_small.png"];
+    rulesIV.image = nil;
+    creditsIV.image = nil;
     
-    BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
-    screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:screen animated:YES];
+    playIV.alpha = 0.0;
+
+    [UIView animateWithDuration:0.05
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         playIV.alpha = 1.0;
+                         
+                     } 
+                     completion:^(BOOL finished){
+                     }];
+    
 }
 
 -(IBAction) showRules:(id)sender {
-    if (rulesIV.image == nil) {
-        playIV.image = nil;
-        rulesIV.image = [UIImage imageNamed:@"ankh_small.png"];
-        creditsIV.image = nil;
-        return;
-    }
+    playIV.image = nil;
+    rulesIV.image = [UIImage imageNamed:@"ankh_small.png"];
+    creditsIV.image = nil;
+    
+    rulesIV.alpha = 0.0;
+    [UIView animateWithDuration:0.05
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         rulesIV.alpha = 1.0;
+                         
+                     } 
+                     completion:^(BOOL finished){
+                     }];
 }
 
 -(IBAction) showCredits:(id)sender {
-    if (creditsIV.image == nil) {
-        playIV.image = nil;
-        rulesIV.image = nil;
-        creditsIV.image = [UIImage imageNamed:@"ankh_small.png"];
-        return;
-    }
+    playIV.image = nil;
+    rulesIV.image = nil;
+    creditsIV.image = [UIImage imageNamed:@"ankh_small.png"];
+    
+    creditsIV.alpha = 0.0;
+    [UIView animateWithDuration:0.05
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         creditsIV.alpha = 1.0;
+                         
+                     } 
+                     completion:^(BOOL finished){
+                     }];
 }
 
+- (IBAction)longPressDetected:(UIGestureRecognizer *)sender {
+    
+    if (playIV.image != nil) {
+        BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
+        screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentModalViewController:screen animated:YES];
+        playIV.image = nil;
+    }
+}
 @end

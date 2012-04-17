@@ -15,8 +15,9 @@
 		BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22E153CE08400ED6DB9 /* TempleUtility.m */; };
 		BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */; };
 		BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */; };
-		BD5A54BF153D0777009F5D71 /* Aton_OpenView150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BE153D0777009F5D71 /* Aton_OpenView150dpi.png */; };
 		BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C0153D126C009F5D71 /* ankh_small.png */; };
+		BD5A54C3153D1670009F5D71 /* Aton_OpenView150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */; };
+		BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54C5153D188A009F5D71 /* AtonGameManager.m */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
 		BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7D153A1F0400660B35 /* CoreGraphics.framework */; };
@@ -47,6 +48,14 @@
 		BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */; };
 		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
 		BDAE714B153A9C81001848F8 /* CardElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE714A153A9C81001848F8 /* CardElement.m */; };
+		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
+		BDDA77AF153D2E43003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A9153D2E43003F3530 /* Blue_Cylinder.png */; };
+		BDDA77B1153D2E43003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AB153D2E43003F3530 /* Red_Cylinder.png */; };
+		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
+		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
+		BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */; };
+		BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B7153D3038003F3530 /* Blue_Disc.png */; };
+		BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B9153D3070003F3530 /* Red_Disc.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +84,10 @@
 		BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMenuViewController.h; sourceTree = "<group>"; };
 		BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartMenuViewController.m; sourceTree = "<group>"; };
 		BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartMenuViewController.xib; sourceTree = "<group>"; };
-		BD5A54BE153D0777009F5D71 /* Aton_OpenView150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_OpenView150dpi.png; sourceTree = "<group>"; };
 		BD5A54C0153D126C009F5D71 /* ankh_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ankh_small.png; sourceTree = "<group>"; };
+		BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_OpenView150dpi.png; sourceTree = "<group>"; };
+		BD5A54C4153D188A009F5D71 /* AtonGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameManager.h; sourceTree = "<group>"; };
+		BD5A54C5153D188A009F5D71 /* AtonGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameManager.m; sourceTree = "<group>"; };
 		BD940B75153A1F0400660B35 /* AtonV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtonV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -118,6 +129,14 @@
 		BDAE7147153A8BEF001848F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BDAE7149153A9C81001848F8 /* CardElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardElement.h; sourceTree = "<group>"; };
 		BDAE714A153A9C81001848F8 /* CardElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardElement.m; sourceTree = "<group>"; };
+		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
+		BDDA77A9153D2E43003F3530 /* Blue_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Cylinder.png; sourceTree = "<group>"; };
+		BDDA77AB153D2E43003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
+		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
+		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
+		BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_IconPrist.png; sourceTree = "<group>"; };
+		BDDA77B7153D3038003F3530 /* Blue_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Disc.png; sourceTree = "<group>"; };
+		BDDA77B9153D3070003F3530 /* Red_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Disc.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +171,8 @@
 				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
 				BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */,
 				BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */,
+				BD5A54C4153D188A009F5D71 /* AtonGameManager.h */,
+				BD5A54C5153D188A009F5D71 /* AtonGameManager.m */,
 			);
 			name = GameClass;
 			sourceTree = "<group>";
@@ -172,6 +193,8 @@
 		BD940B6A153A1F0400660B35 = {
 			isa = PBXGroup;
 			children = (
+				BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */,
+				BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */,
 				BDAE7147153A8BEF001848F8 /* QuartzCore.framework */,
 				BD940B7F153A1F0400660B35 /* AtonV1 */,
 				BD940B97153A1F0500660B35 /* AtonV1Tests */,
@@ -254,9 +277,10 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
+				BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */,
 				BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */,
-				BD5A54BE153D0777009F5D71 /* Aton_OpenView150dpi.png */,
 				BDAE711F153A3BED001848F8 /* Aton_card */,
 				BDAE7113153A3472001848F8 /* BlueCards */,
 			);
@@ -311,6 +335,19 @@
 				BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */,
 			);
 			name = TouchClass;
+			sourceTree = "<group>";
+		};
+		BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */ = {
+			isa = PBXGroup;
+			children = (
+				BDDA77A9153D2E43003F3530 /* Blue_Cylinder.png */,
+				BDDA77AB153D2E43003F3530 /* Red_Cylinder.png */,
+				BDDA77B7153D3038003F3530 /* Blue_Disc.png */,
+				BDDA77B9153D3070003F3530 /* Red_Disc.png */,
+				BDDA77AD153D2E43003F3530 /* White_Cylinder.png */,
+				BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */,
+			);
+			path = Aton_disc_cylinder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,8 +434,16 @@
 				BDAE7133153A3BED001848F8 /* Red_CardBack.png in Resources */,
 				BDAE7135153A3C90001848F8 /* Aton_gameBoard.png in Resources */,
 				BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */,
-				BD5A54BF153D0777009F5D71 /* Aton_OpenView150dpi.png in Resources */,
 				BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */,
+				BD5A54C3153D1670009F5D71 /* Aton_OpenView150dpi.png in Resources */,
+				BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */,
+				BDDA77AF153D2E43003F3530 /* Blue_Cylinder.png in Resources */,
+				BDDA77B1153D2E43003F3530 /* Red_Cylinder.png in Resources */,
+				BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */,
+				BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */,
+				BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */,
+				BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */,
+				BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +493,7 @@
 				BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */,
 				BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */,
 				BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */,
+				BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +588,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AtonV1/AtonV1-Prefix.pch";
 				INFOPLIST_FILE = "AtonV1/AtonV1-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -553,6 +600,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AtonV1/AtonV1-Prefix.pch";
 				INFOPLIST_FILE = "AtonV1/AtonV1-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

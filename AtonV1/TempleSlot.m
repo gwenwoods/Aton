@@ -28,6 +28,13 @@ static int BOUNDARY_SIZE = 56;
         int slotOriginY = templeOrigin.y;
         iv = [[UIImageView alloc] initWithFrame:CGRectMake(slotOriginX, slotOriginY, SLOT_WIDTH, SLOT_HEIGHT)];
         peepIV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, PEEP_SIZE, PEEP_SIZE)];
+       
+        if (thisSlotID%2 == 0) {
+             peepIV.image = [UIImage imageNamed:@"Red_Disc.png"];
+        } else {
+             peepIV.image = [UIImage imageNamed:@"Blue_Disc.png"];
+        }
+       
         boundaryIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4, -4, BOUNDARY_SIZE, BOUNDARY_SIZE)];
         
         iv.userInteractionEnabled = YES;

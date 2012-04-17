@@ -12,6 +12,7 @@
 @interface StartMenuViewController : UIViewController
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
+    BOOL longPress;
 }
 
 -(IBAction) playGame:(id)sender;
