@@ -11,9 +11,11 @@
 @interface AtonGameManager : NSObject
 
 -(id)initializeWithParameters:(UIView*) atonBaseView;
+-(void) showCommunicationView:(NSString*) msg;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
 @property(strong, nonatomic) UIImageView *communicationView;
+@property(strong, nonatomic) UILabel *communicationLb;
 
 @end

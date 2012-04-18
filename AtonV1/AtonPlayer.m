@@ -41,7 +41,7 @@ static int CARD_NUM = 40;
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH, CARD_HEIGHT)];
            // iv.image = [UIImage imageNamed:[self getCardBackName]];
-            iv.userInteractionEnabled = YES;
+           // iv.userInteractionEnabled = YES;
             
             [baseView addSubview:iv];
            
@@ -53,7 +53,7 @@ static int CARD_NUM = 40;
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(-200, -200, CARD_WIDTH, CARD_HEIGHT)];
             iv.image = nil;
-            iv.userInteractionEnabled = YES;
+            //iv.userInteractionEnabled = YES;
             [baseView addSubview:iv];
             
             CardElement *ce = [[CardElement alloc] initializeWithParameters:iv:0:5];
@@ -106,6 +106,7 @@ static int CARD_NUM = 40;
     
     for (int i=0; i<4; i++) {
         CardElement *targetCE = [cardElementArray objectAtIndex:i];
+        targetCE.number = i +1;
         [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + 2.0];
        // [self ivTravel:deckIV:targetCE.iv];
     }
@@ -240,5 +241,33 @@ static int CARD_NUM = 40;
                      }];
 
 }
-         
+
+-(void) openCards {
+    for (int i=0; i<4; i++) {
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        NSString *imgName = [self getCardName:ce.number];
+        [self flipIV:ce.iv withImgName:imgName];
+    }
+    [self performSelector:@selector(enablePlayerArrangeCards) withObject:nil afterDelay:0.6];
+}
+  
+-(void) flipIV:(UIImageView*) iv withImgName:(NSString*) imgName {
+    
+    iv.image = [UIImage imageNamed:imgName];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut]; 
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:iv cache:NO];
+    [UIView commitAnimations];
+}
+
+-(void) enablePlayerArrangeCards {
+    for (int i=0; i<4; i++) {
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        ce.iv.userInteractionEnabled = YES;
+        
+        CardElement *ece = [emptyCardElementArray objectAtIndex:i];
+        ece.iv.userInteractionEnabled = YES;
+    }
+}
 @end

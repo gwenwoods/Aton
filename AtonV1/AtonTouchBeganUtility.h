@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AtonTouchElement.h"
 #import "AtonGameParameters.h"
+#import "AtonGameEngine.h"
 #import "TempleUtility.h"
 
 @interface AtonTouchBeganUtility : NSObject
 
-+(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters;
++(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters: (AtonGameEngine*) engine;
 
 @end

@@ -10,20 +10,41 @@
 
 @implementation AtonTouchBeganUtility
 
-+(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters {
++(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters: (AtonGameEngine*) engine {
     UITouch *touch = [[event allTouches] anyObject];
     NSMutableArray *playerArray = [atonParameters playerArray];
     NSMutableArray *templeArray = [atonParameters templeArray];
-    [self playerArrangeCard:touch:touchElement:[playerArray objectAtIndex:0]];
+   
+    
+    [self checkCommunicationView:atonParameters:engine];
+    [self playerArrangeCard:touch:touchElement:atonParameters];
     [self chooseTempleSlot:touch:templeArray];
 }
 
-+(void) playerArrangeCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player {
++(void) checkCommunicationView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
+
+    AtonGameManager *gameManager = [atonParameters gameManager];
+    if (gameManager.communicationView.hidden == YES) {
+        return;
+    } else {
+        gameManager.communicationView.hidden = YES;
+        atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
+        [engine run];
+    }
+}
+
++(void) playerArrangeCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonGameParameters*) atonParameters {
+    
+    if (atonParameters.gamePhaseEnum != GAME_PHASE_RED_LAY_CARD) {
+        return;
+    }
     
     if ([touchElement fromIndex] > 0) {
         return;
     }
     
+    NSMutableArray *playerArray = [atonParameters playerArray];
+    AtonPlayer *player = [playerArray objectAtIndex:0];
     NSMutableArray *cardElementArray = [player cardElementArray];    
     for (int i=0; i<4; i++) {
         CardElement *ce = [cardElementArray objectAtIndex:i];

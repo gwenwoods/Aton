@@ -25,13 +25,21 @@
     
     int gamePhaseEnum = para.gamePhaseEnum;
     NSMutableArray *playerArray = [para playerArray];
+    AtonGameManager *gameManager = [para gameManager];
     
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
             [player distributeCards];
         }
+        
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Player Red: Lay your cards" afterDelay:4.0];
+    
+    } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
+        AtonPlayer *playerRed = [playerArray objectAtIndex:0];
+        [playerRed openCards];    
     }
 }
+
 
 @end

@@ -54,7 +54,7 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [AtonTouchBeganUtility checkTouch:event:touchElement:atonParameters];
+    [AtonTouchBeganUtility checkTouch:event:touchElement:atonParameters:atonGameEngine];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -20,6 +20,7 @@
         touchIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 88, 134)];
         [baseView addSubview:touchIV];
         [baseView bringSubviewToFront:touchIV];
+        fromIndex = -1;
     }
     return self;
 }
