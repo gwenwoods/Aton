@@ -70,8 +70,20 @@
 	}
 }
 
-- (IBAction) toMenu:(id)sender {
-    
+- (IBAction) toMenu:(id)sender {    
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction) doneAction:(id)sender {
+    if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
+        
+        AtonPlayer *redPlayer = [[atonParameters playerArray] objectAtIndex:0];
+        if ([[redPlayer emptyCardElementArray] count] < 4) {
+            return;
+        }
+        atonParameters.gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
+        [atonGameEngine run];
+    }
+    
 }
 @end

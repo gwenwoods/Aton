@@ -331,7 +331,16 @@ static int CARD_NUM = 40;
     }
     [self performSelector:@selector(enablePlayerArrangeCards) withObject:nil afterDelay:0.6];
 }
-  
+ 
+-(void) closeCards {
+    for (int i=0; i<4; i++) {
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        NSString *imgName = [self getCardBackName];
+        [self flipIV:ce.iv withImgName:imgName];
+    }
+  //  [self performSelector:@selector(enablePlayerArrangeCards) withObject:nil afterDelay:0.6];
+}
+
 -(void) flipIV:(UIImageView*) iv withImgName:(NSString*) imgName {
     
     iv.image = [UIImage imageNamed:imgName];

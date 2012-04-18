@@ -28,7 +28,12 @@
         return;
     } else {
         gameManager.communicationView.hidden = YES;
-        atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
+        if (atonParameters.gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_BLUE_LAY_CARD;
+        }
+        
         [engine run];
     }
 }

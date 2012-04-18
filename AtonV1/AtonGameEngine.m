@@ -37,7 +37,16 @@
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
-        [playerRed openCards];    
+        [playerRed openCards];   
+        
+    } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+        AtonPlayer *playerRed = [playerArray objectAtIndex:0];
+        [playerRed closeCards]; 
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Player Blue: Lay your cards" afterDelay:1.0];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
+        AtonPlayer *playerBlue = [playerArray objectAtIndex:1];
+        [playerBlue openCards];
     }
 }
 

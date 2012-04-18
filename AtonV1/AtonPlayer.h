@@ -22,6 +22,7 @@
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;
 -(void) initilizeCardElement:(int*) cardNumberArray;
 -(void) openCards;
+-(void) closeCards;
 -(void) distributeCards;
 
 // arrange cards functions
