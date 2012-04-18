@@ -37,7 +37,7 @@
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
-        [playerRed openCards];   
+        [playerRed openCardsForArrange];   
         
     } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
@@ -46,7 +46,18 @@
         
     } else if(gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
         AtonPlayer *playerBlue = [playerArray objectAtIndex:1];
-        [playerBlue openCards];
+        [playerBlue openCardsForArrange];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+        AtonPlayer *playerBlue = [playerArray objectAtIndex:1];
+        [playerBlue closeCards]; 
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Compare Results" afterDelay:1.0];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_COMPARE) {
+        for (int i=0; i<2; i++) {
+            AtonPlayer *player = [playerArray objectAtIndex:i];
+            [player openCardsForArrange];
+        }
     }
 }
 

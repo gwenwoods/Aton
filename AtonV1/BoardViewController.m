@@ -64,8 +64,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {		
         if ([touch phase] == UITouchPhaseEnded) {
-            NSMutableArray *playerArray = [atonParameters playerArray];
-		    [AtonTouchEndUtility playerPlaceCard:touch:touchElement:[playerArray objectAtIndex:0]];
+		    [AtonTouchEndUtility playerPlaceCard:touch:touchElement:atonParameters];
 		}
 	}
 }
@@ -82,6 +81,15 @@
             return;
         }
         atonParameters.gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
+        [atonGameEngine run];
+        
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
+        
+        AtonPlayer *bluePlayer = [[atonParameters playerArray] objectAtIndex:1];
+        if ([[bluePlayer emptyCardElementArray] count] < 4) {
+            return;
+        }
+        atonParameters.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
         [atonGameEngine run];
     }
     

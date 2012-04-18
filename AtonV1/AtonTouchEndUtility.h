@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AtonPlayer.h"
+#import "AtonGameParameters.h"
 #import "AtonTouchElement.h"
 
 @interface AtonTouchEndUtility : NSObject
 
-+(void) playerPlaceCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player;
++(void) playerPlaceCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonGameParameters*) atonParameters;
 
 @end

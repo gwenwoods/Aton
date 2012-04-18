@@ -30,8 +30,13 @@
         gameManager.communicationView.hidden = YES;
         if (atonParameters.gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
+            
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_BLUE_LAY_CARD;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_COMPARE;
+            
         }
         
         [engine run];
@@ -40,16 +45,22 @@
 
 +(void) playerArrangeCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonGameParameters*) atonParameters {
     
-    if (atonParameters.gamePhaseEnum != GAME_PHASE_RED_LAY_CARD) {
-        return;
+    NSMutableArray *playerArray = [atonParameters playerArray];
+    AtonPlayer *player;
+    if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
+        player = [playerArray objectAtIndex:0];
+    
+    } else if(atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
+        player = [playerArray objectAtIndex:1];
+        
     }
     
     if ([touchElement fromIndex] > 0) {
         return;
     }
     
-    NSMutableArray *playerArray = [atonParameters playerArray];
-    AtonPlayer *player = [playerArray objectAtIndex:0];
+   
+    
     NSMutableArray *cardElementArray = [player cardElementArray];    
     for (int i=0; i<4; i++) {
         CardElement *ce = [cardElementArray objectAtIndex:i];

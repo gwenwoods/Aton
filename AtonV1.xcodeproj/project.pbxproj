@@ -13,6 +13,7 @@
 		BD16D227153CD4F500ED6DB9 /* AtonGameParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */; };
 		BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */; };
 		BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22E153CE08400ED6DB9 /* TempleUtility.m */; };
+		BD3AF23B153F81D30098DE8C /* AtonRoundResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */; };
 		BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */; };
 		BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */; };
 		BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C0153D126C009F5D71 /* ankh_small.png */; };
@@ -83,6 +84,8 @@
 		BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameInitializer.m; sourceTree = "<group>"; };
 		BD16D22D153CE08400ED6DB9 /* TempleUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleUtility.h; sourceTree = "<group>"; };
 		BD16D22E153CE08400ED6DB9 /* TempleUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleUtility.m; sourceTree = "<group>"; };
+		BD3AF239153F81D30098DE8C /* AtonRoundResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonRoundResult.h; sourceTree = "<group>"; };
+		BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonRoundResult.m; sourceTree = "<group>"; };
 		BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMenuViewController.h; sourceTree = "<group>"; };
 		BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartMenuViewController.m; sourceTree = "<group>"; };
 		BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartMenuViewController.xib; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				BD5A54C5153D188A009F5D71 /* AtonGameManager.m */,
 				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
+				BD3AF239153F81D30098DE8C /* AtonRoundResult.h */,
+				BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */,
 			);
 			name = GameClass;
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 				BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */,
 				BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */,
 				BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */,
+				BD3AF23B153F81D30098DE8C /* AtonRoundResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

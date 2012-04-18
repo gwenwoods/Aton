@@ -11,7 +11,17 @@
 @implementation AtonTouchEndUtility
 
 
-+(void) playerPlaceCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonPlayer*) player {
++(void) playerPlaceCard:(UITouch*) touch:(AtonTouchElement*) touchElement: (AtonGameParameters*) atonParameters {
+    
+    NSMutableArray *playerArray = [atonParameters playerArray];
+    AtonPlayer *player;
+    if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
+        player = [playerArray objectAtIndex:0];
+        
+    } else if(atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
+        player = [playerArray objectAtIndex:1];
+        
+    }
     
     if ([touchElement fromIndex] < 0) {
         return;

@@ -227,7 +227,11 @@ static int CARD_NUM = 40;
     CardElement *tempCE= [emptyCardElementArray objectAtIndex:0];
     tempCE.number = targetCE.number;
     int count = [self findNumTempCardsAtCurrentRight:targetCE];
-    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x + 100 + count*28, targetCE.iv.center.y);
+    int pushSpace = 100 + count*28;
+    if (playerEnum ==1) {
+        pushSpace = pushSpace*(-1);
+    }
+    CGPoint tempCenter = CGPointMake(targetCE.iv.center.x + pushSpace, targetCE.iv.center.y);
     tempCE.iv.center = tempCenter;
   //  tempCE.iv.image = targetCE.iv.image;
     [baseView bringSubviewToFront:tempCE.iv];
@@ -323,15 +327,19 @@ static int CARD_NUM = 40;
 
 }
 
+-(void) openCardsForArrange {
+    [self openCards];
+    [self performSelector:@selector(enablePlayerArrangeCards) withObject:nil afterDelay:0.6];
+}
+ 
 -(void) openCards {
     for (int i=0; i<4; i++) {
         CardElement *ce = [cardElementArray objectAtIndex:i];
         NSString *imgName = [self getCardName:ce.number];
         [self flipIV:ce.iv withImgName:imgName];
     }
-    [self performSelector:@selector(enablePlayerArrangeCards) withObject:nil afterDelay:0.6];
 }
- 
+
 -(void) closeCards {
     for (int i=0; i<4; i++) {
         CardElement *ce = [cardElementArray objectAtIndex:i];
