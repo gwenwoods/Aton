@@ -134,19 +134,72 @@ static int CARD_NUM = 40;
     
     int fromIndex = touchElement.fromIndex;
     CardElement *fromCE = [cardElementArray objectAtIndex:(fromIndex-1)];
-    fromCE.iv.image = targetCE.iv.image;
     fromCE.number = targetCE.number;
-    if(fromCE.iv.image != nil) {
-        fromCE.subIV.hidden = YES;
-    }
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:targetCE.iv.frame];
+    animationIV.image = targetCE.iv.image;
+    targetCE.iv.image = nil;
+
+    [baseView addSubview:animationIV];
+   // [baseView bringSubviewToFront:animationIV];
+   // [baseView bringSubviewToFront:[touchElement touchIV]];
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = fromCE.iv.frame;
+                         animationIV.center = fromCE.iv.center;
+                     } 
+                     completion:^(BOOL finished){
+                         //fromIV.image = nil;
+                         fromCE.iv.image = animationIV.image;
+                         [animationIV removeFromSuperview];
+                         
+                         if(fromCE.iv.image != nil) {
+                             fromCE.subIV.hidden = YES;
+                         }
+                     }];
+
     
-    targetCE.iv.image = touchElement.touchIV.image;
-    targetCE.subIV.hidden = YES;
+ //   fromCE.iv.image = targetCE.iv.image;
+ //   fromCE.number = targetCE.number;
+ //   if(fromCE.iv.image != nil) {
+ //       fromCE.subIV.hidden = YES;
+ //   }
+    
+    UIImageView *animationIV1 = [[UIImageView alloc] initWithFrame:touchElement.touchIV.frame];
+    animationIV1.image =  touchElement.touchIV.image;
     targetCE.number = [touchElement cardNum];
-    
-    [baseView bringSubviewToFront:fromCE.iv];
-    [baseView bringSubviewToFront:targetCE.iv];
     [touchElement reset];
+    [baseView addSubview:animationIV1];    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV1.frame = targetCE.iv.frame;
+                         animationIV1.center = targetCE.iv.center;
+                     } 
+                     completion:^(BOOL finished){
+                         //fromIV.image = nil;
+                         targetCE.iv.image = animationIV1.image;
+                         [animationIV1 removeFromSuperview];
+                         
+                         targetCE.subIV.hidden = YES;
+                         
+                         [baseView bringSubviewToFront:fromCE.iv];
+                         [baseView bringSubviewToFront:targetCE.iv];
+                         [baseView bringSubviewToFront:[touchElement touchIV]];
+                        
+                     }];
+
+    
+//    targetCE.iv.image = touchElement.touchIV.image;
+//    targetCE.subIV.hidden = YES;
+//    targetCE.number = [touchElement cardNum];
+
+    
+//    [baseView bringSubviewToFront:fromCE.iv];
+//    [baseView bringSubviewToFront:targetCE.iv];
+//    [touchElement reset];
 }
 
 -(void) placeTempCardElementFromTouch:(AtonTouchElement*) touchElement {
@@ -176,18 +229,45 @@ static int CARD_NUM = 40;
     int count = [self findNumTempCardsAtCurrentRight:targetCE];
     CGPoint tempCenter = CGPointMake(targetCE.iv.center.x + 100 + count*28, targetCE.iv.center.y);
     tempCE.iv.center = tempCenter;
-    tempCE.iv.image = targetCE.iv.image;
+  //  tempCE.iv.image = targetCE.iv.image;
     [baseView bringSubviewToFront:tempCE.iv];
     
     [emptyCardElementArray removeObject:tempCE];
     [tempCardElementArray addObject:tempCE];
+    
+    [self ivTravel:targetCE.iv :tempCE.iv];
 }
 
 -(void) placeCardElementFromTouch:(AtonTouchElement*) touchElement:(CardElement*) targetCE {
-    targetCE.iv.image = touchElement.touchIV.image;
-    targetCE.subIV.hidden = YES;
+    //targetCE.iv.image = touchElement.touchIV.image;
+  //  targetCE.subIV.hidden = YES;
+   // targetCE.number = [touchElement cardNum];
+  //  [touchElement reset];
+    
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:touchElement.touchIV.frame];
+    animationIV.image =  touchElement.touchIV.image;
     targetCE.number = [touchElement cardNum];
     [touchElement reset];
+    [baseView addSubview:animationIV];    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = targetCE.iv.frame;
+                         animationIV.center = targetCE.iv.center;
+                     } 
+                     completion:^(BOOL finished){
+                         //fromIV.image = nil;
+                         targetCE.iv.image = animationIV.image;
+                         [animationIV removeFromSuperview];
+                         
+                         targetCE.subIV.hidden = YES;
+                         
+                        // [baseView bringSubviewToFront:fromCE.iv];
+                         [baseView bringSubviewToFront:targetCE.iv];
+                         [baseView bringSubviewToFront:[touchElement touchIV]];
+                         
+                     }];
 }
 
 -(int) findNumTempCardsAtCurrentRight:(CardElement*) targetCE {
@@ -206,10 +286,11 @@ static int CARD_NUM = 40;
     
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:fromIV.frame];
     animationIV.image = fromIV.image;
+    fromIV.image = nil;
     
     [baseView addSubview:animationIV];    
-    [UIView animateWithDuration:2.0
-                          delay:1.0
+    [UIView animateWithDuration:0.5
+                          delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          animationIV.frame = toIV.frame;
