@@ -26,13 +26,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UILongPressGestureRecognizer *longPressRecognizer = 
+/*    UILongPressGestureRecognizer *longPressRecognizer = 
     [[UILongPressGestureRecognizer alloc]
      initWithTarget:self 
      action:@selector(longPressDetected:)];
     longPressRecognizer.minimumPressDuration = 0.05;
     longPressRecognizer.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:longPressRecognizer];
+    [self.view addGestureRecognizer:longPressRecognizer];*/
    // [longPressRecognizer release];
     [super viewDidLoad];
 }
@@ -50,8 +50,7 @@
 }
 
 
--(IBAction) playGame:(id)sender {
-    
+-(IBAction) playTouchDown:(id)sender {
     playIV.image = [UIImage imageNamed:@"ankh_small.png"];
     rulesIV.image = nil;
     creditsIV.image = nil;
@@ -67,7 +66,14 @@
                      } 
                      completion:^(BOOL finished){
                      }];
-    
+}
+
+
+-(IBAction) playTouchUpInside:(id)sender {
+    BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
+    screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:screen animated:YES];
+    playIV.image = nil;
 }
 
 -(IBAction) showRules:(id)sender {
@@ -104,13 +110,8 @@
                      }];
 }
 
-- (IBAction)longPressDetected:(UIGestureRecognizer *)sender {
-    
-    if (playIV.image != nil) {
-        BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
-        screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentModalViewController:screen animated:YES];
-        playIV.image = nil;
-    }
-}
+//- (IBAction)longPressDetected:(UIGestureRecognizer *)sender {
+//    
+
+//}
 @end

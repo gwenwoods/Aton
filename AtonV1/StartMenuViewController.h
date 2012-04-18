@@ -15,7 +15,8 @@
     BOOL longPress;
 }
 
--(IBAction) playGame:(id)sender;
+//-(IBAction) playTouchDown:(id)sender;
+-(IBAction) playTouchUpInside:(id)sender;
 -(IBAction) showRules:(id)sender;
 -(IBAction) showCredits:(id)sender;
 @end
