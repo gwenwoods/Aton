@@ -91,7 +91,13 @@
         }
         atonParameters.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
         [atonGameEngine run];
+        
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+        TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
+        
+        selectedSlot.peepIV.image = nil;
+        selectedSlot.occupiedEnum = OCCUPIED_EMPTY;
+        [atonGameEngine run];
     }
-    
 }
 @end

@@ -30,4 +30,14 @@
         [temple enableTempleSlotInteraction:playerEnum];
     }
 }
+
++(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray {
+    for (int i=1; i< [templeArray count]; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        TempleSlot *slot = [temple findSelectedSlot];
+        return slot;
+    }
+    return nil;
+}
+
 @end

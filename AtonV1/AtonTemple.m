@@ -85,4 +85,14 @@ static int SPACE_HEIGHT = 53;
         slot.iv.userInteractionEnabled = NO;
     }
 }
+
+-(TempleSlot*) findSelectedSlot {
+    for (int i=0; i<12;i++) {
+        TempleSlot *slot = [slotArray objectAtIndex:i];
+        if ([slot isSelected]) {
+            return slot;
+        }
+    }
+    return nil;
+}
 @end

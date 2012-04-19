@@ -32,13 +32,15 @@ static int BOUNDARY_SIZE = 56;
        
         if (thisSlotID%2 == 0) {
              peepIV.image = [UIImage imageNamed:@"Red_Disc.png"];
+             occupiedEnum = OCCUPIED_RED;
         } else {
              peepIV.image = [UIImage imageNamed:@"Blue_Disc.png"];
+             occupiedEnum = OCCUPIED_BLUE;
         }
        
         boundaryIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4, -4, BOUNDARY_SIZE, BOUNDARY_SIZE)];
         
-        iv.userInteractionEnabled = YES;
+    //    iv.userInteractionEnabled = YES;
         [iv addSubview:boundaryIV];
         [iv addSubview:peepIV];
         

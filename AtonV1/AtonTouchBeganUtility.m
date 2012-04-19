@@ -38,6 +38,9 @@
             atonParameters.gamePhaseEnum = GAME_PHASE_COMPARE;
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_COMPARE ) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_CARD_ONE_RESULT;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
             
         } else {

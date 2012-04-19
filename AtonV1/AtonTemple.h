@@ -21,6 +21,7 @@ enum TEMPLE_ENUM {
 -(void) hideSlotBoundary;
 -(void) disableTempleSlotInteraction;
 -(void) enableTempleSlotInteraction:(int) playerEnum;
+-(TempleSlot*) findSelectedSlot;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int templeEnum;

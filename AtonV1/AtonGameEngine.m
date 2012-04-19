@@ -25,6 +25,7 @@
     
     int gamePhaseEnum = para.gamePhaseEnum;
     NSMutableArray *playerArray = [para playerArray];
+    NSMutableArray *templeArray = [para templeArray];
     AtonGameManager *gameManager = [para gameManager];
     
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
@@ -62,8 +63,12 @@
         AtonRoundResult *result = [self computeRoundResult:playerArray];
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 1 result:\n Player Red wins 4 points" afterDelay:1.0];
         
-    } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+    } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_3 :0];
+        
     }
 }
 
