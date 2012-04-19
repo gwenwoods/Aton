@@ -107,7 +107,7 @@
 
 +(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray {
     
-    for (int i=0; i<4; i++) {
+    for (int i=1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
         NSMutableArray *templeSlotArray = [temple slotArray];
         for (int i=0; i< [templeSlotArray count]; i++) {

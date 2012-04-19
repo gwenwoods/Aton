@@ -67,7 +67,7 @@
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_3 :0];
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :0];
         
     }
 }

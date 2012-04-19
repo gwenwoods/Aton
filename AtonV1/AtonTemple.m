@@ -13,6 +13,7 @@
 
 static int SPACE_WIDTH = 53;
 static int SPACE_HEIGHT = 53;
+static int DEATH_WIDTH = 59;
 
 @synthesize baseView;
 @synthesize templeEnum;
@@ -38,6 +39,12 @@ static int SPACE_HEIGHT = 53;
             TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:i:slotOrigin:baseView];
             [slotArray addObject:slot];
         }
+    } else {
+        for (int i=0; i<8;i++) {
+            CGPoint slotOrigin = CGPointMake(origin.x + i * DEATH_WIDTH, origin.y);
+            TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:i:slotOrigin:baseView];
+            [slotArray addObject:slot];
+        }
     }
 }
 
@@ -54,10 +61,12 @@ static int SPACE_HEIGHT = 53;
     return CGPointMake(origin.x + dx, origin.y + dy);
 }
 
+
 -(void) hideSlotBoundary {
     for (int i=0; i<12;i++) {
         TempleSlot *slot = [slotArray objectAtIndex:i];
         slot.boundaryIV.hidden = YES;
+        slot.isSelected = NO;
     }
 }
 
