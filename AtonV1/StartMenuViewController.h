@@ -12,7 +12,10 @@
 @interface StartMenuViewController : UIViewController
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
+    IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
+ //   IBOutlet UIButton *playButton, *rulesButton, *creditsButton;
     BOOL longPress;
+    
 }
 
 //-(IBAction) playTouchDown:(id)sender;
