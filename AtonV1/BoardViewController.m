@@ -95,9 +95,27 @@
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
         
-        selectedSlot.peepIV.image = nil;
-        selectedSlot.occupiedEnum = OCCUPIED_EMPTY;
-        [atonGameEngine run];
+        [selectedSlot removePeep];
+        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
+        atonParameters.atonRoundResult.firstRemoveCount++;
+        if (atonParameters.atonRoundResult.firstRemoveCount == 2) {
+            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Red can remove 1 Blue Peep" afterDelay:0.1];
+        } else {
+            [atonGameEngine run]; 
+        }
+        
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
+        TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
+        
+        [selectedSlot removePeep];
+        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
+        atonParameters.atonRoundResult.secondRemoveCount++;
+        if (atonParameters.atonRoundResult.secondRemoveCount == 3) {
+            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Red can place 1 Blue Peep" afterDelay:0.1];
+        } else {
+            [atonGameEngine run]; 
+        }
+        
     }
 }
 @end

@@ -13,6 +13,7 @@
 
 +(void) hideAllTempleSlotBoundary:(NSMutableArray*) templeArray;
 +(void) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) playerEnum;
++(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray;
 +(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray;
 
 @end

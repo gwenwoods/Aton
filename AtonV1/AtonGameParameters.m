@@ -13,6 +13,7 @@
 @synthesize playerArray, templeArray;
 @synthesize gameManager;
 @synthesize gamePhaseEnum;
+@synthesize atonRoundResult;
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager {
     
@@ -20,7 +21,7 @@
         playerArray = atonPlayerArray;
         templeArray = atonTempleArray;
         gameManager = atonGameManager;
-        
+        atonRoundResult = [[AtonRoundResult alloc] init];
         
     }
     return self;

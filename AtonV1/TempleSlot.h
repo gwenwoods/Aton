@@ -20,6 +20,7 @@ enum OCCUPIED_ENUM {
 @interface TempleSlot : NSObject
 
 -(id)initializeWithParameters:(int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView;
+-(void) removePeep;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) CGPoint origin;

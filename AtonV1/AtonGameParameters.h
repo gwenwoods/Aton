@@ -10,6 +10,7 @@
 #import "AtonPlayer.h"
 #import "AtonTemple.h"
 #import "AtonGameManager.h"
+#import "AtonRoundResult.h"
 
 
 enum GAME_PHASE_ENUM {
@@ -19,7 +20,7 @@ enum GAME_PHASE_ENUM {
   GAME_PHASE_COMPARE,
   GAME_PHASE_CARD_ONE_RESULT,
   GAME_PHASE_FIRST_REMOVE_PEEP, GAME_PHASE_SECOND_REMOVE_PEEP,
-  GAME_PHASE_PLACE_PEEP  
+  GAME_PHASE_FIRST_PLACE_PEEP, GAME_PHASE_SECOND_PLACE_PEEP
 };
 
 @interface AtonGameParameters : NSObject
@@ -29,5 +30,6 @@ enum GAME_PHASE_ENUM {
 @property(strong, nonatomic) NSMutableArray *playerArray, *templeArray;
 @property(strong, nonatomic) AtonGameManager *gameManager;
 @property(nonatomic) int gamePhaseEnum;
+@property(strong, nonatomic) AtonRoundResult *atonRoundResult;
 
 @end

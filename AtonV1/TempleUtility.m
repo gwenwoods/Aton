@@ -31,6 +31,14 @@
     }
 }
 
++(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray {
+    
+    for (int i=1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        [temple disableTempleSlotInteraction];
+    }
+}
+
 +(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray {
     for (int i=1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];

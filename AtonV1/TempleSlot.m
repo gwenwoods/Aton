@@ -56,5 +56,10 @@ static int BOUNDARY_SIZE = 56;
     return self;
 }
 
+-(void) removePeep {
+    peepIV.image = nil;
+    occupiedEnum = OCCUPIED_EMPTY;
+    isSelected = NO;
+}
 
 @end

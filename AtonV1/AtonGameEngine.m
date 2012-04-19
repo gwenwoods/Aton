@@ -59,8 +59,8 @@
             AtonPlayer *player = [playerArray objectAtIndex:i];
             [player openCards];
         }
-        
-        AtonRoundResult *result = [self computeRoundResult:playerArray];
+
+        para.atonRoundResult = [self computeRoundResult:playerArray:para.atonRoundResult];
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 1 result:\n Player Red wins 4 points" afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
@@ -69,11 +69,13 @@
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :0];
         
+    } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :1];
+        
     }
 }
 
--(AtonRoundResult*) computeRoundResult:(NSMutableArray*) playerArray {
-    AtonRoundResult *result = [[AtonRoundResult alloc] init];
+-(AtonRoundResult*) computeRoundResult:(NSMutableArray*) playerArray:(AtonRoundResult*) result {
     [result setFirstPlayerEnum:1];
     [result setSecondPlayerEnum:0];
     [result setCardOneWinnerEnum:0];
