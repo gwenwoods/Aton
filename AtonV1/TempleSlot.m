@@ -19,6 +19,7 @@ static int BOUNDARY_SIZE = 56;
 @synthesize origin;
 @synthesize slotID, colorTypeEnum, occupiedEnum;
 @synthesize iv, peepIV, boundaryIV;
+@synthesize isSelected;
 
 -(id)initializeWithParameters:(int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView {
     if (self) {

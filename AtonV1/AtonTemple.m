@@ -61,4 +61,28 @@ static int SPACE_HEIGHT = 53;
     }
 }
 
+-(void) enableTempleSlotInteraction:(int) playerEnum {
+    
+    int occupiedEnum;
+    if (playerEnum == 0) {
+        occupiedEnum = OCCUPIED_RED;
+    } else if (playerEnum == 1) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    for (int i=0; i<12;i++) {
+        TempleSlot *slot = [slotArray objectAtIndex:i];
+        if (slot.occupiedEnum == occupiedEnum ) {
+            slot.iv.userInteractionEnabled = YES;
+        }
+    }
+}
+
+-(void) disableTempleSlotInteraction {
+    
+    for (int i=0; i<12;i++) {
+        TempleSlot *slot = [slotArray objectAtIndex:i];
+        slot.iv.userInteractionEnabled = NO;
+    }
+}
 @end

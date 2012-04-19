@@ -37,6 +37,11 @@
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_COMPARE;
             
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_COMPARE ) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
+            
+        } else {
+            return;
         }
         
         [engine run];
@@ -107,6 +112,7 @@
             if([touch view] == [slot iv]) {
                 [TempleUtility hideAllTempleSlotBoundary:templeArray];
                 slot.boundaryIV.hidden = NO;
+                slot.isSelected = YES;
             }
         }
     }

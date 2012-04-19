@@ -12,5 +12,5 @@
 @interface TempleUtility : NSObject
 
 +(void) hideAllTempleSlotBoundary:(NSMutableArray*) templeArray;
-
++(void) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) playerEnum;
 @end

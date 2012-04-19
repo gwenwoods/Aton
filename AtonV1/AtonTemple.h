@@ -19,6 +19,8 @@ enum TEMPLE_ENUM {
 
 -(id)initializeWithParameters:(int) thisTempleId:(CGPoint) templeOrigin:(UIView*) atonBaseView;
 -(void) hideSlotBoundary;
+-(void) disableTempleSlotInteraction;
+-(void) enableTempleSlotInteraction:(int) playerEnum;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int templeEnum;

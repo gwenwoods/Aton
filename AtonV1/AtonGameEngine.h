@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AtonGameParameters.h"
+#import "AtonRoundResult.h"
 
 @interface AtonGameEngine : NSObject
 

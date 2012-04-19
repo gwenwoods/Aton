@@ -14,5 +14,6 @@
 @synthesize firstActiveTemple, secondActiveTemple;
 @synthesize firstRemoveNum, secondPlayerRemoveNum;
 @synthesize firstPlaceNum, secondPlayerPlaceNum;
+@synthesize cardOneWinnerEnum, cardOneWinningScore;
 
 @end

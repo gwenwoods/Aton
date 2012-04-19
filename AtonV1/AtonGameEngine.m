@@ -56,10 +56,23 @@
     } else if(gamePhaseEnum == GAME_PHASE_COMPARE) {
         for (int i=0; i<2; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
-            [player openCardsForArrange];
+            [player openCards];
         }
+        
+        AtonRoundResult *result = [self computeRoundResult:playerArray];
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 1 result:\n Player Red wins 4 points" afterDelay:1.0];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
     }
 }
 
-
+-(AtonRoundResult*) computeRoundResult:(NSMutableArray*) playerArray {
+    AtonRoundResult *result = [[AtonRoundResult alloc] init];
+    [result setFirstPlayerEnum:1];
+    [result setSecondPlayerEnum:0];
+    [result setCardOneWinnerEnum:0];
+    [result setCardOneWinningScore:4];
+    return result;
+}
 @end

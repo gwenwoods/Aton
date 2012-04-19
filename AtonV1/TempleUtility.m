@@ -17,4 +17,17 @@
         [temple hideSlotBoundary];
     }
 }
+
++(void) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) playerEnum {
+    
+    for (int i=1; i< [templeArray count]; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        [temple disableTempleSlotInteraction];
+    }
+    
+    for (int i=1; i<= maxTemple; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        [temple enableTempleSlotInteraction:playerEnum];
+    }
+}
 @end

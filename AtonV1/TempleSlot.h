@@ -25,5 +25,6 @@ enum OCCUPIED_ENUM {
 @property(nonatomic) CGPoint origin;
 @property(nonatomic) int slotID, colorTypeEnum, occupiedEnum;
 @property(strong, nonatomic) UIImageView *iv, *peepIV, *boundaryIV;
+@property(nonatomic) BOOL isSelected;
 
 @end
