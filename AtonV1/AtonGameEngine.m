@@ -67,10 +67,24 @@
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :0];
+        
+        int occupiedEnum = OCCUPIED_RED;
+        /* if (playerEnum == 0) {
+            occupiedEnum = OCCUPIED_RED;
+        } else if (playerEnum == 1) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }*/
+        
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :occupiedEnum];
         
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
-        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :1];
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_BLUE];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
         
     }
 }

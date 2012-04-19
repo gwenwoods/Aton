@@ -21,6 +21,7 @@ enum OCCUPIED_ENUM {
 
 -(id)initializeWithParameters:(int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView;
 -(void) removePeep;
+-(void) placePeep:(int) occuEnum;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) CGPoint origin;

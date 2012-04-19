@@ -49,6 +49,12 @@
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
             
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP ) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP ) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
+            
         } else {
             return;
         }

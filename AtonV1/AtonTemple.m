@@ -70,14 +70,8 @@ static int DEATH_WIDTH = 59;
     }
 }
 
--(void) enableTempleSlotInteraction:(int) playerEnum {
-    
-    int occupiedEnum;
-    if (playerEnum == 0) {
-        occupiedEnum = OCCUPIED_RED;
-    } else if (playerEnum == 1) {
-        occupiedEnum = OCCUPIED_BLUE;
-    }
+-(void) enableTempleSlotInteraction:(int) occupiedEnum {
+
     
     for (int i=0; i<12;i++) {
         TempleSlot *slot = [slotArray objectAtIndex:i];
@@ -92,6 +86,7 @@ static int DEATH_WIDTH = 59;
     for (int i=0; i<12;i++) {
         TempleSlot *slot = [slotArray objectAtIndex:i];
         slot.iv.userInteractionEnabled = NO;
+        slot.boundaryIV.hidden = YES;
     }
 }
 

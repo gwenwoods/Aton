@@ -62,4 +62,14 @@ static int BOUNDARY_SIZE = 56;
     isSelected = NO;
 }
 
+-(void) placePeep:(int) occuEnum {
+    peepIV.image = nil;
+    occupiedEnum = occuEnum;
+    if (occupiedEnum == OCCUPIED_RED) {
+        peepIV.image =  [UIImage imageNamed:@"Red_Disc.png"];
+    } else if (occupiedEnum == OCCUPIED_BLUE) {
+        peepIV.image =  [UIImage imageNamed:@"Blue_Disc.png"];
+    } 
+    isSelected = NO;
+}
 @end
