@@ -107,7 +107,7 @@ static int CARD_NUM = 40;
     for (int i=0; i<4; i++) {
         CardElement *targetCE = [cardElementArray objectAtIndex:i];
         targetCE.number = i +1;
-        [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + 2.0];
+        [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + 1.0];
        // [self ivTravel:deckIV:targetCE.iv];
     }
 }

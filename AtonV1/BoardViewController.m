@@ -115,7 +115,7 @@
         [selectedSlot removePeep];
         [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
         atonParameters.atonRoundResult.secondRemoveCount++;
-        if (atonParameters.atonRoundResult.secondRemoveCount == 3) {
+        if (atonParameters.atonRoundResult.secondRemoveCount == 1) {
             [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Blue can place 2 Blue Peep" afterDelay:0.1];
         } else {
             [atonGameEngine run]; 
