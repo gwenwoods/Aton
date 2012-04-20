@@ -69,16 +69,16 @@
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         
         int occupiedEnum = OCCUPIED_RED;
-        /* if (playerEnum == 0) {
-            occupiedEnum = OCCUPIED_RED;
-        } else if (playerEnum == 1) {
-            occupiedEnum = OCCUPIED_BLUE;
-        }*/
-        
+        NSMutableArray *eligibleSlotArray =
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :occupiedEnum];
+        
+        //if ([eligibleSlotArray count]==0) {
+        //    [gameManager performSelector:@selector(showCommunicationView:) withObject:@"No Red peeps to remove. Red can remove 3 Blue Peeps." afterDelay:1.0];
+        //}
         
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_BLUE];
+      //   [gameManager performSelector:@selector(showCommunicationView:) withObject:@"No Blue peeps to remove. Red can place 2 Peeps." afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];

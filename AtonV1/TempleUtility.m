@@ -18,8 +18,9 @@
     }
 }
 
-+(void) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum {
++(NSMutableArray*) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum {
     
+    NSMutableArray *eligiableSlotArray = [[NSMutableArray alloc]init];
     for (int i=1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
         [temple disableTempleSlotInteraction];
@@ -27,8 +28,11 @@
     
     for (int i=1; i<= maxTemple; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
+        NSMutableArray *templeSlotArray =
         [temple enableTempleSlotInteraction:occupiedEnum];
+        [eligiableSlotArray addObjectsFromArray:templeSlotArray];
     }
+    return eligiableSlotArray;
 }
 
 +(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray {

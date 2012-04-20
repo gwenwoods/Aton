@@ -95,6 +95,9 @@
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
         
+        if (selectedSlot == nil) {
+            return;
+        }
         [selectedSlot removePeep];
         [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
         atonParameters.atonRoundResult.firstRemoveCount++;
@@ -106,12 +109,42 @@
         
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
         TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
-        
+        if (selectedSlot == nil) {
+            return;
+        }
         [selectedSlot removePeep];
         [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
         atonParameters.atonRoundResult.secondRemoveCount++;
         if (atonParameters.atonRoundResult.secondRemoveCount == 3) {
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Red can place 1 Blue Peep" afterDelay:0.1];
+            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Blue can place 2 Blue Peep" afterDelay:0.1];
+        } else {
+            [atonGameEngine run]; 
+        }
+        
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
+        TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
+        if (selectedSlot == nil) {
+            return;
+        }
+        [selectedSlot placePeep:OCCUPIED_BLUE];
+        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
+        atonParameters.atonRoundResult.firstPlaceCount++;
+        if (atonParameters.atonRoundResult.firstPlaceCount == 2) {
+            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Red can place 1 Red Peep" afterDelay:0.1];
+        } else {
+            [atonGameEngine run]; 
+        }
+        
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
+        TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
+        if (selectedSlot == nil) {
+            return;
+        }
+        [selectedSlot placePeep:OCCUPIED_RED];
+        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
+        atonParameters.atonRoundResult.secondPlaceCount++;
+        if (atonParameters.atonRoundResult.secondPlaceCount == 1) {
+            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Round End" afterDelay:0.1];
         } else {
             [atonGameEngine run]; 
         }

@@ -70,15 +70,17 @@ static int DEATH_WIDTH = 59;
     }
 }
 
--(void) enableTempleSlotInteraction:(int) occupiedEnum {
+-(NSMutableArray*) enableTempleSlotInteraction:(int) occupiedEnum {
 
-    
+    NSMutableArray *eligiableSlotArray = [[NSMutableArray alloc]init];
     for (int i=0; i<12;i++) {
         TempleSlot *slot = [slotArray objectAtIndex:i];
         if (slot.occupiedEnum == occupiedEnum ) {
             slot.iv.userInteractionEnabled = YES;
+            [eligiableSlotArray addObject:slot];
         }
     }
+    return  eligiableSlotArray;
 }
 
 -(void) disableTempleSlotInteraction {
