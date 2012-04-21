@@ -40,6 +40,7 @@
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
         [playerRed openCardsForArrange];   
         
+
     } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
         [playerRed closeCards]; 
@@ -95,5 +96,35 @@
     [result setCardOneWinnerEnum:0];
     [result setCardOneWinningScore:4];
     return result;
+}
+
+-(void) imageFly:(UIImageView*) begin:(UIImageView*) end {	
+	
+    int end_x = end.center.x;
+    int end_y = end.center.y;
+    
+	CGMutablePathRef aPath;
+	CGFloat arcTop = begin.center.y - 50;
+	aPath = CGPathCreateMutable();
+	
+	CGPathMoveToPoint(aPath, NULL, begin.center.x, begin.center.y);
+	CGPathAddCurveToPoint(aPath, NULL, begin.center.x, arcTop, end_x, arcTop, end_x, end_y);
+	
+	CAKeyframeAnimation* arcAnimation = [CAKeyframeAnimation animationWithKeyPath: @"position"];
+	[arcAnimation setDuration: 0.5];
+	[arcAnimation setAutoreverses: NO];
+	arcAnimation.removedOnCompletion = NO;
+	arcAnimation.fillMode = kCAFillModeBoth; 
+	[arcAnimation setPath: aPath];
+    
+	CFRelease(aPath);
+	
+	[begin.layer addAnimation: arcAnimation forKey: @"position"];
+    
+	begin.hidden = NO;
+    begin.center = CGPointMake(end_x, end_y);
+    
+   // [begin performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.51];
+    //[begin performSelector:@selector(release) withObject:nil afterDelay:0.51];
 }
 @end

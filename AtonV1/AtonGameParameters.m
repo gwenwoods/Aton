@@ -10,16 +10,17 @@
 
 @implementation AtonGameParameters
 
-@synthesize playerArray, templeArray;
+@synthesize playerArray, templeArray, scarabArray;
 @synthesize gameManager;
 @synthesize gamePhaseEnum;
 @synthesize atonRoundResult;
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager {
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AtonGameManager*) atonGameManager {
     
     if (self) {
         playerArray = atonPlayerArray;
         templeArray = atonTempleArray;
+        scarabArray = atonScarabArray;
         gameManager = atonGameManager;
         atonRoundResult = [[AtonRoundResult alloc] init];
         

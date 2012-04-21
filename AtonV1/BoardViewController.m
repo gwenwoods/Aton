@@ -74,6 +74,13 @@
 }
 
 - (IBAction) doneAction:(id)sender {
+    
+    ScoreScarab *s1 = [atonParameters.scarabArray objectAtIndex:0];
+    s1.blueIV.hidden = NO;
+    ScoreScarab *s2 = [atonParameters.scarabArray objectAtIndex:5];
+    s2.blueIV.hidden = NO;
+    [atonGameEngine imageFly:s1.blueIV :s2.blueIV];
+    
     if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         
         AtonPlayer *redPlayer = [[atonParameters playerArray] objectAtIndex:0];

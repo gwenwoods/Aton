@@ -26,11 +26,11 @@
     
     //------------------------
     // initialize temples
-    AtonTemple *temple0 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_DEATH:CGPointMake(230, 660) :controller.view];
-    AtonTemple *temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(236, 144) :controller.view];
-    AtonTemple *temple2 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_2:CGPointMake(486, 144) :controller.view];
-    AtonTemple *temple3 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_3:CGPointMake(236, 422) :controller.view];
-    AtonTemple *temple4 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_4:CGPointMake(486, 422) :controller.view];
+    AtonTemple *temple0 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_DEATH:CGPointMake(280, 648) :controller.view];
+    AtonTemple *temple1 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_1:CGPointMake(286, 132) :controller.view];
+    AtonTemple *temple2 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_2:CGPointMake(534, 132) :controller.view];
+    AtonTemple *temple3 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_3:CGPointMake(286, 410) :controller.view];
+    AtonTemple *temple4 = [[AtonTemple alloc] initializeWithParameters:TEMPLE_4:CGPointMake(534, 410) :controller.view];
     
     NSMutableArray *templeArray = [[NSMutableArray alloc] init];
     [templeArray addObject:temple0];
@@ -43,10 +43,36 @@
     //--------------------------
     // initialize game manager
     AtonGameManager *gameManager = [[AtonGameManager alloc] initializeWithParameters:controller.view];
+
+    //------------------------
+    // initialize score scarab array
+    NSMutableArray *scarabArray = [[NSMutableArray alloc] init];
+    for (int i=1; i<=15; i++) {
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(218, 722 - i*47.5, 40, 44)];
+        [controller.view addSubview:iv];
+        ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
+        [scarabArray addObject:scarab];
+    }
+    
+    for (int i=16; i<=25; i++) {
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(266 + (i-16)*50.4, 8, 40, 44)];
+        [controller.view addSubview:iv];
+        ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
+        [scarabArray addObject:scarab];
+    }
+    
+    for (int i=26; i<=40; i++) {
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(768, 8 + (i-26)*47.5, 40, 44)];
+        [controller.view addSubview:iv];
+        ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
+        [scarabArray addObject:scarab];
+    }
+    
     
     //-----------------------
     // create Aton parameters
-    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray:gameManager];
+    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray: gameManager];
+    
     
     return  atonParameters;
 }

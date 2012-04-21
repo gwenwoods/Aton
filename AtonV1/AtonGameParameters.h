@@ -11,6 +11,7 @@
 #import "AtonTemple.h"
 #import "AtonGameManager.h"
 #import "AtonRoundResult.h"
+#import "ScoreScarab.h"
 
 
 enum GAME_PHASE_ENUM {
@@ -25,9 +26,9 @@ enum GAME_PHASE_ENUM {
 
 @interface AtonGameParameters : NSObject
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray: (AtonGameManager*) atonGameManager;
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray: (AtonGameManager*) atonGameManager;
 
-@property(strong, nonatomic) NSMutableArray *playerArray, *templeArray;
+@property(strong, nonatomic) NSMutableArray *playerArray, *templeArray, *scarabArray;
 @property(strong, nonatomic) AtonGameManager *gameManager;
 @property(nonatomic) int gamePhaseEnum;
 @property(strong, nonatomic) AtonRoundResult *atonRoundResult;

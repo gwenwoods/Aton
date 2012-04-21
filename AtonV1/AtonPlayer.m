@@ -13,7 +13,7 @@
 static int CARD_WIDTH = 88;
 static int CARD_HEIGHT = 134;
 
-static int START_SPACE = 818;
+static int START_SPACE = 821;
 
 static NSString *redCardNames[4] = {@"Red_Card1",@"Red_Card2",@"Red_Card3",@"Red_Card4"};
 static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@"Blue_Card4"};
@@ -24,7 +24,7 @@ static int CARD_NUM = 40;
 @synthesize playerEnum, playerName;
 @synthesize score;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
-@synthesize deckIV, deckArray;
+@synthesize deckIV, deckAnimationIV, redrawIV, deckArray;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
 	if (self) {
@@ -32,10 +32,10 @@ static int CARD_NUM = 40;
         playerEnum = thisPlayerEnum;
         
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
-        startOriginArray[0] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 70.0);
-        startOriginArray[1] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 244.0);
-        startOriginArray[2] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 418.0);
-        startOriginArray[3] =  CGPointMake(10.0 + thisPlayerEnum * START_SPACE, 592.0);
+        startOriginArray[0] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 82.0);
+        startOriginArray[1] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 251.0);
+        startOriginArray[2] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 420.0);
+        startOriginArray[3] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 589.0);
         
         cardElementArray = [[NSMutableArray alloc] init];
         for (int i=0; i<4; i++) {
@@ -77,10 +77,18 @@ static int CARD_NUM = 40;
 
 
 -(void) initilizeDeck {
+    redrawIV = [[UIImageView alloc] initWithFrame:CGRectMake(11 + playerEnum * (START_SPACE + 139) , 8, 40, 50)];
+    redrawIV.image = [UIImage imageNamed:@"White_Cylinder.png"];
+    [baseView addSubview:redrawIV];
     
-    deckIV = [[UIImageView alloc] initWithFrame:CGRectMake(16 + playerEnum * START_SPACE, 10, 32, 48)];
-    deckIV.image = [UIImage imageNamed:[self getCardBackName]];
+    deckIV = [[UIImageView alloc] initWithFrame:CGRectMake(56 + playerEnum * START_SPACE, 2, 90, 56)];
+    deckIV.image = [UIImage imageNamed:[self getDeckBackName]];
     [baseView addSubview:deckIV];
+    
+    deckAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(56 + playerEnum * START_SPACE, 10, 32, 48)];
+    deckAnimationIV.image = [UIImage imageNamed:[self getCardBackName]];
+    deckAnimationIV.hidden = YES;
+    [baseView addSubview:deckAnimationIV];
     
     deckArray = malloc(sizeof(int) * CARD_NUM);
     for (int i=0; i<CARD_NUM; i++) {
@@ -118,6 +126,15 @@ static int CARD_NUM = 40;
         return @"Red_CardBack.png";
     } else {
         return @"Blue_CardBack.png";
+    }
+}
+
+-(NSString*) getDeckBackName {
+    
+    if(playerEnum == 0) {
+        return @"Red_CardBack_stack.png";
+    } else {
+        return @"Blue_CardBack_stack.png";
     }
 }
 
@@ -308,8 +325,8 @@ static int CARD_NUM = 40;
 }
 
 -(void) distributeCardFromDeck:(UIImageView*) toIV {
-    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:deckIV.frame];
-    animationIV.image = deckIV.image;
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:deckAnimationIV.frame];
+    animationIV.image = deckAnimationIV.image;
     
     [baseView addSubview:animationIV];    
     [UIView animateWithDuration:0.5

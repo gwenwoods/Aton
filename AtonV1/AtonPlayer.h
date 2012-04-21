@@ -39,7 +39,7 @@
 @property (strong, nonatomic) NSString *playerName;
 @property (nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
-@property (strong, nonatomic) UIImageView *deckIV;
+@property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV, *redrawIV;
 @property (nonatomic) int* deckArray;
 
 @end

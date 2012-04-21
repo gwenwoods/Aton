@@ -49,6 +49,9 @@
 		BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */; };
 		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
 		BDAE714B153A9C81001848F8 /* CardElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE714A153A9C81001848F8 /* CardElement.m */; };
+		BDD3AE90154233380013C89A /* ScoreScarab.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AE8F154233380013C89A /* ScoreScarab.m */; };
+		BDD3AE931543552D0013C89A /* Red_CardBack_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AE921543552D0013C89A /* Red_CardBack_stack.png */; };
+		BDD3AE9515435E290013C89A /* Blue_CardBack_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AE9415435E290013C89A /* Blue_CardBack_stack.png */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
 		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
 		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
@@ -134,6 +137,10 @@
 		BDAE7147153A8BEF001848F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BDAE7149153A9C81001848F8 /* CardElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardElement.h; sourceTree = "<group>"; };
 		BDAE714A153A9C81001848F8 /* CardElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardElement.m; sourceTree = "<group>"; };
+		BDD3AE8E154233380013C89A /* ScoreScarab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScarab.h; sourceTree = "<group>"; };
+		BDD3AE8F154233380013C89A /* ScoreScarab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreScarab.m; sourceTree = "<group>"; };
+		BDD3AE921543552D0013C89A /* Red_CardBack_stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_CardBack_stack.png; sourceTree = "<group>"; };
+		BDD3AE9415435E290013C89A /* Blue_CardBack_stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_CardBack_stack.png; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
 		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
@@ -310,11 +317,13 @@
 		BDAE711F153A3BED001848F8 /* Aton_card */ = {
 			isa = PBXGroup;
 			children = (
+				BDD3AE9415435E290013C89A /* Blue_CardBack_stack.png */,
 				BDAE7120153A3BED001848F8 /* Blue_Card1.png */,
 				BDAE7121153A3BED001848F8 /* Blue_Card2.png */,
 				BDAE7122153A3BED001848F8 /* Blue_Card3.png */,
 				BDAE7123153A3BED001848F8 /* Blue_Card4.png */,
 				BDAE7124153A3BED001848F8 /* Blue_CardBack.png */,
+				BDD3AE921543552D0013C89A /* Red_CardBack_stack.png */,
 				BDAE7125153A3BED001848F8 /* Red_Card1.png */,
 				BDAE7126153A3BED001848F8 /* Red_Card2.png */,
 				BDAE7127153A3BED001848F8 /* Red_Card3.png */,
@@ -331,6 +340,8 @@
 				BDAE7138153A4277001848F8 /* AtonPlayer.m */,
 				BDAE7149153A9C81001848F8 /* CardElement.h */,
 				BDAE714A153A9C81001848F8 /* CardElement.m */,
+				BDD3AE8E154233380013C89A /* ScoreScarab.h */,
+				BDD3AE8F154233380013C89A /* ScoreScarab.m */,
 			);
 			name = ElementClass;
 			sourceTree = "<group>";
@@ -458,6 +469,8 @@
 				BDDA77BC153D31E8003F3530 /* under_fabric.png in Resources */,
 				BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */,
 				BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */,
+				BDD3AE931543552D0013C89A /* Red_CardBack_stack.png in Resources */,
+				BDD3AE9515435E290013C89A /* Blue_CardBack_stack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +523,7 @@
 				BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */,
 				BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */,
 				BD3AF23B153F81D30098DE8C /* AtonRoundResult.m in Sources */,
+				BDD3AE90154233380013C89A /* ScoreScarab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
