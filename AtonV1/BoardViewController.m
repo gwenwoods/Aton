@@ -75,11 +75,11 @@
 
 - (IBAction) doneAction:(id)sender {
     
+    
     ScoreScarab *s1 = [atonParameters.scarabArray objectAtIndex:0];
-    s1.blueIV.hidden = NO;
     ScoreScarab *s2 = [atonParameters.scarabArray objectAtIndex:5];
-    s2.blueIV.hidden = NO;
-    [atonGameEngine imageFly:s1.blueIV :s2.blueIV];
+   // [self animateCicleAlongPath:s1:s2];
+    //[atonGameEngine imageFly:s1.blueIV :s2.blueIV];
     
     if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         
@@ -158,4 +158,53 @@
         
     }
 }
+
+/*
+- (void) animateCicleAlongPath:(ScoreScarab*) startScarab:(ScoreScarab*) endScarab {
+    
+   
+    //Prepare the animation - we use keyframe animation for animations of this complexity
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //Set some variables on the animation
+    pathAnimation.calculationMode = kCAAnimationPaced;
+    //We want the animation to persist - not so important in this case - but kept for clarity
+    //If we animated something from left to right - and we wanted it to stay in the new position,
+    //then we would need these parameters
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.duration = 8.0;
+    //Lets loop continuously for the demonstration
+    pathAnimation.repeatCount = 1000;
+    
+    //Setup the path for the animation - this is very similar as the code the draw the line
+    //instead of drawing to the graphics context, instead we draw lines on a CGPathRef
+    CGMutablePathRef curvedPath = CGPathCreateMutable();
+    CGPoint startPoint = startScarab.iv.center;
+    CGPathMoveToPoint(curvedPath, NULL, startPoint.x, startPoint.y);
+    
+    for (int i=1; i<=15; i++) {
+        ScoreScarab *scarab = [atonParameters.scarabArray objectAtIndex:i];
+        CGPoint endPoint = scarab.iv.center;
+        CGPoint controlPoint = CGPointMake(120, endPoint.y-10);
+        CGPathAddQuadCurveToPoint(curvedPath, NULL, controlPoint.x, controlPoint.y, endPoint.x, endPoint.y);
+    }
+
+    for (int i=16; i<=25; i++) {
+        ScoreScarab *scarab = [atonParameters.scarabArray objectAtIndex:i];
+        CGPoint endPoint = scarab.iv.center;
+        CGPoint controlPoint = CGPointMake(endPoint.x, -40);
+        CGPathAddQuadCurveToPoint(curvedPath, NULL, controlPoint.x, controlPoint.y, endPoint.x, endPoint.y);
+    }
+    //Now we have the path, we tell the animation we want to use this path - then we release the path
+    pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
+    
+    
+    UIImageView *animationIV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Blue_Cylinder.png"]];
+    [self.view addSubview:animationIV];    
+    //Add the animation to the animationIV - once you add the animation to the layer, the animation starts
+    [animationIV.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+    
+}
+ */
 @end
