@@ -66,15 +66,23 @@
         para.atonRoundResult = [self computeRoundResult:playerArray:para.atonRoundResult];
         NSString* msg = @"Card 1 Result:\n";
         int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
-        AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
-        NSString* cardOneWinnerName = [cardOneWinner playerName];
-        int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
-        msg = [msg stringByAppendingString:cardOneWinnerName];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
+        
+        if (cardOneWinnerEnum == PLAYER_NONE) {
+            msg = [msg stringByAppendingString:@"tie"];
+            
+        } else {
+        
+            AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
+            NSString* cardOneWinnerName = [cardOneWinner playerName];
+            int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
+            msg = [msg stringByAppendingString:cardOneWinnerName];
+            msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
+            [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
+        }
         [gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:0.75];
       //  [cardOneWinner performSelector:@selector(assignScore:) withObject:msg afterDelay:0.75];
       //  [cardOneWinner assignScore:cardOneWinningScore :para.scarabArray];
-        [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
+        
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
         
