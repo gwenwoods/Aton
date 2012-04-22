@@ -30,6 +30,7 @@ enum PLAYER_ENUM {
 -(void) distributeCards;
 -(int*) getCardNumberArray;
 -(void) assignScore:(int) points: (NSMutableArray*) scarabArray;
+-(void) resetCard;
 
 // arrange cards functions
 -(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;

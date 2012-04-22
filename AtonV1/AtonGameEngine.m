@@ -29,8 +29,10 @@
     AtonGameManager *gameManager = [para gameManager];
     
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
+        [para.atonRoundResult reset];
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
+            [player resetCard];
             [player distributeCards];
         }
         
@@ -199,38 +201,57 @@
     int oldScore = [cardOneWinner score];
     int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
     int newScore = oldScore + cardOneWinningScore;
-    cardOneWinner.score = newScore;
+  //  cardOneWinner.score = newScore;
     
-    ScoreScarab *oldScarab = nil;
-    if (oldScore > 0) {
-        oldScarab = [scarabArray objectAtIndex:(oldScore-1)];
-    }
-    
-    ScoreScarab *newScarab = [scarabArray objectAtIndex:(newScore-1)];
+    ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
+    ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
 
-    // create animation IV
-    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(218.0, 766.0, 40.0, 50.0)];
-    if ([cardOneWinner playerEnum] == PLAYER_RED) {
-        animationIV.image = newScarab.redIV.image;
+    
+    if (oldScore < 15 && newScore > 15) {
+        //ScoreScarab *middleScarab = [scarabArray objectAtIndex:15];
+        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:15] afterDelay:0.0];
+        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(15-oldScore)*0.25 + 0.05];
+
+    } else if (oldScore < 26 && newScore > 26) {
+        //ScoreScarab *middleScarab = [scarabArray objectAtIndex:15];
+        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:26] afterDelay:0.0];
+        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(26-oldScore)*0.25 + 0.01];
+        
     } else {
-        animationIV.image = newScarab.blueIV.image;
+ 
+        [self moveScoreAnimation:[NSNumber numberWithInt:newScore]];
     }
 
-    if (oldScarab != nil) {
-        if ([cardOneWinner playerEnum] == PLAYER_RED) {
-            animationIV.frame = oldScarab.redFrame;
-            oldScarab.redIV.hidden = YES;
-            
-        } else {
-            animationIV.frame = oldScarab.blueFrame;
-            oldScarab.blueIV.hidden = YES;
-            
-        }
-    }
+
+}
+
+-(void) moveScoreAnimation:(NSNumber*) points {
     
-    [cardOneWinner.baseView addSubview:animationIV];  
-    [cardOneWinner.baseView bringSubviewToFront:animationIV];
-    [UIView animateWithDuration:4
+    int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
+    NSMutableArray *playerArray = [para playerArray];
+    NSMutableArray *scarabArray = [para scarabArray];
+    AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
+    int oldScore = [cardOneWinner score];
+    int newScore = [points intValue];
+    
+    ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
+    ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
+    
+    int moveNum = newScarab.scoreValue - oldScarab.scoreValue;
+    // create animation IV
+    UIImageView *animationIV = [[UIImageView alloc] init];
+    if ([cardOneWinner playerEnum] == PLAYER_RED) {
+        animationIV.frame = oldScarab.redFrame;
+        animationIV.image = oldScarab.redIV.image;
+        oldScarab.redIV.hidden = YES;
+    } else {
+        animationIV.frame = oldScarab.blueFrame;
+        animationIV.image = oldScarab.blueIV.image;
+        oldScarab.blueIV.hidden = YES;
+    }
+    [cardOneWinner.baseView addSubview:animationIV]; 
+    
+    [UIView animateWithDuration:0.25*moveNum
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
@@ -244,12 +265,12 @@
                          [animationIV removeFromSuperview];
                          if ([cardOneWinner playerEnum] == PLAYER_RED) {
                              newScarab.redIV.hidden = NO;
+                             [newScarab.iv bringSubviewToFront:newScarab.redIV];
                          } else {
                              newScarab.blueIV.hidden = NO;
+                             [newScarab.iv bringSubviewToFront:newScarab.blueIV];
                          }
-
+                         cardOneWinner.score = newScore;
                      }];
-
 }
-
 @end

@@ -20,5 +20,6 @@
 @property(nonatomic) int firstTemple, secondTemple;
 @property(nonatomic) int cardOneWinnerEnum, cardOneWinningScore;
 
+-(void) reset;
 
 @end

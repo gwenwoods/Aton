@@ -19,5 +19,11 @@
 @synthesize firstTemple, secondTemple;
 @synthesize cardOneWinnerEnum, cardOneWinningScore;
 
+-(void) reset {
+    firstRemoveCount = 0;
+    secondRemoveCount = 0;
+    firstPlaceCount = 0;
+    secondPlaceCount = 0;
+}
 
 @end

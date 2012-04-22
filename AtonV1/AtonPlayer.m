@@ -28,6 +28,7 @@ static int CARD_NUM = 40;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
 	if (self) {
+        score = 13;
         baseView = controller.view;
         playerEnum = thisPlayerEnum;
         playerName = name;
@@ -394,35 +395,20 @@ static int CARD_NUM = 40;
     return cardNumberArray;
 }
 
-/*
--(void) assignScore:(int) points: (NSMutableArray*) scarabArray {
-    
-    int oldScore = score;
-    score = oldScore + points;
-    
-    ScoreScarab *oldScarab = nil;
-    if (oldScore > 0) {
-        oldScarab = [scarabArray objectAtIndex:(oldScore-1)];
+-(void) resetCard {
+    for (int i=0; i<4; i++) {
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        
+        [UIView animateWithDuration:0.2
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             ce.iv.alpha = 0.0;                         } 
+                         completion:^(BOOL finished){
+                             ce.iv.image = nil;
+                             ce.iv.alpha = 1.0;
+                         }];
+
     }
-    
-    ScoreScarab *newScarab = [scarabArray objectAtIndex:(score-1)];
-    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(240, 700, 40, 50)];
-    animationIV.image = newScarab.redIV.image;
-    if (oldScarab!=nil) {
-        animationIV.frame = oldScarab.iv.frame;
-    }
-    [baseView addSubview:animationIV];    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options: UIViewAnimationCurveEaseOut
-                     animations:^{
-                         animationIV.frame = newScarab.iv.frame;
-                       //  animationIV.center = toIV.center;
-                     } 
-                     completion:^(BOOL finished){
-                         //fromIV.image = nil;
-                        // toIV.image = animationIV.image;
-                         [animationIV removeFromSuperview];
-                     }];
-}*/
+}
 @end

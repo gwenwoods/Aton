@@ -19,6 +19,7 @@ int static CYLINDER_HEIGHT = 50;
 
 -(id)initializeWithParameters:(int) score:(UIImageView*) imageView {
 	if (self) {
+        scoreValue = score;
         iv = imageView;
         redIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4.0, -2.0, CYLINDER_WIDTH, CYLINDER_HEIGHT)];
         redIV.image = [UIImage imageNamed:@"Red_Cylinder.png"];
