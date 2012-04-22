@@ -19,7 +19,7 @@
     if (self) {
         baseView = atonBaseView;
         
-        communicationView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 120,540, 400)];
+        communicationView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
         communicationView.image = [UIImage imageNamed:@"under_fabric.png"];
         communicationView.hidden = YES;
         [baseView addSubview:communicationView];

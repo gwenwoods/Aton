@@ -30,6 +30,7 @@ static int CARD_NUM = 40;
 	if (self) {
         baseView = controller.view;
         playerEnum = thisPlayerEnum;
+        playerName = name;
         
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
         startOriginArray[0] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 82.0);
@@ -392,4 +393,36 @@ static int CARD_NUM = 40;
     }
     return cardNumberArray;
 }
+
+/*
+-(void) assignScore:(int) points: (NSMutableArray*) scarabArray {
+    
+    int oldScore = score;
+    score = oldScore + points;
+    
+    ScoreScarab *oldScarab = nil;
+    if (oldScore > 0) {
+        oldScarab = [scarabArray objectAtIndex:(oldScore-1)];
+    }
+    
+    ScoreScarab *newScarab = [scarabArray objectAtIndex:(score-1)];
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(240, 700, 40, 50)];
+    animationIV.image = newScarab.redIV.image;
+    if (oldScarab!=nil) {
+        animationIV.frame = oldScarab.iv.frame;
+    }
+    [baseView addSubview:animationIV];    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = newScarab.iv.frame;
+                       //  animationIV.center = toIV.center;
+                     } 
+                     completion:^(BOOL finished){
+                         //fromIV.image = nil;
+                        // toIV.image = animationIV.image;
+                         [animationIV removeFromSuperview];
+                     }];
+}*/
 @end

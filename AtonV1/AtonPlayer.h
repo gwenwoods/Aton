@@ -11,6 +11,7 @@
 
 #import "CardElement.h"
 #import "AtonTouchElement.h"
+#import "ScoreScarab.h"
 
 enum PLAYER_ENUM {
     PLAYER_RED, PLAYER_BLUE, PLAYER_NONE
@@ -28,6 +29,7 @@ enum PLAYER_ENUM {
 -(void) closeCards;
 -(void) distributeCards;
 -(int*) getCardNumberArray;
+-(void) assignScore:(int) points: (NSMutableArray*) scarabArray;
 
 // arrange cards functions
 -(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;

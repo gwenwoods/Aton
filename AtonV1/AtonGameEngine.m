@@ -62,8 +62,17 @@
         }
 
         para.atonRoundResult = [self computeRoundResult:playerArray:para.atonRoundResult];
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 1 result:\n Player Red wins 4 points" afterDelay:1.0];
-        
+        NSString* msg = @"Card 1 Result:\n";
+        int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
+        AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
+        NSString* cardOneWinnerName = [cardOneWinner playerName];
+        int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
+        msg = [msg stringByAppendingString:cardOneWinnerName];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:0.75];
+      //  [cardOneWinner performSelector:@selector(assignScore:) withObject:msg afterDelay:0.75];
+      //  [cardOneWinner assignScore:cardOneWinningScore :para.scarabArray];
+        [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
         [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
         
@@ -181,5 +190,66 @@
     //[begin performSelector:@selector(release) withObject:nil afterDelay:0.51];
 }
 
+-(void) assignCardOneScore {
+    int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
+    NSMutableArray *playerArray = [para playerArray];
+    NSMutableArray *scarabArray = [para scarabArray];
+    AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
+    
+    int oldScore = [cardOneWinner score];
+    int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
+    int newScore = oldScore + cardOneWinningScore;
+    cardOneWinner.score = newScore;
+    
+    ScoreScarab *oldScarab = nil;
+    if (oldScore > 0) {
+        oldScarab = [scarabArray objectAtIndex:(oldScore-1)];
+    }
+    
+    ScoreScarab *newScarab = [scarabArray objectAtIndex:(newScore-1)];
+
+    // create animation IV
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(218.0, 766.0, 40.0, 50.0)];
+    if ([cardOneWinner playerEnum] == PLAYER_RED) {
+        animationIV.image = newScarab.redIV.image;
+    } else {
+        animationIV.image = newScarab.blueIV.image;
+    }
+
+    if (oldScarab != nil) {
+        if ([cardOneWinner playerEnum] == PLAYER_RED) {
+            animationIV.frame = oldScarab.redFrame;
+            oldScarab.redIV.hidden = YES;
+            
+        } else {
+            animationIV.frame = oldScarab.blueFrame;
+            oldScarab.blueIV.hidden = YES;
+            
+        }
+    }
+    
+    [cardOneWinner.baseView addSubview:animationIV];  
+    [cardOneWinner.baseView bringSubviewToFront:animationIV];
+    [UIView animateWithDuration:4
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         if ([cardOneWinner playerEnum] == PLAYER_RED) {
+                             animationIV.frame = newScarab.redFrame;
+                         } else {
+                             animationIV.frame = newScarab.blueFrame;
+                         }
+                     } 
+                     completion:^(BOOL finished){
+                         [animationIV removeFromSuperview];
+                         if ([cardOneWinner playerEnum] == PLAYER_RED) {
+                             newScarab.redIV.hidden = NO;
+                         } else {
+                             newScarab.blueIV.hidden = NO;
+                         }
+
+                     }];
+
+}
 
 @end

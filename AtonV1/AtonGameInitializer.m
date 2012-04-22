@@ -10,6 +10,10 @@
 
 @implementation AtonGameInitializer
 
+
+static int SCARAB_WIDTH = 40;
+static int SCARAB_HEIGHT = 44;
+
 +(AtonGameParameters*) initializeNewGame:(UIViewController*) controller {
     
     //----------------------
@@ -45,21 +49,21 @@
     // initialize score scarab array
     NSMutableArray *scarabArray = [[NSMutableArray alloc] init];
     for (int i=1; i<=15; i++) {
-        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(218, 722 - i*47.5, 40, 44)];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(218, 722 - i*47.5, SCARAB_WIDTH, SCARAB_HEIGHT)];
         [controller.view addSubview:iv];
         ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
         [scarabArray addObject:scarab];
     }
     
     for (int i=16; i<=25; i++) {
-        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(266 + (i-16)*50.4, 8, 40, 44)];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(266 + (i-16)*50.4, 8, SCARAB_WIDTH, SCARAB_HEIGHT)];
         [controller.view addSubview:iv];
         ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
         [scarabArray addObject:scarab];
     }
     
     for (int i=26; i<=40; i++) {
-        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(768, 8 + (i-26)*47.5, 40, 44)];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(768, 8 + (i-26)*47.5, SCARAB_WIDTH, SCARAB_HEIGHT)];
         [controller.view addSubview:iv];
         ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
         [scarabArray addObject:scarab];

@@ -15,5 +15,6 @@
 @property(nonatomic) int scoreValue;
 @property(nonatomic) int occupiedEnum;
 @property(strong, nonatomic) UIImageView *iv, *redIV, *blueIV;
+@property(nonatomic) CGRect redFrame, blueFrame;
 
 @end
