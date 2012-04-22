@@ -14,11 +14,8 @@
     
     //----------------------
     // initialize players
-    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :nil:controller];
-    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :nil:controller];
-    
-  //  int redStartNumArray[] = {1,2,3,4};
-  //  [redPlayer initilizeCardElement:redStartNumArray];
+    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :@"Player Red":controller];
+    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :@"Player Blue":controller];
     
     NSMutableArray *playerArray = [[NSMutableArray alloc] init];
     [playerArray addObject:redPlayer];
@@ -77,6 +74,7 @@
     return  atonParameters;
 }
 
+/*
 -(int) shuffleCardArray {
     int *cardIntArray;
     cardIntArray = malloc(sizeof(int) * 10);
@@ -85,12 +83,7 @@
     for (int i=0; i<40; i++) {
         cardIntArray[i] = i+1;
     }
-   /* 
-    intrigueCardIntArray = MathUtility::randomizeInitialArray(INTRIGUE_CARD_NUMBER, intrigueCardIntArray);
-    for (int i=0; i<INTRIGUE_CARD_NUMBER; i++) {
-        [intrigueCardArray addObject:[NSNumber numberWithInt:intrigueCardIntArray[i]]];
-        //    NSLog(@"Influence Card:  %d",[[intrigueCardIntArray objectAtIndex:i] intValue]);
-    }*/
+  
     
-} 
+} */
 @end

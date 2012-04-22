@@ -40,12 +40,10 @@ static int CARD_NUM = 40;
         cardElementArray = [[NSMutableArray alloc] init];
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(startOriginArray[i].x, startOriginArray[i].y, CARD_WIDTH, CARD_HEIGHT)];
-           // iv.image = [UIImage imageNamed:[self getCardBackName]];
-           // iv.userInteractionEnabled = YES;
-            
             [baseView addSubview:iv];
-           
+            
             CardElement *ce = [[CardElement alloc] initializeWithParameters:iv:0:(i+1)];
+            ce.iv.hidden = YES;
             [cardElementArray addObject:ce];
         }
         
@@ -53,7 +51,6 @@ static int CARD_NUM = 40;
         for (int i=0; i<4; i++) {
             UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(-200, -200, CARD_WIDTH, CARD_HEIGHT)];
             iv.image = nil;
-            //iv.userInteractionEnabled = YES;
             [baseView addSubview:iv];
             
             CardElement *ce = [[CardElement alloc] initializeWithParameters:iv:0:5];
@@ -62,17 +59,8 @@ static int CARD_NUM = 40;
 
         tempCardElementArray = [[NSMutableArray alloc] init];
         [self initilizeDeck];
-        //[self distributeCards];
     }  
     return self;
-}
-
--(void) initilizeCardElement:(int*) cardNumberArray {
-    for (int i=0; i<4; i++) {
-        CardElement *ce = [cardElementArray objectAtIndex:i];
-        ce.number = cardNumberArray[i];
-        ce.iv.image = [UIImage imageNamed:[self getCardName:ce.number]];
-    }
 }
 
 
@@ -90,31 +78,40 @@ static int CARD_NUM = 40;
     deckAnimationIV.hidden = YES;
     [baseView addSubview:deckAnimationIV];
     
-    deckArray = malloc(sizeof(int) * CARD_NUM);
+    int *deckNumberArray = malloc(sizeof(int) * CARD_NUM);
     for (int i=0; i<CARD_NUM; i++) {
-        deckArray[i] = i%4 + 1;
+        deckNumberArray[i] = i%4 + 1;
     }
     
     //------------------------------
-    int n = time(0)%100;
-    srand(time(0));
+    int n = (time(0) + playerEnum *7 )%100;
+    srand(time(0) + playerEnum *7);
     
     for (int count = 0; count < n; count++) {
         for (int i=0; i<(CARD_NUM-1); i++) {
             int r = i + (rand() % (CARD_NUM-i)); // Random remaining position.
-            int temp = deckArray[i]; 
-            deckArray[i] = deckArray[r]; 
-            deckArray[r] = temp;
+            int temp = deckNumberArray[i]; 
+            deckNumberArray[i] = deckNumberArray[r]; 
+            deckNumberArray[r] = temp;
         }
     }
-   // deckArray = MathUtility::randomizeInitialArray(INTRIGUE_CARD_NUMBER, intrigueCardIntArray);
+    
+    deckArray = [[NSMutableArray alloc] init];
+    for (int i=0; i< CARD_NUM; i++) {
+        int number = deckNumberArray[i];
+        [deckArray addObject:[NSNumber numberWithInt:number]];
+    }
 }
 
 -(void) distributeCards {
     
     for (int i=0; i<4; i++) {
         CardElement *targetCE = [cardElementArray objectAtIndex:i];
-        targetCE.number = i +1;
+        //targetCE.number = i +1;
+        int number = [[deckArray objectAtIndex:0] intValue];
+        [deckArray removeObjectAtIndex:0];
+        targetCE.number = number;
+        targetCE.iv.image = [UIImage imageNamed:[self getCardName:targetCE.number]];
         [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + 1.0];
        // [self ivTravel:deckIV:targetCE.iv];
     }
@@ -339,6 +336,7 @@ static int CARD_NUM = 40;
                      completion:^(BOOL finished){
                          //fromIV.image = nil;
                          toIV.image = animationIV.image;
+                         toIV.hidden = NO;
                          [animationIV removeFromSuperview];
                      }];
 
@@ -384,5 +382,14 @@ static int CARD_NUM = 40;
         CardElement *ece = [emptyCardElementArray objectAtIndex:i];
         ece.iv.userInteractionEnabled = YES;
     }
+}
+
+-(int*) getCardNumberArray {
+    int *cardNumberArray = malloc(sizeof(int) * 4);
+    for (int i=0; i<4; i++) {
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        cardNumberArray[i] = ce.number;
+    }
+    return cardNumberArray;
 }
 @end

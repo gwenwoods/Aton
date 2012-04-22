@@ -17,6 +17,8 @@
 @property(nonatomic) int firstRemoveCount, secondRemoveCount;
 @property(nonatomic) int firstPlaceNum, secondPlaceNum;
 @property(nonatomic) int firstPlaceCount, secondPlaceCount;
+@property(nonatomic) int firstTemple, secondTemple;
 @property(nonatomic) int cardOneWinnerEnum, cardOneWinningScore;
+
 
 @end

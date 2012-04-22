@@ -91,10 +91,63 @@
 }
 
 -(AtonRoundResult*) computeRoundResult:(NSMutableArray*) playerArray:(AtonRoundResult*) result {
-    [result setFirstPlayerEnum:1];
-    [result setSecondPlayerEnum:0];
-    [result setCardOneWinnerEnum:0];
-    [result setCardOneWinningScore:4];
+    int *redArray = [[playerArray objectAtIndex:PLAYER_RED] getCardNumberArray];
+    int *blueArray = [[playerArray objectAtIndex:PLAYER_BLUE] getCardNumberArray];
+    
+    //----------------------------------------
+    // compare card 1
+    if (redArray[0] > blueArray[0]) {
+        [result setCardOneWinnerEnum:PLAYER_RED];
+        [result setCardOneWinningScore:(redArray[0]-blueArray[0])*2];
+        
+    } else if(blueArray[0] > redArray[0]) {
+        [result setCardOneWinnerEnum:PLAYER_BLUE];
+        [result setCardOneWinningScore:(blueArray[0]-redArray[0])*2];
+        
+    } else {
+        [result setCardOneWinnerEnum:PLAYER_NONE];
+        
+    }
+    
+    //----------------------------------------
+    // compare card 2
+    if (redArray[1] < blueArray[1] ) {
+        [result setFirstPlayerEnum:PLAYER_RED];
+        [result setSecondPlayerEnum:PLAYER_BLUE];
+    } else if(blueArray[1] < redArray[1]) {
+        [result setFirstPlaceNum:PLAYER_BLUE];
+        [result setSecondPlayerEnum:PLAYER_RED];
+    } else {
+        if (redArray[0] < blueArray[0] ) {
+            [result setFirstPlaceNum:PLAYER_RED];
+            [result setSecondPlayerEnum:PLAYER_BLUE];
+        } else if (blueArray[0] < redArray[0]) {
+            [result setFirstPlaceNum:PLAYER_BLUE];
+            [result setSecondPlayerEnum:PLAYER_RED];
+        } else {
+            int firstPlayerEnum = time(0)%2;
+            [result setFirstPlaceNum:firstPlayerEnum];
+            int secondPlayerEnum = (firstPlayerEnum+1)%2;
+            [result setSecondPlayerEnum:secondPlayerEnum];
+        }
+    }
+
+    if ([result firstPlayerEnum] == PLAYER_RED) {
+        [result setFirstRemoveNum:(redArray[1]-2)];
+        [result setFirstPlaceNum:redArray[3]];
+        [result setFirstTemple:redArray[2]];
+        [result setSecondRemoveNum:(blueArray[1]-2)];
+        [result setSecondPlaceNum:blueArray[3]];
+        [result setSecondTemple:blueArray[2]];
+    } else {
+        [result setFirstRemoveNum:(blueArray[1]-2)];
+        [result setFirstPlaceNum:blueArray[3]];
+        [result setFirstTemple:blueArray[2]];
+        [result setSecondRemoveNum:(redArray[1]-2)];
+        [result setSecondPlaceNum:redArray[3]];
+        [result setSecondTemple:redArray[2]];
+    }
+    
     return result;
 }
 

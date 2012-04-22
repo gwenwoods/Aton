@@ -12,7 +12,9 @@
 #import "CardElement.h"
 #import "AtonTouchElement.h"
 
-
+enum PLAYER_ENUM {
+    PLAYER_RED, PLAYER_BLUE, PLAYER_NONE
+};
 
 @interface AtonPlayer : NSObject {
     
@@ -25,6 +27,7 @@
 -(void) openCardsForArrange;
 -(void) closeCards;
 -(void) distributeCards;
+-(int*) getCardNumberArray;
 
 // arrange cards functions
 -(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;
@@ -39,7 +42,8 @@
 @property (strong, nonatomic) NSString *playerName;
 @property (nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
+@property (strong, nonatomic) NSMutableArray *deckArray;
 @property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV, *redrawIV;
-@property (nonatomic) int* deckArray;
+
 
 @end

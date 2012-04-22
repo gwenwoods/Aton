@@ -28,7 +28,7 @@
         communicationLb.backgroundColor = [UIColor clearColor];
         communicationLb.textAlignment = UITextAlignmentCenter;
         communicationLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        communicationLb.numberOfLines = 2;     
+        communicationLb.numberOfLines = 3;     
         //communicationLb.text = @"Player Red: lay your cards";
         communicationLb.textColor = [UIColor whiteColor];
         communicationLb.font = [UIFont fontWithName:@"Copperplate" size:24];

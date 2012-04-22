@@ -16,6 +16,8 @@
 @synthesize firstRemoveCount, secondRemoveCount;
 @synthesize firstPlaceNum, secondPlaceNum;
 @synthesize firstPlaceCount, secondPlaceCount;
+@synthesize firstTemple, secondTemple;
 @synthesize cardOneWinnerEnum, cardOneWinningScore;
+
 
 @end
