@@ -43,7 +43,7 @@ static int SCARAB_HEIGHT = 44;
     
     //--------------------------
     // initialize game manager
-    AtonGameManager *gameManager = [[AtonGameManager alloc] initializeWithParameters:controller.view];
+    AtonGameManager *gameManager = [[AtonGameManager alloc] initializeWithParameters:controller];
 
     //------------------------
     // initialize score scarab array

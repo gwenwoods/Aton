@@ -16,12 +16,12 @@
     NSMutableArray *templeArray = [atonParameters templeArray];
    
     
-    [self checkCommunicationView:atonParameters:engine];
+    [self checkGamePhaseView:atonParameters:engine];
     [self playerArrangeCard:touch:touchElement:atonParameters];
     [self chooseTempleSlot:touch:templeArray];
 }
 
-+(void) checkCommunicationView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
++(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
 
     AtonGameManager *gameManager = [atonParameters gameManager];
     if (gameManager.gamePhaseView.hidden == YES) {

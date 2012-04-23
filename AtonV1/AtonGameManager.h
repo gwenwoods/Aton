@@ -10,12 +10,14 @@
 
 @interface AtonGameManager : NSObject
 
--(id)initializeWithParameters:(UIView*) atonBaseView;
--(void) showCommunicationView:(NSString*) msg;
+-(id)initializeWithParameters:(UIViewController*) viewController;
+-(void) showGamePhaseView:(NSString*) msg;
 
+@property(strong, nonatomic) UIViewController *controller;
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
-@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView;
-@property(strong, nonatomic) UILabel *gamePhaseLb, *helpLb;
+@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView;
+@property(strong, nonatomic) UILabel *gamePhaseLb, *helpLb, *exchangeCardsLb;
+//@property(strong, nonatomic) UIButton *exchangeYesButton, *exchangeNoButton;
 
 @end

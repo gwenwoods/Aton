@@ -112,7 +112,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
         
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
@@ -130,7 +130,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
              NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
         
   /*      TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
@@ -165,23 +165,9 @@ static int MESSAGE_DELAY_TIME = 0.2;
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
 
-        
-   /*     TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
-        if (selectedSlot == nil) {
-            return;
-        }
-        [selectedSlot placePeep:OCCUPIED_BLUE];
-        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
-        atonParameters.atonRoundResult.firstPlaceCount++;
-        if (atonParameters.atonRoundResult.firstPlaceCount == 2) {
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Red can place 1 Red Peep" afterDelay:0.1];
-        } else {
-            [atonGameEngine run]; 
-        }*/
-        
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
@@ -200,7 +186,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
                 [selectedSlot placePeep:occupiedEnum];
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Round End" afterDelay:0.1];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
         }
         
     /*    TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
@@ -220,6 +206,22 @@ static int MESSAGE_DELAY_TIME = 0.2;
 }
 
 - (IBAction) exchangeCards:(id)sender {
+    atonParameters.gameManager.exchangeCardsView.hidden = NO;
+}
+
+- (IBAction) exchangeCardsYes:(id)sender {
     
+    if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
+        AtonPlayer *player = [[atonParameters playerArray] objectAtIndex:0];
+        [player resetCard];
+        [player distributeCards];
+        [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
+    }
+
+    atonParameters.gameManager.exchangeCardsView.hidden = YES;
+}
+
+- (IBAction) exchangeCardsNo:(id)sender {
+     atonParameters.gameManager.exchangeCardsView.hidden = YES;
 }
 @end

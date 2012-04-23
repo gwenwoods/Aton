@@ -36,7 +36,7 @@
             [player distributeCards];
         }
         
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Player Red: Lay your cards" afterDelay:4.0];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red: Lay your cards" afterDelay:4.0];
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
@@ -46,7 +46,7 @@
     } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
         [playerRed closeCards]; 
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Player Blue: Lay your cards" afterDelay:1.0];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Blue: Lay your cards" afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
         AtonPlayer *playerBlue = [playerArray objectAtIndex:1];
@@ -55,7 +55,7 @@
     } else if(gamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
         AtonPlayer *playerBlue = [playerArray objectAtIndex:1];
         [playerBlue closeCards]; 
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Compare Results" afterDelay:1.0];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Compare Results" afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_COMPARE) {
         for (int i=0; i<2; i++) {
@@ -79,20 +79,20 @@
             msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
             [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
         }
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:0.75];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
       //  [cardOneWinner performSelector:@selector(assignScore:) withObject:msg afterDelay:0.75];
       //  [cardOneWinner assignScore:cardOneWinningScore :para.scarabArray];
         
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
       //  [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
         NSString *msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:1.0];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         
         if (para.atonRoundResult.firstRemoveNum == 0) {
             NSString* msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
-            [para.gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:0.1];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.1];
             return;
         }
         int targetPlayerEnum = [para.atonRoundResult getFirstRemoveTargetEnum];
@@ -112,7 +112,7 @@
         
         if (para.atonRoundResult.secondRemoveNum == 0) {
             NSString* msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
-            [para.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Blue can place 2 Blue Peep" afterDelay:0.1];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Card 4 result:\n Player Blue can place 2 Blue Peep" afterDelay:0.1];
             return;
         }
         
