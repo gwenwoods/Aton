@@ -39,7 +39,7 @@ enum PLAYER_ENUM {
 -(void) pushTargetToTemp:(CardElement*) targetCE;
 -(void) placeCardElementFromTouch:(AtonTouchElement*) touchElement:(CardElement*) targetCE;
 
-
+@property (strong, nonatomic) UIViewController *controller;
 @property (strong, nonatomic) UIView *baseView;
 @property (nonatomic) int playerEnum;
 @property (strong, nonatomic) NSString *playerName;
@@ -47,6 +47,5 @@ enum PLAYER_ENUM {
 @property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
 @property (strong, nonatomic) NSMutableArray *deckArray;
 @property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV, *redrawIV;
-
-
+@property (strong, nonatomic) UIButton *exchangeCardsButton;
 @end

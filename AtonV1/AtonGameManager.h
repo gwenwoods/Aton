@@ -15,7 +15,7 @@
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
-@property(strong, nonatomic) UIImageView *communicationView;
-@property(strong, nonatomic) UILabel *communicationLb;
+@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView;
+@property(strong, nonatomic) UILabel *gamePhaseLb, *helpLb;
 
 @end

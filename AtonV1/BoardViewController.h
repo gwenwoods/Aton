@@ -22,6 +22,7 @@
 }
 
 - (IBAction) toMenu:(id)sender;
+- (IBAction) exchangeCards:(id)sender;
 
 //@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
 @property(strong, nonatomic) AtonGameEngine *atonGameEngine;

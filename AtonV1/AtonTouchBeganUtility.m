@@ -24,10 +24,10 @@
 +(void) checkCommunicationView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
 
     AtonGameManager *gameManager = [atonParameters gameManager];
-    if (gameManager.communicationView.hidden == YES) {
+    if (gameManager.gamePhaseView.hidden == YES) {
         return;
     } else {
-        gameManager.communicationView.hidden = YES;
+        gameManager.gamePhaseView.hidden = YES;
         if (atonParameters.gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
             

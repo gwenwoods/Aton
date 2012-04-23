@@ -20,11 +20,12 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 
 static int CARD_NUM = 40;
 
-@synthesize baseView;
+@synthesize controller, baseView;
 @synthesize playerEnum, playerName;
 @synthesize score;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
-@synthesize deckIV, deckAnimationIV, redrawIV, deckArray;
+@synthesize deckIV, deckAnimationIV, deckArray;
+@synthesize exchangeCardsButton;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
 	if (self) {
@@ -66,9 +67,13 @@ static int CARD_NUM = 40;
 
 
 -(void) initilizeDeck {
-    redrawIV = [[UIImageView alloc] initWithFrame:CGRectMake(11 + playerEnum * (START_SPACE + 139) , 8, 40, 50)];
-    redrawIV.image = [UIImage imageNamed:@"White_Cylinder.png"];
-    [baseView addSubview:redrawIV];
+     
+    exchangeCardsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    exchangeCardsButton.frame = CGRectMake(11 + playerEnum * (START_SPACE + 139) , 8, 40, 50);
+   // exchangeCardsButton.userInteractionEnabled = YES;
+    [exchangeCardsButton setImage:[UIImage imageNamed:@"White_Cylinder.png"]  forState:UIControlStateNormal];
+    [exchangeCardsButton addTarget:controller action:@selector(exchangeCards:) forControlEvents:UIControlEventTouchUpInside];
+    [baseView addSubview:exchangeCardsButton];
     
     deckIV = [[UIImageView alloc] initWithFrame:CGRectMake(56 + playerEnum * START_SPACE, 2, 90, 56)];
     deckIV.image = [UIImage imageNamed:[self getDeckBackName]];

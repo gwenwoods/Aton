@@ -12,35 +12,51 @@
 
 @synthesize baseView;
 @synthesize activePlayer;
-@synthesize communicationView, communicationLb;
+@synthesize gamePhaseView, gamePhaseLb;
+@synthesize helpView, helpLb;
 
 -(id)initializeWithParameters:(UIView*) atonBaseView {
     
     if (self) {
         baseView = atonBaseView;
         
-        communicationView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
-        communicationView.image = [UIImage imageNamed:@"under_fabric.png"];
-        communicationView.hidden = YES;
-        [baseView addSubview:communicationView];
+        gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
+        gamePhaseView.image = [UIImage imageNamed:@"under_fabric.png"];
+        gamePhaseView.hidden = YES;
+        [baseView addSubview:gamePhaseView];
         
-        communicationLb = [[UILabel alloc] initWithFrame:CGRectMake(40,60,400,200)];
-        communicationLb.backgroundColor = [UIColor clearColor];
-        communicationLb.textAlignment = UITextAlignmentCenter;
-        communicationLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        communicationLb.numberOfLines = 3;     
-        //communicationLb.text = @"Player Red: lay your cards";
-        communicationLb.textColor = [UIColor whiteColor];
-        communicationLb.font = [UIFont fontWithName:@"Copperplate" size:24];
-        [communicationView addSubview:communicationLb];
-        [communicationView bringSubviewToFront:communicationLb];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(40,60,400,200)];
+        gamePhaseLb.backgroundColor = [UIColor clearColor];
+        gamePhaseLb.textAlignment = UITextAlignmentCenter;
+        gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        gamePhaseLb.numberOfLines = 3;     
+        gamePhaseLb.textColor = [UIColor whiteColor];
+        gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        [gamePhaseView addSubview:gamePhaseLb];
+        [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
+        //---------------------------------
+        helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
+        helpView.image = [UIImage imageNamed:@"under_fabric.png"];
+        helpView.hidden = YES;
+        [baseView addSubview:helpView];
+        
+        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(40,60,400,200)];
+        helpLb.backgroundColor = [UIColor clearColor];
+        helpLb.textAlignment = UITextAlignmentCenter;
+        helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        helpLb.numberOfLines = 3;     
+        helpLb.textColor = [UIColor whiteColor];
+        helpLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        [helpView addSubview:helpLb];
+        [helpView bringSubviewToFront:helpLb];
+
     }
     return self;
 }
 
 -(void) showCommunicationView:(NSString*) msg {
-    communicationView.hidden = NO;
-    communicationLb.text = msg;
+    gamePhaseView.hidden = NO;
+    gamePhaseLb.text = msg;
 }
 @end
