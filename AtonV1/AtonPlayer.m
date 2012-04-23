@@ -20,6 +20,8 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 
 static int CARD_NUM = 40;
 
+static float DELAY_TIME = 0.5;
+
 @synthesize controller, baseView;
 @synthesize playerEnum, playerName;
 @synthesize score;
@@ -67,10 +69,22 @@ static int CARD_NUM = 40;
 
 
 -(void) initilizeDeck {
+    
+    deckCountLb = [[UILabel alloc] initWithFrame:CGRectMake(118 + playerEnum * START_SPACE,56,24,20)];
+    deckCountLb.backgroundColor = [UIColor clearColor];
+    deckCountLb.textAlignment = UITextAlignmentCenter;
+    deckCountLb.lineBreakMode = UILineBreakModeCharacterWrap;
+    deckCountLb.numberOfLines = 3;     
+    deckCountLb.textColor = [UIColor whiteColor];
+    deckCountLb.text = @"40";
+   // deckCountLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+    [baseView addSubview:deckCountLb];
+    [baseView bringSubviewToFront:deckCountLb];
+
      
     exchangeCardsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     exchangeCardsButton.frame = CGRectMake(11 + playerEnum * (START_SPACE + 139) , 8, 40, 50);
-   // exchangeCardsButton.userInteractionEnabled = YES;
+    exchangeCardsButton.userInteractionEnabled = NO;
     [exchangeCardsButton setImage:[UIImage imageNamed:@"White_Cylinder.png"]  forState:UIControlStateNormal];
     [exchangeCardsButton addTarget:controller action:@selector(exchangeCards:) forControlEvents:UIControlEventTouchUpInside];
     [baseView addSubview:exchangeCardsButton];
@@ -118,9 +132,15 @@ static int CARD_NUM = 40;
         [deckArray removeObjectAtIndex:0];
         targetCE.number = number;
         targetCE.iv.image = [UIImage imageNamed:[self getCardName:targetCE.number]];
-        [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + 1.0];
+        [self performSelector:@selector(distributeCardFromDeck:) withObject:targetCE.iv afterDelay:i*0.5 + DELAY_TIME];
        // [self ivTravel:deckIV:targetCE.iv];
     }
+    
+    NSString *msg = @"";
+    int deckNum = [deckArray count];
+    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"%i", deckNum]];
+    deckCountLb.text = msg;
+
 }
 
 -(NSString*) getCardBackName {
@@ -367,6 +387,7 @@ static int CARD_NUM = 40;
         NSString *imgName = [self getCardBackName];
         [self flipIV:ce.iv withImgName:imgName];
     }
+    exchangeCardsButton.userInteractionEnabled = NO;
   //  [self performSelector:@selector(enablePlayerArrangeCards) withObject:nil afterDelay:0.6];
 }
 
@@ -388,6 +409,7 @@ static int CARD_NUM = 40;
         CardElement *ece = [emptyCardElementArray objectAtIndex:i];
         ece.iv.userInteractionEnabled = YES;
     }
+    exchangeCardsButton.userInteractionEnabled = YES;
 }
 
 -(int*) getCardNumberArray {

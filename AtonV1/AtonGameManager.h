@@ -12,6 +12,7 @@
 
 -(id)initializeWithParameters:(UIViewController*) viewController;
 -(void) showGamePhaseView:(NSString*) msg;
+-(void) showHelpView:(NSString*) msg;
 
 @property(strong, nonatomic) UIViewController *controller;
 @property(strong, nonatomic) UIView* baseView;

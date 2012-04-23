@@ -24,6 +24,11 @@
 +(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
 
     AtonGameManager *gameManager = [atonParameters gameManager];
+    
+    if (gameManager.helpView.hidden == NO) {
+        gameManager.helpView.hidden = YES;
+        return;
+    }
     if (gameManager.gamePhaseView.hidden == YES) {
         return;
     } else {

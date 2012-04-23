@@ -20,6 +20,7 @@ enum PLAYER_ENUM {
 @interface AtonPlayer : NSObject {
     
     CGPoint *startOriginArray;
+    UILabel *deckCountLb;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;

@@ -101,7 +101,8 @@ static int MESSAGE_DELAY_TIME = 0.2;
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
         if ([allSelectedSlots count] != [atonParameters.atonRoundResult getFirstRemovePositiveNum]) {
-            // TODO: show some message here in helperView
+            NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
+            [atonParameters.gameManager performSelector:@selector(showHelpView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];
             [atonGameEngine run]; 
             
@@ -119,7 +120,8 @@ static int MESSAGE_DELAY_TIME = 0.2;
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
         if ([allSelectedSlots count] != [atonParameters.atonRoundResult getSecondRemovePositiveNum]) {
-            // TODO: show some message here in helperView
+            NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
+            [atonParameters.gameManager performSelector:@selector(showHelpView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];
             [atonGameEngine run];
             
@@ -133,24 +135,12 @@ static int MESSAGE_DELAY_TIME = 0.2;
             [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
         
-  /*      TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
-        if (selectedSlot == nil) {
-            return;
-        }
-        [selectedSlot removePeep];
-        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
-        atonParameters.atonRoundResult.secondRemoveCount++;
-        if (atonParameters.atonRoundResult.secondRemoveCount == 1) {
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Blue can place 2 Blue Peep" afterDelay:0.1];
-        } else {
-            [atonGameEngine run]; 
-        }*/
-        
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
         if ([allSelectedSlots count] != atonParameters.atonRoundResult.firstPlaceNum) {
-             // TODO: show some message here in helperView
+            NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
+            [atonParameters.gameManager performSelector:@selector(showHelpView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];
             [atonGameEngine run]; 
         } else {
@@ -172,7 +162,8 @@ static int MESSAGE_DELAY_TIME = 0.2;
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
         if ([allSelectedSlots count] != atonParameters.atonRoundResult.secondPlaceNum) {
-     //   if ([allSelectedSlots count] != 1) {
+            NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
+            [atonParameters.gameManager performSelector:@selector(showHelpView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];
             [atonGameEngine run]; 
         } else {
@@ -188,20 +179,6 @@ static int MESSAGE_DELAY_TIME = 0.2;
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
             [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
         }
-        
-    /*    TempleSlot *selectedSlot = [TempleUtility findSelectedSlot:[atonParameters templeArray]];
-        if (selectedSlot == nil) {
-            return;
-        }
-        [selectedSlot placePeep:OCCUPIED_RED];
-        [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
-        atonParameters.atonRoundResult.secondPlaceCount++;
-        if (atonParameters.atonRoundResult.secondPlaceCount == 1) {
-            [atonParameters.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Round End" afterDelay:0.1];
-        } else {
-            [atonGameEngine run]; 
-        }
-        */
     }
 }
 
@@ -212,10 +189,19 @@ static int MESSAGE_DELAY_TIME = 0.2;
 - (IBAction) exchangeCardsYes:(id)sender {
     
     if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
-        AtonPlayer *player = [[atonParameters playerArray] objectAtIndex:0];
+        AtonPlayer *player = [[atonParameters playerArray] objectAtIndex:PLAYER_RED];
+        player.exchangeCardsButton.hidden = YES;
         [player resetCard];
         [player distributeCards];
         [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
+    
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
+        AtonPlayer *player = [[atonParameters playerArray] objectAtIndex:PLAYER_BLUE];
+        player.exchangeCardsButton.hidden = YES;
+        [player resetCard];
+        [player distributeCards];
+        [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
+        
     }
 
     atonParameters.gameManager.exchangeCardsView.hidden = YES;

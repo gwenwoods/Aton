@@ -94,4 +94,10 @@
     gamePhaseView.hidden = NO;
     gamePhaseLb.text = msg;
 }
+
+-(void) showHelpView:(NSString*) msg {
+    helpView.hidden = NO;
+    helpLb.text = msg;
+}
+
 @end
