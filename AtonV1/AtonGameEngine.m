@@ -159,7 +159,7 @@
         [result setFirstPlayerEnum:PLAYER_RED];
         [result setSecondPlayerEnum:PLAYER_BLUE];
     } else if(blueArray[1] < redArray[1]) {
-        [result setFirstPlaceNum:PLAYER_BLUE];
+        [result setFirstPlayerEnum:PLAYER_BLUE];
         [result setSecondPlayerEnum:PLAYER_RED];
     } else {
         if (redArray[0] < blueArray[0] ) {

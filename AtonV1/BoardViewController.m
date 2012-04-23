@@ -183,8 +183,8 @@
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
-        if ([allSelectedSlots count] != atonParameters.atonRoundResult.secondRemoveNum) {
-       // if ([allSelectedSlots count] != 1) {
+      //  if ([allSelectedSlots count] != atonParameters.atonRoundResult.secondRemoveNum) {
+        if ([allSelectedSlots count] != 1) {
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];
             [atonGameEngine run]; 
         } else {
