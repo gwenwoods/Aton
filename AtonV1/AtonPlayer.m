@@ -98,7 +98,8 @@ static float DELAY_TIME = 0.5;
     deckAnimationIV.hidden = YES;
     [baseView addSubview:deckAnimationIV];
     
-    int *deckNumberArray = malloc(sizeof(int) * CARD_NUM);
+    deckArray = [self initializeDeckArray];
+  /*  int *deckNumberArray = malloc(sizeof(int) * CARD_NUM);
     for (int i=0; i<CARD_NUM; i++) {
         deckNumberArray[i] = i%4 + 1;
     }
@@ -120,11 +121,14 @@ static float DELAY_TIME = 0.5;
     for (int i=0; i< CARD_NUM; i++) {
         int number = deckNumberArray[i];
         [deckArray addObject:[NSNumber numberWithInt:number]];
-    }
+    }*/
 }
 
 -(void) distributeCards {
     
+    if ([deckArray count] == 0) {
+        deckArray = [self initializeDeckArray];
+    }
     for (int i=0; i<4; i++) {
         CardElement *targetCE = [cardElementArray objectAtIndex:i];
         //targetCE.number = i +1;
@@ -436,5 +440,32 @@ static float DELAY_TIME = 0.5;
                          }];
 
     }
+}
+
+-(NSMutableArray*) initializeDeckArray {
+    int *deckNumberArray = malloc(sizeof(int) * CARD_NUM);
+    for (int i=0; i<CARD_NUM; i++) {
+        deckNumberArray[i] = i%4 + 1;
+    }
+    
+    //------------------------------
+    int n = (time(0) + playerEnum *7 )%100;
+    srand(time(0) + playerEnum *7);
+    
+    for (int count = 0; count < n; count++) {
+        for (int i=0; i<(CARD_NUM-1); i++) {
+            int r = i + (rand() % (CARD_NUM-i)); // Random remaining position.
+            int temp = deckNumberArray[i]; 
+            deckNumberArray[i] = deckNumberArray[r]; 
+            deckNumberArray[r] = temp;
+        }
+    }
+    
+    NSMutableArray *newDeckArray = [[NSMutableArray alloc] init];
+    for (int i=0; i< CARD_NUM; i++) {
+        int number = deckNumberArray[i];
+        [newDeckArray addObject:[NSNumber numberWithInt:number]];
+    }
+    return newDeckArray;
 }
 @end
