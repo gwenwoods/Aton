@@ -84,20 +84,45 @@
       //  [cardOneWinner assignScore:cardOneWinningScore :para.scarabArray];
         
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
-        [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
+      //  [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
+        NSString *msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
+        [gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         
+        if (para.atonRoundResult.firstRemoveNum == 0) {
+            NSString* msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
+            [para.gameManager performSelector:@selector(showCommunicationView:) withObject:msg afterDelay:0.1];
+            return;
+        }
+        int targetPlayerEnum = [para.atonRoundResult getFirstRemoveTargetEnum];
         int occupiedEnum = OCCUPIED_RED;
+        if (targetPlayerEnum == PLAYER_BLUE) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }
+
         NSMutableArray *eligibleSlotArray =
-        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :occupiedEnum];
-        
+       // [TempleUtility enableEligibleTempleSlotInteraction:templeArray:para.atonRoundResult.firstActiveTemple:occupiedEnum];
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
         //if ([eligibleSlotArray count]==0) {
         //    [gameManager performSelector:@selector(showCommunicationView:) withObject:@"No Red peeps to remove. Red can remove 3 Blue Peeps." afterDelay:1.0];
         //}
         
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
-        [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_BLUE];
+        
+        if (para.atonRoundResult.secondRemoveNum == 0) {
+            NSString* msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
+            [para.gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 4 result:\n Player Blue can place 2 Blue Peep" afterDelay:0.1];
+            return;
+        }
+        
+        int targetPlayerEnum = [para.atonRoundResult getSecondRemoveTargetEnum];
+        int occupiedEnum = OCCUPIED_RED;
+        if (targetPlayerEnum == PLAYER_BLUE) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }
+       // [TempleUtility enableEligibleTempleSlotInteraction:templeArray:para.atonRoundResult.secondActiveTemple:occupiedEnum];
+        [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
       //   [gameManager performSelector:@selector(showCommunicationView:) withObject:@"No Blue peeps to remove. Red can place 2 Peeps." afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
@@ -138,14 +163,14 @@
         [result setSecondPlayerEnum:PLAYER_RED];
     } else {
         if (redArray[0] < blueArray[0] ) {
-            [result setFirstPlaceNum:PLAYER_RED];
+            [result setFirstPlayerEnum:PLAYER_RED];
             [result setSecondPlayerEnum:PLAYER_BLUE];
         } else if (blueArray[0] < redArray[0]) {
-            [result setFirstPlaceNum:PLAYER_BLUE];
+            [result setFirstPlayerEnum:PLAYER_BLUE];
             [result setSecondPlayerEnum:PLAYER_RED];
         } else {
             int firstPlayerEnum = time(0)%2;
-            [result setFirstPlaceNum:firstPlayerEnum];
+            [result setFirstPlayerEnum:firstPlayerEnum];
             int secondPlayerEnum = (firstPlayerEnum+1)%2;
             [result setSecondPlayerEnum:secondPlayerEnum];
         }

@@ -62,7 +62,7 @@ static int DEATH_WIDTH = 59;
 }
 
 
--(void) hideSlotBoundary {
+-(void) deselectAllSlots {
     for (int i=0; i<12;i++) {
         TempleSlot *slot = [slotArray objectAtIndex:i];
         slot.boundaryIV.hidden = YES;
@@ -100,5 +100,17 @@ static int DEATH_WIDTH = 59;
         }
     }
     return nil;
+}
+
+-(NSMutableArray*) findAllSelectedSlots {
+    NSMutableArray *selectedSlotsArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<12;i++) {
+        TempleSlot *slot = [slotArray objectAtIndex:i];
+        if ([slot isSelected]) {
+            //return slot;
+            [selectedSlotsArray addObject:slot];
+        }
+    }
+    return selectedSlotsArray;
 }
 @end

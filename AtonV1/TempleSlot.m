@@ -72,4 +72,14 @@ static int BOUNDARY_SIZE = 56;
     } 
     isSelected = NO;
 }
+
+-(void) selectOrDeselectSlot {
+    if (isSelected) {
+        isSelected = NO;
+        boundaryIV.hidden = YES;
+    } else {
+        isSelected = YES;
+        boundaryIV.hidden = NO;
+    }
+}
 @end

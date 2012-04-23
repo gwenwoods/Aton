@@ -18,10 +18,11 @@ enum TEMPLE_ENUM {
 }
 
 -(id)initializeWithParameters:(int) thisTempleId:(CGPoint) templeOrigin:(UIView*) atonBaseView;
--(void) hideSlotBoundary;
+-(void) deselectAllSlots;
 -(void) disableTempleSlotInteraction;
 -(NSMutableArray*) enableTempleSlotInteraction:(int) occupiedEnum;
 -(TempleSlot*) findSelectedSlot;
+-(NSMutableArray*) findAllSelectedSlots;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int templeEnum;

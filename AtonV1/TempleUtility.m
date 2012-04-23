@@ -10,11 +10,10 @@
 
 @implementation TempleUtility
 
-+(void) hideAllTempleSlotBoundary:(NSMutableArray*) templeArray {
-    
++(void) deselectAllTempleSlots:(NSMutableArray*) templeArray {
     for (int i=0; i< [templeArray count]; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-        [temple hideSlotBoundary];
+        [temple deselectAllSlots];
     }
 }
 
@@ -54,4 +53,18 @@
     return nil;
 }
 
++(NSMutableArray*) findAllSelectedSlots:(NSMutableArray*) templeArray {
+    
+    NSMutableArray *selectedSlotArray = [[NSMutableArray alloc] init];
+    
+    for (int i=1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        [selectedSlotArray addObjectsFromArray:[temple findAllSelectedSlots]];
+     /*   TempleSlot *slot = [temple findSelectedSlot];
+        if(slot!=nil) {
+            return slot;
+        }*/
+    }
+    return selectedSlotArray;
+}
 @end

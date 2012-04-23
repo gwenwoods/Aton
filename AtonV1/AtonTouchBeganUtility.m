@@ -125,9 +125,10 @@
         for (int i=0; i< [templeSlotArray count]; i++) {
             TempleSlot *slot = [templeSlotArray objectAtIndex:i];
             if([touch view] == [slot iv]) {
-                [TempleUtility hideAllTempleSlotBoundary:templeArray];
-                slot.boundaryIV.hidden = NO;
-                slot.isSelected = YES;
+             //   [TempleUtility hideAllTempleSlotBoundary:templeArray];
+             //   slot.boundaryIV.hidden = NO;
+             //   slot.isSelected = YES;
+                [slot selectOrDeselectSlot];
             }
         }
     }
