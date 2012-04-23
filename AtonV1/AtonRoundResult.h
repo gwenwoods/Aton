@@ -26,7 +26,6 @@ enum GAME_PHASE_ENUM {
 @property(nonatomic) int firstActiveTemple, secondActiveTemple;
 @property(nonatomic) int firstRemoveNum, secondRemoveNum;
 @property(nonatomic) int firstPlaceNum, secondPlaceNum;
-@property(nonatomic) int firstPlaceCount, secondPlaceCount;
 @property(nonatomic) int firstTemple, secondTemple;
 @property(nonatomic) int cardOneWinnerEnum, cardOneWinningScore;
 

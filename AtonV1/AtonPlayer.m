@@ -28,7 +28,6 @@ static int CARD_NUM = 40;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
 	if (self) {
-        score = 13;
         baseView = controller.view;
         playerEnum = thisPlayerEnum;
         playerName = name;
