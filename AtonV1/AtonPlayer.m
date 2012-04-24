@@ -428,7 +428,7 @@ static float DELAY_TIME = 0.5;
 -(void) resetCard {
     for (int i=0; i<4; i++) {
         CardElement *ce = [cardElementArray objectAtIndex:i];
-        
+        ce.subIV.hidden = YES;
         [UIView animateWithDuration:0.2
                               delay:0.0
                             options: UIViewAnimationCurveEaseOut
@@ -439,6 +439,17 @@ static float DELAY_TIME = 0.5;
                              ce.iv.alpha = 1.0;
                          }];
 
+    }
+    
+/*    int currentTempCardNum = [tempCardElementArray count];
+    for (int i=0; i< currentTempCardNum; i++) {
+        CardElement *ce = [tempCardElementArray objectAtIndex:i];
+        [self releaseTempCardElement:ce];
+    }*/
+    
+    while ([tempCardElementArray count] > 0) {
+        CardElement *ce = [tempCardElementArray objectAtIndex:0];
+        [self releaseTempCardElement:ce];
     }
 }
 

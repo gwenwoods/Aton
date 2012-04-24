@@ -184,6 +184,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
 
 - (IBAction) exchangeCards:(id)sender {
     atonParameters.gameManager.exchangeCardsView.hidden = NO;
+    [self.view bringSubviewToFront:atonParameters.gameManager.exchangeCardsView];
 }
 
 - (IBAction) exchangeCardsYes:(id)sender {

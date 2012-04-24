@@ -32,7 +32,7 @@
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        gamePhaseLb.numberOfLines = 3;     
+        gamePhaseLb.numberOfLines = 5;     
         gamePhaseLb.textColor = [UIColor whiteColor];
         gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:24];
         [gamePhaseView addSubview:gamePhaseLb];

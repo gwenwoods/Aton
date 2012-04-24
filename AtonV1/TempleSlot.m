@@ -30,13 +30,13 @@ static int BOUNDARY_SIZE = 56;
         iv = [[UIImageView alloc] initWithFrame:CGRectMake(slotOriginX, slotOriginY, SLOT_WIDTH, SLOT_HEIGHT)];
         peepIV = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, PEEP_SIZE, PEEP_SIZE)];
        
-        if (thisSlotID%5 == 0) {
+     /*   if (thisSlotID%5 == 0) {
              peepIV.image = [UIImage imageNamed:@"Red_Disc.png"];
              occupiedEnum = OCCUPIED_RED;
         } else  if (thisSlotID%5 == 1){
              peepIV.image = [UIImage imageNamed:@"Blue_Disc.png"];
              occupiedEnum = OCCUPIED_BLUE;
-        }
+        }*/
        
         boundaryIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4, -4, BOUNDARY_SIZE, BOUNDARY_SIZE)];
         
