@@ -133,6 +133,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
             for (int i=0; i < [allSelectedSlots count]; i++) {
                 TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
                 TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:[atonParameters templeArray]];
+                // TODO: check nil for deathSlot
                 [deathSlot placePeep:[selectedSlot occupiedEnum]];
                 [selectedSlot removePeep];
             }
@@ -183,7 +184,13 @@ static int MESSAGE_DELAY_TIME = 0.2;
                 [selectedSlot placePeep:occupiedEnum];
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
-            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
+            if ([TempleUtility isDeathTempleFull:[atonParameters templeArray]]) {
+                atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORE;
+                [atonGameEngine run];
+            } else {
+                [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
+            }
+            
         }
     }
 }

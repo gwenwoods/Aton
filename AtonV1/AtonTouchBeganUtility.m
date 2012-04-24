@@ -60,6 +60,9 @@
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
             
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
+            
         } else {
             return;
         }

@@ -17,5 +17,6 @@
 +(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray;
 +(NSMutableArray*) findAllSelectedSlots:(NSMutableArray*) templeArray;
 +(TempleSlot*) findFirstAvailableDeathSpot:(NSMutableArray*) templeArray;
-
++(BOOL) isDeathTempleFull:(NSMutableArray*) templeArray;
++(void) clearDeathTempleFull:(NSMutableArray*) templeArray;
 @end

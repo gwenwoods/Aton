@@ -30,7 +30,7 @@
         AtonTemple *temple = [templeArray objectAtIndex:i];
         NSMutableArray *templeSlotArray =
         [temple enableTempleSlotInteraction:occupiedEnum];
-        [eligiableSlotArray addObjectsFromArray:templeSlotArray];
+        [eligiableSlotArray  addObjectsFromArray:templeSlotArray];
     }
     return eligiableSlotArray;
 }
@@ -78,5 +78,23 @@
         }
     }
     return nil;
+}
+
++(BOOL) isDeathTempleFull:(NSMutableArray*) templeArray {
+    AtonTemple *temple = [templeArray objectAtIndex:TEMPLE_DEATH];
+    TempleSlot *slot = [[temple slotArray] objectAtIndex:7];
+    if ([slot occupiedEnum]!=OCCUPIED_EMPTY) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
++(void) clearDeathTempleFull:(NSMutableArray*) templeArray {
+    AtonTemple *temple = [templeArray objectAtIndex:TEMPLE_DEATH];
+    for (int i=0; i<8; i++) {
+        TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
+        [slot removePeep];
+    }
 }
 @end

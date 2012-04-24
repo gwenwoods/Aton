@@ -103,13 +103,27 @@ static int MESSAGE_DELAY_TIME = 0.2;
         if (targetPlayerEnum == PLAYER_BLUE) {
             occupiedEnum = OCCUPIED_BLUE;
         }
-
+        
+        // TODO: change back to max temple
         NSMutableArray *eligibleSlotArray =
-       // [TempleUtility enableEligibleTempleSlotInteraction:templeArray:para.atonRoundResult.firstActiveTemple:occupiedEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+        int arrayNum = [eligibleSlotArray count];
         
         if ([eligibleSlotArray count] == 0) {
             NSString *msg = @"No available peeps to remove. \n\n";
+            NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
+            msg = [msg stringByAppendingString:msg1];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+        
+        } else if (arrayNum < [para.atonRoundResult getFirstRemovePositiveNum]) {
+            for (int i=0; i<[eligibleSlotArray count]; i++) {
+                TempleSlot *selectedSlot = [eligibleSlotArray objectAtIndex:i];
+                TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
+                // TODO: check nil for deathSlot
+                [deathSlot placePeep:[selectedSlot occupiedEnum]];
+                [selectedSlot removePeep];
+            }
+            NSString *msg = @"All eligible peeps removed. \n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             msg = [msg stringByAppendingString:msg1];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
@@ -128,24 +142,40 @@ static int MESSAGE_DELAY_TIME = 0.2;
         if (targetPlayerEnum == PLAYER_BLUE) {
             occupiedEnum = OCCUPIED_BLUE;
         }
-       // [TempleUtility enableEligibleTempleSlotInteraction:templeArray:para.atonRoundResult.secondActiveTemple:occupiedEnum];
+
+        // TODO: change back to max temple
         NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
-        
+        int arrayNum = [eligibleSlotArray count];
         // TODO: need to take care of the case:
-        // eligibleSlot number < needs to be removed number
         if ([eligibleSlotArray count] == 0) {
             NSString *msg = @"No available peeps to remove. \n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             msg = [msg stringByAppendingString:msg1];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+        
+        } else if (arrayNum < [para.atonRoundResult getSecondRemovePositiveNum]) {
+            for (int i=0; i<[eligibleSlotArray count]; i++) {
+                TempleSlot *selectedSlot = [eligibleSlotArray objectAtIndex:i];
+                TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
+                // TODO: check nil for deathSlot
+                [deathSlot placePeep:[selectedSlot occupiedEnum]];
+                [selectedSlot removePeep];
+            }
+            NSString *msg = @"All eligible peeps removed. \n\n";
+            NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
+            msg = [msg stringByAppendingString:msg1];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
-      //   [gameManager performSelector:@selector(showCommunicationView:) withObject:@"No Blue peeps to remove. Red can place 2 Peeps." afterDelay:1.0];
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
         
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
+        
+    } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
+        [TempleUtility clearDeathTempleFull:templeArray];
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
         
     }
 }
