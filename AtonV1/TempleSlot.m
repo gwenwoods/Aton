@@ -73,6 +73,12 @@ static int BOUNDARY_SIZE = 56;
     isSelected = NO;
 }
 
+-(CGRect) getPeepFrame {
+    CGPoint ivOrigin = iv.frame.origin;
+    CGRect rect = CGRectMake(ivOrigin.x + 4, ivOrigin.y + 4, PEEP_SIZE, PEEP_SIZE);
+    return rect;
+}
+
 -(void) selectOrDeselectSlot {
     if (isSelected) {
         isSelected = NO;

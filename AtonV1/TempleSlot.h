@@ -23,6 +23,7 @@ enum OCCUPIED_ENUM {
 -(void) removePeep;
 -(void) placePeep:(int) occuEnum;
 -(void) selectOrDeselectSlot;
+-(CGRect) getPeepFrame;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) CGPoint origin;

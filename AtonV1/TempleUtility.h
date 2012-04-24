@@ -19,4 +19,6 @@
 +(TempleSlot*) findFirstAvailableDeathSpot:(NSMutableArray*) templeArray;
 +(BOOL) isDeathTempleFull:(NSMutableArray*) templeArray;
 +(void) clearDeathTempleFull:(NSMutableArray*) templeArray;
++(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
+
 @end

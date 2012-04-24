@@ -9,6 +9,7 @@
 #import "TempleUtility.h"
 
 @implementation TempleUtility
+static int DEATH_ANIMATION_TIME = 0.5;
 
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray {
     // only for temple 1 - temple 4
@@ -96,5 +97,40 @@
         TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
         [slot removePeep];
     }
+}
+
++(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {
+    for (int i=0; i < [allSelectedSlots count]; i++) {
+        TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
+        TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
+        if (deathSlot == nil) {
+            [selectedSlot removePeep];
+            return;
+        }
+        
+        // create animation IV
+        UIImageView *animationIV = [[UIImageView alloc] init];
+        animationIV.frame = [selectedSlot getPeepFrame];
+        animationIV.image = selectedSlot.peepIV.image;
+        [selectedSlot.baseView addSubview:animationIV]; 
+        [selectedSlot.baseView bringSubviewToFront:animationIV];
+        
+        [deathSlot placePeep:[selectedSlot occupiedEnum]];
+        deathSlot.peepIV.alpha = 0.0;
+        [selectedSlot removePeep];
+        
+        [UIView animateWithDuration:DEATH_ANIMATION_TIME
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             animationIV.frame = [deathSlot getPeepFrame];
+                         } 
+                         completion:^(BOOL finished){
+                             [animationIV removeFromSuperview];
+                             deathSlot.peepIV.alpha = 1.0;
+                         }];
+
+    }
+    [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }
 @end
