@@ -20,7 +20,7 @@ static NSString *blueCardNames[4] = {@"Blue_Card1",@"Blue_Card2",@"Blue_Card3",@
 
 static int CARD_NUM = 40;
 
-static float DELAY_TIME = 0.5;
+static float DELAY_TIME = 0.25;
 
 @synthesize controller, baseView;
 @synthesize playerEnum, playerName;
@@ -29,8 +29,9 @@ static float DELAY_TIME = 0.5;
 @synthesize deckIV, deckAnimationIV, deckArray;
 @synthesize exchangeCardsButton;
 
--(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller {
+-(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController {
 	if (self) {
+        controller = viewController;
         baseView = controller.view;
         playerEnum = thisPlayerEnum;
         playerName = name;

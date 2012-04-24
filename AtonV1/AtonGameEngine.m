@@ -174,7 +174,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
         
     } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
-        [TempleUtility clearDeathTempleFull:templeArray];
+        [TempleUtility clearDeathTemple:templeArray];
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
         
     }
@@ -282,8 +282,8 @@ static int MESSAGE_DELAY_TIME = 0.2;
     int newScore = oldScore + cardOneWinningScore;
   //  cardOneWinner.score = newScore;
     
-    ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
-    ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
+ //   ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
+ //   ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
 
     
     if (oldScore < 15 && newScore > 15) {

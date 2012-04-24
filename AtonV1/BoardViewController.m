@@ -11,7 +11,7 @@
 
 @implementation BoardViewController
 
-static int MESSAGE_DELAY_TIME = 0.2;
+static int MESSAGE_DELAY_TIME = 0.5;
 
 @synthesize atonGameEngine;
 @synthesize atonParameters;

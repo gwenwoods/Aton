@@ -9,7 +9,6 @@
 #import "TempleUtility.h"
 
 @implementation TempleUtility
-static int DEATH_ANIMATION_TIME = 0.5;
 
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray {
     // only for temple 1 - temple 4
@@ -91,7 +90,7 @@ static int DEATH_ANIMATION_TIME = 0.5;
     }
 }
 
-+(void) clearDeathTempleFull:(NSMutableArray*) templeArray {
++(void) clearDeathTemple:(NSMutableArray*) templeArray {
     AtonTemple *temple = [templeArray objectAtIndex:TEMPLE_DEATH];
     for (int i=0; i<8; i++) {
         TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
@@ -119,7 +118,7 @@ static int DEATH_ANIMATION_TIME = 0.5;
         deathSlot.peepIV.alpha = 0.0;
         [selectedSlot removePeep];
         
-        [UIView animateWithDuration:DEATH_ANIMATION_TIME
+        [UIView animateWithDuration:0.5
                               delay:0.0
                             options: UIViewAnimationCurveEaseOut
                          animations:^{

@@ -12,7 +12,7 @@
 
 +(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters: (AtonGameEngine*) engine {
     UITouch *touch = [[event allTouches] anyObject];
-    NSMutableArray *playerArray = [atonParameters playerArray];
+   // NSMutableArray *playerArray = [atonParameters playerArray];
     NSMutableArray *templeArray = [atonParameters templeArray];
    
     

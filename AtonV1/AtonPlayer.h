@@ -23,7 +23,7 @@ enum PLAYER_ENUM {
     UILabel *deckCountLb;
 }
 
--(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) controller;
+-(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;
 -(void) initilizeCardElement:(int*) cardNumberArray;
 -(void) openCards;
 -(void) openCardsForArrange;
@@ -47,6 +47,6 @@ enum PLAYER_ENUM {
 @property (nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
 @property (strong, nonatomic) NSMutableArray *deckArray;
-@property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV, *redrawIV;
+@property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV;
 @property (strong, nonatomic) UIButton *exchangeCardsButton;
 @end
