@@ -67,4 +67,15 @@
     }
     return selectedSlotArray;
 }
+
++(TempleSlot*) findFirstAvailableDeathSpotIndex:(NSMutableArray*) templeArray {
+    AtonTemple *temple = [templeArray objectAtIndex:TEMPLE_DEATH];
+    for (int i=0; i<8; i++) {
+        TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
+        if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
+            return slot;
+        }
+    }
+    
+}
 @end

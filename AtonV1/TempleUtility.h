@@ -16,5 +16,6 @@
 +(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray;
 +(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray;
 +(NSMutableArray*) findAllSelectedSlots:(NSMutableArray*) templeArray;
++(TempleSlot*) findFirstAvailableDeathSpotIndex:(NSMutableArray*) templeArray;
 
 @end
