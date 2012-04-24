@@ -11,7 +11,8 @@
 @implementation TempleUtility
 
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray {
-    for (int i=0; i< [templeArray count]; i++) {
+    // only for temple 1 - temple 4
+    for (int i=1; i< [templeArray count]; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
         [temple deselectAllSlots];
     }
@@ -68,7 +69,7 @@
     return selectedSlotArray;
 }
 
-+(TempleSlot*) findFirstAvailableDeathSpotIndex:(NSMutableArray*) templeArray {
++(TempleSlot*) findFirstAvailableDeathSpot:(NSMutableArray*) templeArray {
     AtonTemple *temple = [templeArray objectAtIndex:TEMPLE_DEATH];
     for (int i=0; i<8; i++) {
         TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
@@ -76,6 +77,6 @@
             return slot;
         }
     }
-    
+    return nil;
 }
 @end

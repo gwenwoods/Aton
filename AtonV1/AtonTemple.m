@@ -32,8 +32,8 @@ static int DEATH_WIDTH = 59;
 
 -(void) initializeTempleSlotArray {
     
+    slotArray = [[NSMutableArray alloc] init];
     if (templeEnum > TEMPLE_DEATH) {
-        slotArray = [[NSMutableArray alloc] init];
         for (int i=0; i<12;i++) {
             CGPoint slotOrigin = [self getOriginInNormalTempForSlot:i];
             TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:i:slotOrigin:baseView];
@@ -63,6 +63,7 @@ static int DEATH_WIDTH = 59;
 
 
 -(void) deselectAllSlots {
+    // only for temple 1 - 4
     for (int i=0; i<12;i++) {
         TempleSlot *slot = [slotArray objectAtIndex:i];
         slot.boundaryIV.hidden = YES;

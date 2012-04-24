@@ -130,6 +130,9 @@ static int MESSAGE_DELAY_TIME = 0.2;
         }
        // [TempleUtility enableEligibleTempleSlotInteraction:templeArray:para.atonRoundResult.secondActiveTemple:occupiedEnum];
         NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+        
+        // TODO: need to take care of the case:
+        // eligibleSlot number < needs to be removed number
         if ([eligibleSlotArray count] == 0) {
             NSString *msg = @"No available peeps to remove. \n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
