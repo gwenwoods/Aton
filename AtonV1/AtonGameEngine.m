@@ -79,7 +79,17 @@ static int MESSAGE_DELAY_TIME = 0.2;
             int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
             msg = [msg stringByAppendingString:cardOneWinnerName];
             msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
-            [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
+          //  [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
+            
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
+            [invocation setTarget:self];
+            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
+            [invocation setArgument:&cardOneWinnerEnum atIndex:2];
+            [invocation setArgument:&cardOneWinningScore atIndex:3];
+            
+            [NSTimer scheduledTimerWithTimeInterval:0.75 invocation:invocation repeats:NO];
+            //[self performSelector:@selector(assignScoreToPlayer:) withObject:nil afterDelay:.75];
         }
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
       //  [cardOneWinner performSelector:@selector(assignScore:) withObject:msg afterDelay:0.75];
@@ -280,11 +290,6 @@ static int MESSAGE_DELAY_TIME = 0.2;
     int oldScore = [cardOneWinner score];
     int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
     int newScore = oldScore + cardOneWinningScore;
-  //  cardOneWinner.score = newScore;
-    
- //   ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
- //   ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
-
     
     if (oldScore < 15 && newScore > 15) {
         //ScoreScarab *middleScarab = [scarabArray objectAtIndex:15];
@@ -312,6 +317,96 @@ static int MESSAGE_DELAY_TIME = 0.2;
     AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
     int oldScore = [cardOneWinner score];
     int newScore = [points intValue];
+    
+    ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
+    ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
+    
+    int moveNum = newScarab.scoreValue - oldScarab.scoreValue;
+    // create animation IV
+    UIImageView *animationIV = [[UIImageView alloc] init];
+    if ([cardOneWinner playerEnum] == PLAYER_RED) {
+        animationIV.frame = oldScarab.redFrame;
+        animationIV.image = oldScarab.redIV.image;
+        oldScarab.redIV.hidden = YES;
+    } else {
+        animationIV.frame = oldScarab.blueFrame;
+        animationIV.image = oldScarab.blueIV.image;
+        oldScarab.blueIV.hidden = YES;
+    }
+    [cardOneWinner.baseView addSubview:animationIV]; 
+    
+    [UIView animateWithDuration:0.25*moveNum
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         if ([cardOneWinner playerEnum] == PLAYER_RED) {
+                             animationIV.frame = newScarab.redFrame;
+                         } else {
+                             animationIV.frame = newScarab.blueFrame;
+                         }
+                     } 
+                     completion:^(BOOL finished){
+                         [animationIV removeFromSuperview];
+                         if ([cardOneWinner playerEnum] == PLAYER_RED) {
+                             newScarab.redIV.hidden = NO;
+                             [newScarab.iv bringSubviewToFront:newScarab.redIV];
+                         } else {
+                             newScarab.blueIV.hidden = NO;
+                             [newScarab.iv bringSubviewToFront:newScarab.blueIV];
+                         }
+                         cardOneWinner.score = newScore;
+                     }];
+}
+
+-(void) assignScoreToPlayer:(int) playerEnum withWinningScore:(int) winningScore {
+    
+    NSMutableArray *playerArray = para.playerArray;
+    AtonPlayer *winningPlayer = [playerArray objectAtIndex:playerEnum];
+    
+    int oldScore = [winningPlayer score];
+    int newScore = oldScore + winningScore;
+    
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                [self methodSignatureForSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)]];
+    [invocation setTarget:self];
+    [invocation setSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)];
+    [invocation setArgument:&playerEnum atIndex:2];
+    [invocation setArgument:&newScore atIndex:3];
+    
+/*    for (int i=0; i< louisdorNum; i++) {
+        [NSTimer scheduledTimerWithTimeInterval:(CARD_TRANSITION_TIME + i*STARTING_TIME_INTERVAL + j*louisdorNum*STARTING_TIME_INTERVAL) invocation:invocation repeats:NO];
+    }*/
+
+    
+    
+    if (oldScore < 15 && newScore > 15) {
+        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:(15-oldScore)*0.25 + 0.05 invocation:invocation repeats:NO];
+     //   [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:15] afterDelay:0.0];
+     //   [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(15-oldScore)*0.25 + 0.05];
+        
+    } else if (oldScore < 26 && newScore > 26) {
+        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:(26-oldScore)*0.25 + 0.05 invocation:invocation repeats:NO];
+      //  [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:26] afterDelay:0.0];
+      //  [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(26-oldScore)*0.25 + 0.01];
+        
+    } else {
+        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation repeats:NO];
+       // [self moveScoreAnimation:[NSNumber numberWithInt:newScore]];
+    }
+    
+    
+}
+
+-(void) moveScoreForPlayerAnimation:(int) playerEnum withNewScore:(int) newScore {
+    
+  //  int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
+    NSMutableArray *playerArray = [para playerArray];
+    NSMutableArray *scarabArray = [para scarabArray];
+    AtonPlayer *cardOneWinner = [playerArray objectAtIndex:playerEnum];
+    int oldScore = [cardOneWinner score];
+   // int newScore = [points intValue];
     
     ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
     ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
