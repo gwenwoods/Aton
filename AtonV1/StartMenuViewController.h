@@ -13,13 +13,7 @@
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
- //   IBOutlet UIButton *playButton, *rulesButton, *creditsButton;
     BOOL longPress;
-    
 }
 
-//-(IBAction) playTouchDown:(id)sender;
--(IBAction) playTouchUpInside:(id)sender;
--(IBAction) showRules:(id)sender;
--(IBAction) showCredits:(id)sender;
 @end

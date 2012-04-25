@@ -132,4 +132,45 @@
     }
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }
+
++(TempleScoreResult*) computeAllTempleScore:(NSMutableArray*) templeArray {
+    
+    // compute Temple_1 score
+    AtonTemple *temple1 = [templeArray objectAtIndex:TEMPLE_1];
+    TempleScoreResult *result_temple1 = [TempleUtility computeScoreTemple1:temple1];
+    
+    // compute Temple_2 score
+    AtonTemple *temple2 = [templeArray objectAtIndex:TEMPLE_2];
+    TempleScoreResult *result_temple2 = [TempleUtility computeScoreTemple2:temple2];
+    
+    // compute Temple_3 score
+    AtonTemple *temple3 = [templeArray objectAtIndex:TEMPLE_3];
+    TempleScoreResult *result_temple3 = [TempleUtility computeScoreTemple3:temple3];
+    
+    // compute Temple_4 score
+    AtonTemple *temple4 = [templeArray objectAtIndex:TEMPLE_4];
+    TempleScoreResult *result_temple4 = [TempleUtility computeScoreTemple4:templeArray];
+    
+    TempleScoreResult* totalTempleScore = [[TempleScoreResult alloc] init];
+    totalTempleScore.winningPlayerEnum = PLAYER_RED;
+    totalTempleScore.winningScore = 12;
+}
+
++(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple {
+    
+}
+
++(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple {
+    
+}
+
++(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple {
+    
+}
+
++(TempleScoreResult*) computeScoreTemple4:(NSMutableArray*) templeArray {
+    
+}
+
+
 @end

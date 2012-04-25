@@ -274,7 +274,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
 -(void) assignCardOneScore {
     int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
     NSMutableArray *playerArray = [para playerArray];
-    NSMutableArray *scarabArray = [para scarabArray];
+ //   NSMutableArray *scarabArray = [para scarabArray];
     AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
     
     int oldScore = [cardOneWinner score];

@@ -52,6 +52,7 @@
 		BDD3AE90154233380013C89A /* ScoreScarab.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AE8F154233380013C89A /* ScoreScarab.m */; };
 		BDD3AE931543552D0013C89A /* Red_CardBack_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AE921543552D0013C89A /* Red_CardBack_stack.png */; };
 		BDD3AE9515435E290013C89A /* Blue_CardBack_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AE9415435E290013C89A /* Blue_CardBack_stack.png */; };
+		BDD3AEA015476BA90013C89A /* TempleScoreResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AE9F15476BA90013C89A /* TempleScoreResult.m */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
 		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
 		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
@@ -141,6 +142,8 @@
 		BDD3AE8F154233380013C89A /* ScoreScarab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreScarab.m; sourceTree = "<group>"; };
 		BDD3AE921543552D0013C89A /* Red_CardBack_stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_CardBack_stack.png; sourceTree = "<group>"; };
 		BDD3AE9415435E290013C89A /* Blue_CardBack_stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_CardBack_stack.png; sourceTree = "<group>"; };
+		BDD3AE9E15476BA80013C89A /* TempleScoreResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleScoreResult.h; sourceTree = "<group>"; };
+		BDD3AE9F15476BA90013C89A /* TempleScoreResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleScoreResult.m; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
 		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
+				BDD3AE9E15476BA80013C89A /* TempleScoreResult.h */,
+				BDD3AE9F15476BA90013C89A /* TempleScoreResult.m */,
 				BD16D220153C94BB00ED6DB9 /* TempleSlot.m */,
 				BD16D222153CBF5A00ED6DB9 /* AtonTemple.h */,
 				BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */,
@@ -524,6 +529,7 @@
 				BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */,
 				BD3AF23B153F81D30098DE8C /* AtonRoundResult.m in Sources */,
 				BDD3AE90154233380013C89A /* ScoreScarab.m in Sources */,
+				BDD3AEA015476BA90013C89A /* TempleScoreResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

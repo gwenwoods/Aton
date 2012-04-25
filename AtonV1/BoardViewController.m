@@ -109,14 +109,6 @@ static int MESSAGE_DELAY_TIME = 0.5;
         } else {
             
             [TempleUtility removePeepsToDeathTemple:[atonParameters templeArray]:allSelectedSlots];
-          /*  for (int i=0; i < [allSelectedSlots count]; i++) {
-                TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
-                TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:[atonParameters templeArray]];
-                [deathSlot placePeep:[selectedSlot occupiedEnum]];
-                [selectedSlot removePeep];
-            }
-            
-            [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]]; */
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
@@ -133,14 +125,6 @@ static int MESSAGE_DELAY_TIME = 0.5;
         } else {
             
             [TempleUtility removePeepsToDeathTemple:[atonParameters templeArray]:allSelectedSlots];
-        /*    for (int i=0; i < [allSelectedSlots count]; i++) {
-                TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
-                TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:[atonParameters templeArray]];
-                // TODO: check nil for deathSlot
-                [deathSlot placePeep:[selectedSlot occupiedEnum]];
-                [selectedSlot removePeep];
-            }
-            [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];  */
              NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }

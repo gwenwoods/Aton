@@ -24,13 +24,11 @@ enum PLAYER_ENUM {
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;
--(void) initilizeCardElement:(int*) cardNumberArray;
 -(void) openCards;
 -(void) openCardsForArrange;
 -(void) closeCards;
 -(void) distributeCards;
 -(int*) getCardNumberArray;
--(void) assignScore:(int) points: (NSMutableArray*) scarabArray;
 -(void) resetCard;
 
 // arrange cards functions

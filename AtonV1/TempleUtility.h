@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AtonTemple.h"
+#import "TempleScoreResult.h"
+#import "AtonPlayer.h"
 
 @interface TempleUtility : NSObject
 
