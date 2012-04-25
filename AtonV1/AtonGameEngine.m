@@ -10,7 +10,9 @@
 
 @implementation AtonGameEngine
 
-static int MESSAGE_DELAY_TIME = 0.2;
+static float MESSAGE_DELAY_TIME = 0.2;
+static float ANIMATION_DELAY_TIME = 0.2;
+static float SCARAB_MOVING_TIME = 0.5;
 
 @synthesize para;
 
@@ -38,7 +40,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
             [player distributeCards];
         }
         
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red: Lay your cards" afterDelay:4.0];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red: Lay your cards" afterDelay:3.0];
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
@@ -48,7 +50,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
     } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
         [playerRed closeCards]; 
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Blue: Lay your cards" afterDelay:1.0];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Blue: Lay your cards" afterDelay:0.75];
         
     } else if(gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
         AtonPlayer *playerBlue = [playerArray objectAtIndex:1];
@@ -81,14 +83,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
             msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
           //  [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
             
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
-            [invocation setTarget:self];
-            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
-            [invocation setArgument:&cardOneWinnerEnum atIndex:2];
-            [invocation setArgument:&cardOneWinningScore atIndex:3];
             
-            [NSTimer scheduledTimerWithTimeInterval:0.75 invocation:invocation repeats:NO];
             //[self performSelector:@selector(assignScoreToPlayer:) withObject:nil afterDelay:.75];
         }
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
@@ -96,7 +91,20 @@ static int MESSAGE_DELAY_TIME = 0.2;
       //  [cardOneWinner assignScore:cardOneWinningScore :para.scarabArray];
         
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
-      //  [gameManager performSelector:@selector(showCommunicationView:) withObject:@"Card 2 result:\n Player Blue can remove 2 Red Peeps" afterDelay:1.0];
+
+        int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
+        if (cardOneWinnerEnum != PLAYER_NONE) {
+            int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
+            [invocation setTarget:self];
+            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
+            [invocation setArgument:&cardOneWinnerEnum atIndex:2];
+            [invocation setArgument:&cardOneWinningScore atIndex:3];
+            
+            [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
+        }
+        
         NSString *msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:1.0];
         
@@ -185,7 +193,9 @@ static int MESSAGE_DELAY_TIME = 0.2;
         
     } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_SCORE) {
         [TempleUtility clearDeathTemple:templeArray];
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red wins 10 score" afterDelay:0.1];
         
+    } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION) {
         int playerEnum = PLAYER_RED;
         int winningScore = 10;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
@@ -195,10 +205,9 @@ static int MESSAGE_DELAY_TIME = 0.2;
         [invocation setArgument:&playerEnum atIndex:2];
         [invocation setArgument:&winningScore atIndex:3];
         
-        [NSTimer scheduledTimerWithTimeInterval:0.75 invocation:invocation repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
         
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red wins 10 score" afterDelay:0.1];
-        
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round end" afterDelay:0.1];
     }
 }
 
@@ -293,6 +302,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
     //[begin performSelector:@selector(release) withObject:nil afterDelay:0.51];
 }
 
+/*
 -(void) assignCardOneScore {
     int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
     NSMutableArray *playerArray = [para playerArray];
@@ -368,7 +378,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
                          }
                          cardOneWinner.score = newScore;
                      }];
-}
+} */
 
 -(void) assignScoreToPlayer:(int) playerEnum withWinningScore:(int) winningScore {
     
@@ -385,21 +395,35 @@ static int MESSAGE_DELAY_TIME = 0.2;
     [invocation setArgument:&playerEnum atIndex:2];
     [invocation setArgument:&newScore atIndex:3];
     
-/*    for (int i=0; i< louisdorNum; i++) {
-        [NSTimer scheduledTimerWithTimeInterval:(CARD_TRANSITION_TIME + i*STARTING_TIME_INTERVAL + j*louisdorNum*STARTING_TIME_INTERVAL) invocation:invocation repeats:NO];
-    }*/
-
     
     
     if (oldScore < 15 && newScore > 15) {
-        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation repeats:NO];
-        [NSTimer scheduledTimerWithTimeInterval:(15-oldScore)*0.25 + 0.05 invocation:invocation repeats:NO];
+        int cornerScore = 15;
+        NSInvocation *invocation0 = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)]];
+        [invocation0 setTarget:self];
+        [invocation0 setSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)];
+        [invocation0 setArgument:&playerEnum atIndex:2];
+        [invocation0 setArgument:&cornerScore atIndex:3];
+
+        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation0 repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:(15-oldScore)*SCARAB_MOVING_TIME + 0.05 invocation:invocation repeats:NO];
      //   [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:15] afterDelay:0.0];
      //   [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(15-oldScore)*0.25 + 0.05];
         
     } else if (oldScore < 26 && newScore > 26) {
-        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation repeats:NO];
-        [NSTimer scheduledTimerWithTimeInterval:(26-oldScore)*0.25 + 0.05 invocation:invocation repeats:NO];
+        
+        int cornerScore = 25;
+        NSInvocation *invocation0 = [NSInvocation invocationWithMethodSignature:
+                                     [self methodSignatureForSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)]];
+        [invocation0 setTarget:self];
+        [invocation0 setSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)];
+        [invocation0 setArgument:&playerEnum atIndex:2];
+        [invocation0 setArgument:&cornerScore atIndex:3];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation0 repeats:NO];
+
+        [NSTimer scheduledTimerWithTimeInterval:(26-oldScore)*SCARAB_MOVING_TIME + 0.05 invocation:invocation repeats:NO];
       //  [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:26] afterDelay:0.0];
       //  [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(26-oldScore)*0.25 + 0.01];
         
@@ -437,7 +461,7 @@ static int MESSAGE_DELAY_TIME = 0.2;
     }
     [cardOneWinner.baseView addSubview:animationIV]; 
     
-    [UIView animateWithDuration:0.25*moveNum
+    [UIView animateWithDuration:SCARAB_MOVING_TIME * moveNum
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{

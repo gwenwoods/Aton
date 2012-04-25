@@ -12,6 +12,7 @@
 @implementation BoardViewController
 
 static int MESSAGE_DELAY_TIME = 0.5;
+static int AFTER_PEEP_DELAY_TIME = 2.0;
 
 @synthesize atonGameEngine;
 @synthesize atonParameters;
@@ -110,7 +111,7 @@ static int MESSAGE_DELAY_TIME = 0.5;
             
             [TempleUtility removePeepsToDeathTemple:[atonParameters templeArray]:allSelectedSlots];
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
-            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
         }
         
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
@@ -126,7 +127,7 @@ static int MESSAGE_DELAY_TIME = 0.5;
             
             [TempleUtility removePeepsToDeathTemple:[atonParameters templeArray]:allSelectedSlots];
              NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
-            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
         }
         
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
@@ -149,7 +150,7 @@ static int MESSAGE_DELAY_TIME = 0.5;
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
-            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
         }
 
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
@@ -175,7 +176,7 @@ static int MESSAGE_DELAY_TIME = 0.5;
                 atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_1_SCORE;
                 [atonGameEngine run];
             } else {
-                [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
+                [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
             }
             
         }
