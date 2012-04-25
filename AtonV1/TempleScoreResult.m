@@ -11,12 +11,19 @@
 @implementation TempleScoreResult
 
 @synthesize templeEnum;
+@synthesize resultName;
 @synthesize winningPlayerEnum, winningScore;
 
 -(NSString*) getWinningMessage {
     
-    NSString *msg = @"";
-    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Temple %i result\n", templeEnum]];
+    NSString *msg = resultName;
+    msg = [msg stringByAppendingString:@"result: \n\n"];
+    
+    if (winningPlayerEnum == PLAYER_NONE) {
+        msg = [msg stringByAppendingString:@"Tie"];
+        return msg;
+    }
+    
     
     NSString* playerName = @"Player Red ";
     if (winningPlayerEnum == PLAYER_BLUE) {

@@ -16,6 +16,9 @@
 @synthesize firstPlaceNum, secondPlaceNum;
 @synthesize firstTemple, secondTemple;
 @synthesize cardOneWinnerEnum, cardOneWinningScore;
+@synthesize templeScoreResultArray;
+
+
 
 -(void) reset {
 

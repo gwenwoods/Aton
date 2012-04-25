@@ -14,6 +14,7 @@
 -(NSString*) getWinningMessage;
 
 @property(nonatomic) int templeEnum;
+@property(strong, nonatomic) NSString* resultName;
 @property(nonatomic) int winningPlayerEnum;
 @property(nonatomic) int winningScore;
 

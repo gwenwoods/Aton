@@ -64,6 +64,15 @@
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION;
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_2_ANIMATION;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_2_ANIMATION) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_3_ANIMATION;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_3_ANIMATION) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_4_ANIMATION;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_4_ANIMATION) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
             
         } else {

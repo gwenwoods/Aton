@@ -18,21 +18,13 @@ enum GAME_PHASE_ENUM {
     GAME_PHASE_FIRST_REMOVE_PEEP, GAME_PHASE_SECOND_REMOVE_PEEP,
     GAME_PHASE_FIRST_PLACE_PEEP, GAME_PHASE_SECOND_PLACE_PEEP,
     GAME_PHASE_ROUND_END_TEMPLE_1_SCORE, GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION,
-    GAME_PHASE_ROUND_END_TEMPLE_2_SCORE,
-    GAME_PHASE_ROUND_END_TEMPLE_3_SCORE,
-    GAME_PHASE_ROUND_END_TEMPLE_4_SCORE,
+    GAME_PHASE_ROUND_END_TEMPLE_2_SCORE, GAME_PHASE_ROUND_END_TEMPLE_2_ANIMATION,
+    GAME_PHASE_ROUND_END_TEMPLE_3_SCORE, GAME_PHASE_ROUND_END_TEMPLE_3_ANIMATION,
+    GAME_PHASE_ROUND_END_TEMPLE_4_SCORE, GAME_PHASE_ROUND_END_TEMPLE_4_ANIMATION,
     GAME_PHASE_ROUND_END_FIRST, GAME_PHASE_ROUND_END_SECOND
 };
 
 @interface AtonRoundResult : NSObject
-
-
-@property(nonatomic) int firstPlayerEnum, secondPlayerEnum;
-@property(nonatomic) int firstActiveTemple, secondActiveTemple;
-@property(nonatomic) int firstRemoveNum, secondRemoveNum;
-@property(nonatomic) int firstPlaceNum, secondPlaceNum;
-@property(nonatomic) int firstTemple, secondTemple;
-@property(nonatomic) int cardOneWinnerEnum, cardOneWinningScore;
 
 -(void) reset;
 -(NSString*) getMessageBeforePhase:(int) gamePhaseEnum;
@@ -40,5 +32,13 @@ enum GAME_PHASE_ENUM {
 -(int) getSecondRemoveTargetEnum;
 -(int) getFirstRemovePositiveNum;
 -(int) getSecondRemovePositiveNum;
+
+@property(nonatomic) int firstPlayerEnum, secondPlayerEnum;
+@property(nonatomic) int firstActiveTemple, secondActiveTemple;
+@property(nonatomic) int firstRemoveNum, secondRemoveNum;
+@property(nonatomic) int firstPlaceNum, secondPlaceNum;
+@property(nonatomic) int firstTemple, secondTemple;
+@property(nonatomic) int cardOneWinnerEnum, cardOneWinningScore;
+@property(strong,nonatomic) NSMutableArray *templeScoreResultArray;
 
 @end

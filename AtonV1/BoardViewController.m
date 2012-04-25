@@ -173,6 +173,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
             if ([TempleUtility isDeathTempleFull:[atonParameters templeArray]]) {
+                [TempleUtility clearDeathTemple:[atonParameters templeArray]];
+                atonParameters.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[atonParameters templeArray]];
+
                 atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_1_SCORE;
                 [atonGameEngine run];
             } else {

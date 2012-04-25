@@ -133,7 +133,7 @@
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }
 
-+(TempleScoreResult*) computeAllTempleScore:(NSMutableArray*) templeArray {
++(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray {
     
     // compute Temple_1 score
     AtonTemple *temple1 = [templeArray objectAtIndex:TEMPLE_1];
@@ -148,12 +148,21 @@
     TempleScoreResult *result_temple3 = [TempleUtility computeScoreTemple3:temple3];
     
     // compute Temple_4 score
-    AtonTemple *temple4 = [templeArray objectAtIndex:TEMPLE_4];
     TempleScoreResult *result_temple4 = [TempleUtility computeScoreTemple4:templeArray];
     
-    TempleScoreResult* totalTempleScore = [[TempleScoreResult alloc] init];
-    totalTempleScore.winningPlayerEnum = PLAYER_RED;
-    totalTempleScore.winningScore = 12;
+    // compute bonus score
+    TempleScoreResult *result_orangeBonus = [[TempleScoreResult alloc] init];
+    TempleScoreResult *result_greyBonus = [[TempleScoreResult alloc] init];
+    
+    NSMutableArray *templeScoreArray = [[NSMutableArray alloc] init];
+    [templeScoreArray addObject:result_temple1];
+    [templeScoreArray addObject:result_temple2];
+    [templeScoreArray addObject:result_temple3];
+    [templeScoreArray addObject:result_temple4];
+    [templeScoreArray addObject:result_orangeBonus];
+    [templeScoreArray addObject:result_greyBonus];
+    
+    return templeScoreArray;
 }
 
 +(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple {
@@ -170,6 +179,8 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Temple 1 ";
+    
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
         result.winningScore = redCount - blueCount;
@@ -197,6 +208,8 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Temple 2 ";
+    
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
         result.winningScore = 5;
@@ -223,6 +236,8 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Temple 3 ";
+    
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
         result.winningScore = redCount;
@@ -252,6 +267,8 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Temple 4 ";
+    
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
         int occupiedBlueSlot = 0;
@@ -282,6 +299,7 @@
     return result;
 
 }
+
 
 
 @end
