@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AtonPlayer.h"
 
 @interface TempleScoreResult : NSObject
 
+-(NSString*) getWinningMessage;
+
+@property(nonatomic) int templeEnum;
 @property(nonatomic) int winningPlayerEnum;
 @property(nonatomic) int winningScore;
 

@@ -23,4 +23,8 @@
 +(void) clearDeathTemple:(NSMutableArray*) templeArray;
 +(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 
++(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;
++(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple;
++(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple;
++(TempleScoreResult*) computeScoreTemple4:(NSMutableArray*) templeArray;
 @end

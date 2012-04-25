@@ -187,11 +187,14 @@ static float SCARAB_MOVING_TIME = 0.5;
         
     } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_SCORE) {
         [TempleUtility clearDeathTemple:templeArray];
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red wins 10 score" afterDelay:0.1];
+        TempleScoreResult *result_t1 = [TempleUtility computeScoreTemple1:[templeArray objectAtIndex:TEMPLE_1]];
+        NSString *msg = [result_t1 getWinningMessage];
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         
     } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION) {
-        int playerEnum = PLAYER_RED;
-        int winningScore = 10;
+        TempleScoreResult *result_t1 = [TempleUtility computeScoreTemple1:[templeArray objectAtIndex:TEMPLE_1]];
+        int playerEnum = result_t1.winningPlayerEnum;
+        int winningScore = result_t1.winningScore;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
         [invocation setTarget:self];
@@ -201,7 +204,8 @@ static float SCARAB_MOVING_TIME = 0.5;
         
         [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
         
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round end" afterDelay:0.1];
+        float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round end" afterDelay:animationTime];
     }
 }
 

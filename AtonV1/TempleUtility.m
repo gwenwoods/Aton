@@ -158,18 +158,129 @@
 
 +(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple {
     
+    int redCount = 0;
+    int blueCount = 0;
+    for (int i=0; i<12; i++) {
+        TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
+        if ([slot occupiedEnum] == OCCUPIED_RED) {
+            redCount++;
+        } else if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+            blueCount++;
+        }
+    }
+    
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    if (redCount > blueCount) {
+        result.winningPlayerEnum = PLAYER_RED;
+        result.winningScore = redCount - blueCount;
+    } else if(blueCount > redCount) {
+        result.winningPlayerEnum = PLAYER_BLUE;
+        result.winningScore = blueCount - redCount;
+    } else {
+        result.winningPlayerEnum = PLAYER_NONE;
+    }
+    
+    return result;
 }
 
 +(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple {
     
+    int redCount = 0;
+    int blueCount = 0;
+    for (int i=0; i<12; i++) {
+        TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
+        if ([slot occupiedEnum] == OCCUPIED_RED) {
+            redCount++;
+        } else if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+            blueCount++;
+        }
+    }
+    
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    if (redCount > blueCount) {
+        result.winningPlayerEnum = PLAYER_RED;
+        result.winningScore = 5;
+    } else if(blueCount > redCount) {
+        result.winningPlayerEnum = PLAYER_BLUE;
+        result.winningScore = 5;
+    } else {
+        result.winningPlayerEnum = PLAYER_NONE;
+    }
+    
+    return result;
 }
 
 +(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple {
+    int redCount = 0;
+    int blueCount = 0;
+    for (int i=0; i<12; i++) {
+        TempleSlot *slot = [[temple slotArray] objectAtIndex:i];
+        if ([slot occupiedEnum] == OCCUPIED_RED) {
+            redCount++;
+        } else if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+            blueCount++;
+        }
+    }
     
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    if (redCount > blueCount) {
+        result.winningPlayerEnum = PLAYER_RED;
+        result.winningScore = redCount;
+    } else if(blueCount > redCount) {
+        result.winningPlayerEnum = PLAYER_BLUE;
+        result.winningScore = blueCount;
+    } else {
+        result.winningPlayerEnum = PLAYER_NONE;
+    }
+    
+    return result;
+
 }
 
 +(TempleScoreResult*) computeScoreTemple4:(NSMutableArray*) templeArray {
     
+    AtonTemple *temple4 = [templeArray objectAtIndex:TEMPLE_4];
+    int redCount = 0;
+    int blueCount = 0;
+    for (int i=0; i<12; i++) {
+        TempleSlot *slot = [[temple4 slotArray] objectAtIndex:i];
+        if ([slot occupiedEnum] == OCCUPIED_RED) {
+            redCount++;
+        } else if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+            blueCount++;
+        }
+    }
+    
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    if (redCount > blueCount) {
+        result.winningPlayerEnum = PLAYER_RED;
+        int occupiedBlueSlot = 0;
+        for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+            AtonTemple *temple = [templeArray objectAtIndex:i];
+            TempleSlot *blueSlot = [[temple slotArray] objectAtIndex:7];
+            if ([blueSlot occupiedEnum]==OCCUPIED_RED) {
+                occupiedBlueSlot ++;
+            }
+        }
+        result.winningScore = occupiedBlueSlot;
+        
+    } else if(blueCount > redCount) {
+        result.winningPlayerEnum = PLAYER_BLUE;
+        int occupiedBlueSlot = 0;
+        for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+            AtonTemple *temple = [templeArray objectAtIndex:i];
+            TempleSlot *blueSlot = [[temple slotArray] objectAtIndex:7];
+            if ([blueSlot occupiedEnum]==OCCUPIED_BLUE) {
+                occupiedBlueSlot ++;
+            }
+        }
+        result.winningScore = occupiedBlueSlot;
+    } else {
+        result.winningPlayerEnum = PLAYER_NONE;
+    }
+    
+    return result;
+
 }
 
 
