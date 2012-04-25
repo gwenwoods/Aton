@@ -172,7 +172,7 @@ static int MESSAGE_DELAY_TIME = 0.5;
             }
             [TempleUtility disableAllTempleSlotInteraction:[atonParameters templeArray]];
             if ([TempleUtility isDeathTempleFull:[atonParameters templeArray]]) {
-                atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORE;
+                atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_1_SCORE;
                 [atonGameEngine run];
             } else {
                 [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];

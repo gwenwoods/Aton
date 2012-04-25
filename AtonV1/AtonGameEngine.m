@@ -183,9 +183,21 @@ static int MESSAGE_DELAY_TIME = 0.2;
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
         
-    } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
+    } else if(gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_SCORE) {
         [TempleUtility clearDeathTemple:templeArray];
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:0.1];
+        
+        int playerEnum = PLAYER_RED;
+        int winningScore = 10;
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
+        [invocation setArgument:&playerEnum atIndex:2];
+        [invocation setArgument:&winningScore atIndex:3];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.75 invocation:invocation repeats:NO];
+        
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red wins 10 score" afterDelay:0.1];
         
     }
 }
