@@ -15,7 +15,7 @@
 @synthesize gamePhaseView, gamePhaseLb;
 @synthesize helpView, helpLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
-//@synthesize exchangeYesButton, exchangeNoButton;
+
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
     

@@ -75,20 +75,14 @@ static float SCARAB_MOVING_TIME = 0.5;
             msg = [msg stringByAppendingString:@"tie"];
             
         } else {
-        
             AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
             NSString* cardOneWinnerName = [cardOneWinner playerName];
             int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
             msg = [msg stringByAppendingString:cardOneWinnerName];
             msg = [msg stringByAppendingString:[NSString stringWithFormat:@" wins %i points", cardOneWinningScore]];
-          //  [self performSelector:@selector(assignCardOneScore) withObject:nil afterDelay:.75];
             
-            
-            //[self performSelector:@selector(assignScoreToPlayer:) withObject:nil afterDelay:.75];
         }
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
-      //  [cardOneWinner performSelector:@selector(assignScore:) withObject:msg afterDelay:0.75];
-      //  [cardOneWinner assignScore:cardOneWinningScore :para.scarabArray];
         
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
 
@@ -413,7 +407,7 @@ static float SCARAB_MOVING_TIME = 0.5;
         
     } else if (oldScore < 26 && newScore > 26) {
         
-        int cornerScore = 25;
+        int cornerScore = 26;
         NSInvocation *invocation0 = [NSInvocation invocationWithMethodSignature:
                                      [self methodSignatureForSelector:@selector(moveScoreForPlayerAnimation:withNewScore:)]];
         [invocation0 setTarget:self];
