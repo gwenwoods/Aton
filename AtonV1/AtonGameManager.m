@@ -15,6 +15,7 @@
 @synthesize gamePhaseView, gamePhaseLb;
 @synthesize helpView, helpLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
+@synthesize finalResultView, finalResultLb;
 
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
@@ -56,7 +57,7 @@
 
         //---------------------------------
         exchangeCardsView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
-        exchangeCardsView.image = [UIImage imageNamed:@"under_fabric.png"];
+        exchangeCardsView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
         exchangeCardsView.hidden = YES;
         exchangeCardsView.userInteractionEnabled = YES;
         [baseView addSubview:exchangeCardsView];
@@ -86,6 +87,24 @@
         [exchangeNoButton addTarget:controller action:@selector(exchangeCardsNo:) forControlEvents:UIControlEventTouchUpInside];
         [exchangeCardsView addSubview:exchangeNoButton];
 
+        //---------------------------------
+        finalResultView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
+        finalResultView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+        finalResultView.hidden = YES;
+        finalResultView.userInteractionEnabled = YES;
+        [baseView addSubview:finalResultView];
+        
+        finalResultLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        finalResultLb.backgroundColor = [UIColor clearColor];
+        finalResultLb.textAlignment = UITextAlignmentCenter;
+        finalResultLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        finalResultLb.numberOfLines = 8;     
+        finalResultLb.textColor = [UIColor blackColor];
+        finalResultLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        finalResultLb.text = @"Final results: \n\n";
+        [finalResultView addSubview:finalResultLb];
+        [finalResultView bringSubviewToFront:finalResultLb];
+
     }
     return self;
 }
@@ -111,4 +130,19 @@
     helpLb.text = msg;
 }
 
+-(void) showFinalResultView:(NSString*) msg {
+    finalResultView.hidden = NO;
+    finalResultLb.text = msg;
+    finalResultView.alpha = 0.0;
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         finalResultView.alpha = 1.0;
+                         
+                     } 
+                     completion:^(BOOL finished){
+                     }];
+    
+}
 @end

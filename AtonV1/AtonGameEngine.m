@@ -245,7 +245,12 @@ static float SCARAB_MOVING_TIME = 0.5;
         TempleScoreResult *result_orangeBonusForBlue = [para.atonRoundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_BLUE];
         float animationTime = [self templeScoreAnimation:result_orangeBonusForBlue];
         
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"round ... end.." afterDelay:animationTime];
+        if ([self gameOverCondition] != nil) {
+            [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:animationTime];
+        } else {
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"round ... end.." afterDelay:animationTime];
+        }
+        
         
     }
 }
@@ -460,5 +465,42 @@ static float SCARAB_MOVING_TIME = 0.5;
     
     float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
     return animationTime;
+}
+
+-(NSString*) gameOverCondition {
+    
+        
+    NSString *msg;
+    
+    if ([TempleUtility isYellowFull:para.templeArray]) {
+        msg = @"All Yellow Squares Full\n";
+    
+    } else if ([TempleUtility isGreenFull:para.templeArray]) {
+        msg = @"All Green Squares Full\n";
+    
+    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_1]) {
+        msg = @"Temple 1 Full\n";
+    
+    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_2]) {
+        msg = @"Temple 2 Full\n";
+        
+    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_3]) {
+        msg = @"Temple 3 Full\n";
+        
+    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_4]) {
+        msg = @"Temple 4 Full\n";
+    
+    }
+    
+    if (msg != nil) {
+        NSMutableArray *playerArray = para.playerArray;
+        msg = [msg stringByAppendingString:@"\nGame Over\n"];
+        int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
+        int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Red: %i \n", redScore]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Blue: %i \n", blueScore]];
+    }
+    
+    return msg;
 }
 @end

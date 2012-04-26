@@ -15,6 +15,8 @@
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
 -(void) run;
+-(NSString*) gameOverCondition;
+
 -(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;
 

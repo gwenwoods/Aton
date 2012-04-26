@@ -13,12 +13,13 @@
 -(id)initializeWithParameters:(UIViewController*) viewController;
 -(void) showGamePhaseView:(NSString*) msg;
 -(void) showHelpView:(NSString*) msg;
+-(void) showFinalResultView:(NSString*) msg;
 
 @property(strong, nonatomic) UIViewController *controller;
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
-@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView;
-@property(strong, nonatomic) UILabel *gamePhaseLb, *helpLb, *exchangeCardsLb;
+@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView;
+@property(strong, nonatomic) UILabel *gamePhaseLb, *helpLb, *exchangeCardsLb, *finalResultLb;
 //@property(strong, nonatomic) UIButton *exchangeYesButton, *exchangeNoButton;
 
 @end

@@ -24,6 +24,11 @@
 +(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;
+
++(BOOL) isYellowFull:(NSMutableArray*) templeArray;
++(BOOL) isGreenFull:(NSMutableArray*) templeArray;
++(BOOL) isTempleFull:(NSMutableArray*) templeArray:(int) templeEnum;
+
 //+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple;

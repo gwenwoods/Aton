@@ -404,4 +404,46 @@
     
     return result;
 }
+
++(BOOL) isYellowFull:(NSMutableArray*) templeArray {
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            if ([slot colorTypeEnum] == YELLOW && [slot occupiedEnum] == OCCUPIED_EMPTY) {
+                return NO;
+               
+            } 
+        }
+    }
+    return YES;
+}
+
++(BOOL) isGreenFull:(NSMutableArray*) templeArray {
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            if ([slot colorTypeEnum] == GREEN && [slot occupiedEnum] == OCCUPIED_EMPTY) {
+                return NO;
+                
+            } 
+        }
+    }
+    return YES;
+}
+
++(BOOL) isTempleFull:(NSMutableArray*) templeArray:(int) templeEnum {
+
+    AtonTemple *temple = [templeArray objectAtIndex:templeEnum];
+    for (int j=0; j<12; j++) {
+        TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+        if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
+            return NO;
+                
+        } 
+    }
+    
+    return YES;
+}
 @end

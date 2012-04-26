@@ -179,7 +179,12 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORE;
                 [atonGameEngine run];
             } else {
-                [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
+                if ([atonGameEngine gameOverCondition] != nil) {
+                    NSString *msg = [atonGameEngine gameOverCondition];
+                    [atonParameters.gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+                } else {
+                    [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
+                }
             }
             
         }
