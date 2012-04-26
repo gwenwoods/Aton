@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AtonTemple.h"
 
 
 enum GAME_PHASE_ENUM {

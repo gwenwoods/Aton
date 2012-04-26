@@ -14,13 +14,16 @@
 static int SPACE_WIDTH = 53;
 static int SPACE_HEIGHT = 53;
 static int DEATH_WIDTH = 59;
+static int TEMPLE_WIDTH = 224;
+static int TEMPLE_HEIGHT = 260;
+
 
 static int colorEnumArray_temple1[12] = {YELLOW, YELLOW, YELLOW, YELLOW, GREY, GREY, ORANGE_1, BLUE, GREEN, GREEN, GREEN, GREEN};
 static int colorEnumArray_temple2[12] = {YELLOW, YELLOW, YELLOW, YELLOW, GREY, GREY, ORANGE_1, BLUE, GREEN, GREEN, GREEN, GREEN};
 static int colorEnumArray_temple3[12] = {YELLOW, YELLOW, YELLOW, ORANGE_1, GREY, GREY, GREY, BLUE, GREEN, GREEN, GREEN, ORANGE_1};
 static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY, GREY, GREY, BLUE, GREEN, GREEN, GREEN, ORANGE_2};
 
-@synthesize baseView;
+@synthesize baseView, iv;
 @synthesize templeEnum;
 @synthesize origin, slotArray;
 
@@ -29,6 +32,17 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
         templeEnum = thisTempleId;
         origin = templeOrigin;
         baseView = atonBaseView;
+        
+        if (templeEnum != TEMPLE_DEATH) {
+            iv = [[UIImageView alloc] initWithFrame:CGRectMake(origin.x-8, origin.y-68, TEMPLE_WIDTH, TEMPLE_HEIGHT)];
+            [baseView addSubview:iv];
+            [iv setBackgroundColor:[UIColor whiteColor]];
+            iv.alpha = 0.4;
+            [iv.layer setBorderColor: [[UIColor greenColor] CGColor]];
+            [iv.layer setBorderWidth: 6.0];
+            iv.hidden = YES;
+        }
+        
         
         [self initializeTempleSlotArray];
     }

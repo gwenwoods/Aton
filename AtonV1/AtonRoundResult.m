@@ -38,11 +38,19 @@
         }
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n remove %i ", number]];
-        msg = [msg stringByAppendingString:targetColor];
-        msg = [msg stringByAppendingString:@" Peep"];
+        if (number > 0) {
+            msg = [msg stringByAppendingString:targetColor];
+        }
+        
+        msg = [msg stringByAppendingString:@"Peep"];
         if (number > 1) {
              msg = [msg stringByAppendingString:@"s"];
         }
+        
+        if (number > 0) {
+            msg = [msg stringByAppendingString:[self getAllowedTempleString:firstTemple]];
+        }
+        
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
         msg = [msg stringByAppendingString:@"Card 2 Result:\n\n Player "];
@@ -54,11 +62,19 @@
         }
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n remove %i ", number]];
-        msg = [msg stringByAppendingString:targetColor];
-        msg = [msg stringByAppendingString:@" Peep"];
+        if (number > 0) {
+            msg = [msg stringByAppendingString:targetColor];
+        }
+        
+        msg = [msg stringByAppendingString:@"Peep"];
         if (number > 1) {
             msg = [msg stringByAppendingString:@"s"];
         }
+        
+        if (number > 0) {
+            msg = [msg stringByAppendingString:[self getAllowedTempleString:secondTemple]];
+        }
+        
         
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         
@@ -69,10 +85,11 @@
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n place %i ", number]];
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:@" Peep"];
+        msg = [msg stringByAppendingString:@"Peep"];
         if (number > 1) {
             msg = [msg stringByAppendingString:@"s"];
         }
+        msg = [msg stringByAppendingString:[self getAllowedTempleString:firstTemple]];
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         
@@ -83,10 +100,11 @@
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n place %i ", number]];
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:@" Peep"];
+        msg = [msg stringByAppendingString:@"Peep"];
         if (number > 1) {
             msg = [msg stringByAppendingString:@"s"];
         }
+        msg = [msg stringByAppendingString:[self getAllowedTempleString:secondTemple]];
         
     }
     
@@ -130,25 +148,40 @@
 
 -(NSString*) getPlayerColor:(int) playerEnum {
     if (playerEnum == 0) {
-        return @"Red";
+        return @"Red ";
     } else {
-        return @"Blue";
+        return @"Blue ";
     }
 }
 
 -(NSString*) getRemoveTargetColor:(int) playerEnum:(int) removeNum {
     if (playerEnum == 0) {
         if (removeNum > 0) {
-            return @"Blue";
+            return @"Blue ";
         } else {
-            return @"Red";
+            return @"Red ";
         }
     } else {
         if (removeNum > 0) {
-            return @"Red";
+            return @"Red ";
         } else {
-            return @"Blue";
+            return @"Blue ";
         }
     }
+}
+
+-(NSString*) getAllowedTempleString:(int) templeEnum {
+    if (templeEnum == TEMPLE_1) {
+        return @"\n in Temple 1";
+    
+    } else if (templeEnum == TEMPLE_2) {
+        return @"\n in Temple 1 and 2";
+            
+    } else if (templeEnum == TEMPLE_3) {
+        return @"\n in Temple 1, 2 and 3";
+        
+    }
+    
+    return @"\n in any Temple";
 }
 @end

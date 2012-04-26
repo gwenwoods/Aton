@@ -28,6 +28,7 @@
     
     for (int i=1; i<= maxTemple; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
+        temple.iv.hidden = NO;
         NSMutableArray *templeSlotArray =
         [temple enableTempleSlotInteraction:occupiedEnum];
         [eligiableSlotArray  addObjectsFromArray:templeSlotArray];
@@ -39,6 +40,7 @@
     
     for (int i=1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
+        temple.iv.hidden = YES;
         [temple disableTempleSlotInteraction];
     }
 }

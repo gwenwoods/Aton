@@ -46,7 +46,7 @@ static int BOUNDARY_SIZE = 56;
         
       //  [iv setBackgroundColor:[UIColor blueColor]];
         [boundaryIV.layer setBorderColor: [[UIColor blackColor] CGColor]];
-        [boundaryIV.layer setBorderWidth: 2.0];
+        [boundaryIV.layer setBorderWidth: 4.0];
         boundaryIV.hidden = YES;
       //  [peepIV setBackgroundColor:[UIColor redColor]];
       //  iv.alpha = 0.5;

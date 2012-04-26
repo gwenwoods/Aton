@@ -25,6 +25,7 @@ enum TEMPLE_ENUM {
 -(NSMutableArray*) findAllSelectedSlots;
 
 @property(strong, nonatomic) UIView* baseView;
+@property(strong, nonatomic) UIImageView* iv;
 @property(nonatomic) int templeEnum;
 @property(nonatomic) CGPoint origin;
 @property(strong, nonatomic) NSMutableArray *slotArray;

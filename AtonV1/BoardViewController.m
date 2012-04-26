@@ -97,7 +97,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 
 - (IBAction) doneAction:(id)sender {
     
-    [audioPlayer play];
+  //  [audioPlayer play];
     NSMutableArray *playerArray = [atonParameters playerArray];
     
     if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {

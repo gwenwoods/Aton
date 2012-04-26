@@ -67,7 +67,6 @@
 		BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */; };
 		BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B7153D3038003F3530 /* Blue_Disc.png */; };
 		BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B9153D3070003F3530 /* Red_Disc.png */; };
-		BDDA77BC153D31E8003F3530 /* under_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BB153D31E8003F3530 /* under_fabric.png */; };
 		BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */; };
 		BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BE153D3202003F3530 /* Red_Cylinder.png */; };
 		BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */; };
@@ -167,7 +166,6 @@
 		BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_IconPrist.png; sourceTree = "<group>"; };
 		BDDA77B7153D3038003F3530 /* Blue_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Disc.png; sourceTree = "<group>"; };
 		BDDA77B9153D3070003F3530 /* Red_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Disc.png; sourceTree = "<group>"; };
-		BDDA77BB153D31E8003F3530 /* under_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = under_fabric.png; sourceTree = "<group>"; };
 		BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77BE153D3202003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameEngine.h; sourceTree = "<group>"; };
@@ -220,9 +218,9 @@
 		BD16D22C153CE05900ED6DB9 /* TempleClass */ = {
 			isa = PBXGroup;
 			children = (
-				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
 				BDD3AE9E15476BA80013C89A /* TempleScoreResult.h */,
 				BDD3AE9F15476BA90013C89A /* TempleScoreResult.m */,
+				BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */,
 				BD16D220153C94BB00ED6DB9 /* TempleSlot.m */,
 				BD16D222153CBF5A00ED6DB9 /* AtonTemple.h */,
 				BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */,
@@ -273,10 +271,11 @@
 				BD16D228153CDB0400ED6DB9 /* GameClass */,
 				BDAE713D153A6BB4001848F8 /* TouchClass */,
 				BDAE7136153A4229001848F8 /* ElementClass */,
+				BDD3AEBD1549FC540013C89A /* Sounds */,
 				BDAE7112153A2EEF001848F8 /* Images */,
+				BD940B80153A1F0400660B35 /* Supporting Files */,
 				BD940B88153A1F0400660B35 /* AppDelegate.h */,
 				BD940B89153A1F0400660B35 /* AppDelegate.m */,
-				BD940B80153A1F0400660B35 /* Supporting Files */,
 				BDD3AEAD15491F7B0013C89A /* CreditViewController.h */,
 				BDD3AEAE15491F7C0013C89A /* CreditViewController.m */,
 				BD940BA8153A1F9300660B35 /* BoardViewController.h */,
@@ -322,28 +321,16 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BDD3AEB61549D2A50013C89A /* sheep.wav */,
-				BDD3AEB41549D2990013C89A /* rooster.aiff */,
-				BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */,
 				BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */,
 				BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */,
-				BDDA77BB153D31E8003F3530 /* under_fabric.png */,
 				BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
 				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
 				BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */,
 				BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */,
 				BDAE711F153A3BED001848F8 /* Aton_card */,
-				BDAE7113153A3472001848F8 /* BlueCards */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		BDAE7113153A3472001848F8 /* BlueCards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = BlueCards;
 			sourceTree = "<group>";
 		};
 		BDAE711F153A3BED001848F8 /* Aton_card */ = {
@@ -391,6 +378,16 @@
 				BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */,
 			);
 			name = TouchClass;
+			sourceTree = "<group>";
+		};
+		BDD3AEBD1549FC540013C89A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BDD3AEB61549D2A50013C89A /* sheep.wav */,
+				BDD3AEB41549D2990013C89A /* rooster.aiff */,
+				BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */ = {
@@ -498,7 +495,6 @@
 				BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */,
 				BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */,
 				BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */,
-				BDDA77BC153D31E8003F3530 /* under_fabric.png in Resources */,
 				BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */,
 				BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */,
 				BDD3AE931543552D0013C89A /* Red_CardBack_stack.png in Resources */,
