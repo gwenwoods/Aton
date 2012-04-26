@@ -15,6 +15,11 @@ static int SPACE_WIDTH = 53;
 static int SPACE_HEIGHT = 53;
 static int DEATH_WIDTH = 59;
 
+static int colorEnumArray_temple1[12] = {YELLOW, YELLOW, YELLOW, YELLOW, GREY, GREY, ORANGE_1, BLUE, GREEN, GREEN, GREEN, GREEN};
+static int colorEnumArray_temple2[12] = {YELLOW, YELLOW, YELLOW, YELLOW, GREY, GREY, ORANGE_1, BLUE, GREEN, GREEN, GREEN, GREEN};
+static int colorEnumArray_temple3[12] = {YELLOW, YELLOW, YELLOW, ORANGE_1, GREY, GREY, GREY, BLUE, GREEN, GREEN, GREEN, ORANGE_1};
+static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY, GREY, GREY, BLUE, GREEN, GREEN, GREEN, ORANGE_2};
+
 @synthesize baseView;
 @synthesize templeEnum;
 @synthesize origin, slotArray;
@@ -39,6 +44,8 @@ static int DEATH_WIDTH = 59;
             TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:i:slotOrigin:baseView];
             [slotArray addObject:slot];
         }
+        
+        [self assignSlotColor];
     } else {
         for (int i=0; i<8;i++) {
             CGPoint slotOrigin = CGPointMake(origin.x + i * DEATH_WIDTH, origin.y);
@@ -113,5 +120,33 @@ static int DEATH_WIDTH = 59;
         }
     }
     return selectedSlotsArray;
+}
+
+-(void) assignSlotColor {
+    
+    if (templeEnum == TEMPLE_1) {
+        for (int i=0; i<12;i++) {
+            TempleSlot *slot = [slotArray objectAtIndex:i];
+            slot.colorTypeEnum = colorEnumArray_temple1[i];    
+        }
+        
+    } else if (templeEnum == TEMPLE_2) {
+        for (int i=0; i<12;i++) {
+            TempleSlot *slot = [slotArray objectAtIndex:i];
+            slot.colorTypeEnum = colorEnumArray_temple2[i];    
+        }
+        
+    }  else if (templeEnum == TEMPLE_3) {
+        for (int i=0; i<12;i++) {
+            TempleSlot *slot = [slotArray objectAtIndex:i];
+            slot.colorTypeEnum = colorEnumArray_temple3[i];    
+        }
+        
+    } else if (templeEnum == TEMPLE_4) {
+        for (int i=0; i<12;i++) {
+            TempleSlot *slot = [slotArray objectAtIndex:i];
+            slot.colorTypeEnum = colorEnumArray_temple4[i];    
+        }
+    }
 }
 @end

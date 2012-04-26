@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AtonPlayer.h"
 
+enum SCORE_ENUM {
+    SCORE_TEMPLE_1, SCORE_TEMPLE_2, SCORE_TEMPLE_3, SCORE_TEMPLE_4,
+    SCORE_GREY_BONUS, SCORE_ORANGE_BONUS_RED, SCORE_ORANGE_BONUS_BLUE
+};
+
 @interface TempleScoreResult : NSObject
 
 -(NSString*) getWinningMessage;

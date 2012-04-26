@@ -29,7 +29,7 @@
     NSString* msg = @"";
     
     if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-        msg = [msg stringByAppendingString:@"Card 2 Result:\n Player "];
+        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n Player "];
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
         int number = firstRemoveNum;
         NSString* targetColor = [self getRemoveTargetColor:firstPlayerEnum:number];
@@ -37,7 +37,7 @@
             number = number * (-1);
         }
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n should remove %i ", number]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n remove %i ", number]];
         msg = [msg stringByAppendingString:targetColor];
         msg = [msg stringByAppendingString:@" Peep"];
         if (number > 1) {
@@ -45,7 +45,7 @@
         }
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
-        msg = [msg stringByAppendingString:@"Card 2 Result:\n Player "];
+        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n Player "];
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
         int number = secondRemoveNum;
         NSString* targetColor = [self getRemoveTargetColor:secondPlayerEnum:number];
@@ -53,7 +53,7 @@
             number = number * (-1);
         }
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n should remove %i ", number]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n remove %i ", number]];
         msg = [msg stringByAppendingString:targetColor];
         msg = [msg stringByAppendingString:@" Peep"];
         if (number > 1) {
@@ -62,12 +62,12 @@
         
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         
-        msg = [msg stringByAppendingString:@"Card 4 Result:\n Player "];
+        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n Player "];
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
         int number = firstPlaceNum;
 
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n should place %i ", number]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n place %i ", number]];
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:@" Peep"];
         if (number > 1) {
@@ -76,12 +76,12 @@
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         
-        msg = [msg stringByAppendingString:@"Card 4 Result:\n Player "];
+        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n Player "];
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
         int number = secondPlaceNum;
         
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n should place %i ", number]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n place %i ", number]];
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:@" Peep"];
         if (number > 1) {

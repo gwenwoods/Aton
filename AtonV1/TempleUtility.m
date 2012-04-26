@@ -104,7 +104,7 @@
         TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
         if (deathSlot == nil) {
             [selectedSlot removePeep];
-            return;
+            break;
         }
         
         // create animation IV
@@ -153,9 +153,11 @@
     // compute Grey Bonus
     TempleScoreResult *result_greyBonus = [TempleUtility computeScoreGreyBonus:templeArray];
     
-    // compute bonus score
-    TempleScoreResult *result_orangeBonus = [[TempleScoreResult alloc] init];
+    // compute bonus score for red
+    TempleScoreResult *result_orangeBonus_forRed = [TempleUtility computeScoreOrangeBonusForRed:templeArray];
 
+    // compute bonus score for blue
+    TempleScoreResult *result_orangeBonus_forBlue = [TempleUtility computeScoreOrangeBonusForRed:templeArray];
     
     NSMutableArray *templeScoreArray = [[NSMutableArray alloc] init];
     [templeScoreArray addObject:result_temple1];
@@ -163,7 +165,8 @@
     [templeScoreArray addObject:result_temple3];
     [templeScoreArray addObject:result_temple4];
     [templeScoreArray addObject:result_greyBonus];
-    [templeScoreArray addObject:result_orangeBonus];
+    [templeScoreArray addObject:result_orangeBonus_forRed];
+    [templeScoreArray addObject:result_orangeBonus_forBlue];
     
     return templeScoreArray;
 }
@@ -394,7 +397,7 @@
     
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Orange Bonus For Blue";
+    result.resultName = @"Orange Bonus For Blue ";
     
     result.winningPlayerEnum = PLAYER_BLUE;
     result.winningScore = points;

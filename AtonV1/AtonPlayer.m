@@ -71,13 +71,13 @@ static float DELAY_TIME = 0.25;
 
 -(void) initilizeDeck {
     
-    deckCountLb = [[UILabel alloc] initWithFrame:CGRectMake(118 + playerEnum * START_SPACE,56,24,20)];
+    deckCountLb = [[UILabel alloc] initWithFrame:CGRectMake(118 + playerEnum * START_SPACE,56,30,20)];
     deckCountLb.backgroundColor = [UIColor clearColor];
     deckCountLb.textAlignment = UITextAlignmentCenter;
     deckCountLb.lineBreakMode = UILineBreakModeCharacterWrap;
     deckCountLb.numberOfLines = 3;     
     deckCountLb.textColor = [UIColor whiteColor];
-    deckCountLb.text = @"40";
+    deckCountLb.text = @"x40";
    // deckCountLb.font = [UIFont fontWithName:@"Copperplate" size:24];
     [baseView addSubview:deckCountLb];
     [baseView bringSubviewToFront:deckCountLb];

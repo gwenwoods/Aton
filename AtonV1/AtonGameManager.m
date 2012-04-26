@@ -23,51 +23,51 @@
         controller = viewController;
         baseView = controller.view;
         
-        gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
-        gamePhaseView.image = [UIImage imageNamed:@"under_fabric.png"];
+        gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
+        gamePhaseView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
-        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(40,60,400,200)];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        gamePhaseLb.numberOfLines = 5;     
-        gamePhaseLb.textColor = [UIColor whiteColor];
-        gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        gamePhaseLb.numberOfLines = 8;     
+        gamePhaseLb.textColor = [UIColor blackColor];
+        gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:20];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
         //---------------------------------
-        helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
-        helpView.image = [UIImage imageNamed:@"under_fabric.png"];
+        helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
+        helpView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
         helpView.hidden = YES;
         [baseView addSubview:helpView];
         
-        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(40,60,400,200)];
+        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
         helpLb.backgroundColor = [UIColor clearColor];
         helpLb.textAlignment = UITextAlignmentCenter;
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        helpLb.numberOfLines = 3;     
-        helpLb.textColor = [UIColor whiteColor];
-        helpLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        helpLb.numberOfLines = 8;     
+        helpLb.textColor = [UIColor blackColor];
+        helpLb.font = [UIFont fontWithName:@"Copperplate" size:20];
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
         //---------------------------------
-        exchangeCardsView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,500, 400)];
+        exchangeCardsView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         exchangeCardsView.image = [UIImage imageNamed:@"under_fabric.png"];
         exchangeCardsView.hidden = YES;
         exchangeCardsView.userInteractionEnabled = YES;
         [baseView addSubview:exchangeCardsView];
         
-        exchangeCardsLb = [[UILabel alloc] initWithFrame:CGRectMake(40,60,400,200)];
+        exchangeCardsLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
         exchangeCardsLb.backgroundColor = [UIColor clearColor];
         exchangeCardsLb.textAlignment = UITextAlignmentCenter;
         exchangeCardsLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        exchangeCardsLb.numberOfLines = 3;     
-        exchangeCardsLb.textColor = [UIColor whiteColor];
-        exchangeCardsLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        exchangeCardsLb.numberOfLines = 8;     
+        exchangeCardsLb.textColor = [UIColor blackColor];
+        exchangeCardsLb.font = [UIFont fontWithName:@"Copperplate" size:20];
         exchangeCardsLb.text = @"You can exchange cards\n once per game.\n Do you want to exchange now?";
         [exchangeCardsView addSubview:exchangeCardsLb];
         [exchangeCardsView bringSubviewToFront:exchangeCardsLb];
