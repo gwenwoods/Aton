@@ -150,17 +150,20 @@
     // compute Temple_4 score
     TempleScoreResult *result_temple4 = [TempleUtility computeScoreTemple4:templeArray];
     
+    // compute Grey Bonus
+    TempleScoreResult *result_greyBonus = [TempleUtility computeScoreGreyBonus:templeArray];
+    
     // compute bonus score
     TempleScoreResult *result_orangeBonus = [[TempleScoreResult alloc] init];
-    TempleScoreResult *result_greyBonus = [[TempleScoreResult alloc] init];
+
     
     NSMutableArray *templeScoreArray = [[NSMutableArray alloc] init];
     [templeScoreArray addObject:result_temple1];
     [templeScoreArray addObject:result_temple2];
     [templeScoreArray addObject:result_temple3];
     [templeScoreArray addObject:result_temple4];
-    [templeScoreArray addObject:result_orangeBonus];
     [templeScoreArray addObject:result_greyBonus];
+    [templeScoreArray addObject:result_orangeBonus];
     
     return templeScoreArray;
 }
@@ -279,7 +282,7 @@
                 occupiedBlueSlot ++;
             }
         }
-        result.winningScore = occupiedBlueSlot;
+        result.winningScore = occupiedBlueSlot * 3;
         
     } else if(blueCount > redCount) {
         result.winningPlayerEnum = PLAYER_BLUE;
@@ -291,7 +294,7 @@
                 occupiedBlueSlot ++;
             }
         }
-        result.winningScore = occupiedBlueSlot;
+        result.winningScore = occupiedBlueSlot * 3;
     } else {
         result.winningPlayerEnum = PLAYER_NONE;
     }
@@ -302,4 +305,100 @@
 
 
 
++(TempleScoreResult*) computeScoreGreyBonus:(NSMutableArray*) templeArray {
+    
+    
+    int redCount = 0;
+    int blueCount = 0;
+    
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            if ([slot colorTypeEnum] == GREY) {
+                if ([slot occupiedEnum] == OCCUPIED_RED) {
+                    redCount++;
+                } else if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+                    blueCount++;
+                }
+            }
+        }
+    }
+    
+    
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Grey Bonus ";
+    
+    if (redCount > blueCount) {
+        result.winningPlayerEnum = PLAYER_RED;
+        result.winningScore = 8;
+        
+    } else if(blueCount > redCount) {
+        result.winningPlayerEnum = PLAYER_BLUE;
+        result.winningScore = 8;
+        
+    } else {
+        result.winningPlayerEnum = PLAYER_NONE;
+    }    
+    return result;
+}
+
+
++(TempleScoreResult*) computeScoreOrangeBonusForRed:(NSMutableArray*) templeArray {
+    
+   
+    int points = 0;
+    
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            if ([slot occupiedEnum] == OCCUPIED_RED) {
+                if ([slot colorTypeEnum] == ORANGE_1) {
+                    points ++;
+                } else if ([slot colorTypeEnum] == ORANGE_2) {
+                    points = points + 2;
+                } 
+            } 
+        }
+    }
+    
+    
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Orange Bonus For Red ";
+    
+    result.winningPlayerEnum = PLAYER_RED;
+    result.winningScore = points;
+    
+    return result;
+}
+
++(TempleScoreResult*) computeScoreOrangeBonusForBlue:(NSMutableArray*) templeArray {
+    
+    
+    int points = 0;
+    
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+                if ([slot colorTypeEnum] == ORANGE_1) {
+                    points ++;
+                } else if ([slot colorTypeEnum] == ORANGE_2) {
+                    points = points + 2;
+                } 
+            } 
+        }
+    }
+    
+    
+    TempleScoreResult *result = [[TempleScoreResult alloc] init];
+    result.resultName = @"Orange Bonus For Blue";
+    
+    result.winningPlayerEnum = PLAYER_BLUE;
+    result.winningScore = points;
+    
+    return result;
+}
 @end

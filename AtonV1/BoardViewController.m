@@ -176,7 +176,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 [TempleUtility clearDeathTemple:[atonParameters templeArray]];
                 atonParameters.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[atonParameters templeArray]];
 
-                atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_1_SCORE;
+                atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORE;
                 [atonGameEngine run];
             } else {
                 [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];

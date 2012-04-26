@@ -141,7 +141,7 @@ static float DELAY_TIME = 0.25;
        // [self ivTravel:deckIV:targetCE.iv];
     }
     
-    NSString *msg = @"";
+    NSString *msg = @"x";
     int deckNum = [deckArray count];
     msg = [msg stringByAppendingString:[NSString stringWithFormat:@"%i", deckNum]];
     deckCountLb.text = msg;

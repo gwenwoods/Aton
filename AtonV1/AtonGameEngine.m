@@ -185,7 +185,7 @@ static float SCARAB_MOVING_TIME = 0.5;
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :TEMPLE_4 :OCCUPIED_EMPTY];
         
-    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_SCORE) {
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
        // [TempleUtility clearDeathTemple:templeArray];
        // NSMutableArray *templeScoreArray = [TempleUtility computeAllTempleScore:templeArray];
        // TempleScoreResult *result_t1 = [TempleUtility computeScoreTemple1:[templeArray objectAtIndex:TEMPLE_1]];
@@ -195,43 +195,15 @@ static float SCARAB_MOVING_TIME = 0.5;
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION) {
         TempleScoreResult *result_t1 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:0];
-        int playerEnum = result_t1.winningPlayerEnum;
-        int winningScore = result_t1.winningScore;
-        if (playerEnum != PLAYER_NONE && winningScore > 0) {
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
-            [invocation setTarget:self];
-            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
-            [invocation setArgument:&playerEnum atIndex:2];
-            [invocation setArgument:&winningScore atIndex:3];
-            
-            [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
-        }
-       
-        
-        float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+        float animationTime = [self templeScoreAnimation:result_t1];
+
         TempleScoreResult *result_t2 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:1];
         NSString *msg = [result_t2 getWinningMessage];
-        
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_2_ANIMATION) {
         TempleScoreResult *result_t2 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:1];
-        int playerEnum = result_t2.winningPlayerEnum;
-        int winningScore = result_t2.winningScore;
-        if (playerEnum != PLAYER_NONE && winningScore > 0) {
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
-            [invocation setTarget:self];
-            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
-            [invocation setArgument:&playerEnum atIndex:2];
-            [invocation setArgument:&winningScore atIndex:3];
-            
-            [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
-        }
-
-        
-        float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+        float animationTime = [self templeScoreAnimation:result_t2];
         
         TempleScoreResult *result_t3 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:2];
         NSString *msg = [result_t3 getWinningMessage];
@@ -239,21 +211,7 @@ static float SCARAB_MOVING_TIME = 0.5;
     
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_3_ANIMATION) {
         TempleScoreResult *result_t3 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:2];
-        int playerEnum = result_t3.winningPlayerEnum;
-        int winningScore = result_t3.winningScore;
-        if (playerEnum != PLAYER_NONE && winningScore > 0) {
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
-            [invocation setTarget:self];
-            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
-            [invocation setArgument:&playerEnum atIndex:2];
-            [invocation setArgument:&winningScore atIndex:3];
-            
-            [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
-        }
-        
-        
-        float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+        float animationTime = [self templeScoreAnimation:result_t3];
         
         TempleScoreResult *result_t4 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:3];
         NSString *msg = [result_t4 getWinningMessage];
@@ -261,25 +219,18 @@ static float SCARAB_MOVING_TIME = 0.5;
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_4_ANIMATION) {
         TempleScoreResult *result_t4 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:3];
-        int playerEnum = result_t4.winningPlayerEnum;
-        int winningScore = result_t4.winningScore;
-        if (playerEnum != PLAYER_NONE && winningScore > 0) {
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
-            [invocation setTarget:self];
-            [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
-            [invocation setArgument:&playerEnum atIndex:2];
-            [invocation setArgument:&winningScore atIndex:3];
-            
-            [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
-        }
+        float animationTime = [self templeScoreAnimation:result_t4];
+
+        TempleScoreResult *result_greyBonus = [para.atonRoundResult.templeScoreResultArray objectAtIndex:4];
+        NSString *msg = [result_greyBonus getWinningMessage];
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
+    
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_GREY_BONUS_ANIMATION) {
+        TempleScoreResult *result_greyBonus = [para.atonRoundResult.templeScoreResultArray objectAtIndex:4];
+        float animationTime = [self templeScoreAnimation:result_greyBonus];
         
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round end ..." afterDelay:animationTime];
         
-        float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
-        
-      //  TempleScoreResult *result_t3 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:1];
-      //  NSString *msg = [result_t3 getWinningMessage];
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Rouund eendd..." afterDelay:animationTime];
     }
 }
 
@@ -374,83 +325,6 @@ static float SCARAB_MOVING_TIME = 0.5;
     //[begin performSelector:@selector(release) withObject:nil afterDelay:0.51];
 }
 
-/*
--(void) assignCardOneScore {
-    int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
-    NSMutableArray *playerArray = [para playerArray];
- //   NSMutableArray *scarabArray = [para scarabArray];
-    AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
-    
-    int oldScore = [cardOneWinner score];
-    int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
-    int newScore = oldScore + cardOneWinningScore;
-    
-    if (oldScore < 15 && newScore > 15) {
-        //ScoreScarab *middleScarab = [scarabArray objectAtIndex:15];
-        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:15] afterDelay:0.0];
-        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(15-oldScore)*0.25 + 0.05];
-
-    } else if (oldScore < 26 && newScore > 26) {
-        //ScoreScarab *middleScarab = [scarabArray objectAtIndex:15];
-        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:26] afterDelay:0.0];
-        [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(26-oldScore)*0.25 + 0.01];
-        
-    } else {
- 
-        [self moveScoreAnimation:[NSNumber numberWithInt:newScore]];
-    }
-
-
-}
-
--(void) moveScoreAnimation:(NSNumber*) points {
-    
-    int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
-    NSMutableArray *playerArray = [para playerArray];
-    NSMutableArray *scarabArray = [para scarabArray];
-    AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
-    int oldScore = [cardOneWinner score];
-    int newScore = [points intValue];
-    
-    ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
-    ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
-    
-    int moveNum = newScarab.scoreValue - oldScarab.scoreValue;
-    // create animation IV
-    UIImageView *animationIV = [[UIImageView alloc] init];
-    if ([cardOneWinner playerEnum] == PLAYER_RED) {
-        animationIV.frame = oldScarab.redFrame;
-        animationIV.image = oldScarab.redIV.image;
-        oldScarab.redIV.hidden = YES;
-    } else {
-        animationIV.frame = oldScarab.blueFrame;
-        animationIV.image = oldScarab.blueIV.image;
-        oldScarab.blueIV.hidden = YES;
-    }
-    [cardOneWinner.baseView addSubview:animationIV]; 
-    
-    [UIView animateWithDuration:0.25*moveNum
-                          delay:0.0
-                        options: UIViewAnimationCurveEaseOut
-                     animations:^{
-                         if ([cardOneWinner playerEnum] == PLAYER_RED) {
-                             animationIV.frame = newScarab.redFrame;
-                         } else {
-                             animationIV.frame = newScarab.blueFrame;
-                         }
-                     } 
-                     completion:^(BOOL finished){
-                         [animationIV removeFromSuperview];
-                         if ([cardOneWinner playerEnum] == PLAYER_RED) {
-                             newScarab.redIV.hidden = NO;
-                             [newScarab.iv bringSubviewToFront:newScarab.redIV];
-                         } else {
-                             newScarab.blueIV.hidden = NO;
-                             [newScarab.iv bringSubviewToFront:newScarab.blueIV];
-                         }
-                         cardOneWinner.score = newScore;
-                     }];
-} */
 
 -(void) assignScoreToPlayer:(int) playerEnum withWinningScore:(int) winningScore {
     
@@ -480,8 +354,6 @@ static float SCARAB_MOVING_TIME = 0.5;
 
         [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation0 repeats:NO];
         [NSTimer scheduledTimerWithTimeInterval:(15-oldScore)*SCARAB_MOVING_TIME + 0.05 invocation:invocation repeats:NO];
-     //   [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:15] afterDelay:0.0];
-     //   [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(15-oldScore)*0.25 + 0.05];
         
     } else if (oldScore < 26 && newScore > 26) {
         
@@ -496,12 +368,10 @@ static float SCARAB_MOVING_TIME = 0.5;
         [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation0 repeats:NO];
 
         [NSTimer scheduledTimerWithTimeInterval:(26-oldScore)*SCARAB_MOVING_TIME + 0.05 invocation:invocation repeats:NO];
-      //  [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:26] afterDelay:0.0];
-      //  [self performSelector:@selector(moveScoreAnimation:) withObject:[NSNumber numberWithInt:newScore] afterDelay:(26-oldScore)*0.25 + 0.01];
         
     } else {
         [NSTimer scheduledTimerWithTimeInterval:0.0 invocation:invocation repeats:NO];
-       // [self moveScoreAnimation:[NSNumber numberWithInt:newScore]];
+
     }
     
     
@@ -554,5 +424,25 @@ static float SCARAB_MOVING_TIME = 0.5;
                          }
                          cardOneWinner.score = newScore;
                      }];
+}
+
+-(float) templeScoreAnimation:(TempleScoreResult*) result {
+    
+    int playerEnum = result.winningPlayerEnum;
+    int winningScore = result.winningScore;
+    if (playerEnum != PLAYER_NONE && winningScore > 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(assignScoreToPlayer:withWinningScore:)];
+        [invocation setArgument:&playerEnum atIndex:2];
+        [invocation setArgument:&winningScore atIndex:3];
+        
+        [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
+    }
+    
+    
+    float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+    return animationTime;
 }
 @end
