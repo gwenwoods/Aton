@@ -28,7 +28,7 @@
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
-        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,100,400,200)];
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -93,6 +93,17 @@
 -(void) showGamePhaseView:(NSString*) msg {
     gamePhaseView.hidden = NO;
     gamePhaseLb.text = msg;
+    gamePhaseView.alpha = 0.0;
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         gamePhaseView.alpha = 1.0;
+                         
+                     } 
+                     completion:^(BOOL finished){
+                     }];
+
 }
 
 -(void) showHelpView:(NSString*) msg {

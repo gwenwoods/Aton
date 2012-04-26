@@ -122,7 +122,7 @@ static float SCARAB_MOVING_TIME = 0.5;
         int arrayNum = [eligibleSlotArray count];
         
         if ([eligibleSlotArray count] == 0) {
-            NSString *msg = @" No available peeps to remove\n\n";
+            NSString *msg = @"No available peeps to remove\n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             msg = [msg stringByAppendingString:msg1];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
@@ -135,7 +135,7 @@ static float SCARAB_MOVING_TIME = 0.5;
                 [deathSlot placePeep:[selectedSlot occupiedEnum]];
                 [selectedSlot removePeep];
             }
-            NSString *msg = @" All eligible peeps removed\n\n";
+            NSString *msg = @"All eligible peeps removed\n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             msg = [msg stringByAppendingString:msg1];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
@@ -160,7 +160,7 @@ static float SCARAB_MOVING_TIME = 0.5;
         int arrayNum = [eligibleSlotArray count];
         // TODO: need to take care of the case:
         if ([eligibleSlotArray count] == 0) {
-            NSString *msg = @" No available peep to remove\n\n";
+            NSString *msg = @"No available peep to remove\n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             msg = [msg stringByAppendingString:msg1];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
@@ -173,7 +173,7 @@ static float SCARAB_MOVING_TIME = 0.5;
                 [deathSlot placePeep:[selectedSlot occupiedEnum]];
                 [selectedSlot removePeep];
             }
-            NSString *msg = @" All eligible peeps removed\n\n";
+            NSString *msg = @"All eligible peeps removed\n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             msg = [msg stringByAppendingString:msg1];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];

@@ -197,6 +197,10 @@
             }
             
             if ([self isWithinImgView:touchLocation:creditsIV]) {
+                
+                CreditViewController *screen = [[CreditViewController alloc] initWithNibName:nil bundle:nil];
+                screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentModalViewController:screen animated:YES];
                 creditsAnkhIV.image = nil;
             }
 		}

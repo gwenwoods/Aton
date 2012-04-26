@@ -36,7 +36,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="1012116147">
+					<object class="IBUIImageView" id="953341394">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{1024, 748}</string>
@@ -54,7 +54,7 @@
 					<object class="IBUIButton" id="455809008">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{975, 640}, {44, 37}}</string>
+						<string key="NSFrame">{{975, 685}, {44, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="580768547"/>
@@ -90,7 +90,7 @@
 					<object class="IBUIButton" id="580768547">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{975, 685}, {44, 37}}</string>
+						<string key="NSFrame">{{975, 640}, {44, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -125,7 +125,7 @@
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1012116147"/>
+				<reference key="NSNextKeyView" ref="953341394"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -194,9 +194,9 @@
 						<reference key="object" ref="766721923"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="601367497"/>
-							<reference ref="1012116147"/>
-							<reference ref="580768547"/>
+							<reference ref="953341394"/>
 							<reference ref="455809008"/>
+							<reference ref="580768547"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -217,7 +217,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">60</int>
-						<reference key="object" ref="1012116147"/>
+						<reference key="object" ref="953341394"/>
 						<reference key="parent" ref="766721923"/>
 						<string key="objectName">background</string>
 					</object>

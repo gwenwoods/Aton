@@ -56,6 +56,7 @@
 		BDD3AEA71548F80E0013C89A /* aton_mainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */; };
 		BDD3AEAA154913080013C89A /* Aton_MessageScroll.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */; };
 		BDD3AEAC154913200013C89A /* Aton_CreditsPage.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */; };
+		BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AEAE15491F7C0013C89A /* CreditViewController.m */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
 		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
 		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
@@ -150,6 +151,8 @@
 		BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aton_mainBackground.png; sourceTree = "<group>"; };
 		BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_MessageScroll.png; sourceTree = "<group>"; };
 		BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_CreditsPage.png; sourceTree = "<group>"; };
+		BDD3AEAD15491F7B0013C89A /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
+		BDD3AEAE15491F7C0013C89A /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
 		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				BD940B88153A1F0400660B35 /* AppDelegate.h */,
 				BD940B89153A1F0400660B35 /* AppDelegate.m */,
 				BD940B80153A1F0400660B35 /* Supporting Files */,
+				BDD3AEAD15491F7B0013C89A /* CreditViewController.h */,
+				BDD3AEAE15491F7C0013C89A /* CreditViewController.m */,
 				BD940BA8153A1F9300660B35 /* BoardViewController.h */,
 				BD940BA9153A1F9300660B35 /* BoardViewController.m */,
 				BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */,
@@ -542,6 +547,7 @@
 				BD3AF23B153F81D30098DE8C /* AtonRoundResult.m in Sources */,
 				BDD3AE90154233380013C89A /* ScoreScarab.m in Sources */,
 				BDD3AEA015476BA90013C89A /* TempleScoreResult.m in Sources */,
+				BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

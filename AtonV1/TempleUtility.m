@@ -157,7 +157,7 @@
     TempleScoreResult *result_orangeBonus_forRed = [TempleUtility computeScoreOrangeBonusForRed:templeArray];
 
     // compute bonus score for blue
-    TempleScoreResult *result_orangeBonus_forBlue = [TempleUtility computeScoreOrangeBonusForRed:templeArray];
+    TempleScoreResult *result_orangeBonus_forBlue = [TempleUtility computeScoreOrangeBonusForBlue:templeArray];
     
     NSMutableArray *templeScoreArray = [[NSMutableArray alloc] init];
     [templeScoreArray addObject:result_temple1];
