@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+//#import <AppKit/AppKit.h>
+
+//#import <AudioToolbox/AudioToolbox.h>
+//#import <CoreAudio/CoreAudio.h>
 #import "AtonGameInitializer.h"
 #import "AtonTouchBeganUtility.h"
 #import "AtonTouchMovedUtility.h"
@@ -17,7 +22,7 @@
 #import "AtonTemple.h"
 
 @interface BoardViewController : UIViewController {
-    
+    AVAudioPlayer *audioPlayer;
     CGPoint touchLocation;
 }
 

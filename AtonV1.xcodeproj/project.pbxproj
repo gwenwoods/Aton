@@ -57,6 +57,10 @@
 		BDD3AEAA154913080013C89A /* Aton_MessageScroll.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */; };
 		BDD3AEAC154913200013C89A /* Aton_CreditsPage.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */; };
 		BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AEAE15491F7C0013C89A /* CreditViewController.m */; };
+		BDD3AEB51549D2990013C89A /* rooster.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEB41549D2990013C89A /* rooster.aiff */; };
+		BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEB61549D2A50013C89A /* sheep.wav */; };
+		BDD3AEBA1549F7C90013C89A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3AEB01549D2170013C89A /* AVFoundation.framework */; };
+		BDD3AEBC1549FAD30013C89A /* train_crossing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
 		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
 		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
@@ -153,6 +157,10 @@
 		BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_CreditsPage.png; sourceTree = "<group>"; };
 		BDD3AEAD15491F7B0013C89A /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
 		BDD3AEAE15491F7C0013C89A /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
+		BDD3AEB01549D2170013C89A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BDD3AEB41549D2990013C89A /* rooster.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = rooster.aiff; sourceTree = "<group>"; };
+		BDD3AEB61549D2A50013C89A /* sheep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sheep.wav; sourceTree = "<group>"; };
+		BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = train_crossing.mp3; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
 		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
@@ -171,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD3AEBA1549F7C90013C89A /* AVFoundation.framework in Frameworks */,
 				BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */,
 				BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */,
 				BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */,
@@ -228,7 +237,6 @@
 			children = (
 				BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */,
 				BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */,
-				BDAE7147153A8BEF001848F8 /* QuartzCore.framework */,
 				BD940B7F153A1F0400660B35 /* AtonV1 */,
 				BD940B97153A1F0500660B35 /* AtonV1Tests */,
 				BD940B78153A1F0400660B35 /* Frameworks */,
@@ -248,6 +256,8 @@
 		BD940B78153A1F0400660B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDAE7147153A8BEF001848F8 /* QuartzCore.framework */,
+				BDD3AEB01549D2170013C89A /* AVFoundation.framework */,
 				BD940B79153A1F0400660B35 /* UIKit.framework */,
 				BD940B7B153A1F0400660B35 /* Foundation.framework */,
 				BD940B7D153A1F0400660B35 /* CoreGraphics.framework */,
@@ -312,6 +322,9 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BDD3AEB61549D2A50013C89A /* sheep.wav */,
+				BDD3AEB41549D2990013C89A /* rooster.aiff */,
+				BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */,
 				BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */,
 				BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */,
 				BDDA77BB153D31E8003F3530 /* under_fabric.png */,
@@ -493,6 +506,9 @@
 				BDD3AEA71548F80E0013C89A /* aton_mainBackground.png in Resources */,
 				BDD3AEAA154913080013C89A /* Aton_MessageScroll.png in Resources */,
 				BDD3AEAC154913200013C89A /* Aton_CreditsPage.png in Resources */,
+				BDD3AEB51549D2990013C89A /* rooster.aiff in Resources */,
+				BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */,
+				BDD3AEBC1549FAD30013C89A /* train_crossing.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
