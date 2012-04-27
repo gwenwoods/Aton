@@ -135,6 +135,15 @@
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }
 
++(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {
+    for (int i=0; i < [allSelectedSlots count]; i++) {
+        TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
+        [selectedSlot removePeep];
+    }
+    [TempleUtility disableAllTempleSlotInteraction:templeArray];
+}
+
+
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray {
     
     // compute Temple_1 score

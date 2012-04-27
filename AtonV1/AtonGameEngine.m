@@ -268,12 +268,45 @@ static float SCARAB_MOVING_TIME = 0.5;
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION) {
         TempleScoreResult *result_orangeBonusForBlue = [para.atonRoundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_BLUE];
         float animationTime = [self templeScoreAnimation:result_orangeBonusForBlue];
+        NSString *msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
         
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
-            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"round ... end.." afterDelay:animationTime];
+        int targetPlayerEnum = [para.atonRoundResult firstPlayerEnum];
+        int occupiedEnum = OCCUPIED_RED;
+        if (targetPlayerEnum == PLAYER_BLUE) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }
         
+        NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+        // TODO: need to take care of the case:
+        if ([eligibleSlotArray count] == 0) {
+            [TempleUtility disableAllTempleSlotInteraction:templeArray];
+            NSString *msg = @"No available peep to remove\n\n";
+            NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+            msg = [msg stringByAppendingString:msg1];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            return;
+        }
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
+        int targetPlayerEnum = [para.atonRoundResult secondPlayerEnum];
+        int occupiedEnum = OCCUPIED_RED;
+        if (targetPlayerEnum == PLAYER_BLUE) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }
         
+        NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+        // TODO: need to take care of the case:
+        if ([eligibleSlotArray count] == 0) {
+            [TempleUtility disableAllTempleSlotInteraction:templeArray];
+            NSString *msg = @"No available peep to remove\n\n";
+           // NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
+            msg = [msg stringByAppendingString:@"Round ... end ..."];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            return;
+        }
     }
 }
 

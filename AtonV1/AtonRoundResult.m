@@ -106,6 +106,25 @@
         }
         msg = [msg stringByAppendingString:[self getAllowedTempleString:secondTemple]];
         
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
+        
+        msg = [msg stringByAppendingString:@"Round End Result:\n\n Player "];
+        NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
+        
+        msg = [msg stringByAppendingString:playerColor];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
+        msg = [msg stringByAppendingString:playerColor];
+        msg = [msg stringByAppendingString:@"Peep from each temple"];
+        
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+        
+        msg = [msg stringByAppendingString:@"Round End Result:\n\n Player "];
+        NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
+        
+        msg = [msg stringByAppendingString:playerColor];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
+        msg = [msg stringByAppendingString:playerColor];
+        msg = [msg stringByAppendingString:@"Peep from each temple"];
     }
     
     return  msg;

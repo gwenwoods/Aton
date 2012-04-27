@@ -22,6 +22,7 @@
 +(BOOL) isDeathTempleFull:(NSMutableArray*) templeArray;
 +(void) clearDeathTemple:(NSMutableArray*) templeArray;
 +(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
++(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;
 

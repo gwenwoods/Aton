@@ -82,6 +82,12 @@
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION;
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
             
         } else {
