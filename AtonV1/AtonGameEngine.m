@@ -141,13 +141,7 @@ static float SCARAB_MOVING_TIME = 0.5;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         
         } else if (arrayNum < [para.atonRoundResult getFirstRemovePositiveNum]) {
-         /*   for (int i=0; i<[eligibleSlotArray count]; i++) {
-                TempleSlot *selectedSlot = [eligibleSlotArray objectAtIndex:i];
-                TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
-                // TODO: check nil for deathSlot
-                [deathSlot placePeep:[selectedSlot occupiedEnum]];
-                [selectedSlot removePeep];
-            }*/
+
             [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray];
             NSString *msg = @"All eligible peeps removed\n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
@@ -172,7 +166,6 @@ static float SCARAB_MOVING_TIME = 0.5;
         // TODO: change back to max temple
         NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:para.atonRoundResult.secondTemple: occupiedEnum];
         int arrayNum = [eligibleSlotArray count];
-        // TODO: need to take care of the case:
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
             NSString *msg = @"No available peep to remove\n\n";
@@ -181,13 +174,7 @@ static float SCARAB_MOVING_TIME = 0.5;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         
         } else if (arrayNum < [para.atonRoundResult getSecondRemovePositiveNum]) {
-         /*   for (int i=0; i<[eligibleSlotArray count]; i++) {
-                TempleSlot *selectedSlot = [eligibleSlotArray objectAtIndex:i];
-                TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
-                // TODO: check nil for deathSlot
-                [deathSlot placePeep:[selectedSlot occupiedEnum]];
-                [selectedSlot removePeep];
-            }*/
+
             [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray];
             NSString *msg = @"All eligible peeps removed\n\n";
             NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
@@ -202,9 +189,6 @@ static float SCARAB_MOVING_TIME = 0.5;
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray :para.atonRoundResult.secondTemple :OCCUPIED_EMPTY];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
-       // [TempleUtility clearDeathTemple:templeArray];
-       // NSMutableArray *templeScoreArray = [TempleUtility computeAllTempleScore:templeArray];
-       // TempleScoreResult *result_t1 = [TempleUtility computeScoreTemple1:[templeArray objectAtIndex:TEMPLE_1]];
         TempleScoreResult *result_t1 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:0];
         NSString *msg = [result_t1 getWinningMessage];
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
@@ -295,11 +279,9 @@ static float SCARAB_MOVING_TIME = 0.5;
         }
         
         NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
-        // TODO: need to take care of the case:
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
             NSString *msg = @"No available peep to remove\n\n";
-           // NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             msg = [msg stringByAppendingString:@"Round ... end ..."];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             return;

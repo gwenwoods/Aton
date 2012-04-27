@@ -480,4 +480,22 @@
     return YES;
 }
 
++(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum {
+    
+    UIColor *color = [UIColor redColor];
+    
+    if (playerEnum == PLAYER_BLUE) {
+        color = [UIColor blueColor];
+    }
+    
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            [slot.boundaryIV.layer setBorderColor:color.CGColor];   
+        }
+    }
+    
+}
+
 @end

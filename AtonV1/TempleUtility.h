@@ -30,6 +30,8 @@
 +(BOOL) isGreenFull:(NSMutableArray*) templeArray;
 +(BOOL) isTempleFull:(NSMutableArray*) templeArray:(int) templeEnum;
 
++(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum;
+
 //+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple;
