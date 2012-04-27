@@ -33,14 +33,22 @@ static float SCARAB_MOVING_TIME = 0.5;
     AtonGameManager *gameManager = [para gameManager];
     
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
-        [para.atonRoundResult reset];
-        for (int i=0; i< [playerArray count]; i++) {
-            AtonPlayer *player = [playerArray objectAtIndex:i];
-            [player resetCard];
-            [player distributeCards];
+        
+        if ([self gameOverCondition] != nil) {
+            [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
+        
+        } else {
+            [para.atonRoundResult reset];
+            for (int i=0; i< [playerArray count]; i++) {
+                AtonPlayer *player = [playerArray objectAtIndex:i];
+                [player resetCard];
+                [player distributeCards];
+            }
+            
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red:\n\n Lay your cards" afterDelay:3.0];
+            
         }
         
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red:\n\n Lay your cards" afterDelay:3.0];
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
@@ -87,8 +95,11 @@ static float SCARAB_MOVING_TIME = 0.5;
     } else if(gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
 
         int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
-        if (cardOneWinnerEnum != PLAYER_NONE) {
-            int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
+        int winnerOriginalScore = 0;
+        int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
+                if (cardOneWinnerEnum != PLAYER_NONE) {
+            winnerOriginalScore = [[playerArray objectAtIndex:cardOneWinnerEnum] score];
+            
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
             [invocation setTarget:self];
@@ -98,9 +109,18 @@ static float SCARAB_MOVING_TIME = 0.5;
             
             [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
         }
+        float animationTime = cardOneWinningScore * SCARAB_MOVING_TIME + ANIMATION_DELAY_TIME;
         
-        NSString *msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:1.0];
+        int winnerFinalScore = winnerOriginalScore + cardOneWinningScore;
+        if (winnerFinalScore > 40) {
+            // GameOver
+            NSString* msg = [self gameOverResultMsg];
+            [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:animationTime];
+        } else {
+            NSString *msg = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
+        }
+
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         
@@ -249,11 +269,9 @@ static float SCARAB_MOVING_TIME = 0.5;
         TempleScoreResult *result_orangeBonusForBlue = [para.atonRoundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_BLUE];
         float animationTime = [self templeScoreAnimation:result_orangeBonusForBlue];
         
-        if ([self gameOverCondition] != nil) {
-            [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:animationTime];
-        } else {
+        
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"round ... end.." afterDelay:animationTime];
-        }
+        
         
         
     }
@@ -404,15 +422,21 @@ static float SCARAB_MOVING_TIME = 0.5;
 
 -(void) moveScoreForPlayerAnimation:(int) playerEnum withNewScore:(int) newScore {
     
-  //  int cardOneWinnerEnum = para.atonRoundResult.cardOneWinnerEnum;
     NSMutableArray *playerArray = [para playerArray];
     NSMutableArray *scarabArray = [para scarabArray];
     AtonPlayer *cardOneWinner = [playerArray objectAtIndex:playerEnum];
     int oldScore = [cardOneWinner score];
-   // int newScore = [points intValue];
+    if (oldScore >= 41) {
+        cardOneWinner.score = newScore;
+        return;
+    }
     
     ScoreScarab *oldScarab = [scarabArray objectAtIndex:oldScore];
-    ScoreScarab *newScarab = [scarabArray objectAtIndex:newScore];
+    ScoreScarab *newScarab = [scarabArray objectAtIndex:41];
+    if (newScore < 41) {
+        newScarab = [scarabArray objectAtIndex:newScore];
+    }
+    
     
     int moveNum = newScarab.scoreValue - oldScarab.scoreValue;
     // create animation IV
@@ -455,7 +479,11 @@ static float SCARAB_MOVING_TIME = 0.5;
     
     int playerEnum = result.winningPlayerEnum;
     int winningScore = result.winningScore;
+    float animationTime = 0.0;
     if (playerEnum != PLAYER_NONE && winningScore > 0) {
+        
+        AtonPlayer *player = [para.playerArray objectAtIndex:playerEnum];
+        int playerOriginalScore = player.score;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
         [invocation setTarget:self];
@@ -464,10 +492,13 @@ static float SCARAB_MOVING_TIME = 0.5;
         [invocation setArgument:&winningScore atIndex:3];
         
         [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DELAY_TIME invocation:invocation repeats:NO];
+        
+        if (playerOriginalScore < 41) {
+            animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+        }
+        
     }
-    
-    
-    float animationTime = SCARAB_MOVING_TIME * winningScore + ANIMATION_DELAY_TIME;
+
     return animationTime;
 }
 
@@ -496,15 +527,30 @@ static float SCARAB_MOVING_TIME = 0.5;
     
     }
     
-    if (msg != nil) {
-        NSMutableArray *playerArray = para.playerArray;
-        msg = [msg stringByAppendingString:@"\nGame Over\n"];
-        int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
-        int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Red: %i \n", redScore]];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Blue: %i \n", blueScore]];
+    NSMutableArray *playerArray = para.playerArray;
+    if ([[playerArray objectAtIndex:PLAYER_RED] score] > 40) {
+        msg = @"Player Red reaches 40 points";
+        
+    } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] > 40) {
+        msg = @"Player Blue reaches 40 points";
+        
     }
     
+    if (msg != nil) {
+        msg = [msg stringByAppendingString:[self gameOverResultMsg]];
+    }
+    
+    return msg;
+}
+
+-(NSString*) gameOverResultMsg {
+    
+    NSMutableArray *playerArray = para.playerArray;
+    NSString *msg = @"\nGame Over\n";
+    int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
+    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
+    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Red: %i \n", redScore]];
+    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Blue: %i \n", blueScore]];
     return msg;
 }
 @end

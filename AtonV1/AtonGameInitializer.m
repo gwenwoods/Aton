@@ -63,7 +63,7 @@ static int SCARAB_HEIGHT = 44;
         [scarabArray addObject:scarab];
     }
     
-    for (int i=26; i<=40; i++) {
+    for (int i=26; i<=41; i++) {
         UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(768, 8 + (i-26)*47.5, SCARAB_WIDTH, SCARAB_HEIGHT)];
         [controller.view addSubview:iv];
         ScoreScarab *scarab = [[ScoreScarab alloc] initializeWithParameters:i :iv];
