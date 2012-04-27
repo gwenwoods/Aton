@@ -19,13 +19,14 @@ enum OCCUPIED_ENUM {
 
 @interface TempleSlot : NSObject
 
--(id)initializeWithParameters:(int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView;
+-(id)initializeWithParameters:(int) templeEnum: (int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView;
 -(void) removePeep;
 -(void) placePeep:(int) occuEnum;
 -(void) selectOrDeselectSlot;
 -(CGRect) getPeepFrame;
 
 @property(strong, nonatomic) UIView* baseView;
+@property(nonatomic) int templeEnum;
 @property(nonatomic) CGPoint origin;
 @property(nonatomic) int slotID, colorTypeEnum, occupiedEnum;
 @property(strong, nonatomic) UIImageView *iv, *peepIV, *boundaryIV;

@@ -33,22 +33,14 @@ static float SCARAB_MOVING_TIME = 0.5;
     AtonGameManager *gameManager = [para gameManager];
     
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
-        
-        if ([self gameOverCondition] != nil) {
-            [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
-        
-        } else {
-            [para.atonRoundResult reset];
-            for (int i=0; i< [playerArray count]; i++) {
-                AtonPlayer *player = [playerArray objectAtIndex:i];
-                [player resetCard];
-                [player distributeCards];
-            }
-            
-            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red:\n\n Lay your cards" afterDelay:3.0];
-            
+        [para.atonRoundResult reset];
+        for (int i=0; i< [playerArray count]; i++) {
+            AtonPlayer *player = [playerArray objectAtIndex:i];
+            [player resetCard];
+            [player distributeCards];
         }
         
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red:\n\n Lay your cards" afterDelay:3.0];    
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         AtonPlayer *playerRed = [playerArray objectAtIndex:0];
@@ -273,21 +265,26 @@ static float SCARAB_MOVING_TIME = 0.5;
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
-        int targetPlayerEnum = [para.atonRoundResult firstPlayerEnum];
-        int occupiedEnum = OCCUPIED_RED;
-        if (targetPlayerEnum == PLAYER_BLUE) {
-            occupiedEnum = OCCUPIED_BLUE;
-        }
-        
-        NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
-        // TODO: need to take care of the case:
-        if ([eligibleSlotArray count] == 0) {
-            [TempleUtility disableAllTempleSlotInteraction:templeArray];
-            NSString *msg = @"No available peep to remove\n\n";
-            NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
-            msg = [msg stringByAppendingString:msg1];
-            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
-            return;
+        if ([self gameOverCondition] != nil) {
+            [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
+            
+        } else {
+            int targetPlayerEnum = [para.atonRoundResult firstPlayerEnum];
+            int occupiedEnum = OCCUPIED_RED;
+            if (targetPlayerEnum == PLAYER_BLUE) {
+                occupiedEnum = OCCUPIED_BLUE;
+            }
+            
+            NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+            // TODO: need to take care of the case:
+            if ([eligibleSlotArray count] == 0) {
+                [TempleUtility disableAllTempleSlotInteraction:templeArray];
+                NSString *msg = @"No available peep to remove\n\n";
+                NSString *msg1 = [para.atonRoundResult getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+                msg = [msg stringByAppendingString:msg1];
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+                return;
+            }
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         

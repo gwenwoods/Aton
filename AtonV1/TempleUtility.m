@@ -143,6 +143,31 @@
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }
 
++(BOOL) isSelectedOneFromEachTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {
+    
+    NSMutableArray *requiredTempleEnumArray = [[NSMutableArray alloc] init];
+    [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_1]];
+    [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_2]];
+    [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_3]];
+    [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_4]];
+    
+  //  NSMutableArray *selectedTempleEnumArray = [[NSMutableArray alloc] init];
+    if ([allSelectedSlots count] > 4) {
+        return NO;
+    } else {
+        for (int i=0; i<[allSelectedSlots count]; i++) {
+            TempleSlot *slot = [allSelectedSlots objectAtIndex:i];
+            int slotTempleEnum = slot.templeEnum;
+            NSNumber *stNumber = [NSNumber numberWithInt:slotTempleEnum];
+            if ([requiredTempleEnumArray containsObject:stNumber] == NO) {
+                return NO;
+            } else {
+                [requiredTempleEnumArray removeObject:stNumber];
+            }
+        }
+    }
+    return YES;
+}
 
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray {
     
@@ -317,8 +342,6 @@
 
 }
 
-
-
 +(TempleScoreResult*) computeScoreGreyBonus:(NSMutableArray*) templeArray {
     
     
@@ -356,7 +379,6 @@
     }    
     return result;
 }
-
 
 +(TempleScoreResult*) computeScoreOrangeBonusForRed:(NSMutableArray*) templeArray {
     
@@ -457,4 +479,5 @@
     
     return YES;
 }
+
 @end

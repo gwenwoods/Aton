@@ -16,31 +16,24 @@ static int PEEP_SIZE = 40;
 static int BOUNDARY_SIZE = 56;
 
 @synthesize baseView;
+@synthesize templeEnum;
 @synthesize origin;
 @synthesize slotID, colorTypeEnum, occupiedEnum;
 @synthesize iv, peepIV, boundaryIV;
 @synthesize isSelected;
 
--(id)initializeWithParameters:(int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView {
+-(id)initializeWithParameters:(int) thisTempleEnum:(int) thisSlotID:(CGPoint) templeOrigin:(UIView*) atonBaseView {
     if (self) {
         baseView = atonBaseView;
+        templeEnum = thisTempleEnum;
+        slotID = thisSlotID;
         
         int slotOriginX = templeOrigin.x;
         int slotOriginY = templeOrigin.y;
         iv = [[UIImageView alloc] initWithFrame:CGRectMake(slotOriginX, slotOriginY, SLOT_WIDTH, SLOT_HEIGHT)];
         peepIV = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, PEEP_SIZE, PEEP_SIZE)];
        
-     /*   if (thisSlotID%5 == 0) {
-             peepIV.image = [UIImage imageNamed:@"Red_Disc.png"];
-             occupiedEnum = OCCUPIED_RED;
-        } else  if (thisSlotID%5 == 1){
-             peepIV.image = [UIImage imageNamed:@"Blue_Disc.png"];
-             occupiedEnum = OCCUPIED_BLUE;
-        }*/
-       
         boundaryIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4, -4, BOUNDARY_SIZE, BOUNDARY_SIZE)];
-        
-    //    iv.userInteractionEnabled = YES;
         [iv addSubview:boundaryIV];
         [iv addSubview:peepIV];
         

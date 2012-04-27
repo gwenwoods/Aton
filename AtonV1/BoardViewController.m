@@ -211,7 +211,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
-        if ([allSelectedSlots count] != 4) {
+        if ([TempleUtility isSelectedOneFromEachTemple:[atonParameters templeArray]:allSelectedSlots] == NO) {
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
             [atonParameters.gameManager performSelector:@selector(showHelpView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];
@@ -227,7 +227,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     } else if (atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
         NSMutableArray *allSelectedSlots = [TempleUtility findAllSelectedSlots:[atonParameters templeArray]];
-        if ([allSelectedSlots count] != 4) {
+        if ([TempleUtility isSelectedOneFromEachTemple:[atonParameters templeArray]:allSelectedSlots] == NO) {
             NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
             [atonParameters.gameManager performSelector:@selector(showHelpView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             [TempleUtility deselectAllTempleSlots:[atonParameters templeArray]];

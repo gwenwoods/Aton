@@ -55,7 +55,7 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
     if (templeEnum > TEMPLE_DEATH) {
         for (int i=0; i<12;i++) {
             CGPoint slotOrigin = [self getOriginInNormalTempForSlot:i];
-            TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:i:slotOrigin:baseView];
+            TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:templeEnum:i:slotOrigin:baseView];
             [slotArray addObject:slot];
         }
         
@@ -63,7 +63,7 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
     } else {
         for (int i=0; i<8;i++) {
             CGPoint slotOrigin = CGPointMake(origin.x + i * DEATH_WIDTH, origin.y);
-            TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:i:slotOrigin:baseView];
+            TempleSlot *slot = [[TempleSlot alloc] initializeWithParameters:templeEnum:i:slotOrigin:baseView];
             [slotArray addObject:slot];
         }
     }
