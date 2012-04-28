@@ -16,6 +16,7 @@
 @synthesize helpView, helpLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
 @synthesize finalResultView, finalResultLb;
+@synthesize activePlayerIV;
 
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
@@ -38,6 +39,9 @@
         gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:20];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
+        
+        activePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 108, 40, 40)];
+        [gamePhaseView addSubview:activePlayerIV];
         
         //---------------------------------
         helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
@@ -110,6 +114,18 @@
 }
 
 -(void) showGamePhaseView:(NSString*) msg {
+    
+    if (activePlayer == PLAYER_RED) {
+        activePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
+        
+    } else if (activePlayer == PLAYER_BLUE) {
+        activePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
+        
+    } else {
+        activePlayerIV.image = nil;
+        
+    }
+    
     gamePhaseView.hidden = NO;
     gamePhaseLb.text = msg;
     gamePhaseView.alpha = 0.0;

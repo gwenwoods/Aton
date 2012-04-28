@@ -18,6 +18,7 @@
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
 -(void) run;
+-(void) playerDoneAction;
 -(NSString*) gameOverCondition;
 
 -(void) imageFly:(UIImageView*) begin:(UIImageView*) end;

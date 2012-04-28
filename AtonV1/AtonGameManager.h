@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AtonPlayer.h"
 @interface AtonGameManager : NSObject
 
 -(id)initializeWithParameters:(UIViewController*) viewController;
@@ -19,6 +19,7 @@
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
 @property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView;
+@property(strong, nonatomic) UIImageView *activePlayerIV;
 @property(strong, nonatomic) UILabel *gamePhaseLb, *helpLb, *exchangeCardsLb, *finalResultLb;
 //@property(strong, nonatomic) UIButton *exchangeYesButton, *exchangeNoButton;
 

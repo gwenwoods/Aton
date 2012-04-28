@@ -21,7 +21,7 @@ enum GAME_PHASE_ENUM {
     GAME_PHASE_FIRST_REMOVE_PEEP, GAME_PHASE_SECOND_REMOVE_PEEP,
     GAME_PHASE_FIRST_PLACE_PEEP, GAME_PHASE_SECOND_PLACE_PEEP,
     
-    GAME_PHASE_ROUND_END_SCORE, 
+    GAME_PHASE_ROUND_END_SCORE, GAME_PHASE_ROUND_END_SCORE_MESSAGE,
     
     GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION, GAME_PHASE_ROUND_END_TEMPLE_2_ANIMATION,
     GAME_PHASE_ROUND_END_TEMPLE_3_ANIMATION, GAME_PHASE_ROUND_END_TEMPLE_4_ANIMATION,
@@ -36,7 +36,9 @@ enum GAME_PHASE_ENUM {
 }
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray;
--(NSString*) getMessageBeforePhase:(int) gamePhaseEnum;
+
+
+//-(NSString*) getMessageBeforePhase:(int) gamePhaseEnum;
 -(int) getFirstRemoveTargetEnum;
 -(int) getSecondRemoveTargetEnum;
 -(int) getFirstRemovePositiveNum;

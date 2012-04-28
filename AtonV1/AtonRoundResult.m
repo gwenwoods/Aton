@@ -30,6 +30,7 @@
 
 }*/
 
+/*
 -(NSString*) getMessageBeforePhase:(int) gamePhaseEnum {
     
     NSString* msg = @"";
@@ -142,7 +143,7 @@
     }
     
     return  msg;
-}
+}*/
 
 -(int) getFirstRemoveTargetEnum {
     
@@ -178,7 +179,7 @@
     }
 }
 
-
+/*
 -(NSString*) getPlayerColor:(int) playerEnum {
     if (playerEnum == 0) {
         return @"Red ";
@@ -216,5 +217,5 @@
     }
     
     return @"\n in any Temple";
-}
+}*/
 @end
