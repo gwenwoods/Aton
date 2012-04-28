@@ -18,8 +18,8 @@ static int SCARAB_HEIGHT = 44;
     
     //----------------------
     // initialize players
-    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :@"Player Red":controller];
-    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :@"Player Blue":controller];
+    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :@"MeowMeow":controller];
+    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :@"QQ":controller];
     
     NSMutableArray *playerArray = [[NSMutableArray alloc] init];
     [playerArray addObject:redPlayer];

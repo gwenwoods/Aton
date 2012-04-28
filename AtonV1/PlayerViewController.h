@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayerViewController : UIViewController
+@interface PlayerViewController : UIViewController {
+    
+    IBOutlet UITextField *textField_red;
+    IBOutlet UILabel *playerName_red;
+}
 
 -(IBAction) backToMenu:(id)sender;
+-(IBAction) updatePlayerNameRed:(id)sender;
 
 @end

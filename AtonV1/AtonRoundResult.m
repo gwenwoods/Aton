@@ -19,24 +19,33 @@
 @synthesize templeScoreResultArray;
 
 
-
--(void) reset {
-
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray {
+	if (self) {
+        playerArray = atonPlayerArray;
+    }
+    return self;
 }
+
+/*-(void) reset {
+
+}*/
 
 -(NSString*) getMessageBeforePhase:(int) gamePhaseEnum {
     
     NSString* msg = @"";
     
     if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n Player "];
-        NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
+        
+        AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
+        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n"];
+        msg = [msg stringByAppendingString:player.playerName];
+        
         int number = firstRemoveNum;
         NSString* targetColor = [self getRemoveTargetColor:firstPlayerEnum:number];
         if (number < 0) {
             number = number * (-1);
         }
-        msg = [msg stringByAppendingString:playerColor];
+        
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n remove %i ", number]];
         if (number > 0) {
             msg = [msg stringByAppendingString:targetColor];

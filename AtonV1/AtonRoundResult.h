@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AtonTemple.h"
+#import "AtonPlayer.h"
 
 
 enum GAME_PHASE_ENUM {
@@ -30,9 +31,11 @@ enum GAME_PHASE_ENUM {
     GAME_PHASE_ROUND_END_FIRST_REMOVE_4, GAME_PHASE_ROUND_END_SECOND_REMOVE_4
 };
 
-@interface AtonRoundResult : NSObject
+@interface AtonRoundResult : NSObject {
+    NSMutableArray *playerArray; 
+}
 
--(void) reset;
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray;
 -(NSString*) getMessageBeforePhase:(int) gamePhaseEnum;
 -(int) getFirstRemoveTargetEnum;
 -(int) getSecondRemoveTargetEnum;

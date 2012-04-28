@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)viewDidUnload
@@ -44,4 +45,10 @@
 -(IBAction) backToMenu:(id)sender {
 	[self dismissModalViewControllerAnimated:YES];
 }
+
+-(IBAction) updatePlayerNameRed:(id)sender {
+	NSString *name = textField_red.text;
+    playerName_red.text = name;
+}
+
 @end

@@ -208,14 +208,14 @@
 			children = (
 				BD16D225153CD4F300ED6DB9 /* AtonGameParameters.h */,
 				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
-				BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */,
 				BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */,
-				BD5A54C4153D188A009F5D71 /* AtonGameManager.h */,
-				BD5A54C5153D188A009F5D71 /* AtonGameManager.m */,
-				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
 				BD3AF239153F81D30098DE8C /* AtonRoundResult.h */,
 				BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */,
+				BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */,
+				BD5A54C4153D188A009F5D71 /* AtonGameManager.h */,
+				BD5A54C5153D188A009F5D71 /* AtonGameManager.m */,
+				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 			);
 			name = GameClass;
 			sourceTree = "<group>";

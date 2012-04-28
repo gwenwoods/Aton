@@ -22,7 +22,7 @@
         templeArray = atonTempleArray;
         scarabArray = atonScarabArray;
         gameManager = atonGameManager;
-        atonRoundResult = [[AtonRoundResult alloc] init];
+        atonRoundResult = [[AtonRoundResult alloc] initializeWithParameters:playerArray];
         
     }
     return self;

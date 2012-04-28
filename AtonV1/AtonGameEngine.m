@@ -37,21 +37,25 @@ static float SCARAB_MOVING_TIME = 0.5;
     AtonPlayer *playerBlue = [playerArray objectAtIndex:PLAYER_BLUE];
     
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
-        [para.atonRoundResult reset];
+       // [para.atonRoundResult reset];
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
             [player resetCard];
             [player distributeCards];
         }
         
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Red:\n\n Lay your cards" afterDelay:3.0];    
+        NSString *msg = playerRed.playerName;
+        msg = [msg stringByAppendingString:@"\n\n Lay your cards"];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];    
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         [playerRed openCardsForArrange];   
 
     } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
         [playerRed closeCards]; 
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Player Blue:\n\n Lay your cards" afterDelay:0.75];
+        NSString *msg = playerBlue.playerName;
+        msg = [msg stringByAppendingString:@"\n\n Lay your cards"];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
         
     } else if(gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
         [playerBlue openCardsForArrange];
