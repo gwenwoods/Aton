@@ -62,14 +62,16 @@
         
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
-        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n Player "];
-        NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
+        
+        AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
+        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n"];
+        msg = [msg stringByAppendingString:player.playerName];
         int number = secondRemoveNum;
         NSString* targetColor = [self getRemoveTargetColor:secondPlayerEnum:number];
         if (number < 0) {
             number = number * (-1);
         }
-        msg = [msg stringByAppendingString:playerColor];
+ 
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n remove %i ", number]];
         if (number > 0) {
             msg = [msg stringByAppendingString:targetColor];
@@ -86,12 +88,12 @@
         
         
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
+        AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
+        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n"];
+        msg = [msg stringByAppendingString:player.playerName];
         
-        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n Player "];
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
         int number = firstPlaceNum;
-
-        msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n place %i ", number]];
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:@"Peep"];
@@ -102,11 +104,12 @@
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         
-        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n Player "];
+        AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
+        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n"];
+        msg = [msg stringByAppendingString:player.playerName];
+        
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
         int number = secondPlaceNum;
-        
-        msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n place %i ", number]];
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:@"Peep"];
@@ -117,20 +120,22 @@
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
-        msg = [msg stringByAppendingString:@"Round End Result:\n\n Player "];
-        NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
+        AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
+        msg = [msg stringByAppendingString:@"Round End Result:\n\n"];
+        msg = [msg stringByAppendingString:player.playerName];
         
-        msg = [msg stringByAppendingString:playerColor];
+        NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:@"Peep from each temple"];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
-        msg = [msg stringByAppendingString:@"Round End Result:\n\n Player "];
-        NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
+        AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
+        msg = [msg stringByAppendingString:@"Round End Result:\n\n"];
+        msg = [msg stringByAppendingString:player.playerName];
         
-        msg = [msg stringByAppendingString:playerColor];
+        NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
         msg = [msg stringByAppendingString:playerColor];
         msg = [msg stringByAppendingString:@"Peep from each temple"];
