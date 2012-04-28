@@ -61,6 +61,8 @@
 		BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEB61549D2A50013C89A /* sheep.wav */; };
 		BDD3AEBA1549F7C90013C89A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3AEB01549D2170013C89A /* AVFoundation.framework */; };
 		BDD3AEBC1549FAD30013C89A /* train_crossing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */; };
+		BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AEC2154B93300013C89A /* PlayerViewController.m */; };
+		BDD3AEC5154B93340013C89A /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEC3154B93330013C89A /* PlayerViewController.xib */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
 		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
 		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
@@ -160,6 +162,9 @@
 		BDD3AEB41549D2990013C89A /* rooster.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = rooster.aiff; sourceTree = "<group>"; };
 		BDD3AEB61549D2A50013C89A /* sheep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sheep.wav; sourceTree = "<group>"; };
 		BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = train_crossing.mp3; sourceTree = "<group>"; };
+		BDD3AEC1154B932E0013C89A /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		BDD3AEC2154B93300013C89A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		BDD3AEC3154B93330013C89A /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
 		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
@@ -284,6 +289,9 @@
 				BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */,
 				BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */,
 				BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */,
+				BDD3AEC1154B932E0013C89A /* PlayerViewController.h */,
+				BDD3AEC2154B93300013C89A /* PlayerViewController.m */,
+				BDD3AEC3154B93330013C89A /* PlayerViewController.xib */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -505,6 +513,7 @@
 				BDD3AEB51549D2990013C89A /* rooster.aiff in Resources */,
 				BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */,
 				BDD3AEBC1549FAD30013C89A /* train_crossing.mp3 in Resources */,
+				BDD3AEC5154B93340013C89A /* PlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +569,7 @@
 				BDD3AE90154233380013C89A /* ScoreScarab.m in Sources */,
 				BDD3AEA015476BA90013C89A /* TempleScoreResult.m in Sources */,
 				BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */,
+				BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -222,4 +222,10 @@
 	}
 	return NO;
 }
+
+-(IBAction) toPlayerView:(id)sender {
+    PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
+    screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:screen animated:YES];
+}
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BoardViewController.h"
 #import "CreditViewController.h"
+#import "PlayerViewController.h"
 
 @interface StartMenuViewController : UIViewController
 {
@@ -16,5 +17,7 @@
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
     BOOL longPress;
 }
+
+-(IBAction) toPlayerView:(id)sender;
 
 @end
