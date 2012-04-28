@@ -32,6 +32,8 @@
 		BD940B9F153A1F0500660B35 /* AtonV1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940B9E153A1F0500660B35 /* AtonV1Tests.m */; };
 		BD940BAB153A1F9300660B35 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940BA9153A1F9300660B35 /* BoardViewController.m */; };
 		BD940BAC153A1F9300660B35 /* BoardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */; };
+		BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = BD974088154C7571003F4E8F /* AtonMessageMaster.m */; };
+		BD97408B154C8D58003F4E8F /* Aton_OpenMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD97408A154C8D58003F4E8F /* Aton_OpenMusic.mp3 */; };
 		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
 		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
 		BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7122153A3BED001848F8 /* Blue_Card3.png */; };
@@ -125,6 +127,9 @@
 		BD940BA8153A1F9300660B35 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		BD940BA9153A1F9300660B35 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardViewController_iPad.xib; sourceTree = "<group>"; };
+		BD974087154C7570003F4E8F /* AtonMessageMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonMessageMaster.h; sourceTree = "<group>"; };
+		BD974088154C7571003F4E8F /* AtonMessageMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonMessageMaster.m; sourceTree = "<group>"; };
+		BD97408A154C8D58003F4E8F /* Aton_OpenMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aton_OpenMusic.mp3; sourceTree = "<group>"; };
 		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
 		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
 		BDAE7122153A3BED001848F8 /* Blue_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card3.png; sourceTree = "<group>"; };
@@ -210,12 +215,12 @@
 				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
 				BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */,
 				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
+				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 				BD3AF239153F81D30098DE8C /* AtonRoundResult.h */,
 				BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */,
 				BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */,
 				BD5A54C4153D188A009F5D71 /* AtonGameManager.h */,
 				BD5A54C5153D188A009F5D71 /* AtonGameManager.m */,
-				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 			);
 			name = GameClass;
 			sourceTree = "<group>";
@@ -292,6 +297,8 @@
 				BDD3AEC1154B932E0013C89A /* PlayerViewController.h */,
 				BDD3AEC2154B93300013C89A /* PlayerViewController.m */,
 				BDD3AEC3154B93330013C89A /* PlayerViewController.xib */,
+				BD974087154C7570003F4E8F /* AtonMessageMaster.h */,
+				BD974088154C7571003F4E8F /* AtonMessageMaster.m */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -391,6 +398,7 @@
 		BDD3AEBD1549FC540013C89A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				BD97408A154C8D58003F4E8F /* Aton_OpenMusic.mp3 */,
 				BDD3AEB61549D2A50013C89A /* sheep.wav */,
 				BDD3AEB41549D2990013C89A /* rooster.aiff */,
 				BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */,
@@ -514,6 +522,7 @@
 				BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */,
 				BDD3AEBC1549FAD30013C89A /* train_crossing.mp3 in Resources */,
 				BDD3AEC5154B93340013C89A /* PlayerViewController.xib in Resources */,
+				BD97408B154C8D58003F4E8F /* Aton_OpenMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +579,7 @@
 				BDD3AEA015476BA90013C89A /* TempleScoreResult.m in Sources */,
 				BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */,
 				BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */,
+				BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

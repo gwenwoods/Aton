@@ -10,8 +10,11 @@
 #import "AtonGameParameters.h"
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
+#import "AtonMessageMaster.h"
 
-@interface AtonGameEngine : NSObject
+@interface AtonGameEngine : NSObject {
+    AtonMessageMaster *messageMaster;
+}
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
 -(void) run;

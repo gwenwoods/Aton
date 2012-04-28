@@ -20,6 +20,7 @@ static float SCARAB_MOVING_TIME = 0.5;
 -(id)initializeWithParameters:(AtonGameParameters*) parameter {
 	if (self) {
         para = parameter;
+        messageMaster = [[AtonMessageMaster alloc] initializeWithParameters:para];
     }
     return self;
 }
@@ -107,7 +108,7 @@ static float SCARAB_MOVING_TIME = 0.5;
         float animationTime = cardOneWinningScore * SCARAB_MOVING_TIME + ANIMATION_DELAY_TIME;
         
         int winnerFinalScore = winnerOriginalScore + cardOneWinningScore;
-        if (winnerFinalScore > 40) {
+        if (winnerFinalScore >= 40) {
             // GameOver
             NSString* msg = [self gameOverResultMsg];
             [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:animationTime];
@@ -120,7 +121,7 @@ static float SCARAB_MOVING_TIME = 0.5;
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         
         if (para.atonRoundResult.firstRemoveNum == 0) {
-            NSString* msg = [roundResult getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
+            NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             return;
         }
@@ -285,7 +286,7 @@ static float SCARAB_MOVING_TIME = 0.5;
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
             NSString *msg = @"No available peep to remove\n\n";
-            msg = [msg stringByAppendingString:@"Round ... end ..."];
+            msg = [msg stringByAppendingString:@"Scoring End"];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             return;
         }
