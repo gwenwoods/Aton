@@ -15,7 +15,8 @@
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
-    BOOL longPress;
+    //BOOL longPress;
+    AVAudioPlayer *audioPlayer;
 }
 
 -(IBAction) toPlayerView:(id)sender;

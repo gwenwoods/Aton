@@ -64,10 +64,10 @@
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
             
-        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE) {
-            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORE_MESSAGE;
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_DEATH_FULL) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORING;
             
-        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORE_MESSAGE) {
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION;
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_TEMPLE_1_ANIMATION) {

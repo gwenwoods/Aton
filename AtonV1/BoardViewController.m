@@ -88,9 +88,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 }
 
 - (IBAction) doneAction:(id)sender {
-    
+    [atonGameEngine playerDoneAction];
   //  [audioPlayer play];
-    NSMutableArray *playerArray = [atonParameters playerArray];
+ /*   NSMutableArray *playerArray = [atonParameters playerArray];
     
     if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         
@@ -232,7 +232,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [atonParameters.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round ... end ..." afterDelay:AFTER_PEEP_DELAY_TIME];
         }
         
-    }
+    }*/
 }
 
 - (IBAction) exchangeCards:(id)sender {

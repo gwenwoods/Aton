@@ -25,8 +25,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_OpenMusic.mp3", [[NSBundle mainBundle] resourcePath]]];
+	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+	audioPlayer.numberOfLoops = 0;
+    audioPlayer.volume = 0.5;
+    [audioPlayer prepareToPlay];
     
-    [super viewDidLoad];
+    
 }
 
 - (void)viewDidUnload
@@ -185,7 +190,7 @@
         if ([touch phase] == UITouchPhaseEnded) {
             CGPoint touchLocation = [touch locationInView:self.view];
 		    if ([self isWithinImgView:touchLocation:playIV]) {
-                
+                [audioPlayer play];
                 BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
                 screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:screen animated:YES];
