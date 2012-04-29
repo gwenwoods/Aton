@@ -21,9 +21,19 @@
 
 #import "AtonTemple.h"
 
+@class BoardViewController;
+
+@protocol myDelegate
+-(void)clickedButton:(BoardViewController*) subController;
+@end
+
 @interface BoardViewController : UIViewController {
     AVAudioPlayer *audioPlayer;
     CGPoint touchLocation;
+   // id<myDelegate> delegate1;
+    __unsafe_unretained id delegate1;
+   // id delegate1;
+  
 }
 
 - (IBAction) toMenu:(id)sender;
@@ -37,6 +47,13 @@
 @property(strong, nonatomic) AtonTouchElement *touchElement;
 
 @property(strong, nonatomic) AtonTemple* temple1;
+@property (nonatomic, assign) id<myDelegate> delegate1;   
+//NSString *data;
+//-(NSString *)getData;
 
 
 @end
+
+
+
+

@@ -8,7 +8,8 @@
 
 #import "StartMenuViewController.h"
 
-//@interface StartMenuViewController ()
+@interface StartMenuViewController ()
+@end
 
 @implementation StartMenuViewController
 
@@ -30,11 +31,14 @@
     NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
 	audioPlayerOpen.numberOfLoops = 0;
-    audioPlayerOpen.volume = 1.0;
+    audioPlayerOpen.volume = 0.0;
     [audioPlayerOpen prepareToPlay];
-   // [audioPlayerOpen play];
+    //[audioPlayerOpen play];
     
-    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:0.5 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    
+   
     
  //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 
@@ -206,6 +210,7 @@
                 [audioPlayerEnterPlay play];
                 [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
                 BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
+                screen.delegate1 = self;
                 screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:screen animated:YES];
               //  [self viewDidLoad];
@@ -251,15 +256,35 @@
 
 - (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer
 {
-    aPlayer.volume = aPlayer.volume - 0.1;
-    if (aPlayer.volume < 0.1) {
+    aPlayer.volume = aPlayer.volume - 0.025;
+    if (aPlayer.volume < 0.01) {
         [aPlayer stop];         
     } else {
         [self performSelector:@selector(fadeVolumeDown:) withObject:aPlayer afterDelay:0.1];  
     }
 }
 
+- (void)fadeVolumeUp:(AVAudioPlayer *)aPlayer
+{
+    aPlayer.volume = aPlayer.volume + 0.0125;
+    if (aPlayer.volume > 1.0) {
+        //[aPlayer stop]; 
+        return;
+    } else {
+        [self performSelector:@selector(fadeVolumeUp:) withObject:aPlayer afterDelay:0.1];  
+    }
+}
+
 -(void) playOpenMusic {
     [audioPlayerOpen play];
 }
+
+- (void)clickedButton:(BoardViewController *)subcontroller
+{
+   // NSString *myData = [subcontroller getData];
+     NSLog(@"Back to start menu");
+    [self dismissModalViewControllerAnimated:YES];
+    [self viewDidLoad];
+}
+
 @end

@@ -37,6 +37,8 @@
 		BD97408F154C9AD6003F4E8F /* Red_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97408D154C9AD6003F4E8F /* Red_icon.png */; };
 		BD974091154C9BCC003F4E8F /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974090154C9BCC003F4E8F /* chime.mp3 */; };
 		BD974093154CB86A003F4E8F /* OpenMusic_Aton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */; };
+		BD974097154CF75D003F4E8F /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD974095154CF75B003F4E8F /* testViewController.m */; };
+		BD974098154CF75D003F4E8F /* testViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD974096154CF75C003F4E8F /* testViewController.xib */; };
 		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
 		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
 		BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7122153A3BED001848F8 /* Blue_Card3.png */; };
@@ -136,6 +138,9 @@
 		BD97408D154C9AD6003F4E8F /* Red_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_icon.png; sourceTree = "<group>"; };
 		BD974090154C9BCC003F4E8F /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chime.mp3; sourceTree = "<group>"; };
 		BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = OpenMusic_Aton.mp3; sourceTree = "<group>"; };
+		BD974094154CF75B003F4E8F /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		BD974095154CF75B003F4E8F /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		BD974096154CF75C003F4E8F /* testViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testViewController.xib; sourceTree = "<group>"; };
 		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
 		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
 		BDAE7122153A3BED001848F8 /* Blue_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card3.png; sourceTree = "<group>"; };
@@ -305,6 +310,9 @@
 				BDD3AEC3154B93330013C89A /* PlayerViewController.xib */,
 				BD974087154C7570003F4E8F /* AtonMessageMaster.h */,
 				BD974088154C7571003F4E8F /* AtonMessageMaster.m */,
+				BD974094154CF75B003F4E8F /* testViewController.h */,
+				BD974095154CF75B003F4E8F /* testViewController.m */,
+				BD974096154CF75C003F4E8F /* testViewController.xib */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -535,6 +543,7 @@
 				BD97408F154C9AD6003F4E8F /* Red_icon.png in Resources */,
 				BD974091154C9BCC003F4E8F /* chime.mp3 in Resources */,
 				BD974093154CB86A003F4E8F /* OpenMusic_Aton.mp3 in Resources */,
+				BD974098154CF75D003F4E8F /* testViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +601,7 @@
 				BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */,
 				BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */,
 				BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */,
+				BD974097154CF75D003F4E8F /* testViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

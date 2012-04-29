@@ -11,7 +11,7 @@
 #import "CreditViewController.h"
 #import "PlayerViewController.h"
 
-@interface StartMenuViewController : UIViewController
+@interface StartMenuViewController : UIViewController<myDelegate>
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
@@ -20,7 +20,7 @@
 }
 
 -(IBAction) toPlayerView:(id)sender;
-
+- (void)clickedButton:(BoardViewController *)subcontroller;
 
 
 @end

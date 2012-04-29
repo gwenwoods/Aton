@@ -11,9 +11,10 @@
 
 @implementation BoardViewController
 
-static int MESSAGE_DELAY_TIME = 0.5;
-static int AFTER_PEEP_DELAY_TIME = 2.0;
+//static int MESSAGE_DELAY_TIME = 0.5;
+//static int AFTER_PEEP_DELAY_TIME = 2.0;
 
+@synthesize delegate1;
 @synthesize atonGameEngine;
 @synthesize atonParameters;
 @synthesize touchElement;
@@ -26,6 +27,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        //delegate1 = [[myDelegate alloc]init];
+        //delegate1 = self;
     }
     return self;
 }
@@ -77,8 +80,10 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 	}
 }
 
-- (IBAction) toMenu:(id)sender {    
-    [self dismissModalViewControllerAnimated:YES];
+- (IBAction) toMenu:(id)sender {
+    [delegate1 clickedButton:self];
+ //   [self dismissModalViewControllerAnimated:YES];
+    
 
 }
 
