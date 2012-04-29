@@ -30,7 +30,7 @@
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
-        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,100,400,200)];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,120,400,200)];
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -40,7 +40,7 @@
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
-        activePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 108, 40, 40)];
+        activePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 108, 60, 60)];
         [gamePhaseView addSubview:activePlayerIV];
         
         //---------------------------------

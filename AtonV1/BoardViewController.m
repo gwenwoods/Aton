@@ -79,6 +79,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 
 - (IBAction) toMenu:(id)sender {    
     [self dismissModalViewControllerAnimated:YES];
+
 }
 
 - (IBAction) doneAction:(id)sender {

@@ -32,7 +32,10 @@
 	audioPlayerOpen.numberOfLoops = 0;
     audioPlayerOpen.volume = 1.0;
     [audioPlayerOpen prepareToPlay];
-    [audioPlayerOpen play];
+   // [audioPlayerOpen play];
+    
+    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:0.5 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    
  //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 
     //----------
@@ -205,6 +208,7 @@
                 BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
                 screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:screen animated:YES];
+              //  [self viewDidLoad];
                 playAnkhIV.image = nil;
             }
             
@@ -253,5 +257,9 @@
     } else {
         [self performSelector:@selector(fadeVolumeDown:) withObject:aPlayer afterDelay:0.1];  
     }
+}
+
+-(void) playOpenMusic {
+    [audioPlayerOpen play];
 }
 @end

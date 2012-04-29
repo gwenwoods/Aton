@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StartMenuViewController.h"
+
 //@class BoardViewController;
 @class StartMenuViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    AVAudioPlayer *audioPlayerOpen;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIViewController *startMenuViewController;

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "StartMenuViewController.h"
+
 
 @implementation AppDelegate
 
@@ -24,6 +24,11 @@
         self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
     } else {
         self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"StartMenuViewController" bundle:nil];
+        NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
+        audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
+        audioPlayerOpen.numberOfLoops = 0;
+        audioPlayerOpen.volume = 1.0;
+        [audioPlayerOpen prepareToPlay];
     }
     self.window.rootViewController = self.startMenuViewController;
     
@@ -47,16 +52,23 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+   NSLog(@"app will enter foreground");
+     
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+   // [audioPlayerOpen play];
+    [self.startMenuViewController viewDidLoad];
+    NSLog(@"app will become active");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end
