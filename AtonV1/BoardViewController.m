@@ -37,13 +37,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     
   //  NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/rooster.aiff", [[NSBundle mainBundle] resourcePath]]];
     //NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/sheep.wav", [[NSBundle mainBundle] resourcePath]]];
-    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_OpenMusic.mp3", [[NSBundle mainBundle] resourcePath]]];
-	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-	audioPlayer.numberOfLoops = 0;
-    audioPlayer.volume = 0.5;
-    [audioPlayer prepareToPlay];
 
-    [audioPlayer play];
 
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
@@ -264,4 +258,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 - (IBAction) exchangeCardsNo:(id)sender {
      atonParameters.gameManager.exchangeCardsView.hidden = YES;
 }
+
+
+
 @end

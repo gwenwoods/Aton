@@ -25,13 +25,23 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_OpenMusic.mp3", [[NSBundle mainBundle] resourcePath]]];
-	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-	audioPlayer.numberOfLoops = 0;
-    audioPlayer.volume = 0.5;
-    [audioPlayer prepareToPlay];
+
     
-    
+    NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
+	audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
+	audioPlayerOpen.numberOfLoops = 0;
+    audioPlayerOpen.volume = 1.0;
+    [audioPlayerOpen prepareToPlay];
+    [audioPlayerOpen play];
+ //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+
+    //----------
+    // audio when starting to  play
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
+	audioPlayerEnterPlay = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+	audioPlayerEnterPlay.numberOfLoops = 0;
+    audioPlayerEnterPlay.volume = 0.5;
+    [audioPlayerEnterPlay prepareToPlay];
 }
 
 - (void)viewDidUnload
@@ -190,7 +200,8 @@
         if ([touch phase] == UITouchPhaseEnded) {
             CGPoint touchLocation = [touch locationInView:self.view];
 		    if ([self isWithinImgView:touchLocation:playIV]) {
-                [audioPlayer play];
+                [audioPlayerEnterPlay play];
+                [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
                 BoardViewController *screen = [[BoardViewController alloc] initWithNibName:@"BoardViewController_iPad" bundle:nil];
                 screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:screen animated:YES];
@@ -232,5 +243,15 @@
     PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
     screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:screen animated:YES];
+}
+
+- (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer
+{
+    aPlayer.volume = aPlayer.volume - 0.1;
+    if (aPlayer.volume < 0.1) {
+        [aPlayer stop];         
+    } else {
+        [self performSelector:@selector(fadeVolumeDown:) withObject:aPlayer afterDelay:0.1];  
+    }
 }
 @end

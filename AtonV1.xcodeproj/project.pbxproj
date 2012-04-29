@@ -33,10 +33,10 @@
 		BD940BAB153A1F9300660B35 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD940BA9153A1F9300660B35 /* BoardViewController.m */; };
 		BD940BAC153A1F9300660B35 /* BoardViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */; };
 		BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = BD974088154C7571003F4E8F /* AtonMessageMaster.m */; };
-		BD97408B154C8D58003F4E8F /* Aton_OpenMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD97408A154C8D58003F4E8F /* Aton_OpenMusic.mp3 */; };
 		BD97408E154C9AD6003F4E8F /* Blue_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97408C154C9AD6003F4E8F /* Blue_icon.png */; };
 		BD97408F154C9AD6003F4E8F /* Red_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97408D154C9AD6003F4E8F /* Red_icon.png */; };
 		BD974091154C9BCC003F4E8F /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974090154C9BCC003F4E8F /* chime.mp3 */; };
+		BD974093154CB86A003F4E8F /* OpenMusic_Aton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */; };
 		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
 		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
 		BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7122153A3BED001848F8 /* Blue_Card3.png */; };
@@ -132,10 +132,10 @@
 		BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardViewController_iPad.xib; sourceTree = "<group>"; };
 		BD974087154C7570003F4E8F /* AtonMessageMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonMessageMaster.h; sourceTree = "<group>"; };
 		BD974088154C7571003F4E8F /* AtonMessageMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonMessageMaster.m; sourceTree = "<group>"; };
-		BD97408A154C8D58003F4E8F /* Aton_OpenMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aton_OpenMusic.mp3; sourceTree = "<group>"; };
 		BD97408C154C9AD6003F4E8F /* Blue_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_icon.png; sourceTree = "<group>"; };
 		BD97408D154C9AD6003F4E8F /* Red_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_icon.png; sourceTree = "<group>"; };
 		BD974090154C9BCC003F4E8F /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chime.mp3; sourceTree = "<group>"; };
+		BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = OpenMusic_Aton.mp3; sourceTree = "<group>"; };
 		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
 		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
 		BDAE7122153A3BED001848F8 /* Blue_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card3.png; sourceTree = "<group>"; };
@@ -343,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				BD97408C154C9AD6003F4E8F /* Blue_icon.png */,
+				BDAE7141153A7853001848F8 /* AtonTouchElement.h */,
 				BD97408D154C9AD6003F4E8F /* Red_icon.png */,
 				BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */,
 				BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */,
@@ -395,7 +396,6 @@
 				BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */,
 				BDAE713E153A6BE4001848F8 /* AtonTouchEndUtility.h */,
 				BDAE713F153A6BE4001848F8 /* AtonTouchEndUtility.m */,
-				BDAE7141153A7853001848F8 /* AtonTouchElement.h */,
 				BDAE7142153A7853001848F8 /* AtonTouchElement.m */,
 				BD16D21B153BC91F00ED6DB9 /* AtonTouchMovedUtility.h */,
 				BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */,
@@ -407,7 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				BD974090154C9BCC003F4E8F /* chime.mp3 */,
-				BD97408A154C8D58003F4E8F /* Aton_OpenMusic.mp3 */,
+				BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */,
 				BDD3AEB61549D2A50013C89A /* sheep.wav */,
 				BDD3AEB41549D2990013C89A /* rooster.aiff */,
 				BDD3AEBB1549FAD30013C89A /* train_crossing.mp3 */,
@@ -531,10 +531,10 @@
 				BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */,
 				BDD3AEBC1549FAD30013C89A /* train_crossing.mp3 in Resources */,
 				BDD3AEC5154B93340013C89A /* PlayerViewController.xib in Resources */,
-				BD97408B154C8D58003F4E8F /* Aton_OpenMusic.mp3 in Resources */,
 				BD97408E154C9AD6003F4E8F /* Blue_icon.png in Resources */,
 				BD97408F154C9AD6003F4E8F /* Red_icon.png in Resources */,
 				BD974091154C9BCC003F4E8F /* chime.mp3 in Resources */,
+				BD974093154CB86A003F4E8F /* OpenMusic_Aton.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
