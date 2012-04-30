@@ -37,7 +37,7 @@
     if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
         
         AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
-        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n"];
+        msg = [msg stringByAppendingString:@"Card 2 Result:|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         int number = firstRemoveNum;
@@ -64,7 +64,7 @@
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
         
         AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
-        msg = [msg stringByAppendingString:@"Card 2 Result:\n\n"];
+        msg = [msg stringByAppendingString:@"Card 2 Result|"];
         msg = [msg stringByAppendingString:player.playerName];
         int number = secondRemoveNum;
         NSString* targetColor = [self getRemoveTargetColor:secondPlayerEnum:number];
@@ -89,7 +89,7 @@
         
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
-        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n"];
+        msg = [msg stringByAppendingString:@"Card 4 Result|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
@@ -105,7 +105,7 @@
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         
         AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
-        msg = [msg stringByAppendingString:@"Card 4 Result:\n\n"];
+        msg = [msg stringByAppendingString:@"Card 4 Result|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];

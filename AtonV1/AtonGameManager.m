@@ -12,11 +12,11 @@
 
 @synthesize controller, baseView;
 @synthesize activePlayer;
-@synthesize gamePhaseView, gamePhaseLb;
+@synthesize gamePhaseView, gamePhaseLb, gamePhaseDetailLb;
 @synthesize helpView, helpLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
 @synthesize finalResultView, finalResultLb;
-@synthesize activePlayerIV;
+@synthesize gamePhaseActivePlayerIV;
 
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
@@ -30,18 +30,28 @@
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
-        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,120,400,200)];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,20)];
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        gamePhaseLb.numberOfLines = 8;     
+        gamePhaseLb.numberOfLines = 1;     
         gamePhaseLb.textColor = [UIColor blackColor];
-        gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:24];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
-        activePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 108, 60, 60)];
-        [gamePhaseView addSubview:activePlayerIV];
+        gamePhaseDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,60)];
+        gamePhaseDetailLb.backgroundColor = [UIColor clearColor];
+        gamePhaseDetailLb.textAlignment = UITextAlignmentCenter;
+        gamePhaseDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        gamePhaseDetailLb.numberOfLines = 3;     
+        gamePhaseDetailLb.textColor = [UIColor blackColor];
+        gamePhaseDetailLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        [gamePhaseView addSubview:gamePhaseDetailLb];
+        [gamePhaseView bringSubviewToFront:gamePhaseDetailLb];
+        
+        gamePhaseActivePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 140, 60, 60)];
+        [gamePhaseView addSubview:gamePhaseActivePlayerIV];
         
         //---------------------------------
         helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
@@ -49,11 +59,11 @@
         helpView.hidden = YES;
         [baseView addSubview:helpView];
         
-        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,200)];
         helpLb.backgroundColor = [UIColor clearColor];
         helpLb.textAlignment = UITextAlignmentCenter;
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        helpLb.numberOfLines = 8;     
+        helpLb.numberOfLines = 4;     
         helpLb.textColor = [UIColor blackColor];
         helpLb.font = [UIFont fontWithName:@"Copperplate" size:20];
         [helpView addSubview:helpLb];
@@ -115,19 +125,30 @@
 
 -(void) showGamePhaseView:(NSString*) msg {
     
+    NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
+    NSString *title = [messageArray objectAtIndex:0];
+    NSString *progressMsg = @"";
+    
+    if ([messageArray count] > 1) {
+        progressMsg = [messageArray objectAtIndex:1];
+    }
+    
+
+    
     if (activePlayer == PLAYER_RED) {
-        activePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
+        gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
         
     } else if (activePlayer == PLAYER_BLUE) {
-        activePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
+        gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
         
     } else {
-        activePlayerIV.image = nil;
+        gamePhaseActivePlayerIV.image = nil;
         
     }
     
     gamePhaseView.hidden = NO;
-    gamePhaseLb.text = msg;
+    gamePhaseLb.text = title;
+    gamePhaseDetailLb.text = progressMsg;
     gamePhaseView.alpha = 0.0;
     [UIView animateWithDuration:0.5
                           delay:0.0
