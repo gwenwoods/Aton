@@ -47,19 +47,19 @@
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
-            [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:[atonParameters.atonRoundResult getFirstRemoveTargetEnum]];
+         //   [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:[atonParameters.atonRoundResult getFirstRemoveTargetEnum]];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
-            [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:[atonParameters.atonRoundResult getSecondRemoveTargetEnum]];
+           // [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:[atonParameters.atonRoundResult getSecondRemoveTargetEnum]];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
-            [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum];
+          //  [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
-            [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.secondPlayerEnum];
+         //   [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.secondPlayerEnum];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
@@ -99,9 +99,25 @@
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
             
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_NONE ) {
+            // BRANCH PHASE
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_PRE_SECOND_REMOVE_PEEP ) {
+            // BRANCH PHASE
+            atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_NONE ) {
+            // BRANCH PHASE
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_PRE_FIRST_PLACE_PEEP ) {
+            // BRANCH PHASE
+            atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+            
         } else {
             return;
         }
+        
+        
         
         [engine run];
     }
