@@ -12,7 +12,7 @@
 
 @synthesize controller, baseView;
 @synthesize activePlayer;
-@synthesize gamePhaseView, gamePhaseLb, gamePhaseDetailLb;
+@synthesize gamePhaseView, gamePhaseLb, gamePhaseDetailLb, gamePhaseMiddleLb;
 @synthesize helpView, helpLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
 @synthesize finalResultView, finalResultLb;
@@ -49,6 +49,16 @@
         gamePhaseDetailLb.font = [UIFont fontWithName:@"Copperplate" size:20];
         [gamePhaseView addSubview:gamePhaseDetailLb];
         [gamePhaseView bringSubviewToFront:gamePhaseDetailLb];
+        
+        gamePhaseMiddleLb = [[UILabel alloc] initWithFrame:CGRectMake(52,160,400,60)];
+        gamePhaseMiddleLb.backgroundColor = [UIColor clearColor];
+        gamePhaseMiddleLb.textAlignment = UITextAlignmentCenter;
+        gamePhaseMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        gamePhaseMiddleLb.numberOfLines = 3;     
+        gamePhaseMiddleLb.textColor = [UIColor blackColor];
+        gamePhaseMiddleLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        [gamePhaseView addSubview:gamePhaseMiddleLb];
+        [gamePhaseView bringSubviewToFront:gamePhaseMiddleLb];
         
         gamePhaseActivePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 140, 60, 60)];
         [gamePhaseView addSubview:gamePhaseActivePlayerIV];
@@ -125,6 +135,10 @@
 
 -(void) showGamePhaseView:(NSString*) msg {
     
+    gamePhaseLb.text = nil;
+    gamePhaseDetailLb.text = nil;
+    gamePhaseMiddleLb.text = nil;
+    
     NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
     NSString *title = [messageArray objectAtIndex:0];
     NSString *progressMsg = @"";
@@ -132,8 +146,6 @@
     if ([messageArray count] > 1) {
         progressMsg = [messageArray objectAtIndex:1];
     }
-    
-
     
     if (activePlayer == PLAYER_RED) {
         gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
@@ -146,9 +158,13 @@
         
     }
     
+    if ([messageArray count] > 1) {
+        gamePhaseLb.text = title;
+        gamePhaseDetailLb.text = progressMsg;
+    } else {
+        gamePhaseMiddleLb.text = title;
+    }
     gamePhaseView.hidden = NO;
-    gamePhaseLb.text = title;
-    gamePhaseDetailLb.text = progressMsg;
     gamePhaseView.alpha = 0.0;
     [UIView animateWithDuration:0.5
                           delay:0.0

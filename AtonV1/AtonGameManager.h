@@ -20,7 +20,7 @@
 @property(nonatomic) int activePlayer;
 @property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView;
 @property(strong, nonatomic) UIImageView *gamePhaseActivePlayerIV;
-@property(strong, nonatomic) UILabel *gamePhaseLb, *gamePhaseDetailLb, *helpLb, *exchangeCardsLb, *finalResultLb;
+@property(strong, nonatomic) UILabel *gamePhaseLb, *gamePhaseDetailLb, *gamePhaseMiddleLb, *helpLb, *exchangeCardsLb, *finalResultLb;
 //@property(strong, nonatomic) UIButton *exchangeYesButton, *exchangeNoButton;
 
 @end
