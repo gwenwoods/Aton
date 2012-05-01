@@ -7,14 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BoardViewController.h"
 
-@interface PlayerViewController : UIViewController {
+@class PlayerViewController;
+
+@protocol playerViewDelegate
+-(void)clickedButton1:(PlayerViewController*) subController;
+@end
+
+@interface PlayerViewController : UIViewController<myDelegate> {
     
-    IBOutlet UITextField *textField_red;
-    IBOutlet UILabel *playerName_red;
+    IBOutlet UITextField *textField_red, *textField_blue;
+  //  IBOutlet UILabel *playerName_red;
+    
+    NSString *redName, *blueName;
+    __unsafe_unretained id delegatePlayerView;
 }
 
 -(IBAction) backToMenu:(id)sender;
--(IBAction) updatePlayerNameRed:(id)sender;
+//-(IBAction) updatePlayerNameRed:(id)sender;
 
+@property (nonatomic, assign) id<playerViewDelegate> delegatePlayerView; 
 @end

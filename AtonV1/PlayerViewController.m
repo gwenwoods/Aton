@@ -9,10 +9,10 @@
 #import "PlayerViewController.h"
 
 @interface PlayerViewController ()
-
 @end
 
 @implementation PlayerViewController
+@synthesize delegatePlayerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,12 +43,27 @@
 }
 
 -(IBAction) backToMenu:(id)sender {
+	//[self dismissModalViewControllerAnimated:YES];
+    [delegatePlayerView clickedButton1:self];
+}
+
+-(IBAction) toPlay:(id)sender {
+    redName = textField_red.text;
+    blueName = textField_blue.text;
+    
+    BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
+    screen.delegate1 = self;
+    screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:screen animated:YES];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
--(IBAction) updatePlayerNameRed:(id)sender {
-	NSString *name = textField_red.text;
-    playerName_red.text = name;
-}
 
+- (void)clickedButton:(BoardViewController *)subcontroller
+{
+    // NSString *myData = [subcontroller getData];
+    NSLog(@"Back to start menu");
+    [self dismissModalViewControllerAnimated:YES];
+    [self viewDidLoad];
+}
 @end

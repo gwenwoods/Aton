@@ -210,8 +210,9 @@
 		    if ([self isWithinImgView:touchLocation:playIV]) {
                 [audioPlayerEnterPlay play];
                 [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-                BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:@"Monster" blue:@"Wolf"];
-                screen.delegate1 = self;
+              //  BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:@"Monster" blue:@"Wolf"];
+                PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
+                screen.delegatePlayerView = self;
                 screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:screen animated:YES];
               //  [self viewDidLoad];
@@ -292,4 +293,11 @@
     [self viewDidLoad];
 }
 
+- (void)clickedButton1:(PlayerViewController *)subcontroller
+{
+    // NSString *myData = [subcontroller getData];
+    NSLog(@"Back to start menu");
+    [self dismissModalViewControllerAnimated:YES];
+    [self viewDidLoad];
+}
 @end
