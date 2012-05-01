@@ -33,6 +33,7 @@
    // id<myDelegate> delegate1;
     __unsafe_unretained id delegate1;
    // id delegate1;
+ //   NSString *playerRedName, *playerBlueName;
   
 }
 
@@ -40,11 +41,12 @@
 - (IBAction) exchangeCards:(id)sender;
 - (IBAction) exchangeCardsYes:(id)sender;
 - (IBAction) exchangeCardsNo:(id)sender;
-
+- (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName;
 //@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
 @property(strong, nonatomic) AtonGameEngine *atonGameEngine;
 @property(strong, nonatomic) AtonGameParameters *atonParameters;
 @property(strong, nonatomic) AtonTouchElement *touchElement;
+@property(strong, nonatomic) NSString *playerRedName, *playerBlueName;
 
 @property(strong, nonatomic) AtonTemple* temple1;
 @property (nonatomic, assign) id<myDelegate> delegate1;   

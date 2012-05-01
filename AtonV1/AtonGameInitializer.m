@@ -14,12 +14,12 @@
 static int SCARAB_WIDTH = 40;
 static int SCARAB_HEIGHT = 44;
 
-+(AtonGameParameters*) initializeNewGame:(UIViewController*) controller {
++(AtonGameParameters*) initializeNewGame:(UIViewController*) controller:(NSString*) redName: (NSString*) blueName{
     
     //----------------------
     // initialize players
-    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0 :@"Red":controller];
-    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1 :@"Blue":controller];
+    AtonPlayer *redPlayer = [[AtonPlayer alloc] initializeWithParameters:0:redName:controller];
+    AtonPlayer *bluePlayer = [[AtonPlayer alloc] initializeWithParameters:1:blueName:controller];
     
     NSMutableArray *playerArray = [[NSMutableArray alloc] init];
     [playerArray addObject:redPlayer];

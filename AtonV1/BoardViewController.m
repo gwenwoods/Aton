@@ -14,6 +14,7 @@
 //static int MESSAGE_DELAY_TIME = 0.5;
 //static int AFTER_PEEP_DELAY_TIME = 2.0;
 
+@synthesize playerRedName, playerBlueName;
 @synthesize delegate1;
 @synthesize atonGameEngine;
 @synthesize atonParameters;
@@ -33,6 +34,19 @@
     return self;
 }
 
+- (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName 
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        //delegate1 = [[myDelegate alloc]init];
+        //delegate1 = self;
+        playerRedName = redName;
+        playerBlueName = blueName;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,11 +55,11 @@
   //  NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/rooster.aiff", [[NSBundle mainBundle] resourcePath]]];
     //NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/sheep.wav", [[NSBundle mainBundle] resourcePath]]];
 
-
-    
+   // NSString *str = playerStr;
+   // NSLog(@" %@",playerStr);
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
    
-    atonParameters = [AtonGameInitializer initializeNewGame:self];
+    atonParameters = [AtonGameInitializer initializeNewGame:self:playerRedName:playerBlueName];
     atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters];
     
     [atonGameEngine run];
