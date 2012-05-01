@@ -17,10 +17,10 @@
 -(NSString*) getWinningMessage {
     
     NSString *msg = resultName;
-    msg = [msg stringByAppendingString:@"result: \n\n"];
+    msg = [msg stringByAppendingString:@"|"];
     
     if (winningPlayerEnum == PLAYER_NONE) {
-        msg = [msg stringByAppendingString:@"Tie"];
+        msg = [msg stringByAppendingString:@"Tie\n"];
         return msg;
     }
     

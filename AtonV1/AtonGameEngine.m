@@ -84,7 +84,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         int cardOneWinnerEnum = roundResult.cardOneWinnerEnum;
         
         if (cardOneWinnerEnum == PLAYER_NONE) {
-            msg = [msg stringByAppendingString:@"tie"];
+            msg = [msg stringByAppendingString:@"Tie"];
             
         } else {
             AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
@@ -218,13 +218,16 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
         TempleScoreResult *result_t1 = [roundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_1];
-        NSString *msg = [result_t1 getWinningMessage];
+       // NSString *msg = [result_t1 getWinningMessage];
+        NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t1];
         gameManager.activePlayer = result_t1.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
         TempleScoreResult *result_t1 = [roundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_1];
-        NSString *msg = [result_t1 getWinningMessage];
+       
+      //  NSString *msg = [result_t1 getWinningMessage];
+        NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t1];
         gameManager.activePlayer = result_t1.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         
@@ -233,7 +236,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         float animationTime = [self templeScoreAnimation:result_t1];
 
         TempleScoreResult *result_t2 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_2];
-        NSString *msg = [result_t2 getWinningMessage];
+        //NSString *msg = [result_t2 getWinningMessage];
+        NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t2];
         gameManager.activePlayer = result_t2.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
         
@@ -242,7 +246,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         float animationTime = [self templeScoreAnimation:result_t2];
         
         TempleScoreResult *result_t3 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_3];
-        NSString *msg = [result_t3 getWinningMessage];
+       // NSString *msg = [result_t3 getWinningMessage];
+         NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t3];
         gameManager.activePlayer = result_t3.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
     
@@ -251,7 +256,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         float animationTime = [self templeScoreAnimation:result_t3];
         
         TempleScoreResult *result_t4 = [para.atonRoundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_4];
-        NSString *msg = [result_t4 getWinningMessage];
+      //  NSString *msg = [result_t4 getWinningMessage];
+         NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t4];
         gameManager.activePlayer = result_t4.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
         
@@ -260,7 +266,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         float animationTime = [self templeScoreAnimation:result_t4];
 
         TempleScoreResult *result_greyBonus = [roundResult.templeScoreResultArray objectAtIndex:SCORE_GREY_BONUS];
-        NSString *msg = [result_greyBonus getWinningMessage];
+      //  NSString *msg = [result_greyBonus getWinningMessage];
+        NSString *msg = [messageMaster getMessageForTempleScoreResult:result_greyBonus];
         gameManager.activePlayer = result_greyBonus.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
     
@@ -269,7 +276,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         float animationTime = [self templeScoreAnimation:result_greyBonus];
         
         TempleScoreResult *result_orangeBonusForRed = [roundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_RED];
-        NSString *msg = [result_orangeBonusForRed getWinningMessage];
+       // NSString *msg = [result_orangeBonusForRed getWinningMessage];
+        NSString *msg = [messageMaster getMessageForTempleScoreResult:result_orangeBonusForRed];
         gameManager.activePlayer = result_orangeBonusForRed.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
         
@@ -278,7 +286,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         float animationTime = [self templeScoreAnimation:result_orangeBonusForRed];
         
         TempleScoreResult *result_orangeBonusForBlue = [roundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_BLUE];
-        NSString *msg = [result_orangeBonusForBlue getWinningMessage];
+     //   NSString *msg = [result_orangeBonusForBlue getWinningMessage];
+        NSString *msg = [messageMaster getMessageForTempleScoreResult:result_orangeBonusForBlue];
         gameManager.activePlayer = result_orangeBonusForBlue.winningPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
         
@@ -730,7 +739,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 
                 para.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
                 para.gameManager.activePlayer = PLAYER_NONE;
-                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"|DEATH TEMPLE Full\n Enter Scoring Phase" afterDelay:AFTER_PEEP_DELAY_TIME];
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"|Death Temple Full\n Enter Scoring Phase" afterDelay:AFTER_PEEP_DELAY_TIME];
                 //[self run];
             } else {
                 if ([self gameOverCondition] != nil) {
@@ -774,7 +783,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
             //  NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_DISTRIBUTE_CARD];
             para.gameManager.activePlayer = PLAYER_NONE;
-            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round ... end ..." afterDelay:AFTER_PEEP_DELAY_TIME];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
         }
         
     }

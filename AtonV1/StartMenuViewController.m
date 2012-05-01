@@ -34,10 +34,10 @@
     audioPlayerOpen.volume = 0.0;
     [audioPlayerOpen prepareToPlay];
     //[audioPlayerOpen play];
-    
+ //   openMusicTime = 0.0;
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-    
+    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:27.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
    
     
  //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
@@ -264,8 +264,10 @@
     }
 }
 
+
 - (void)fadeVolumeUp:(AVAudioPlayer *)aPlayer
 {
+    
     aPlayer.volume = aPlayer.volume + 0.0125;
     if (aPlayer.volume > 1.0) {
         //[aPlayer stop]; 
@@ -274,6 +276,8 @@
         [self performSelector:@selector(fadeVolumeUp:) withObject:aPlayer afterDelay:0.1];  
     }
 }
+
+
 
 -(void) playOpenMusic {
     [audioPlayerOpen play];

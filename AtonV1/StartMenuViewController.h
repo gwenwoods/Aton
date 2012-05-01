@@ -17,6 +17,7 @@
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
     //BOOL longPress;
     AVAudioPlayer *audioPlayerEnterPlay, *audioPlayerOpen;
+   // float openMusicTime;
 }
 
 -(IBAction) toPlayerView:(id)sender;

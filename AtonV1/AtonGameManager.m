@@ -13,10 +13,10 @@
 @synthesize controller, baseView;
 @synthesize activePlayer;
 @synthesize gamePhaseView, gamePhaseLb, gamePhaseDetailLb, gamePhaseMiddleLb;
-@synthesize helpView, helpLb;
+@synthesize helpView, helpLb, helpDetailLb, helpMiddleLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
 @synthesize finalResultView, finalResultLb;
-@synthesize gamePhaseActivePlayerIV;
+@synthesize gamePhaseActivePlayerIV, helpActivePlayerIV;
 
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
@@ -69,16 +69,38 @@
         helpView.hidden = YES;
         [baseView addSubview:helpView];
         
-        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,200)];
+        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,20)];
         helpLb.backgroundColor = [UIColor clearColor];
         helpLb.textAlignment = UITextAlignmentCenter;
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpLb.numberOfLines = 4;     
         helpLb.textColor = [UIColor blackColor];
-        helpLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        helpLb.font = [UIFont fontWithName:@"Copperplate" size:24];
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
+        helpDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,60)];
+        helpDetailLb.backgroundColor = [UIColor clearColor];
+        helpDetailLb.textAlignment = UITextAlignmentCenter;
+        helpDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        helpDetailLb.numberOfLines = 3;     
+        helpDetailLb.textColor = [UIColor blackColor];
+        helpDetailLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        [helpView addSubview:helpDetailLb];
+        [helpView bringSubviewToFront:helpDetailLb];
+        
+        helpMiddleLb = [[UILabel alloc] initWithFrame:CGRectMake(52,160,400,60)];
+        helpMiddleLb.backgroundColor = [UIColor clearColor];
+        helpMiddleLb.textAlignment = UITextAlignmentCenter;
+        helpMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        helpMiddleLb.numberOfLines = 3;     
+        helpMiddleLb.textColor = [UIColor blackColor];
+        helpMiddleLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        [helpView addSubview:helpMiddleLb];
+        [helpView bringSubviewToFront:helpMiddleLb];
+        
+        helpActivePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 140, 60, 60)];
+        [helpView addSubview:helpActivePlayerIV];
         //---------------------------------
         exchangeCardsView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         exchangeCardsView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
@@ -179,8 +201,38 @@
 }
 
 -(void) showHelpView:(NSString*) msg {
+    
+    helpLb.text = nil;
+    helpLb.text = nil;
+    helpLb.text = nil;
+    
+    NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
+    NSString *title = [messageArray objectAtIndex:0];
+    NSString *progressMsg = @"";
+    
+    if ([messageArray count] > 1) {
+        progressMsg = [messageArray objectAtIndex:1];
+    }
+    
+    if (activePlayer == PLAYER_RED) {
+        helpActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
+        
+    } else if (activePlayer == PLAYER_BLUE) {
+        helpActivePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
+        
+    } else {
+        helpActivePlayerIV.image = nil;
+        
+    }
+    
+    if ([messageArray count] > 1) {
+        helpLb.text = title;
+        helpDetailLb.text = progressMsg;
+    } else {
+        helpMiddleLb.text = title;
+    }
     helpView.hidden = NO;
-    helpLb.text = msg;
+  //  helpLb.text = msg;
 }
 
 -(void) showFinalResultView:(NSString*) msg {

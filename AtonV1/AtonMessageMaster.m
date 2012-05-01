@@ -121,7 +121,7 @@
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
         AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
-        msg = [msg stringByAppendingString:@"Round End Result:\n\n"];
+        msg = [msg stringByAppendingString:@"Round End|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
@@ -132,7 +132,7 @@
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
         AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
-        msg = [msg stringByAppendingString:@"Round End Result:\n\n"];
+        msg = [msg stringByAppendingString:@"Round End|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
@@ -218,4 +218,24 @@
     
     return @"\n in any Temple";
 } 
+
+-(NSString*) getMessageForTempleScoreResult:(TempleScoreResult*) result {
+    
+    NSString *msg = result.resultName;
+    msg = [msg stringByAppendingString:@"|"];
+    if (result.winningPlayerEnum == PLAYER_NONE) {
+        msg = [msg stringByAppendingString:@"|Tie\n"];
+        return msg;
+    }
+    
+    AtonPlayer* winningPlayer = [para.playerArray objectAtIndex:result.winningPlayerEnum];
+    NSString* playerName = winningPlayer.playerName;
+
+    msg = [msg stringByAppendingString:playerName];
+    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n wins %i point", result.winningScore]];
+    if (result.winningScore > 1) {
+        msg = [msg stringByAppendingString:@"s"];
+    }
+    return  msg;
+}
 @end
