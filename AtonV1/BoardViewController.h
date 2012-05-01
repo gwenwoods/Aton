@@ -23,7 +23,7 @@
 
 @class BoardViewController;
 
-@protocol myDelegate
+@protocol BoardViewDelegate
 -(void)clickedButton:(BoardViewController*) subController;
 @end
 
@@ -31,7 +31,7 @@
     AVAudioPlayer *audioPlayer;
     CGPoint touchLocation;
    // id<myDelegate> delegate1;
-    __unsafe_unretained id delegate1;
+    __unsafe_unretained id delegateBoardView;
    // id delegate1;
  //   NSString *playerRedName, *playerBlueName;
   
@@ -49,7 +49,7 @@
 @property(strong, nonatomic) NSString *playerRedName, *playerBlueName;
 
 @property(strong, nonatomic) AtonTemple* temple1;
-@property (nonatomic, assign) id<myDelegate> delegate1;   
+@property (nonatomic, assign) id<BoardViewDelegate> delegateBoardView;   
 //NSString *data;
 //-(NSString *)getData;
 

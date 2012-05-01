@@ -11,26 +11,30 @@
 
 @class PlayerViewController;
 
-@protocol playerViewDelegate
--(void)clickedButton1:(PlayerViewController*) subController;
+@protocol PlayerViewDelegate
+-(void)dismissPlayerViewWithAnimation:(PlayerViewController*) subController;
+-(void)dismissPlayerViewWithoutAnimation:(PlayerViewController*) subController;
 @end
 
-@interface PlayerViewController : UIViewController<myDelegate, UITextFieldDelegate> {
+@interface PlayerViewController : UIViewController<BoardViewDelegate, UITextFieldDelegate> {
     
-    IBOutlet UITextField *textField_red, *textField_blue;
+  //  IBOutlet UITextField *textField_red, *textField_blue;
   //  IBOutlet UILabel *playerName_red;
     
-    NSString *redName, *blueName;
+    
     __unsafe_unretained id delegatePlayerView;
     
     UIImageView *enterNameView;
     UILabel *enterNameLb;
     UITextField *enterNameTextField;
     UIButton *redNameButton, *blueNameButton;
+    BOOL updateRed, updateBlue;
+    NSString *redName, *blueName;
+    
+    AVAudioPlayer *audioPlayerChime;
 }
 
 -(IBAction) backToMenu:(id)sender;
-//-(IBAction) updatePlayerNameRed:(id)sender;
 
-@property (nonatomic, assign) id<playerViewDelegate> delegatePlayerView; 
+@property (nonatomic, assign) id<PlayerViewDelegate> delegatePlayerView; 
 @end

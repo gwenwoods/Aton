@@ -15,7 +15,7 @@
 //static int AFTER_PEEP_DELAY_TIME = 2.0;
 
 @synthesize playerRedName, playerBlueName;
-@synthesize delegate1;
+@synthesize delegateBoardView;
 @synthesize atonGameEngine;
 @synthesize atonParameters;
 @synthesize touchElement;
@@ -95,7 +95,7 @@
 }
 
 - (IBAction) toMenu:(id)sender {
-    [delegate1 clickedButton:self];
+    [delegateBoardView clickedButton:self];
  //   [self dismissModalViewControllerAnimated:YES];
     
 

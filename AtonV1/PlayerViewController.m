@@ -47,9 +47,7 @@
     enterNameTextField.textAlignment = UITextAlignmentLeft;
     enterNameTextField.font = [UIFont fontWithName:@"Copperplate" size:30];
     [enterNameTextField addTarget:self action:@selector(dismissKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
- //   [exchangeCardsButton addTarget:controller action:@selector(exchangeCards:) forControlEvents:UIControlEventTouchUpInside];
     enterNameTextField.delegate = self;
-   // 
     [enterNameView addSubview:enterNameTextField];
 
     redNameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -57,12 +55,26 @@
     redNameButton.userInteractionEnabled = YES;
     redNameButton.titleLabel.font = [UIFont fontWithName:@"Copperplate" size:20];
     [redNameButton setTitle:@"Player Red"  forState:UIControlStateNormal];
-    [redNameButton addTarget:self action:@selector(toEnterNameView) forControlEvents:UIControlEventTouchUpInside];
+    [redNameButton addTarget:self action:@selector(setRedName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:redNameButton];
 
+    blueNameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    blueNameButton.frame = CGRectMake(600,300,180,40);
+    blueNameButton.userInteractionEnabled = YES;
+    blueNameButton.titleLabel.font = [UIFont fontWithName:@"Copperplate" size:20];
+    [blueNameButton setTitle:@"Player Blue"  forState:UIControlStateNormal];
+    [blueNameButton addTarget:self action:@selector(setBlueName:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:blueNameButton];
     
-    //[textField_red becomeFirstResponder];
-    textField_red.delegate = self;
+    redName = redNameButton.titleLabel.text;
+    blueName = blueNameButton.titleLabel.text;
+    //----------
+    // audio when starting to  play
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
+	audioPlayerChime = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+	audioPlayerChime.numberOfLoops = 0;
+    audioPlayerChime.volume = 0.5;
+    [audioPlayerChime prepareToPlay];
 }
 
 - (void)viewDidUnload
@@ -79,27 +91,30 @@
 
 -(IBAction) backToMenu:(id)sender {
 	//[self dismissModalViewControllerAnimated:YES];
-    [delegatePlayerView clickedButton1:self];
+    [delegatePlayerView dismissPlayerViewWithAnimation:self];
 }
 
+-(void) toMain {
+    [delegatePlayerView dismissPlayerViewWithAnimation:self];
+}
 -(IBAction) toPlay:(id)sender {
-    redName = textField_red.text;
-    blueName = textField_blue.text;
-    
+
     BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
-    screen.delegate1 = self;
+    screen.delegateBoardView = self;
     screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:screen animated:YES];
-	[self dismissModalViewControllerAnimated:YES];
+    [audioPlayerChime play];
+//	[self dismissModalViewControllerAnimated:YES];
 }
 
 
 - (void)clickedButton:(BoardViewController *)subcontroller
 {
-    // NSString *myData = [subcontroller getData];
-    NSLog(@"Back to start menu");
-    [self dismissModalViewControllerAnimated:YES];
-    [self viewDidLoad];
+    NSLog(@"Back to Player View");
+    [self dismissModalViewControllerAnimated:NO];
+    [delegatePlayerView dismissPlayerViewWithoutAnimation:self];
+   // [self performSelector:@selector(toMain) withObject:nil afterDelay:0.1];
+   // [self toMain];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -108,36 +123,46 @@
     return NO;
 }
 
+/*
 -(IBAction)dismissKeyboard: (id)sender {
     NSLog(@"Hit me!");
     [sender resignFirstResponder];
   
-} 
+} */
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Hide Keyboard");
     enterNameView.hidden = YES;
     NSString* name = enterNameTextField.text;
-    [redNameButton setTitle:name forState:UIControlStateNormal];
+    
+    if (updateRed == YES) {
+        [redNameButton setTitle:name forState:UIControlStateNormal];
+    } else {
+        [blueNameButton setTitle:name forState:UIControlStateNormal];
+    }
+    
     
 }
 
 -(IBAction) setRedName:(id)sender {
-    
+    updateRed = YES;
+    updateBlue = NO;
+    enterNameTextField.text = redNameButton.titleLabel.text;
+    [self toEnterNameView];
 }
 
 -(IBAction) setBlueName:(id)sender {
-    
+    updateBlue = YES;
+    updateRed = NO;
+    enterNameTextField.text = blueNameButton.titleLabel.text;
+    [self toEnterNameView];
 }
-/*- (void)keyboardWillHide:(NSNotification *)notification {
-    
-      NSLog(@"I m hiding !");
-}*/
 
 -(void) toEnterNameView {
     enterNameView.hidden = NO;
-    [self.view bringSubviewToFront:enterNameView];
     enterNameView.userInteractionEnabled = YES;
+    [self.view bringSubviewToFront:enterNameView];
+    
     [enterNameTextField becomeFirstResponder];
 }
 @end
