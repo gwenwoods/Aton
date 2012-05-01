@@ -22,6 +22,11 @@
     
     NSString *redName, *blueName;
     __unsafe_unretained id delegatePlayerView;
+    
+    UIImageView *enterNameView;
+    UILabel *enterNameLb;
+    UITextField *enterNameTextField;
+    UIButton *redNameButton, *blueNameButton;
 }
 
 -(IBAction) backToMenu:(id)sender;
