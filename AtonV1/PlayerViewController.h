@@ -15,7 +15,7 @@
 -(void)clickedButton1:(PlayerViewController*) subController;
 @end
 
-@interface PlayerViewController : UIViewController<myDelegate> {
+@interface PlayerViewController : UIViewController<myDelegate, UITextFieldDelegate> {
     
     IBOutlet UITextField *textField_red, *textField_blue;
   //  IBOutlet UILabel *playerName_red;

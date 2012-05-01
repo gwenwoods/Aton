@@ -27,7 +27,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    textField_red.becomeFirstResponder;
+    textField_red.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -66,4 +67,25 @@
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    NSLog(@"Hit me");
+    return NO;
+}
+
+-(IBAction)dismissKeyboard: (id)sender {
+    NSLog(@"Hit me!");
+    [sender resignFirstResponder];
+  
+} 
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"I m hiding !");
+}
+
+/*- (void)keyboardWillHide:(NSNotification *)notification {
+    
+      NSLog(@"I m hiding !");
+}*/
 @end
