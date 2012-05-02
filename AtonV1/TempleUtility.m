@@ -469,15 +469,26 @@
 +(BOOL) isTempleFull:(NSMutableArray*) templeArray:(int) templeEnum {
 
     AtonTemple *temple = [templeArray objectAtIndex:templeEnum];
+    int redCount = 0;
+    int blueCount = 0;
     for (int j=0; j<12; j++) {
         TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
         if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
             return NO;
                 
-        } 
+        } else if([slot occupiedEnum] == OCCUPIED_RED) {
+            redCount++;
+            
+        } else if([slot occupiedEnum] == OCCUPIED_BLUE) {
+            blueCount++;
+            
+        }
     }
     
-    return YES;
+    if (redCount == 12 || blueCount == 12) {
+        return YES;
+    }
+    return NO;
 }
 
 +(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum {
