@@ -127,7 +127,7 @@
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:@"Peep from each temple"];
+        msg = [msg stringByAppendingString:@"Peep\n From Each Temple"];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
@@ -138,7 +138,7 @@
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
         msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:@"Peep from each temple"];
+        msg = [msg stringByAppendingString:@"Peep\n From Each Temple"];
     }
     
     return  msg;
@@ -209,14 +209,14 @@
         return @"\n in Temple 1";
         
     } else if (templeEnum == TEMPLE_2) {
-        return @"\n in Temple 1 and 2";
+        return @"\n in Temple 1 or 2";
         
     } else if (templeEnum == TEMPLE_3) {
-        return @"\n in Temple 1, 2 and 3";
+        return @"\n in Temple 1, 2 or 3";
         
     }
     
-    return @"\n in any Temple";
+    return @"\n in Temple 1, 2, 3, or 4";
 } 
 
 -(NSString*) getMessageForTempleScoreResult:(TempleScoreResult*) result {
@@ -224,7 +224,7 @@
     NSString *msg = result.resultName;
     msg = [msg stringByAppendingString:@"|"];
     if (result.winningPlayerEnum == PLAYER_NONE) {
-        msg = [msg stringByAppendingString:@"|Tie\n"];
+        msg = [msg stringByAppendingString:@"Tie\n No Player gains Any Point"];
         return msg;
     }
     
@@ -232,7 +232,7 @@
     NSString* playerName = winningPlayer.playerName;
 
     msg = [msg stringByAppendingString:playerName];
-    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n wins %i point", result.winningScore]];
+    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Wins %i Point", result.winningScore]];
     if (result.winningScore > 1) {
         msg = [msg stringByAppendingString:@"s"];
     }

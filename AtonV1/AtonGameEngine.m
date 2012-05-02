@@ -310,6 +310,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 
                 return;
             }
+            [firstPlayer displayMenu];
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
@@ -328,6 +329,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             return;
         }
+        
+        [secondPlayer displayMenu];
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_NONE) {
         // BRANCH PHASE
         NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
@@ -766,6 +769,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
             para.gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+            [firstPlayer closeMenu];
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
@@ -783,6 +787,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             //  NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_DISTRIBUTE_CARD];
             para.gameManager.activePlayer = PLAYER_NONE;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
+            [secondPlayer closeMenu];
         }
         
     }
