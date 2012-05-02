@@ -21,6 +21,7 @@ enum PLAYER_ENUM {
     
     CGPoint *startOriginArray;
     UILabel *deckCountLb;
+    UIButton *doneButton;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;
@@ -30,6 +31,8 @@ enum PLAYER_ENUM {
 -(void) distributeCards;
 -(int*) getCardNumberArray;
 -(void) resetCard;
+-(void) displayMenu;
+-(void) closeMenu;
 
 // arrange cards functions
 -(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;
@@ -47,4 +50,5 @@ enum PLAYER_ENUM {
 @property (strong, nonatomic) NSMutableArray *deckArray;
 @property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV;
 @property (strong, nonatomic) UIButton *exchangeCardsButton;
+@property (strong, nonatomic) UIImageView *menuView;
 @end

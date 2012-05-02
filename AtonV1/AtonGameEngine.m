@@ -38,6 +38,10 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     AtonPlayer *playerRed = [playerArray objectAtIndex:PLAYER_RED];
     AtonPlayer *playerBlue = [playerArray objectAtIndex:PLAYER_BLUE];
     
+    AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
+    AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
+    AtonPlayer *firstPlayer = [playerArray objectAtIndex:roundResult.firstPlayerEnum];
+    AtonPlayer *secondPlayer = [playerArray objectAtIndex:roundResult.secondPlayerEnum];
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
@@ -82,7 +86,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         int cardOneWinnerEnum = roundResult.cardOneWinnerEnum;
         
         if (cardOneWinnerEnum == PLAYER_NONE) {
-            msg = [msg stringByAppendingString:@"Tie \n No Player Gains Any Point"];
+            msg = [msg stringByAppendingString:@"Tie \n No Player\n Gains Any Point"];
             
         } else {
             AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
@@ -158,8 +162,10 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString *msg = @"|All Eligible Peeps Removed\n";
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_NONE;
+        } else {
+             [firstPlayer displayMenu];
         }
-        
+       
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
         [TempleUtility changeSlotBoundaryColor:para.templeArray:[para.atonRoundResult getSecondRemoveTargetEnum]];
         
@@ -190,16 +196,18 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString *msg = @"|All Eligible Peeps Removed\n";
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_NONE;
+        } else {
+            [secondPlayer displayMenu];
         }
         
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.firstPlayerEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.firstTemple:OCCUPIED_EMPTY];
-        
+        [firstPlayer displayMenu];
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.secondPlayerEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.secondTemple:OCCUPIED_EMPTY];
-        
+        [secondPlayer displayMenu];
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
         TempleScoreResult *result_t1 = [roundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_1];
         NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t1];
@@ -618,13 +626,19 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 -(void) playerDoneAction {
     NSMutableArray *playerArray = [para playerArray];
     
+    AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
+    AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
+    AtonPlayer *firstPlayer = [playerArray objectAtIndex:para.atonRoundResult.firstPlayerEnum];
+    AtonPlayer *secondPlayer = [playerArray objectAtIndex:para.atonRoundResult.secondPlayerEnum];
+    
     if (para.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         
-        AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
+       // AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
         if ([[redPlayer emptyCardElementArray] count] < 4) {
             return;
         }
         para.gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
+        [redPlayer closeMenu];
         [self run];
         
     } else if (para.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
@@ -634,6 +648,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             return;
         }
         para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
+        [bluePlayer closeMenu];
         [self run];
         
     } else if (para.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
@@ -651,6 +666,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             para.gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+            [firstPlayer closeMenu];
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
@@ -669,6 +685,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             para.gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+            [secondPlayer closeMenu];
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
@@ -693,6 +710,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
             para.gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+            [firstPlayer closeMenu];
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
@@ -731,7 +749,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                     [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
                 }
             }
-            
+            [secondPlayer closeMenu];
         }
     } else if (para.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         

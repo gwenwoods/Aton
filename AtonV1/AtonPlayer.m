@@ -26,7 +26,7 @@ static float DELAY_TIME = 0.25;
 @synthesize playerEnum, playerName;
 @synthesize score;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
-@synthesize deckIV, deckAnimationIV, deckArray;
+@synthesize deckIV, deckAnimationIV, deckArray, menuView;
 @synthesize exchangeCardsButton;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController {
@@ -35,6 +35,19 @@ static float DELAY_TIME = 0.25;
         baseView = controller.view;
         playerEnum = thisPlayerEnum;
         playerName = name;
+        
+        menuView = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, 0, 52, 640)];
+        [menuView setBackgroundColor:[UIColor whiteColor]];
+        menuView.hidden = YES;
+        menuView.userInteractionEnabled = YES;
+        [baseView addSubview:menuView];
+        
+        doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        doneButton.frame = CGRectMake(4,560, 40, 50);
+        doneButton.userInteractionEnabled = YES;
+        [doneButton setTitle:@"Done"  forState:UIControlStateNormal];
+        [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
+        [menuView addSubview:doneButton];
         
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
         startOriginArray[0] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 82.0);
@@ -479,5 +492,45 @@ static float DELAY_TIME = 0.25;
         [newDeckArray addObject:[NSNumber numberWithInt:number]];
     }
     return newDeckArray;
+}
+
+-(void) displayMenu {
+    
+    // create animation IV
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, -640.0, 52, 640)];
+    [animationIV setBackgroundColor:[UIColor whiteColor]];
+    [baseView addSubview:animationIV]; 
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = menuView.frame;
+                     } 
+                     completion:^(BOOL finished){
+                         [animationIV removeFromSuperview];
+                         menuView.hidden = NO;
+                         
+                     }];
+}
+
+-(void) closeMenu {
+    
+    // create animation IV
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:menuView.frame];
+    [animationIV setBackgroundColor:[UIColor whiteColor]];
+    [baseView addSubview:animationIV]; 
+    
+    menuView.hidden = YES;
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         animationIV.frame = CGRectMake(playerEnum *972.0, -640.0, 52, 640);
+                     } 
+                     completion:^(BOOL finished){
+                         [animationIV removeFromSuperview];
+                         
+                     }];
 }
 @end

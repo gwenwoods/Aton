@@ -38,6 +38,7 @@
 }
 
 - (IBAction) toMenu:(id)sender;
+- (IBAction) doneAction:(id)sender;
 - (IBAction) exchangeCards:(id)sender;
 - (IBAction) exchangeCardsYes:(id)sender;
 - (IBAction) exchangeCardsNo:(id)sender;
