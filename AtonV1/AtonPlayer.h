@@ -17,6 +17,10 @@ enum PLAYER_ENUM {
     PLAYER_RED, PLAYER_BLUE, PLAYER_NONE
 };
 
+enum PLAYER_ACTION_ENUM {
+    ACTION_NONE, ACTION_REMOVE, ACTION_PLACE  
+};
+
 @interface AtonPlayer : NSObject {
     
     CGPoint *startOriginArray;
@@ -24,6 +28,7 @@ enum PLAYER_ENUM {
     UIButton *doneButton;
     
     NSMutableArray *menuPeepArray;
+    UILabel *actionLb;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;
@@ -33,7 +38,7 @@ enum PLAYER_ENUM {
 -(void) distributeCards;
 -(int*) getCardNumberArray;
 -(void) resetCard;
--(void) displayMenu;
+-(void) displayMenu:(int) actionEnum:(int) peepNum;
 -(void) closeMenu;
 
 // arrange cards functions

@@ -8,6 +8,12 @@
 
 #import "PlayerViewController.h"
 
+// This is defined in Math.h
+#define M_PI   3.14159265358979323846264338327950288   /* pi */
+
+// Our conversion definition
+#define DEGREES_TO_RADIANS(angle) (angle / 180.0 * M_PI)
+
 @interface PlayerViewController ()
 @end
 
@@ -27,6 +33,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    rotateIV =
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ankh_small.png"]];
+    rotateIV.frame = CGRectMake(460, 40, 45, 64);
+    [self.view addSubview:rotateIV];
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:8];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+	
+	[NSTimer scheduledTimerWithTimeInterval: 0.005 target: self selector:@selector(hadleTimer:) userInfo: nil repeats: YES];
+	[UIView commitAnimations];
+    
+    
+  //  [self rotateImage:imageToMove duration:3.0 
+  //             curve:UIViewAnimationCurveEaseIn degrees:180];
+    
+    //-----------
     
     enterNameView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 748.0)];
     [enterNameView setBackgroundColor:[UIColor blackColor]];
@@ -164,5 +189,36 @@
     [self.view bringSubviewToFront:enterNameView];
     
     [enterNameTextField becomeFirstResponder];
+}
+
+- (void)rotateImage:(UIImageView *)image duration:(NSTimeInterval)duration 
+              curve:(int)curve degrees:(CGFloat)degrees
+{
+    // Setup the animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationRepeatCount:10];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    // The transform matrix
+    CGAffineTransform transform = 
+    CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(degrees));
+    transform = CGAffineTransformRotate(transform, -3.14);
+    image.transform = transform;
+    
+    // Commit the changes
+    [UIView commitAnimations];
+}
+
+-(void)hadleTimer:(NSTimer *)timer
+{
+	angle += 0.005;
+	if (angle > 6.283) { 
+		angle = 0;
+	}
+	
+	CGAffineTransform transform=CGAffineTransformMakeRotation(angle);
+	rotateIV.transform = transform;
 }
 @end

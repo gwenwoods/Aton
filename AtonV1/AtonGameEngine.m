@@ -163,7 +163,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_NONE;
         } else {
-             [firstPlayer displayMenu];
+             [firstPlayer displayMenu:ACTION_REMOVE:roundResult.firstRemoveNum];
         }
        
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
@@ -197,17 +197,17 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_NONE;
         } else {
-            [secondPlayer displayMenu];
+            [secondPlayer displayMenu:ACTION_REMOVE:roundResult.secondRemoveNum];
         }
         
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.firstPlayerEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.firstTemple:OCCUPIED_EMPTY];
-        [firstPlayer displayMenu];
+        [firstPlayer displayMenu:ACTION_PLACE:roundResult.firstPlaceNum];
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.secondPlayerEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.secondTemple:OCCUPIED_EMPTY];
-        [secondPlayer displayMenu];
+        [secondPlayer displayMenu:ACTION_PLACE:roundResult.secondPlaceNum];
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
         TempleScoreResult *result_t1 = [roundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_1];
         NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t1];
@@ -310,7 +310,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 
                 return;
             }
-            [firstPlayer displayMenu];
+            [firstPlayer displayMenu:ACTION_REMOVE:-4];
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
@@ -330,7 +330,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             return;
         }
         
-        [secondPlayer displayMenu];
+        [secondPlayer displayMenu:ACTION_REMOVE:-4];
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_NONE) {
         // BRANCH PHASE
         NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];

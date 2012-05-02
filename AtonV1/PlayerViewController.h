@@ -32,6 +32,8 @@
     NSString *redName, *blueName;
     
     AVAudioPlayer *audioPlayerChime;
+    float angle;
+    UIImageView *rotateIV;
 }
 
 -(IBAction) backToMenu:(id)sender;

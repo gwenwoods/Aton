@@ -42,11 +42,11 @@
         gameManager.gamePhaseView.hidden = YES;
         if (atonParameters.gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
-            [redPlayer displayMenu];
+            [redPlayer displayMenu:ACTION_NONE:0];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_BLUE_LAY_CARD;
-            [bluePlayer displayMenu];
+            [bluePlayer displayMenu:ACTION_NONE:0];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_COMPARE;

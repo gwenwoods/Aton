@@ -44,6 +44,11 @@ static float DELAY_TIME = 0.25;
         menuView.userInteractionEnabled = YES;
         [baseView addSubview:menuView];
         
+        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(2, 340, 50, 20)];
+        actionLb.text = @"Remove";
+        actionLb.font = [UIFont systemFontOfSize:12];
+        [menuView addSubview:actionLb];
+        
         doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         doneButton.frame = CGRectMake(4,560, 40, 50);
         doneButton.userInteractionEnabled = YES;
@@ -515,13 +520,37 @@ static float DELAY_TIME = 0.25;
     return newDeckArray;
 }
 
--(void) displayMenu {
+-(void) displayMenu:(int) actionEnum:(int) peepNum {
     
-    // show peeps 
+    if (actionEnum == ACTION_NONE) {
+        actionLb.text = @"";
+    } else if(actionEnum == ACTION_PLACE) {
+        actionLb.text = @"Place";
+    } else {
+        actionLb.text = @"Remove";
+    }
+    // show peeps
     for (int i=0; i<4; i++) {
         UIImageView *iv = [menuPeepArray objectAtIndex:i];
-        iv.image = [UIImage imageNamed:[self getDiscFileName]];
+        iv.image = [UIImage imageNamed:nil];
     }
+    
+    if (actionEnum != ACTION_NONE) {
+        int targetPeepEnum = playerEnum;
+        if (actionEnum == ACTION_REMOVE && peepNum > 0) {
+            targetPeepEnum = (playerEnum + 1)%2;
+        }
+        
+       // if (peepNum < 0) {
+       //     peepNum = -1*peepNum;
+       // }
+        for (int i=0; i< abs(peepNum); i++) {
+            UIImageView *iv = [menuPeepArray objectAtIndex:i];
+            
+            iv.image = [UIImage imageNamed:[self getDiscFileName:targetPeepEnum]];
+        }
+    }
+    
     
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, -640.0, 52, 640)];
@@ -561,8 +590,8 @@ static float DELAY_TIME = 0.25;
                      }];
 }
 
--(NSString*) getDiscFileName {
-    if (playerEnum == PLAYER_RED) {
+-(NSString*) getDiscFileName:(int) targetEnum {
+    if (targetEnum == PLAYER_RED) {
         return @"Red_Disc.png";
     } else {
         return @"Blue_Disc.png";
