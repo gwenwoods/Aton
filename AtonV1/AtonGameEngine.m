@@ -646,7 +646,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
     } else if (para.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
         
-        AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
+      //  AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
         if ([[bluePlayer emptyCardElementArray] count] < 4) {
             return;
         }

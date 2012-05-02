@@ -22,6 +22,8 @@ enum PLAYER_ENUM {
     CGPoint *startOriginArray;
     UILabel *deckCountLb;
     UIButton *doneButton;
+    
+    NSMutableArray *menuPeepArray;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;

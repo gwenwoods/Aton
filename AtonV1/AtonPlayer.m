@@ -36,6 +36,8 @@ static float DELAY_TIME = 0.25;
         playerEnum = thisPlayerEnum;
         playerName = name;
         
+        //--------------
+        // menu
         menuView = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, 0, 52, 640)];
         [menuView setBackgroundColor:[UIColor whiteColor]];
         menuView.hidden = YES;
@@ -49,6 +51,25 @@ static float DELAY_TIME = 0.25;
         [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:doneButton];
         
+        UIImageView *p0 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 380, 36, 36)];
+     //   p0.image = [UIImage imageNamed:@"Red_Disc"];
+        UIImageView *p1 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 420, 36, 36)];
+    //    p1.image = [UIImage imageNamed:@"Red_Disc"];
+        UIImageView *p2 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 460, 36, 36)];
+      //  p2.image = [UIImage imageNamed:@"Red_Disc"];
+        UIImageView *p3 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 500, 36, 36)];
+     //   p3.image = [UIImage imageNamed:@"Red_Disc"];
+        [menuView addSubview:p0];
+        [menuView addSubview:p1];
+        [menuView addSubview:p2];
+        [menuView addSubview:p3];
+        menuPeepArray = [[NSMutableArray alloc] init];
+        [menuPeepArray addObject:p0];
+        [menuPeepArray addObject:p1];
+        [menuPeepArray addObject:p2];
+        [menuPeepArray addObject:p3];
+        [menuView setBackgroundColor:[UIColor whiteColor]];
+        //--------
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
         startOriginArray[0] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 82.0);
         startOriginArray[1] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 251.0);
@@ -496,6 +517,12 @@ static float DELAY_TIME = 0.25;
 
 -(void) displayMenu {
     
+    // show peeps 
+    for (int i=0; i<4; i++) {
+        UIImageView *iv = [menuPeepArray objectAtIndex:i];
+        iv.image = [UIImage imageNamed:[self getDiscFileName]];
+    }
+    
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, -640.0, 52, 640)];
     [animationIV setBackgroundColor:[UIColor whiteColor]];
@@ -532,5 +559,13 @@ static float DELAY_TIME = 0.25;
                          [animationIV removeFromSuperview];
                          
                      }];
+}
+
+-(NSString*) getDiscFileName {
+    if (playerEnum == PLAYER_RED) {
+        return @"Red_Disc.png";
+    } else {
+        return @"Blue_Disc.png";
+    }
 }
 @end
