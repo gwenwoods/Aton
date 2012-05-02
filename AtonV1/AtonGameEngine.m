@@ -49,7 +49,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         NSString *msg = @"|";
         msg = [msg stringByAppendingString:playerRed.playerName];
-        msg = [msg stringByAppendingString:@"\n Lay your cards"];
+        msg = [msg stringByAppendingString:@"\n Please Arrange\n Your Cards"];
         gameManager.activePlayer = PLAYER_RED;
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];    
     
@@ -61,7 +61,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         NSString *msg = @"|";
         msg = [msg stringByAppendingString:playerBlue.playerName];
-        msg = [msg stringByAppendingString:@"\n Lay your cards"];
+        msg = [msg stringByAppendingString:@"\n Please Arrange\n Your Cards"];
         gameManager.activePlayer = PLAYER_BLUE;
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
         
@@ -84,14 +84,14 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         int cardOneWinnerEnum = roundResult.cardOneWinnerEnum;
         
         if (cardOneWinnerEnum == PLAYER_NONE) {
-            msg = [msg stringByAppendingString:@"Tie"];
+            msg = [msg stringByAppendingString:@"Tie \n No Player Gains Any Point"];
             
         } else {
             AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
             NSString* cardOneWinnerName = [cardOneWinner playerName];
             int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
             msg = [msg stringByAppendingString:cardOneWinnerName];
-            msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n wins %i points", cardOneWinningScore]];
+            msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Wins %i Points", cardOneWinningScore]];
             
         }
         gameManager.activePlayer = cardOneWinnerEnum;
@@ -152,7 +152,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
-            NSString *msg = @"|No available peeps\n to remove\n";
+            NSString *msg = @"|No Available Peeps\n to Remove\n";
           //  NSString *msg1 = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
           //  msg = [msg stringByAppendingString:msg1];
           //  gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
@@ -162,7 +162,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         } else if (arrayNum < [para.atonRoundResult getFirstRemovePositiveNum]) {
 
             [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray];
-            NSString *msg = @"|All eligible peeps removed\n";
+            NSString *msg = @"|All Eligible Peeps Removed\n";
           //  NSString *msg1 = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
          //   msg = [msg stringByAppendingString:msg1];
          //   gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
@@ -191,7 +191,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         int arrayNum = [eligibleSlotArray count];
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
-            NSString *msg = @"|No available peep\n to remove\n";
+            NSString *msg = @"|No Available Peeps\n to Remove\n";
           //  NSString *msg1 = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
           //  msg = [msg stringByAppendingString:msg1];
           //  gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;
@@ -200,7 +200,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         } else if (arrayNum < [para.atonRoundResult getSecondRemovePositiveNum]) {
 
             [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray];
-            NSString *msg = @"|All eligible peeps\n removed\n";
+            NSString *msg = @"|All Eligible Peeps Removed\n";
         //    NSString *msg1 = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
         //    msg = [msg stringByAppendingString:msg1];
          //   gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;

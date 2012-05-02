@@ -10,8 +10,8 @@
 
 @implementation ScoreScarab
 
-int static CYLINDER_WIDTH = 40;
-int static CYLINDER_HEIGHT = 50;
+float static CYLINDER_WIDTH = 40.0;
+float static CYLINDER_HEIGHT = 50.0;
 
 @synthesize scoreValue, occupiedEnum;
 @synthesize iv, redIV, blueIV;
@@ -34,14 +34,11 @@ int static CYLINDER_HEIGHT = 50;
         
         float cx = iv.center.x;
         float cy = iv.center.y;
+        float w = iv.frame.size.width;
+        float h = iv.frame.size.height;
         
-        float cx_red = cx - 4.0;
-        float cy_red = cy - 2.0;
-        redFrame = CGRectMake(cx_red - CYLINDER_WIDTH * 0.5, cy_red - CYLINDER_HEIGHT * 0.5, CYLINDER_WIDTH, CYLINDER_HEIGHT);
-        
-        float cx_blue = cx + 6.0;
-        float cy_blue = cy - 6.0;
-        blueFrame = CGRectMake(cx_blue - CYLINDER_WIDTH * 0.5, cy_blue - CYLINDER_HEIGHT * 0.5, CYLINDER_WIDTH, CYLINDER_HEIGHT);
+        redFrame = CGRectMake(cx - 0.5* w - 4.0, cy-0.5*h-2.0, CYLINDER_WIDTH, CYLINDER_HEIGHT);
+        blueFrame = CGRectMake(cx - 0.5* w + 6.0, cy-0.5*h-6.0, CYLINDER_WIDTH, CYLINDER_HEIGHT);
     }
     return self;
 }
