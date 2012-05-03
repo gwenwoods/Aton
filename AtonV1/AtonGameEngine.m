@@ -300,17 +300,34 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             
             NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
 
+            int arrayNum = [eligibleSlotArray count];
             if ([eligibleSlotArray count] == 0) {
+                
                 [TempleUtility disableAllTempleSlotInteraction:templeArray];
+                NSString *msg = @"|No Available Peeps\n to Remove\n";
+                gameManager.activePlayer = roundResult.firstPlayerEnum;
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+                para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+                
+            /*    [TempleUtility disableAllTempleSlotInteraction:templeArray];
                 NSString *msg = @"|No Available Peeps\n to Remove\n";
                 NSString *msg1 = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
                 msg = [msg stringByAppendingString:msg1];
                 gameManager.activePlayer = roundResult.secondPlayerEnum;
                 [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
                 
-                return;
+                return;*/
+            } else if (arrayNum <= 4) {
+                [TempleUtility removePeepsToSupply:templeArray:eligibleSlotArray];
+                NSString *msg = @"|All Eligible Peeps Removed\n";
+                gameManager.activePlayer = roundResult.firstPlayerEnum;
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+                para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+               
+            } else {
+                [firstPlayer displayMenu:ACTION_REMOVE:-4];
             }
-            [firstPlayer displayMenu:ACTION_REMOVE:-4];
+            
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
@@ -345,6 +362,15 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.0];
         para.gamePhaseEnum = GAME_PHASE_PRE_FIRST_PLACE_PEEP;
+        
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE) {
+        // BRANCH PHASE
+        NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+        // msg = [msg stringByAppendingString:msg1];
+        gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.0];
+        para.gamePhaseEnum = GAME_PHASE_ROUND_END_PRE_SECOND_REMOVE_4;
+        
     }
 }
 
@@ -408,37 +434,6 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     
     return result;
 }
-
-/*
--(void) imageFly:(UIImageView*) begin:(UIImageView*) end {	
-	
-    int end_x = end.center.x;
-    int end_y = end.center.y;
-    
-	CGMutablePathRef aPath;
-	CGFloat arcTop = begin.center.y - 50;
-	aPath = CGPathCreateMutable();
-	
-	CGPathMoveToPoint(aPath, NULL, begin.center.x, begin.center.y);
-	CGPathAddCurveToPoint(aPath, NULL, begin.center.x, arcTop, end_x, arcTop, end_x, end_y);
-	
-	CAKeyframeAnimation* arcAnimation = [CAKeyframeAnimation animationWithKeyPath: @"position"];
-	[arcAnimation setDuration: 0.5];
-	[arcAnimation setAutoreverses: NO];
-	arcAnimation.removedOnCompletion = NO;
-	arcAnimation.fillMode = kCAFillModeBoth; 
-	[arcAnimation setPath: aPath];
-    
-	CFRelease(aPath);
-	
-	[begin.layer addAnimation: arcAnimation forKey: @"position"];
-    
-	begin.hidden = NO;
-    begin.center = CGPointMake(end_x, end_y);
-    
-   // [begin performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.51];
-    //[begin performSelector:@selector(release) withObject:nil afterDelay:0.51];
-}*/
 
 
 -(void) assignScoreToPlayer:(int) playerEnum withWinningScore:(int) winningScore {
