@@ -627,6 +627,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 }
 
 -(void) playerDoneAction {
+    
+    [TempleUtility disableAllTempleSlotInteraction:para.templeArray];
     NSMutableArray *playerArray = [para playerArray];
     
     AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
