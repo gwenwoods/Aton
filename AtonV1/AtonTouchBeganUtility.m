@@ -129,9 +129,16 @@
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE ) {
             // BRANCH PHASE
             
-        }  else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_PRE_SECOND_REMOVE_4 ) {
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_PRE_SECOND_REMOVE_4 ) {
             // BRANCH PHASE
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE ) {
+            // BRANCH PHASE
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_PRE_DISTRIBUTE_CARD ) {
+            // BRANCH PHASE
+            atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
             
         } else {
             return;

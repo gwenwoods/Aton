@@ -154,12 +154,14 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
             NSString *msg = @"|No Available Peeps\n to Remove\n";
+            gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_NONE;
         
-        } else if (arrayNum < [para.atonRoundResult getFirstRemovePositiveNum]) {
+        } else if (arrayNum <= [para.atonRoundResult getFirstRemovePositiveNum]) {
             [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray];
-            NSString *msg = @"|All Eligible Peeps Removed\n";
+            NSString *msg = @"|All Eligible\n Peeps Removed\n";
+            gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_NONE;
         } else {
@@ -188,12 +190,14 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         if ([eligibleSlotArray count] == 0) {
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
             NSString *msg = @"|No Available Peeps\n to Remove\n";
+            gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_NONE;
-        } else if (arrayNum < [para.atonRoundResult getSecondRemovePositiveNum]) {
+        } else if (arrayNum <= [para.atonRoundResult getSecondRemovePositiveNum]) {
 
             [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray];
-            NSString *msg = @"|All Eligible Peeps Removed\n";
+            NSString *msg = @"|All Eligible\n Peeps Removed\n";
+            gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_NONE;
         } else {
@@ -209,6 +213,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.secondTemple:OCCUPIED_EMPTY];
         [secondPlayer displayMenu:ACTION_PLACE:roundResult.secondPlaceNum];
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
+        [TempleUtility clearDeathTemple:[para templeArray]];
         TempleScoreResult *result_t1 = [roundResult.templeScoreResultArray objectAtIndex:SCORE_TEMPLE_1];
         NSString *msg = [messageMaster getMessageForTempleScoreResult:result_t1];
         gameManager.activePlayer = result_t1.winningPlayerEnum;
@@ -282,32 +287,39 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION) {
         TempleScoreResult *result_orangeBonusForBlue = [roundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_BLUE];
         float animationTime = [self templeScoreAnimation:result_orangeBonusForBlue];
-        NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
-        gameManager.activePlayer = roundResult.firstPlayerEnum;
-        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
-        
-    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
         if ([self gameOverCondition] != nil) {
             [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
             
         } else {
-            int targetPlayerEnum = [roundResult firstPlayerEnum];
-            int occupiedEnum = OCCUPIED_RED;
-            if (targetPlayerEnum == PLAYER_BLUE) {
-                occupiedEnum = OCCUPIED_BLUE;
-            }
+            NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
+            gameManager.activePlayer = roundResult.firstPlayerEnum;
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
+        }
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
+        
+     //   if ([self gameOverCondition] != nil) {
+     //       [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
             
-            NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+     //   } else {
+        
+        [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.firstPlayerEnum];
+        int targetPlayerEnum = [roundResult firstPlayerEnum];
+        int occupiedEnum = OCCUPIED_RED;
+        if (targetPlayerEnum == PLAYER_BLUE) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }
+            
+        NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
 
-            int arrayNum = [eligibleSlotArray count];
-            if ([eligibleSlotArray count] == 0) {
+        int arrayNum = [eligibleSlotArray count];
+        if (arrayNum == 0) {
                 
-                [TempleUtility disableAllTempleSlotInteraction:templeArray];
-                NSString *msg = @"|No Available Peeps\n to Remove\n";
-                gameManager.activePlayer = roundResult.firstPlayerEnum;
-                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
-                para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+            [TempleUtility disableAllTempleSlotInteraction:templeArray];
+            NSString *msg = @"|No Available Peeps\n to Remove\n";
+            gameManager.activePlayer = roundResult.firstPlayerEnum;
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
                 
             /*    [TempleUtility disableAllTempleSlotInteraction:templeArray];
                 NSString *msg = @"|No Available Peeps\n to Remove\n";
@@ -317,20 +329,20 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
                 
                 return;*/
-            } else if (arrayNum <= 4) {
-                [TempleUtility removePeepsToSupply:templeArray:eligibleSlotArray];
-                NSString *msg = @"|All Eligible Peeps Removed\n";
-                gameManager.activePlayer = roundResult.firstPlayerEnum;
-                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
-                para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+        } else if (arrayNum <= 4) {
+            [TempleUtility removePeepsToSupply:templeArray:eligibleSlotArray];
+            NSString *msg = @"|All Eligible\n Peeps Removed\n";
+            gameManager.activePlayer = roundResult.firstPlayerEnum;
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
                
-            } else {
-                [firstPlayer displayMenu:ACTION_REMOVE:-4];
-            }
-            
+        } else {
+            [firstPlayer displayMenu:ACTION_REMOVE:-4];
         }
-    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+            
         
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.secondPlayerEnum];
         int targetPlayerEnum = [para.atonRoundResult secondPlayerEnum];
         int occupiedEnum = OCCUPIED_RED;
         if (targetPlayerEnum == PLAYER_BLUE) {
@@ -338,16 +350,26 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         }
         
         NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
-        if ([eligibleSlotArray count] == 0) {
+        int arrayNum = [eligibleSlotArray count];
+        if (arrayNum == 0) {
+
             [TempleUtility disableAllTempleSlotInteraction:templeArray];
             NSString *msg = @"|No Available Peeps\n to Remove\n";
-            msg = [msg stringByAppendingString:@"Scoring End"];
-            gameManager.activePlayer = PLAYER_NONE;
+           // msg = [msg stringByAppendingString:@"Scoring End"];
+            gameManager.activePlayer = roundResult.secondPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
-            return;
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE;
+        } else if (arrayNum <= 4) {
+            [TempleUtility removePeepsToSupply:templeArray:eligibleSlotArray];
+            NSString *msg = @"|All Eligible\n Peeps Removed\n";
+            gameManager.activePlayer = roundResult.secondPlayerEnum;
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE;
+        } else {
+             [secondPlayer displayMenu:ACTION_REMOVE:-4];
         }
         
-        [secondPlayer displayMenu:ACTION_REMOVE:-4];
+       
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_NONE) {
         // BRANCH PHASE
         NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
@@ -370,6 +392,14 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
         [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.0];
         para.gamePhaseEnum = GAME_PHASE_ROUND_END_PRE_SECOND_REMOVE_4;
+        
+    } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE) {
+        // BRANCH PHASE
+        NSString *msg = @"Scoring End";
+        // msg = [msg stringByAppendingString:msg1];
+        gameManager.activePlayer = PLAYER_NONE;
+        [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.0];
+        para.gamePhaseEnum = GAME_PHASE_PRE_DISTRIBUTE_CARD;
         
     }
 }
@@ -575,31 +605,31 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     NSString *msg;
     
     if ([TempleUtility isYellowFull:para.templeArray]) {
-        msg = @"All Yellow Squares Full\n";
+        msg = @"All Yellow Squares Full|";
     
     } else if ([TempleUtility isGreenFull:para.templeArray]) {
-        msg = @"All Green Squares Full\n";
+        msg = @"All Green Squares Full|";
     
     } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_1]) {
-        msg = @"Temple 1 Full\n";
+        msg = @"Temple 1 Full|";
     
     } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_2]) {
-        msg = @"Temple 2 Full\n";
+        msg = @"Temple 2 Full|";
         
     } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_3]) {
-        msg = @"Temple 3 Full\n";
+        msg = @"Temple 3 Full|";
         
     } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_4]) {
-        msg = @"Temple 4 Full\n";
+        msg = @"Temple 4 Full|";
     
     }
     
     NSMutableArray *playerArray = para.playerArray;
     if ([[playerArray objectAtIndex:PLAYER_RED] score] > 40) {
-        msg = @"Player Red reaches 40 points";
+        msg = @"Player Red reaches 40 points|";
         
     } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] > 40) {
-        msg = @"Player Blue reaches 40 points";
+        msg = @"Player Blue reaches 40 points|";
         
     }
     
@@ -733,12 +763,12 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             }
             [TempleUtility disableAllTempleSlotInteraction:[para templeArray]];
             if ([TempleUtility isDeathTempleFull:[para templeArray]]) {
-                [TempleUtility clearDeathTemple:[para templeArray]];
+             //   [TempleUtility clearDeathTemple:[para templeArray]];
                 para.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[para templeArray]];
                 
                 para.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
                 para.gameManager.activePlayer = PLAYER_NONE;
-                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"|Death Temple Full\n Enter Scoring Phase" afterDelay:AFTER_PEEP_DELAY_TIME];
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Enter Scoring Phase" afterDelay:AFTER_PEEP_DELAY_TIME];
                 //[self run];
             } else {
                 if ([self gameOverCondition] != nil) {

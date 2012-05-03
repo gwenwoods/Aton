@@ -224,7 +224,7 @@
     NSString *msg = result.resultName;
     msg = [msg stringByAppendingString:@"|"];
     if (result.winningPlayerEnum == PLAYER_NONE) {
-        msg = [msg stringByAppendingString:@"Tie\n No Player gains Any Point"];
+        msg = [msg stringByAppendingString:@"Tie\n No Player\n Gains Any Point"];
         return msg;
     }
     

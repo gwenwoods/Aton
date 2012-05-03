@@ -162,8 +162,10 @@
     
     if (updateRed == YES) {
         [redNameButton setTitle:name forState:UIControlStateNormal];
+        redName = name;
     } else {
         [blueNameButton setTitle:name forState:UIControlStateNormal];
+        blueName = name;
     }
     
     
