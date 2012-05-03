@@ -37,7 +37,7 @@
     
     rotateIV =
     [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ankh_small.png"]];
-    rotateIV.frame = CGRectMake(460, 40, 45, 64);
+    rotateIV.frame = CGRectMake(490, 200, 45, 64);
     [self.view addSubview:rotateIV];
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDelegate:self];
@@ -55,6 +55,7 @@
     
     enterNameView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 748.0)];
     [enterNameView setBackgroundColor:[UIColor blackColor]];
+  //  enterNameView.alpha = 0.5;
     [self.view addSubview:enterNameView];
     enterNameView.hidden = YES;
     
@@ -63,30 +64,33 @@
     enterNameLb.textColor = [UIColor whiteColor];
     enterNameLb.text = @"Enter Player Name";
     enterNameLb.textAlignment = UITextAlignmentCenter;
-    enterNameLb.font = [UIFont fontWithName:@"Copperplate" size:30];
+   // enterNameLb.font = [UIFont fontWithName:@"Courier" size:30];
+    enterNameLb.font = [UIFont fontWithName:@"Courier" size:30];
     [enterNameView addSubview:enterNameLb];
     
     enterNameTextField =  [[UITextField alloc] initWithFrame:CGRectMake(200,200,400,60)];
     enterNameTextField.backgroundColor = [UIColor whiteColor];
     enterNameTextField.userInteractionEnabled = YES;
     enterNameTextField.textAlignment = UITextAlignmentLeft;
-    enterNameTextField.font = [UIFont fontWithName:@"Copperplate" size:30];
+    enterNameTextField.font = [UIFont fontWithName:@"Courier" size:30];
     [enterNameTextField addTarget:self action:@selector(dismissKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
     enterNameTextField.delegate = self;
     [enterNameView addSubview:enterNameTextField];
 
-    redNameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    redNameButton.frame = CGRectMake(200,300,180,40);
+    redNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    redNameButton.frame = CGRectMake(190,360,238,123);
     redNameButton.userInteractionEnabled = YES;
-    redNameButton.titleLabel.font = [UIFont fontWithName:@"Copperplate" size:20];
+    redNameButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:20];
+    [redNameButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
     [redNameButton setTitle:@"Player Red"  forState:UIControlStateNormal];
     [redNameButton addTarget:self action:@selector(setRedName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:redNameButton];
 
-    blueNameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    blueNameButton.frame = CGRectMake(600,300,180,40);
+    blueNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    blueNameButton.frame = CGRectMake(601,360,238,123);
     blueNameButton.userInteractionEnabled = YES;
-    blueNameButton.titleLabel.font = [UIFont fontWithName:@"Copperplate" size:20];
+    blueNameButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:20];
+    [blueNameButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
     [blueNameButton setTitle:@"Player Blue"  forState:UIControlStateNormal];
     [blueNameButton addTarget:self action:@selector(setBlueName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:blueNameButton];
@@ -174,14 +178,14 @@
 -(IBAction) setRedName:(id)sender {
     updateRed = YES;
     updateBlue = NO;
-    enterNameTextField.text = redNameButton.titleLabel.text;
+   // enterNameTextField.text = redNameButton.titleLabel.text;
     [self toEnterNameView];
 }
 
 -(IBAction) setBlueName:(id)sender {
     updateBlue = YES;
     updateRed = NO;
-    enterNameTextField.text = blueNameButton.titleLabel.text;
+  //  enterNameTextField.text = blueNameButton.titleLabel.text;
     [self toEnterNameView];
 }
 
@@ -190,9 +194,10 @@
     enterNameView.userInteractionEnabled = YES;
     [self.view bringSubviewToFront:enterNameView];
     
+    enterNameTextField.text = @"";
     [enterNameTextField becomeFirstResponder];
 }
-
+/*
 - (void)rotateImage:(UIImageView *)image duration:(NSTimeInterval)duration 
               curve:(int)curve degrees:(CGFloat)degrees
 {
@@ -211,7 +216,7 @@
     
     // Commit the changes
     [UIView commitAnimations];
-}
+}*/
 
 -(void)hadleTimer:(NSTimer *)timer
 {

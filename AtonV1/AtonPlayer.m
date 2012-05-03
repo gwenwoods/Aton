@@ -38,31 +38,35 @@ static float DELAY_TIME = 0.25;
         
         //--------------
         // menu
-        menuView = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, 0, 52, 640)];
-        [menuView setBackgroundColor:[UIColor whiteColor]];
+        menuView = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *960.0, 100, 85, 354)];
+        [menuView setBackgroundColor:[UIColor clearColor]];
+        menuView.image = [UIImage imageNamed:@"scrollDown_done.png"];
         menuView.hidden = YES;
         menuView.userInteractionEnabled = YES;
         [baseView addSubview:menuView];
         
-        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(2, 340, 50, 20)];
+        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(12, 84, 80, 20)];
         actionLb.text = @"Remove";
-        actionLb.font = [UIFont systemFontOfSize:12];
+        actionLb.textColor = [UIColor blackColor];
+        [actionLb setBackgroundColor:[UIColor clearColor]];
+        actionLb.font = [UIFont systemFontOfSize:14];
+        //actionLb.hidden = YES;
         [menuView addSubview:actionLb];
         
-        doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        doneButton.frame = CGRectMake(4,560, 40, 50);
+        doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        doneButton.frame = CGRectMake(0,260, 80, 50);
         doneButton.userInteractionEnabled = YES;
-        [doneButton setTitle:@"Done"  forState:UIControlStateNormal];
+       // [doneButton setTitle:@"Done"  forState:UIControlStateNormal];
         [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:doneButton];
         
-        UIImageView *p0 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 380, 36, 36)];
+        UIImageView *p0 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 120, 32, 32)];
      //   p0.image = [UIImage imageNamed:@"Red_Disc"];
-        UIImageView *p1 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 420, 36, 36)];
+        UIImageView *p1 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 152, 32, 32)];
     //    p1.image = [UIImage imageNamed:@"Red_Disc"];
-        UIImageView *p2 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 460, 36, 36)];
+        UIImageView *p2 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 184, 32, 32)];
       //  p2.image = [UIImage imageNamed:@"Red_Disc"];
-        UIImageView *p3 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 500, 36, 36)];
+        UIImageView *p3 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 216, 32, 32)];
      //   p3.image = [UIImage imageNamed:@"Red_Disc"];
         [menuView addSubview:p0];
         [menuView addSubview:p1];
@@ -73,7 +77,7 @@ static float DELAY_TIME = 0.25;
         [menuPeepArray addObject:p1];
         [menuPeepArray addObject:p2];
         [menuPeepArray addObject:p3];
-        [menuView setBackgroundColor:[UIColor whiteColor]];
+       // [menuView setBackgroundColor:[UIColor whiteColor]];
         //--------
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
         startOriginArray[0] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 82.0);
@@ -553,8 +557,9 @@ static float DELAY_TIME = 0.25;
     
     
     // create animation IV
-    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *972.0, -640.0, 52, 640)];
-    [animationIV setBackgroundColor:[UIColor whiteColor]];
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *960.0, -254.0, 85, 354)];
+   // [animationIV setBackgroundColor:[UIColor whiteColor]];
+    animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
     
     [UIView animateWithDuration:0.5
@@ -574,7 +579,8 @@ static float DELAY_TIME = 0.25;
     
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:menuView.frame];
-    [animationIV setBackgroundColor:[UIColor whiteColor]];
+   // [animationIV setBackgroundColor:[UIColor whiteColor]];
+    animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
     
     menuView.hidden = YES;
@@ -582,7 +588,7 @@ static float DELAY_TIME = 0.25;
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
-                         animationIV.frame = CGRectMake(playerEnum *972.0, -640.0, 52, 640);
+                         animationIV.frame = CGRectMake(playerEnum *960.0, -254.0, 85, 354);
                      } 
                      completion:^(BOOL finished){
                          [animationIV removeFromSuperview];

@@ -36,7 +36,7 @@
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseLb.numberOfLines = 1;     
         gamePhaseLb.textColor = [UIColor blackColor];
-        gamePhaseLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        gamePhaseLb.font = [UIFont fontWithName:@"Courier" size:20];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
@@ -46,7 +46,7 @@
         gamePhaseDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseDetailLb.numberOfLines = 3;     
         gamePhaseDetailLb.textColor = [UIColor blackColor];
-        gamePhaseDetailLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        gamePhaseDetailLb.font = [UIFont fontWithName:@"Courier" size:16];
         [gamePhaseView addSubview:gamePhaseDetailLb];
         [gamePhaseView bringSubviewToFront:gamePhaseDetailLb];
         
@@ -56,7 +56,7 @@
         gamePhaseMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseMiddleLb.numberOfLines = 3;     
         gamePhaseMiddleLb.textColor = [UIColor blackColor];
-        gamePhaseMiddleLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        gamePhaseMiddleLb.font = [UIFont fontWithName:@"Courier" size:16];
         [gamePhaseView addSubview:gamePhaseMiddleLb];
         [gamePhaseView bringSubviewToFront:gamePhaseMiddleLb];
         
@@ -75,7 +75,7 @@
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpLb.numberOfLines = 4;     
         helpLb.textColor = [UIColor blackColor];
-        helpLb.font = [UIFont fontWithName:@"Copperplate" size:24];
+        helpLb.font = [UIFont fontWithName:@"Courier" size:20];
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
@@ -85,7 +85,7 @@
         helpDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpDetailLb.numberOfLines = 3;     
         helpDetailLb.textColor = [UIColor blackColor];
-        helpDetailLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        helpDetailLb.font = [UIFont fontWithName:@"Courier" size:16];
         [helpView addSubview:helpDetailLb];
         [helpView bringSubviewToFront:helpDetailLb];
         
@@ -95,7 +95,7 @@
         helpMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpMiddleLb.numberOfLines = 3;     
         helpMiddleLb.textColor = [UIColor blackColor];
-        helpMiddleLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        helpMiddleLb.font = [UIFont fontWithName:@"Courier" size:16];
         [helpView addSubview:helpMiddleLb];
         [helpView bringSubviewToFront:helpMiddleLb];
         
