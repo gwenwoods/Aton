@@ -29,6 +29,8 @@ enum PLAYER_ACTION_ENUM {
     
     NSMutableArray *menuPeepArray;
     UILabel *actionLb;
+    
+    UIImageView *scrollExchangeIV, *scrollBlankIV, *scrollDoneIV, *scrollDoneAniHomeIV;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;
@@ -57,5 +59,6 @@ enum PLAYER_ACTION_ENUM {
 @property (strong, nonatomic) NSMutableArray *deckArray;
 @property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV;
 @property (strong, nonatomic) UIButton *exchangeCardsButton;
-@property (strong, nonatomic) UIImageView *menuView;
+@property (strong, nonatomic) UIImageView *scrollExchangeIV;
+
 @end

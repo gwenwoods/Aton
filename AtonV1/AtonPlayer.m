@@ -26,8 +26,10 @@ static float DELAY_TIME = 0.25;
 @synthesize playerEnum, playerName;
 @synthesize score;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
-@synthesize deckIV, deckAnimationIV, deckArray, menuView;
+@synthesize deckIV, deckAnimationIV, deckArray;
 @synthesize exchangeCardsButton;
+@synthesize scrollExchangeIV;
+//@synthesize scrollExchangeIV, scrollBlankIV, scrollDoneIV;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController {
 	if (self) {
@@ -38,27 +40,41 @@ static float DELAY_TIME = 0.25;
         
         //--------------
         // menu
-        menuView = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *960.0, 100, 85, 354)];
-        [menuView setBackgroundColor:[UIColor clearColor]];
-        menuView.image = [UIImage imageNamed:@"scrollDown_done.png"];
-        menuView.hidden = YES;
-        menuView.userInteractionEnabled = YES;
-        [baseView addSubview:menuView];
         
-        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(12, 84, 80, 20)];
+       
+        scrollBlankIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, 36.0, 76.5, 176.4)];
+        scrollBlankIV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
+        scrollBlankIV.userInteractionEnabled = YES;
+        [baseView addSubview:scrollBlankIV];
+        
+        scrollDoneAniHomeIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, -106.2, 76.5, 318.6)];
+        
+        scrollDoneIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, 20.0, 76.5, 318.6)];
+        scrollDoneIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
+        scrollDoneIV.hidden = YES;
+        scrollDoneIV.userInteractionEnabled = YES;
+        [baseView addSubview:scrollDoneIV];
+        
+        scrollExchangeIV = [[UIImageView alloc] initWithFrame:CGRectMake(-10.0 + playerEnum *978.0, 0.0, 76.5, 106.2)];
+        scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_exchange.png"];
+        scrollExchangeIV.userInteractionEnabled = YES;
+        [baseView addSubview:scrollExchangeIV];
+        
+        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(12, 92, 72, 20)];
         actionLb.text = @"Remove";
+     //   actionLb.textAlignment = UITextAlignmentCenter;
         actionLb.textColor = [UIColor blackColor];
         [actionLb setBackgroundColor:[UIColor clearColor]];
-        actionLb.font = [UIFont systemFontOfSize:14];
+        actionLb.font = [UIFont systemFontOfSize:12];
         //actionLb.hidden = YES;
-        [menuView addSubview:actionLb];
+        [scrollDoneIV addSubview:actionLb];
         
         doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         doneButton.frame = CGRectMake(0,260, 80, 50);
         doneButton.userInteractionEnabled = YES;
        // [doneButton setTitle:@"Done"  forState:UIControlStateNormal];
         [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
-        [menuView addSubview:doneButton];
+        [scrollDoneIV addSubview:doneButton];
         
         UIImageView *p0 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 120, 32, 32)];
      //   p0.image = [UIImage imageNamed:@"Red_Disc"];
@@ -68,10 +84,10 @@ static float DELAY_TIME = 0.25;
       //  p2.image = [UIImage imageNamed:@"Red_Disc"];
         UIImageView *p3 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 216, 32, 32)];
      //   p3.image = [UIImage imageNamed:@"Red_Disc"];
-        [menuView addSubview:p0];
-        [menuView addSubview:p1];
-        [menuView addSubview:p2];
-        [menuView addSubview:p3];
+        [scrollDoneIV addSubview:p0];
+        [scrollDoneIV addSubview:p1];
+        [scrollDoneIV addSubview:p2];
+        [scrollDoneIV addSubview:p3];
         menuPeepArray = [[NSMutableArray alloc] init];
         [menuPeepArray addObject:p0];
         [menuPeepArray addObject:p1];
@@ -127,11 +143,13 @@ static float DELAY_TIME = 0.25;
 
      
     exchangeCardsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    exchangeCardsButton.frame = CGRectMake(11 + playerEnum * (START_SPACE + 139) , 8, 40, 50);
+    exchangeCardsButton.frame = CGRectMake(8.0, 16, 56, 56);
     exchangeCardsButton.userInteractionEnabled = NO;
-    [exchangeCardsButton setImage:[UIImage imageNamed:@"White_Cylinder.png"]  forState:UIControlStateNormal];
+   // [exchangeCardsButton setImage:[UIImage imageNamed:@"White_Cylinder.png"]  forState:UIControlStateNormal];
     [exchangeCardsButton addTarget:controller action:@selector(exchangeCards:) forControlEvents:UIControlEventTouchUpInside];
-    [baseView addSubview:exchangeCardsButton];
+    exchangeCardsButton.alpha = 0.4;
+   // [baseView addSubview:exchangeCardsButton];
+    [scrollExchangeIV addSubview:exchangeCardsButton];
     
     deckIV = [[UIImageView alloc] initWithFrame:CGRectMake(56 + playerEnum * START_SPACE, 2, 90, 56)];
     deckIV.image = [UIImage imageNamed:[self getDeckBackName]];
@@ -557,20 +575,20 @@ static float DELAY_TIME = 0.25;
     
     
     // create animation IV
-    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:CGRectMake(playerEnum *960.0, -254.0, 85, 354)];
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneAniHomeIV.frame];
    // [animationIV setBackgroundColor:[UIColor whiteColor]];
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
-    
+     [baseView addSubview:scrollExchangeIV];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
-                         animationIV.frame = menuView.frame;
+                         animationIV.frame = scrollDoneIV.frame;
                      } 
                      completion:^(BOOL finished){
                          [animationIV removeFromSuperview];
-                         menuView.hidden = NO;
+                         scrollDoneIV.hidden = NO;
                          
                      }];
 }
@@ -578,17 +596,19 @@ static float DELAY_TIME = 0.25;
 -(void) closeMenu {
     
     // create animation IV
-    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:menuView.frame];
+    UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneIV.frame];
    // [animationIV setBackgroundColor:[UIColor whiteColor]];
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
     
-    menuView.hidden = YES;
+    [baseView addSubview:scrollExchangeIV];
+    
+    scrollDoneIV.hidden = YES;
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
-                         animationIV.frame = CGRectMake(playerEnum *960.0, -254.0, 85, 354);
+                         animationIV.frame = scrollDoneAniHomeIV.frame;
                      } 
                      completion:^(BOOL finished){
                          [animationIV removeFromSuperview];
