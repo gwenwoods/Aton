@@ -23,6 +23,9 @@
 -(IBAction) toPlayerView:(id)sender;
 - (void)clickedButton:(BoardViewController *)subcontroller;
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
+- (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer;
 
-
+@property(nonatomic, strong) PlayerViewController *playerViewScreen;
+@property(nonatomic, strong) AVAudioPlayer *audioPlayerOpen;
+//@property(nonatomic, strong) AtonPlayer *aPlayer;
 @end

@@ -12,6 +12,8 @@
 @end
 
 @implementation StartMenuViewController
+@synthesize playerViewScreen;
+@synthesize audioPlayerOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -208,12 +210,18 @@
         if ([touch phase] == UITouchPhaseEnded) {
             CGPoint touchLocation = [touch locationInView:self.view];
 		    if ([self isWithinImgView:touchLocation:playIV]) {
-               // [audioPlayerEnterPlay play];
-                [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-                PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
-                screen.delegatePlayerView = self;
-                screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [self presentModalViewController:screen animated:YES];
+                
+                if (audioPlayerOpen.isPlaying) {
+                    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+                } else {
+                    //[audioPlayerOpen stop];
+                    audioPlayerOpen = nil;
+                }
+              //  PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
+                playerViewScreen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
+                playerViewScreen.delegatePlayerView = self;
+                playerViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentModalViewController:playerViewScreen animated:YES];
                 playAnkhIV.image = nil;
             }
             
@@ -297,6 +305,7 @@
     NSLog(@"Back to start menu");
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
+    self.playerViewScreen = nil;
 }
 
 - (void)dismissPlayerViewWithoutAnimation:(PlayerViewController *)subcontroller
@@ -305,5 +314,6 @@
     NSLog(@"Back to start menu");
     [self dismissModalViewControllerAnimated:NO];
     [self viewDidLoad];
+    self.playerViewScreen = nil;
 }
 @end

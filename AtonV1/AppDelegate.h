@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StartMenuViewController.h"
+#import "PlayerViewController.h"
 
 //@class BoardViewController;
 @class StartMenuViewController;
@@ -17,6 +18,6 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIViewController *startMenuViewController;
+@property (strong, nonatomic) StartMenuViewController *startMenuViewController;
 
 @end

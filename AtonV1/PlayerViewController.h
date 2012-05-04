@@ -39,4 +39,5 @@
 -(IBAction) backToMenu:(id)sender;
 
 @property (nonatomic, assign) id<PlayerViewDelegate> delegatePlayerView; 
+@property (nonatomic, strong) BoardViewController *boardScreen;
 @end

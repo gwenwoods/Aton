@@ -19,6 +19,7 @@
 
 @implementation PlayerViewController
 @synthesize delegatePlayerView;
+@synthesize boardScreen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -128,10 +129,11 @@
 }
 -(IBAction) toPlay:(id)sender {
 
-    BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
-    screen.delegateBoardView = self;
-    screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:screen animated:YES];
+ //   BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
+    boardScreen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
+    boardScreen.delegateBoardView = self;
+    boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:boardScreen animated:YES];
     [audioPlayerChime play];
 //	[self dismissModalViewControllerAnimated:YES];
 }

@@ -21,20 +21,16 @@
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-       // self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
-        self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"StartMenuViewController" bundle:nil];
-        NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
-        audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
-        audioPlayerOpen.numberOfLoops = 0;
-        audioPlayerOpen.volume = 1.0;
-        [audioPlayerOpen prepareToPlay];
+       self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+      //  self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"StartMenuViewController" bundle:nil];
+
     } else {
         self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"StartMenuViewController" bundle:nil];
-        NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
-        audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
-        audioPlayerOpen.numberOfLoops = 0;
-        audioPlayerOpen.volume = 1.0;
-        [audioPlayerOpen prepareToPlay];
+    //    NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
+     //   audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
+     //   audioPlayerOpen.numberOfLoops = 0;
+     //   audioPlayerOpen.volume = 1.0;
+     //   [audioPlayerOpen prepareToPlay];
     }
     self.window.rootViewController = self.startMenuViewController;
     
@@ -53,6 +49,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.startMenuViewController.audioPlayerOpen stop];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -66,8 +63,23 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
-   // [audioPlayerOpen play];
-    [self.startMenuViewController viewDidLoad];
+    if (self.startMenuViewController.playerViewScreen != nil) {
+        
+        PlayerViewController *playerScreen = self.startMenuViewController.playerViewScreen;
+        if (playerScreen.boardScreen == nil) {
+            [self.startMenuViewController.playerViewScreen dismissModalViewControllerAnimated:NO];
+            [self.startMenuViewController.view becomeFirstResponder];
+            [self.startMenuViewController viewDidLoad];
+        }
+        
+    } else {
+        [self.startMenuViewController viewDidLoad];
+    }
+    
+  /*  if ([self.startMenuViewController.view isFirstResponder] == YES) {
+         [self.startMenuViewController viewDidLoad];
+    }*/
+   
     NSLog(@"app will become active");
 }
 
