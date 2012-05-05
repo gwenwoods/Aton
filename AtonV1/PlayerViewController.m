@@ -34,7 +34,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    redName = @"Player Red";
+    blueName = @"Player Blue";
     
     rotateIV =
     [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ankh_small.png"]];
@@ -83,7 +84,7 @@
     redNameButton.userInteractionEnabled = YES;
     redNameButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:20];
     [redNameButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
-    [redNameButton setTitle:@"Player Red"  forState:UIControlStateNormal];
+    [redNameButton setTitle:redName  forState:UIControlStateNormal];
     [redNameButton addTarget:self action:@selector(setRedName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:redNameButton];
 
@@ -92,12 +93,11 @@
     blueNameButton.userInteractionEnabled = YES;
     blueNameButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:20];
     [blueNameButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
-    [blueNameButton setTitle:@"Player Blue"  forState:UIControlStateNormal];
+    [blueNameButton setTitle:blueName  forState:UIControlStateNormal];
     [blueNameButton addTarget:self action:@selector(setBlueName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:blueNameButton];
     
-    redName = redNameButton.titleLabel.text;
-    blueName = blueNameButton.titleLabel.text;
+    
     //----------
     // audio when starting to  play
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
@@ -139,13 +139,11 @@
 }
 
 
-- (void)clickedButton:(BoardViewController *)subcontroller
+- (void)dismissBoardViewWithAnimation:(BoardViewController *)subcontroller
 {
-    NSLog(@"Back to Player View");
+    NSLog(@"Board View Back to Player View");
     [self dismissModalViewControllerAnimated:NO];
     [delegatePlayerView dismissPlayerViewWithoutAnimation:self];
-   // [self performSelector:@selector(toMain) withObject:nil afterDelay:0.1];
-   // [self toMain];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -165,27 +163,31 @@
     NSLog(@"Hide Keyboard");
     enterNameView.hidden = YES;
     NSString* name = enterNameTextField.text;
-    
+    name = [name stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (name.length == 0) {
+        return;
+    }
     if (updateRed == YES) {
-        [redNameButton setTitle:name forState:UIControlStateNormal];
+      //  [redNameButton setTitle:name forState:UIControlStateNormal];
         redName = name;
+        [redNameButton setTitle:redName forState:UIControlStateNormal];
     } else {
-        [blueNameButton setTitle:name forState:UIControlStateNormal];
+      //  [blueNameButton setTitle:name forState:UIControlStateNormal];
         blueName = name;
+        [blueNameButton setTitle:blueName forState:UIControlStateNormal];
     }
 }
 
 -(IBAction) setRedName:(id)sender {
     updateRed = YES;
     updateBlue = NO;
-   // enterNameTextField.text = redNameButton.titleLabel.text;
     [self toEnterNameView];
 }
 
 -(IBAction) setBlueName:(id)sender {
     updateBlue = YES;
     updateRed = NO;
-  //  enterNameTextField.text = blueNameButton.titleLabel.text;
     [self toEnterNameView];
 }
 
