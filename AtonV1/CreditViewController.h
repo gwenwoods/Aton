@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CreditViewController;
 
-@interface CreditViewController : UIViewController
+@protocol CreditViewDelegate
+-(void)dismissCreditViewWithAnimation:(CreditViewController*) subController;
+-(void)dismissCreditViewWithoutAnimation:(CreditViewController*) subController;
+@end
 
+@interface CreditViewController : UIViewController {
+    __unsafe_unretained id delegateCreditView;
+}
 
--(IBAction) backToMenu:(id)sender;
+//-(IBAction) backToMenu:(id)sender;
+
+@property (nonatomic, assign) id<CreditViewDelegate> delegateCreditView; 
 
 @end

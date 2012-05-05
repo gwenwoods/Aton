@@ -9,6 +9,7 @@
 #import "CreditViewController.h"
 
 @implementation CreditViewController
+@synthesize  delegateCreditView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +40,6 @@
     [self.view addSubview:boardBgIV];
     [self.view sendSubviewToBack:boardBgIV];
     
-  
 }
 
 - (void)viewDidUnload
@@ -55,13 +55,15 @@
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
+/*
 -(IBAction) backToMenu:(id)sender {
 	[self dismissModalViewControllerAnimated:YES];
-}
+}*/
 
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self dismissModalViewControllerAnimated:YES];
+    [delegateCreditView dismissCreditViewWithAnimation:self];
+   // [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

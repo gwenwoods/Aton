@@ -11,21 +11,22 @@
 #import "CreditViewController.h"
 #import "PlayerViewController.h"
 
-@interface StartMenuViewController : UIViewController<PlayerViewDelegate>
+@interface StartMenuViewController : UIViewController<PlayerViewDelegate, CreditViewDelegate>
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
-    //BOOL longPress;
+
     AVAudioPlayer *audioPlayerEnterPlay, *audioPlayerOpen;
-   // float openMusicTime;
 }
 
 -(IBAction) toPlayerView:(id)sender;
 - (void)clickedButton:(BoardViewController *)subcontroller;
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
+- (void)dismissCreditViewWithAnimation:(CreditViewController *)subcontroller;
 - (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer;
 
 @property(nonatomic, strong) PlayerViewController *playerViewScreen;
+@property(nonatomic, strong) CreditViewController *creditViewScreen;
 @property(nonatomic, strong) AVAudioPlayer *audioPlayerOpen;
-//@property(nonatomic, strong) AtonPlayer *aPlayer;
+
 @end

@@ -18,10 +18,6 @@
 
 @interface PlayerViewController : UIViewController<BoardViewDelegate, UITextFieldDelegate> {
     
-  //  IBOutlet UITextField *textField_red, *textField_blue;
-  //  IBOutlet UILabel *playerName_red;
-    
-    
     __unsafe_unretained id delegatePlayerView;
     
     UIImageView *enterNameView;

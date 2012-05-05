@@ -173,8 +173,6 @@
         [blueNameButton setTitle:name forState:UIControlStateNormal];
         blueName = name;
     }
-    
-    
 }
 
 -(IBAction) setRedName:(id)sender {
@@ -199,26 +197,6 @@
     enterNameTextField.text = @"";
     [enterNameTextField becomeFirstResponder];
 }
-/*
-- (void)rotateImage:(UIImageView *)image duration:(NSTimeInterval)duration 
-              curve:(int)curve degrees:(CGFloat)degrees
-{
-    // Setup the animation
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:curve];
-    [UIView setAnimationRepeatCount:10];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    // The transform matrix
-    CGAffineTransform transform = 
-    CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(degrees));
-    transform = CGAffineTransformRotate(transform, -3.14);
-    image.transform = transform;
-    
-    // Commit the changes
-    [UIView commitAnimations];
-}*/
 
 -(void)hadleTimer:(NSTimer *)timer
 {

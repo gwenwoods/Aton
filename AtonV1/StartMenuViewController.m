@@ -12,7 +12,7 @@
 @end
 
 @implementation StartMenuViewController
-@synthesize playerViewScreen;
+@synthesize playerViewScreen, creditViewScreen;
 @synthesize audioPlayerOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
     
     NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
@@ -40,11 +39,8 @@
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:27.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-   
-    
- //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 
-    //----------
+    //-----------------------------
     // audio when starting to  play
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayerEnterPlay = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
@@ -152,7 +148,6 @@
     } else {
         creditsAnkhIV.image = nil;
     }
-
 }
 
 
@@ -213,10 +208,9 @@
                 if (audioPlayerOpen.isPlaying) {
                     [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
                 } else {
-                    //[audioPlayerOpen stop];
                     audioPlayerOpen = nil;
                 }
-              //  PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
+
                 playerViewScreen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
                 playerViewScreen.delegatePlayerView = self;
                 playerViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -230,9 +224,16 @@
             
             if ([self isWithinImgView:touchLocation:creditsIV]) {
                 
-                CreditViewController *screen = [[CreditViewController alloc] initWithNibName:nil bundle:nil];
-                screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [self presentModalViewController:screen animated:YES];
+                if (audioPlayerOpen.isPlaying) {
+                    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+                } else {
+                    audioPlayerOpen = nil;
+                }
+                
+                creditViewScreen = [[CreditViewController alloc] initWithNibName:nil bundle:nil];
+                creditViewScreen.delegateCreditView = self;
+                creditViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentModalViewController:creditViewScreen animated:YES];
                 creditsAnkhIV.image = nil;
             }
 		}
@@ -273,8 +274,7 @@
 
 
 - (void)fadeVolumeUp:(AVAudioPlayer *)aPlayer
-{
-    
+{    
     aPlayer.volume = aPlayer.volume + 0.0125;
     if (aPlayer.volume > 1.0) {
         //[aPlayer stop]; 
@@ -290,18 +290,19 @@
     [audioPlayerOpen play];
 }
 
+/*
 - (void)clickedButton:(BoardViewController *)subcontroller
 {
-   // NSString *myData = [subcontroller getData];
      NSLog(@"Back to start menu");
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
-}
+}*/
 
+//--------------------------------
+// PlayerView delegate functions
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller
 {
-    // NSString *myData = [subcontroller getData];
-    NSLog(@"Back to start menu");
+    NSLog(@"Player View Back to Start Menu");
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
     self.playerViewScreen = nil;
@@ -309,10 +310,27 @@
 
 - (void)dismissPlayerViewWithoutAnimation:(PlayerViewController *)subcontroller
 {
-    // NSString *myData = [subcontroller getData];
-    NSLog(@"Back to start menu");
+    NSLog(@"Player View Back to Start Menu");
     [self dismissModalViewControllerAnimated:NO];
     [self viewDidLoad];
     self.playerViewScreen = nil;
+}
+
+//------------------------------
+// CreditView delegate functions
+- (void)dismissCreditViewWithAnimation:(CreditViewController *)subcontroller
+{
+    NSLog(@"Credit View Back to Start Menu");
+    [self dismissModalViewControllerAnimated:YES];
+    [self viewDidLoad];
+    self.creditViewScreen = nil;
+}
+
+- (void)dismissCreditViewWithoutAnimation:(CreditViewController *)subcontroller
+{
+    NSLog(@"Credit View Back to Start Menu");
+    [self dismissModalViewControllerAnimated:NO];
+    [self viewDidLoad];
+    self.creditViewScreen = nil;
 }
 @end

@@ -26,11 +26,6 @@
 
     } else {
         self.startMenuViewController = [[StartMenuViewController alloc] initWithNibName:@"StartMenuViewController" bundle:nil];
-    //    NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
-     //   audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
-     //   audioPlayerOpen.numberOfLoops = 0;
-     //   audioPlayerOpen.volume = 1.0;
-     //   [audioPlayerOpen prepareToPlay];
     }
     self.window.rootViewController = self.startMenuViewController;
     
@@ -71,6 +66,12 @@
             [self.startMenuViewController.view becomeFirstResponder];
             [self.startMenuViewController viewDidLoad];
         }
+        
+    } if (self.startMenuViewController.creditViewScreen != nil) {
+        
+        [self.startMenuViewController.creditViewScreen dismissModalViewControllerAnimated:NO];
+        [self.startMenuViewController.view becomeFirstResponder];
+        [self.startMenuViewController viewDidLoad];
         
     } else {
         [self.startMenuViewController viewDidLoad];
