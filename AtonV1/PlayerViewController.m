@@ -61,6 +61,35 @@
     [self.view addSubview:enterNameView];
     enterNameView.hidden = YES;
     
+    NSArray *myImages = [NSArray arrayWithObjects:
+                [UIImage imageNamed:@"Redflame1.png"],
+                [UIImage imageNamed:@"Redflame2.png"],
+                [UIImage imageNamed:@"Redflame3.png"],
+                [UIImage imageNamed:@"Redflame4.png"],
+                [UIImage imageNamed:@"Redflame5.png"],
+                [UIImage imageNamed:@"Redflame6.png"],
+                [UIImage imageNamed:@"Redflame7.png"],
+                [UIImage imageNamed:@"Redflame8.png"],
+                [UIImage imageNamed:@"Redflame9.png"],
+                [UIImage imageNamed:@"Redflame10.png"],
+                [UIImage imageNamed:@"Redflame11.png"],
+                [UIImage imageNamed:@"Redflame12.png"],
+                [UIImage imageNamed:@"Redflame13.png"],
+                [UIImage imageNamed:@"Redflame14.png"],
+                nil];
+
+    UIImageView *flameIV = [[UIImageView alloc] initWithFrame:CGRectMake(700,100,200,200)];
+    [enterNameView addSubview:flameIV];
+    
+    UIImageView *handleAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,200,200)];
+    handleAnimationIV.alpha = 1.0;
+    handleAnimationIV.animationImages = myImages;
+    handleAnimationIV.animationDuration = 7.0; // seconds
+    handleAnimationIV.animationRepeatCount = 0; // 0 = loops forever
+    [handleAnimationIV startAnimating];
+    [flameIV addSubview:handleAnimationIV];
+    
+    
     enterNameLb = [[UILabel alloc] initWithFrame:CGRectMake(200,100,400,60)];
     enterNameLb.backgroundColor = [UIColor clearColor];
     enterNameLb.textColor = [UIColor whiteColor];

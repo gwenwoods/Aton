@@ -14,8 +14,8 @@
 static int SPACE_WIDTH = 53;
 static int SPACE_HEIGHT = 53;
 static int DEATH_WIDTH = 59;
-static int TEMPLE_WIDTH = 232;
-static int TEMPLE_HEIGHT = 268;
+static int TEMPLE_WIDTH = 264;
+static int TEMPLE_HEIGHT = 300;
 
 
 static int colorEnumArray_temple1[12] = {YELLOW, YELLOW, YELLOW, YELLOW, GREY, GREY, ORANGE_1, BLUE, GREEN, GREEN, GREEN, GREEN};
@@ -34,11 +34,92 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
         baseView = atonBaseView;
         
         if (templeEnum != TEMPLE_DEATH) {
-            iv = [[UIImageView alloc] initWithFrame:CGRectMake(origin.x-12, origin.y-72, TEMPLE_WIDTH, TEMPLE_HEIGHT)];
+            iv = [[UIImageView alloc] initWithFrame:CGRectMake(origin.x-30, origin.y-90, TEMPLE_WIDTH, TEMPLE_HEIGHT)];
             [baseView addSubview:iv];
 
-            [iv.layer setBorderWidth: 6.0];
-            iv.hidden = YES;
+           // [iv.layer setBorderWidth: 6.0];
+            iv.hidden = YES;    
+            NSArray *myImages;
+            if (templeEnum == TEMPLE_1) {
+                myImages = [NSArray arrayWithObjects:
+                            [UIImage imageNamed:@"Redflame1.png"],
+                            [UIImage imageNamed:@"Redflame2.png"],
+                            [UIImage imageNamed:@"Redflame3.png"],
+                            [UIImage imageNamed:@"Redflame4.png"],
+                            [UIImage imageNamed:@"Redflame5.png"],
+                            [UIImage imageNamed:@"Redflame6.png"],
+                            [UIImage imageNamed:@"Redflame7.png"],
+                            [UIImage imageNamed:@"Redflame8.png"],
+                            [UIImage imageNamed:@"Redflame9.png"],
+                            [UIImage imageNamed:@"Redflame10.png"],
+                            [UIImage imageNamed:@"Redflame11.png"],
+                            [UIImage imageNamed:@"Redflame12.png"],
+                            [UIImage imageNamed:@"Redflame13.png"],
+                            [UIImage imageNamed:@"Redflame14.png"],
+                            nil];
+            } else if (templeEnum == TEMPLE_2) {
+                myImages = [NSArray arrayWithObjects:
+                            [UIImage imageNamed:@"Redflame5.png"],
+                            [UIImage imageNamed:@"Redflame6.png"],
+                            [UIImage imageNamed:@"Redflame7.png"],
+                            [UIImage imageNamed:@"Redflame8.png"],
+                            [UIImage imageNamed:@"Redflame9.png"],
+                            [UIImage imageNamed:@"Redflame10.png"],
+                            [UIImage imageNamed:@"Redflame11.png"],
+                            [UIImage imageNamed:@"Redflame12.png"],
+                            [UIImage imageNamed:@"Redflame13.png"],
+                            [UIImage imageNamed:@"Redflame14.png"],
+                            [UIImage imageNamed:@"Redflame1.png"],
+                            [UIImage imageNamed:@"Redflame2.png"],
+                            [UIImage imageNamed:@"Redflame3.png"],
+                            [UIImage imageNamed:@"Redflame4.png"],
+                            nil];
+
+            } else if (templeEnum == TEMPLE_3) {
+                myImages = [NSArray arrayWithObjects:
+                            [UIImage imageNamed:@"Redflame9.png"],
+                            [UIImage imageNamed:@"Redflame10.png"],
+                            [UIImage imageNamed:@"Redflame11.png"],
+                            [UIImage imageNamed:@"Redflame12.png"],
+                            [UIImage imageNamed:@"Redflame13.png"],
+                            [UIImage imageNamed:@"Redflame14.png"],
+                            [UIImage imageNamed:@"Redflame1.png"],
+                            [UIImage imageNamed:@"Redflame2.png"],
+                            [UIImage imageNamed:@"Redflame3.png"],
+                            [UIImage imageNamed:@"Redflame4.png"],
+                            [UIImage imageNamed:@"Redflame5.png"],
+                            [UIImage imageNamed:@"Redflame6.png"],
+                            [UIImage imageNamed:@"Redflame7.png"],
+                            [UIImage imageNamed:@"Redflame8.png"],
+                            nil];
+                
+            } else if (templeEnum == TEMPLE_4) {
+                myImages = [NSArray arrayWithObjects:
+                            [UIImage imageNamed:@"Redflame13.png"],
+                            [UIImage imageNamed:@"Redflame14.png"],
+                            [UIImage imageNamed:@"Redflame1.png"],
+                            [UIImage imageNamed:@"Redflame2.png"],
+                            [UIImage imageNamed:@"Redflame3.png"],
+                            [UIImage imageNamed:@"Redflame4.png"],
+                            [UIImage imageNamed:@"Redflame5.png"],
+                            [UIImage imageNamed:@"Redflame6.png"],
+                            [UIImage imageNamed:@"Redflame7.png"],
+                            [UIImage imageNamed:@"Redflame8.png"],
+                            [UIImage imageNamed:@"Redflame9.png"],
+                            [UIImage imageNamed:@"Redflame10.png"],
+                            [UIImage imageNamed:@"Redflame11.png"],
+                            [UIImage imageNamed:@"Redflame12.png"],
+                            nil];
+                
+            }
+            
+            UIImageView *handleAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,TEMPLE_WIDTH,TEMPLE_HEIGHT)];
+            handleAnimationIV.alpha = 1.0;
+            handleAnimationIV.animationImages = myImages;
+            handleAnimationIV.animationDuration = 2.8; // seconds
+            handleAnimationIV.animationRepeatCount = 0; // 0 = loops forever
+            [handleAnimationIV startAnimating];
+            [iv addSubview:handleAnimationIV];
         }
         
         [self initializeTempleSlotArray];

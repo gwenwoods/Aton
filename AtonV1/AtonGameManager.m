@@ -126,7 +126,7 @@
         exchangeCardsLb.numberOfLines = 8;     
         exchangeCardsLb.textColor = [UIColor blackColor];
         exchangeCardsLb.font = [UIFont fontWithName:@"Copperplate" size:20];
-        exchangeCardsLb.text = @"You can exchange cards\n once per game.\n Do you want to exchange now?";
+        exchangeCardsLb.text = @"You can exchange cards\n once per game.\n Exchange now?";
         [exchangeCardsView addSubview:exchangeCardsLb];
         [exchangeCardsView bringSubviewToFront:exchangeCardsLb];
 
