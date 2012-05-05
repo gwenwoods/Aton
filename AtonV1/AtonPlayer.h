@@ -27,10 +27,10 @@ enum PLAYER_ACTION_ENUM {
     UILabel *deckCountLb;
     UIButton *doneButton;
     
-    NSMutableArray *menuPeepArray;
+   // NSMutableArray *scrollPeepArray;
     UILabel *actionLb;
     
-    UIImageView *scrollExchangeIV, *scrollBlankIV, *scrollDoneIV, *scrollDoneAniHomeIV;
+    UIImageView *scrollExchangeIV, *scrollBlankIV, *scrollDoneAniHomeIV;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;
@@ -56,9 +56,9 @@ enum PLAYER_ACTION_ENUM {
 @property (strong, nonatomic) NSString *playerName;
 @property (nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
-@property (strong, nonatomic) NSMutableArray *deckArray;
+@property (strong, nonatomic) NSMutableArray *deckArray, *scrollPeepArray;
 @property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV;
 @property (strong, nonatomic) UIButton *exchangeCardsButton;
-@property (strong, nonatomic) UIImageView *scrollExchangeIV;
+@property (strong, nonatomic) UIImageView *scrollExchangeIV, *scrollDoneIV;
 
 @end

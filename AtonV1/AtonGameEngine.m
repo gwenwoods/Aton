@@ -122,7 +122,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         int winnerFinalScore = winnerOriginalScore + cardOneWinningScore;
         if (winnerFinalScore >= 40) {
           
-            [self performSelector:@selector(showFinalResult) withObject:nil afterDelay:animationTime+1.0];
+            [self performSelector:@selector(showFinalResult) withObject:nil afterDelay:animationTime + ANIMATION_DELAY_TIME];
         } else {
             NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
             gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;

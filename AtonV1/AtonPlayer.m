@@ -28,7 +28,7 @@ static float DELAY_TIME = 0.25;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
 @synthesize deckIV, deckAnimationIV, deckArray;
 @synthesize exchangeCardsButton;
-@synthesize scrollExchangeIV;
+@synthesize scrollExchangeIV, scrollDoneIV, scrollPeepArray;
 //@synthesize scrollExchangeIV, scrollBlankIV, scrollDoneIV;
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController {
@@ -90,11 +90,11 @@ static float DELAY_TIME = 0.25;
         [scrollDoneIV addSubview:p1];
         [scrollDoneIV addSubview:p2];
         [scrollDoneIV addSubview:p3];
-        menuPeepArray = [[NSMutableArray alloc] init];
-        [menuPeepArray addObject:p0];
-        [menuPeepArray addObject:p1];
-        [menuPeepArray addObject:p2];
-        [menuPeepArray addObject:p3];
+        scrollPeepArray = [[NSMutableArray alloc] init];
+        [scrollPeepArray addObject:p0];
+        [scrollPeepArray addObject:p1];
+        [scrollPeepArray addObject:p2];
+        [scrollPeepArray addObject:p3];
        // [menuView setBackgroundColor:[UIColor whiteColor]];
         //--------
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
@@ -546,6 +546,11 @@ static float DELAY_TIME = 0.25;
 
 -(void) displayMenu:(int) actionEnum:(int) peepNum {
     
+    for (int i=0; i<4; i++) {
+        UIImageView *iv = [scrollPeepArray objectAtIndex:i];
+        iv.alpha = 1.0;
+    }
+    
     if (scrollDoneIV.hidden == NO) {
         return;
     }
@@ -559,7 +564,7 @@ static float DELAY_TIME = 0.25;
     }
     // show peeps
     for (int i=0; i<4; i++) {
-        UIImageView *iv = [menuPeepArray objectAtIndex:i];
+        UIImageView *iv = [scrollPeepArray objectAtIndex:i];
         iv.image = [UIImage imageNamed:nil];
     }
     
@@ -573,7 +578,7 @@ static float DELAY_TIME = 0.25;
        //     peepNum = -1*peepNum;
        // }
         for (int i=0; i< abs(peepNum); i++) {
-            UIImageView *iv = [menuPeepArray objectAtIndex:i];
+            UIImageView *iv = [scrollPeepArray objectAtIndex:i];
             
             iv.image = [UIImage imageNamed:[self getDiscFileName:targetPeepEnum]];
         }

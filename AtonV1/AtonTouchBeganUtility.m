@@ -12,13 +12,13 @@
 
 +(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters: (AtonGameEngine*) engine {
     UITouch *touch = [[event allTouches] anyObject];
-   // NSMutableArray *playerArray = [atonParameters playerArray];
+    NSMutableArray *playerArray = [atonParameters playerArray];
     NSMutableArray *templeArray = [atonParameters templeArray];
    
     
     [self checkGamePhaseView:atonParameters:engine];
     [self playerArrangeCard:touch:touchElement:atonParameters];
-    [self chooseTempleSlot:touch:templeArray];
+    [self chooseTempleSlot:touch:templeArray:playerArray];
 }
 
 +(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
@@ -214,18 +214,69 @@
     }
 }
 
-+(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray {
++(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray:(NSMutableArray*) playerArray {
     
+    AtonPlayer *currentPlayer;
+    for (int i=0; i<[playerArray count]; i++) {
+        AtonPlayer *player = [playerArray objectAtIndex:i];
+        if (player.scrollDoneIV.hidden == NO) {
+            currentPlayer = player;
+            break;
+        }
+    }
     for (int i=1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
         NSMutableArray *templeSlotArray = [temple slotArray];
-        for (int i=0; i< [templeSlotArray count]; i++) {
-            TempleSlot *slot = [templeSlotArray objectAtIndex:i];
+        for (int j=0; j< [templeSlotArray count]; j++) {
+            TempleSlot *slot = [templeSlotArray objectAtIndex:j];
             if([touch view] == [slot iv]) {
-             //   [TempleUtility hideAllTempleSlotBoundary:templeArray];
-             //   slot.boundaryIV.hidden = NO;
-             //   slot.isSelected = YES;
+
+                NSMutableArray *peepArray = currentPlayer.scrollPeepArray;
+                int numPeepsLeftForSelection = 0;
+                for (int k=0; k < [peepArray count]; k++) {
+                    UIImageView *iv = [peepArray objectAtIndex:k];
+                    if (iv.image != nil &&  iv.alpha > 0.5) {
+                        numPeepsLeftForSelection++;
+                    }
+                }
+                
+                if ([slot isSelected] == NO && numPeepsLeftForSelection == 0) {
+                    return;
+                }
+                
                 [slot selectOrDeselectSlot];
+                
+                
+                if (currentPlayer == nil) {
+                    // Code should never reach here
+                    return;
+                }
+                
+                if ([slot isSelected]) {
+                   
+                    for (int k=0; k < [peepArray count]; k++) {
+                        UIImageView *iv = [peepArray objectAtIndex:k];
+                        if (iv.alpha < 1.0) {
+                            continue;
+                        } else {
+                            iv.alpha = 0.3;
+                            break;
+                        }
+                    }
+                } else {
+                    
+                    for (int k=[peepArray count]-1; k >= 0; k--) {
+                        UIImageView *iv = [peepArray objectAtIndex:k];
+                        if (iv.alpha < 1.0) {
+                            iv.alpha = 1.0;
+                            break;
+
+                        } else {
+                            continue;
+                        }
+                    }
+
+                }
             }
         }
     }
