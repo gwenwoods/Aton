@@ -168,7 +168,7 @@
 }
 
 
-- (void)dismissBoardViewWithAnimation:(BoardViewController *)subcontroller
+- (void)dismissBoardViewWithoutAnimation:(BoardViewController *)subcontroller
 {
     NSLog(@"Board View Back to Player View");
     [self dismissModalViewControllerAnimated:NO];

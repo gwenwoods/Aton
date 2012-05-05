@@ -516,7 +516,8 @@
     
     for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-        [temple.iv.layer setBorderColor:color.CGColor];
+       // [temple.iv.layer setBorderColor:color.CGColor];
+        [temple enableTempleFlame:playerEnum];
         for (int j=0; j<12; j++) {
             TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
             [slot.boundaryIV.layer setBorderColor:color.CGColor];   

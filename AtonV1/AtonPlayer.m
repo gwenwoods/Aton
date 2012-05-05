@@ -66,7 +66,7 @@ static float DELAY_TIME = 0.25;
         actionLb.textColor = [UIColor blackColor];
         [actionLb setBackgroundColor:[UIColor clearColor]];
         actionLb.font = [UIFont systemFontOfSize:12];
-        //actionLb.hidden = YES;
+        actionLb.hidden = YES;
         [scrollDoneIV addSubview:actionLb];
         
         doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -562,6 +562,7 @@ static float DELAY_TIME = 0.25;
     } else {
         actionLb.text = @"Remove";
     }
+    
     // show peeps
     for (int i=0; i<4; i++) {
         UIImageView *iv = [scrollPeepArray objectAtIndex:i];

@@ -24,7 +24,7 @@
 @class BoardViewController;
 
 @protocol BoardViewDelegate
--(void)clickedButton:(BoardViewController*) subController;
+-(void)dismissBoardViewWithoutAnimation:(BoardViewController*) subController;
 @end
 
 @interface BoardViewController : UIViewController {

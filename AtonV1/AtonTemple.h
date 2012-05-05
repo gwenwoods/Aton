@@ -15,7 +15,7 @@ enum TEMPLE_ENUM {
 };
 
 @interface AtonTemple : NSObject {
-    
+    UIImageView *redAnimationIV, *blueAnimationIV;
 }
 
 -(id)initializeWithParameters:(int) thisTempleId:(CGPoint) templeOrigin:(UIView*) atonBaseView;
@@ -24,6 +24,7 @@ enum TEMPLE_ENUM {
 -(NSMutableArray*) enableTempleSlotInteraction:(int) occupiedEnum;
 -(TempleSlot*) findSelectedSlot;
 -(NSMutableArray*) findAllSelectedSlots;
+-(void) enableTempleFlame:(int) playerEnum;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(strong, nonatomic) UIImageView* iv;

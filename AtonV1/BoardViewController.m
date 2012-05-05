@@ -95,7 +95,7 @@
 }
 
 - (IBAction) toMenu:(id)sender {
-    [delegateBoardView clickedButton:self];
+    [delegateBoardView dismissBoardViewWithoutAnimation:self];
  //   [self dismissModalViewControllerAnimated:YES];
     
 

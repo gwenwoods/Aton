@@ -39,9 +39,9 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
 
            // [iv.layer setBorderWidth: 6.0];
             iv.hidden = YES;    
-            NSArray *myImages;
+            NSArray *redImages, *blueImages;
             if (templeEnum == TEMPLE_1) {
-                myImages = [NSArray arrayWithObjects:
+                redImages = [NSArray arrayWithObjects:
                             [UIImage imageNamed:@"Redflame1.png"],
                             [UIImage imageNamed:@"Redflame2.png"],
                             [UIImage imageNamed:@"Redflame3.png"],
@@ -57,8 +57,23 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
                             [UIImage imageNamed:@"Redflame13.png"],
                             [UIImage imageNamed:@"Redflame14.png"],
                             nil];
+                blueImages = [NSArray arrayWithObjects:
+                             [UIImage imageNamed:@"blueFlame1.png"],
+                             [UIImage imageNamed:@"blueFlame2.png"],
+                             [UIImage imageNamed:@"blueFlame3.png"],
+                             [UIImage imageNamed:@"blueFlame4.png"],
+                             [UIImage imageNamed:@"blueFlame5.png"],
+                             [UIImage imageNamed:@"blueFlame6.png"],
+                             [UIImage imageNamed:@"blueFlame7.png"],
+                             [UIImage imageNamed:@"blueFlame8.png"],
+                             [UIImage imageNamed:@"blueFlame9.png"],
+                             [UIImage imageNamed:@"blueFlame10.png"],
+                             [UIImage imageNamed:@"blueFlame11.png"],
+                             [UIImage imageNamed:@"blueFlame12.png"],
+                             nil];
+                
             } else if (templeEnum == TEMPLE_2) {
-                myImages = [NSArray arrayWithObjects:
+                redImages = [NSArray arrayWithObjects:
                             [UIImage imageNamed:@"Redflame5.png"],
                             [UIImage imageNamed:@"Redflame6.png"],
                             [UIImage imageNamed:@"Redflame7.png"],
@@ -74,9 +89,23 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
                             [UIImage imageNamed:@"Redflame3.png"],
                             [UIImage imageNamed:@"Redflame4.png"],
                             nil];
+                blueImages = [NSArray arrayWithObjects:
+                              [UIImage imageNamed:@"blueFlame4.png"],
+                              [UIImage imageNamed:@"blueFlame5.png"],
+                              [UIImage imageNamed:@"blueFlame6.png"],
+                              [UIImage imageNamed:@"blueFlame7.png"],
+                              [UIImage imageNamed:@"blueFlame8.png"],
+                              [UIImage imageNamed:@"blueFlame9.png"],
+                              [UIImage imageNamed:@"blueFlame10.png"],
+                              [UIImage imageNamed:@"blueFlame11.png"],
+                              [UIImage imageNamed:@"blueFlame12.png"],
+                              [UIImage imageNamed:@"blueFlame1.png"],
+                              [UIImage imageNamed:@"blueFlame2.png"],
+                              [UIImage imageNamed:@"blueFlame3.png"],
+                              nil];
 
             } else if (templeEnum == TEMPLE_3) {
-                myImages = [NSArray arrayWithObjects:
+                redImages = [NSArray arrayWithObjects:
                             [UIImage imageNamed:@"Redflame9.png"],
                             [UIImage imageNamed:@"Redflame10.png"],
                             [UIImage imageNamed:@"Redflame11.png"],
@@ -92,9 +121,22 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
                             [UIImage imageNamed:@"Redflame7.png"],
                             [UIImage imageNamed:@"Redflame8.png"],
                             nil];
-                
+                blueImages = [NSArray arrayWithObjects:
+                              [UIImage imageNamed:@"blueFlame7.png"],
+                              [UIImage imageNamed:@"blueFlame8.png"],
+                              [UIImage imageNamed:@"blueFlame9.png"],
+                              [UIImage imageNamed:@"blueFlame10.png"],
+                              [UIImage imageNamed:@"blueFlame11.png"],
+                              [UIImage imageNamed:@"blueFlame12.png"],
+                              [UIImage imageNamed:@"blueFlame1.png"],
+                              [UIImage imageNamed:@"blueFlame2.png"],
+                              [UIImage imageNamed:@"blueFlame3.png"],
+                              [UIImage imageNamed:@"blueFlame4.png"],
+                              [UIImage imageNamed:@"blueFlame5.png"],
+                              [UIImage imageNamed:@"blueFlame6.png"],
+                              nil];
             } else if (templeEnum == TEMPLE_4) {
-                myImages = [NSArray arrayWithObjects:
+                redImages = [NSArray arrayWithObjects:
                             [UIImage imageNamed:@"Redflame13.png"],
                             [UIImage imageNamed:@"Redflame14.png"],
                             [UIImage imageNamed:@"Redflame1.png"],
@@ -110,16 +152,38 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
                             [UIImage imageNamed:@"Redflame11.png"],
                             [UIImage imageNamed:@"Redflame12.png"],
                             nil];
+                blueImages = [NSArray arrayWithObjects:
+                              [UIImage imageNamed:@"blueFlame10.png"],
+                              [UIImage imageNamed:@"blueFlame11.png"],
+                              [UIImage imageNamed:@"blueFlame12.png"],
+                              [UIImage imageNamed:@"blueFlame1.png"],
+                              [UIImage imageNamed:@"blueFlame2.png"],
+                              [UIImage imageNamed:@"blueFlame3.png"],
+                              [UIImage imageNamed:@"blueFlame4.png"],
+                              [UIImage imageNamed:@"blueFlame5.png"],
+                              [UIImage imageNamed:@"blueFlame6.png"],
+                              [UIImage imageNamed:@"blueFlame7.png"],
+                              [UIImage imageNamed:@"blueFlame8.png"],
+                              [UIImage imageNamed:@"blueFlame9.png"],
+                              nil];
                 
             }
             
-            UIImageView *handleAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,TEMPLE_WIDTH,TEMPLE_HEIGHT)];
-            handleAnimationIV.alpha = 1.0;
-            handleAnimationIV.animationImages = myImages;
-            handleAnimationIV.animationDuration = 2.8; // seconds
-            handleAnimationIV.animationRepeatCount = 0; // 0 = loops forever
-            [handleAnimationIV startAnimating];
-            [iv addSubview:handleAnimationIV];
+            redAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,TEMPLE_WIDTH,TEMPLE_HEIGHT)];
+            redAnimationIV.alpha = 1.0;
+            redAnimationIV.animationImages = redImages;
+            redAnimationIV.animationDuration = 2.8; // seconds
+            redAnimationIV.animationRepeatCount = 0; // 0 = loops forever
+            [redAnimationIV startAnimating];
+            [iv addSubview:redAnimationIV];
+            
+            blueAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,TEMPLE_WIDTH,TEMPLE_HEIGHT)];
+            blueAnimationIV.alpha = 1.0;
+            blueAnimationIV.animationImages = blueImages;
+            blueAnimationIV.animationDuration = 2.4; // seconds
+            blueAnimationIV.animationRepeatCount = 0; // 0 = loops forever
+            [blueAnimationIV startAnimating];
+            [iv addSubview:blueAnimationIV];
         }
         
         [self initializeTempleSlotArray];
@@ -239,6 +303,21 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
             TempleSlot *slot = [slotArray objectAtIndex:i];
             slot.colorTypeEnum = colorEnumArray_temple4[i];    
         }
+    }
+}
+
+-(void) enableTempleFlame:(int) playerEnum {
+    
+    if (playerEnum == 0) {
+        redAnimationIV.hidden = NO;
+        blueAnimationIV.hidden = YES;
+    } else if (playerEnum == 1) {
+        redAnimationIV.hidden = YES;
+        blueAnimationIV.hidden = NO;
+    } else {
+        // Code should never reach here
+        redAnimationIV.hidden = YES;
+        blueAnimationIV.hidden = YES;
     }
 }
 @end
