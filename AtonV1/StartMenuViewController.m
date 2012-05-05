@@ -36,8 +36,7 @@
 	audioPlayerOpen.numberOfLoops = 0;
     audioPlayerOpen.volume = 0.0;
     [audioPlayerOpen prepareToPlay];
-    //[audioPlayerOpen play];
- //   openMusicTime = 0.0;
+
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:27.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];

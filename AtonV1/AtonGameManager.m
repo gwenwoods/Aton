@@ -15,7 +15,7 @@
 @synthesize gamePhaseView, gamePhaseLb, gamePhaseDetailLb, gamePhaseMiddleLb;
 @synthesize helpView, helpLb, helpDetailLb, helpMiddleLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
-@synthesize finalResultView, finalResultLb;
+@synthesize finalResultView, finalResultLb, finalResultDetailLb ;
 @synthesize gamePhaseActivePlayerIV, helpActivePlayerIV;
 
 
@@ -203,8 +203,6 @@
 -(void) showHelpView:(NSString*) msg {
     
     helpLb.text = nil;
-    helpLb.text = nil;
-    helpLb.text = nil;
     
     NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
     NSString *title = [messageArray objectAtIndex:0];
@@ -236,9 +234,14 @@
 }
 
 -(void) showFinalResultView:(NSString*) msg {
+    
+    NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
+    finalResultLb.text = [messageArray objectAtIndex:0];
+    finalResultDetailLb.text = [messageArray objectAtIndex:1];
+    
     finalResultView.hidden = NO;
-    finalResultLb.text = msg;
     finalResultView.alpha = 0.0;
+    
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -248,6 +251,5 @@
                      } 
                      completion:^(BOOL finished){
                      }];
-    
 }
 @end
