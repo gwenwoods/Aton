@@ -11,7 +11,7 @@
 @implementation AtonRoundResult
 
 @synthesize firstPlayerEnum, secondPlayerEnum;
-@synthesize firstActiveTemple, secondActiveTemple;
+//@synthesize firstActiveTemple, secondActiveTemple;
 @synthesize firstRemoveNum, secondRemoveNum;
 @synthesize firstPlaceNum, secondPlaceNum;
 @synthesize firstTemple, secondTemple;

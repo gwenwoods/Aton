@@ -35,6 +35,9 @@ enum GAME_PHASE_ENUM {
     GAME_PHASE_FIRST_REMOVE_NONE, GAME_PHASE_PRE_SECOND_REMOVE_PEEP,
     GAME_PHASE_SECOND_REMOVE_NONE, GAME_PHASE_PRE_FIRST_PLACE_PEEP,
     
+    GAME_PHASE_FIRST_PLACE_NONE, GAME_PHASE_PRE_SECOND_PLACE_PEEP,
+    GAME_PHASE_SECOND_PLACE_NONE, GAME_PHASE_CHECK_DEATH_TEMPLE,
+    
     GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE, GAME_PHASE_ROUND_END_PRE_SECOND_REMOVE_4,
     GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE, GAME_PHASE_PRE_DISTRIBUTE_CARD,
     
@@ -54,7 +57,7 @@ enum GAME_PHASE_ENUM {
 -(int) getSecondRemovePositiveNum;
 
 @property(nonatomic) int firstPlayerEnum, secondPlayerEnum;
-@property(nonatomic) int firstActiveTemple, secondActiveTemple;
+//@property(nonatomic) int firstActiveTemple, secondActiveTemple;
 @property(nonatomic) int firstRemoveNum, secondRemoveNum;
 @property(nonatomic) int firstPlaceNum, secondPlaceNum;
 @property(nonatomic) int firstTemple, secondTemple;

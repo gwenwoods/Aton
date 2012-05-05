@@ -126,6 +126,16 @@
             // BRANCH PHASE
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
             
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_PRE_SECOND_PLACE_PEEP ) {
+            // BRANCH PHASE
+            atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_NONE ) {
+            // BRANCH PHASE
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_NONE ) {
+            // BRANCH PHASE
+            
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE ) {
             // BRANCH PHASE
             
