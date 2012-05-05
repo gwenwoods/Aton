@@ -37,12 +37,12 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
             iv = [[UIImageView alloc] initWithFrame:CGRectMake(origin.x-8, origin.y-68, TEMPLE_WIDTH, TEMPLE_HEIGHT)];
             [baseView addSubview:iv];
         //    [iv setBackgroundColor:[UIColor whiteColor]];
-            iv.alpha = 0.4;
-            [iv.layer setBorderColor: [[UIColor brownColor] CGColor]];
-            [iv.layer setBorderWidth: 10.0];
-            [iv.layer setShadowOffset:CGSizeMake(-3.0, 3.0)];
-            [iv.layer setShadowRadius:6.0];
-            [iv.layer setShadowOpacity:1.0];
+          //  iv.alpha = 0.4;
+           // [iv.layer setBorderColor: [[UIColor brownColor] CGColor]];
+            [iv.layer setBorderWidth: 6.0];
+          //  [iv.layer setShadowOffset:CGSizeMake(-3.0, 3.0)];
+          //  [iv.layer setShadowRadius:6.0];
+          //  [iv.layer setShadowOpacity:1.0];
             iv.hidden = YES;
         }
         

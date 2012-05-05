@@ -208,6 +208,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.firstPlayerEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.firstTemple:OCCUPIED_EMPTY];
         [firstPlayer displayMenu:ACTION_PLACE:roundResult.firstPlaceNum];
+        
+        // TODO: no slot to put the peep
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.secondPlayerEnum];
         [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.secondTemple:OCCUPIED_EMPTY];

@@ -209,14 +209,14 @@
         return @"\n in Temple 1";
         
     } else if (templeEnum == TEMPLE_2) {
-        return @"\n in Temple 1 or 2";
+        return @"\n in Temple 1, 2";
         
     } else if (templeEnum == TEMPLE_3) {
-        return @"\n in Temple 1, 2 or 3";
+        return @"\n in Temple 1, 2, 3";
         
     }
     
-    return @"\n in Temple 1, 2, 3, or 4";
+    return @"\n in Temple 1, 2, 3, 4";
 } 
 
 -(NSString*) getMessageForTempleScoreResult:(TempleScoreResult*) result {

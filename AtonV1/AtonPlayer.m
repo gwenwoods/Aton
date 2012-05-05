@@ -70,9 +70,11 @@ static float DELAY_TIME = 0.25;
         [scrollDoneIV addSubview:actionLb];
         
         doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        doneButton.frame = CGRectMake(0,260, 80, 50);
+        doneButton.frame = CGRectMake(8,240, 56, 56);
         doneButton.userInteractionEnabled = YES;
-       // [doneButton setTitle:@"Done"  forState:UIControlStateNormal];
+      //  doneButton.alpha = 0.4;
+      //  [doneButton setTitle:@"Done"  forState:UIControlStateNormal];  
+     //   [doneButton setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         [scrollDoneIV addSubview:doneButton];
         
@@ -543,6 +545,10 @@ static float DELAY_TIME = 0.25;
 }
 
 -(void) displayMenu:(int) actionEnum:(int) peepNum {
+    
+    if (scrollDoneIV.hidden == NO) {
+        return;
+    }
     
     if (actionEnum == ACTION_NONE) {
         actionLb.text = @"";
