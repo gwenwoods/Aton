@@ -51,7 +51,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         NSString *msg = @"|";
         msg = [msg stringByAppendingString:playerRed.playerName];
-        msg = [msg stringByAppendingString:@"\n Please Arrange\n Your Cards"];
+        msg = [msg stringByAppendingString:@"\n\n Please Arrange\n Your Card Placements"];
         gameManager.activePlayer = PLAYER_RED;
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];    
     
@@ -63,7 +63,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         NSString *msg = @"|";
         msg = [msg stringByAppendingString:playerBlue.playerName];
-        msg = [msg stringByAppendingString:@"\n Please Arrange\n Your Cards"];
+        msg = [msg stringByAppendingString:@"\n\n Please Arrange\n Your Card Placements"];
         gameManager.activePlayer = PLAYER_BLUE;
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
         
@@ -121,10 +121,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         int winnerFinalScore = winnerOriginalScore + cardOneWinningScore;
         if (winnerFinalScore >= 40) {
-            // GameOver
-            NSString* msg = [self gameOverResultMsg];
-            gameManager.activePlayer = cardOneWinnerEnum;
-            [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:animationTime];
+          
+            [self performSelector:@selector(showFinalResult) withObject:nil afterDelay:animationTime+1.0];
         } else {
             NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
             gameManager.activePlayer = para.atonRoundResult.firstPlayerEnum;
@@ -726,10 +724,10 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     
     NSMutableArray *playerArray = para.playerArray;
     if ([[playerArray objectAtIndex:PLAYER_RED] score] > 40) {
-        msg = @"Player Red reaches 40 points|";
+        msg = @"Player Red\n reaches 40 points|";
         
     } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] > 40) {
-        msg = @"Player Blue reaches 40 points|";
+        msg = @"Player Blue\n reaches 40 points|";
         
     }
     
@@ -919,5 +917,13 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
     }
 
+}
+
+-(void) showFinalResult {
+    
+  //  NSString* msg = [self gameOverCondition];
+    NSString *msg = [self gameOverCondition];
+    // gameManager.activePlayer = cardOneWinnerEnum;
+    [para.gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:0.0];
 }
 @end

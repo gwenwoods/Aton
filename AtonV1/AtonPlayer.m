@@ -37,7 +37,7 @@ static float DELAY_TIME = 0.25;
         baseView = controller.view;
         playerEnum = thisPlayerEnum;
         playerName = name;
-        
+
         //--------------
         // menu
         

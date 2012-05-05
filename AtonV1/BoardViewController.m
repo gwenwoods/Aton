@@ -112,30 +112,29 @@
 
 - (IBAction) exchangeCardsYes:(id)sender {
     
+    AtonPlayer *player = nil;
     if (atonParameters.gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
-        AtonPlayer *player = [[atonParameters playerArray] objectAtIndex:PLAYER_RED];
-        player.exchangeCardsButton.hidden = YES;
-        player.scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
-        [player resetCard];
-        [player distributeCards];
-        [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
-    
-    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
-        AtonPlayer *player = [[atonParameters playerArray] objectAtIndex:PLAYER_BLUE];
-        player.exchangeCardsButton.hidden = YES;
-        [player resetCard];
-        [player distributeCards];
-        [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
+        player = [[atonParameters playerArray] objectAtIndex:PLAYER_RED];
         
+    } else if (atonParameters.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
+        player = [[atonParameters playerArray] objectAtIndex:PLAYER_BLUE];
+        
+    } else {
+        // Code should never reach here
+        return;
     }
 
+    player.exchangeCardsButton.hidden = YES;
+    player.scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
+    [player resetCard];
+    [player distributeCards];
+    [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
+    
     atonParameters.gameManager.exchangeCardsView.hidden = YES;
 }
 
 - (IBAction) exchangeCardsNo:(id)sender {
      atonParameters.gameManager.exchangeCardsView.hidden = YES;
 }
-
-
 
 @end

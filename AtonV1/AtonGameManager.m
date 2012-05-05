@@ -25,6 +25,8 @@
         controller = viewController;
         baseView = controller.view;
         
+        NSString *atonFont = @"Palatino";
+        
         gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         gamePhaseView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
         gamePhaseView.hidden = YES;
@@ -36,17 +38,17 @@
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseLb.numberOfLines = 1;     
         gamePhaseLb.textColor = [UIColor blackColor];
-        gamePhaseLb.font = [UIFont fontWithName:@"Courier" size:20];
+        gamePhaseLb.font = [UIFont fontWithName:atonFont size:20];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
-        gamePhaseDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,60)];
+        gamePhaseDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,80)];
         gamePhaseDetailLb.backgroundColor = [UIColor clearColor];
         gamePhaseDetailLb.textAlignment = UITextAlignmentCenter;
         gamePhaseDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        gamePhaseDetailLb.numberOfLines = 3;     
+        gamePhaseDetailLb.numberOfLines = 4;     
         gamePhaseDetailLb.textColor = [UIColor blackColor];
-        gamePhaseDetailLb.font = [UIFont fontWithName:@"Courier" size:16];
+        gamePhaseDetailLb.font = [UIFont fontWithName:atonFont size:16];
         [gamePhaseView addSubview:gamePhaseDetailLb];
         [gamePhaseView bringSubviewToFront:gamePhaseDetailLb];
         
@@ -56,12 +58,21 @@
         gamePhaseMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseMiddleLb.numberOfLines = 3;     
         gamePhaseMiddleLb.textColor = [UIColor blackColor];
-        gamePhaseMiddleLb.font = [UIFont fontWithName:@"Courier" size:16];
+        gamePhaseMiddleLb.font = [UIFont fontWithName:atonFont size:16];
         [gamePhaseView addSubview:gamePhaseMiddleLb];
         [gamePhaseView bringSubviewToFront:gamePhaseMiddleLb];
         
         gamePhaseActivePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 140, 60, 60)];
         [gamePhaseView addSubview:gamePhaseActivePlayerIV];
+        
+        gamePhaseTieIV = [[UIImageView alloc] initWithFrame:CGRectMake(198, 140, 120, 60)];
+        UIImageView *redIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        redIV.image = [UIImage imageNamed:@"Red_icon.png"];
+        UIImageView *blueIV = [[UIImageView alloc] initWithFrame:CGRectMake(60, 0, 60, 60)];
+        blueIV.image = [UIImage imageNamed:@"Blue_icon.png"];
+        [gamePhaseTieIV addSubview:redIV];
+        [gamePhaseTieIV addSubview:blueIV];
+        [gamePhaseView addSubview:gamePhaseTieIV];
         
         //---------------------------------
         helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
@@ -75,17 +86,17 @@
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpLb.numberOfLines = 4;     
         helpLb.textColor = [UIColor blackColor];
-        helpLb.font = [UIFont fontWithName:@"Courier" size:20];
+        helpLb.font = [UIFont fontWithName:atonFont size:20];
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
-        helpDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,60)];
+        helpDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,80)];
         helpDetailLb.backgroundColor = [UIColor clearColor];
         helpDetailLb.textAlignment = UITextAlignmentCenter;
         helpDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        helpDetailLb.numberOfLines = 3;     
+        helpDetailLb.numberOfLines = 4;     
         helpDetailLb.textColor = [UIColor blackColor];
-        helpDetailLb.font = [UIFont fontWithName:@"Courier" size:16];
+        helpDetailLb.font = [UIFont fontWithName:atonFont size:16];
         [helpView addSubview:helpDetailLb];
         [helpView bringSubviewToFront:helpDetailLb];
         
@@ -95,7 +106,7 @@
         helpMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpMiddleLb.numberOfLines = 3;     
         helpMiddleLb.textColor = [UIColor blackColor];
-        helpMiddleLb.font = [UIFont fontWithName:@"Courier" size:16];
+        helpMiddleLb.font = [UIFont fontWithName:atonFont size:16];
         [helpView addSubview:helpMiddleLb];
         [helpView bringSubviewToFront:helpMiddleLb];
         
@@ -140,16 +151,25 @@
         finalResultView.userInteractionEnabled = YES;
         [baseView addSubview:finalResultView];
         
-        finalResultLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        finalResultLb = [[UILabel alloc] initWithFrame:CGRectMake(52,112,400,40)];
         finalResultLb.backgroundColor = [UIColor clearColor];
         finalResultLb.textAlignment = UITextAlignmentCenter;
         finalResultLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        finalResultLb.numberOfLines = 8;     
+        finalResultLb.numberOfLines = 2;     
         finalResultLb.textColor = [UIColor blackColor];
-        finalResultLb.font = [UIFont fontWithName:@"Copperplate" size:20];
-        finalResultLb.text = @"Final results: \n\n";
+        finalResultLb.font = [UIFont fontWithName:atonFont size:20];
         [finalResultView addSubview:finalResultLb];
         [finalResultView bringSubviewToFront:finalResultLb];
+        
+        finalResultDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,168,400,80)];
+        finalResultDetailLb.backgroundColor = [UIColor clearColor];
+        finalResultDetailLb.textAlignment = UITextAlignmentCenter;
+        finalResultDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        finalResultDetailLb.numberOfLines = 6;     
+        finalResultDetailLb.textColor = [UIColor blackColor];
+        finalResultDetailLb.font = [UIFont fontWithName:atonFont size:20];
+        [finalResultView addSubview:finalResultDetailLb];
+        [finalResultView bringSubviewToFront:finalResultDetailLb];
 
     }
     return self;
@@ -162,30 +182,30 @@
     gamePhaseMiddleLb.text = nil;
     
     NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
-    NSString *title = [messageArray objectAtIndex:0];
-    NSString *progressMsg = @"";
-    
+
     if ([messageArray count] > 1) {
-        progressMsg = [messageArray objectAtIndex:1];
+        gamePhaseLb.text = [messageArray objectAtIndex:0];
+        gamePhaseDetailLb.text = [messageArray objectAtIndex:1];
+    } else {
+        gamePhaseMiddleLb.text = [messageArray objectAtIndex:0];
     }
     
     if (activePlayer == PLAYER_RED) {
+        gamePhaseTieIV.hidden = YES;
         gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
         
     } else if (activePlayer == PLAYER_BLUE) {
+        gamePhaseTieIV.hidden = YES;
         gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
         
     } else {
         gamePhaseActivePlayerIV.image = nil;
-        
+        if (gamePhaseMiddleLb.text == nil) {
+            gamePhaseTieIV.hidden = NO;
+        }
     }
     
-    if ([messageArray count] > 1) {
-        gamePhaseLb.text = title;
-        gamePhaseDetailLb.text = progressMsg;
-    } else {
-        gamePhaseMiddleLb.text = title;
-    }
+    
     gamePhaseView.hidden = NO;
     gamePhaseView.alpha = 0.0;
     [UIView animateWithDuration:0.5
@@ -239,6 +259,7 @@
     finalResultLb.text = [messageArray objectAtIndex:0];
     finalResultDetailLb.text = [messageArray objectAtIndex:1];
     
+   // finalResultDetailLb.text = msg;
     finalResultView.hidden = NO;
     finalResultView.alpha = 0.0;
     

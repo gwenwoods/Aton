@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AtonPlayer.h"
-@interface AtonGameManager : NSObject
+@interface AtonGameManager : NSObject {
+    UIImageView *gamePhaseTieIV, *helpTieIV ;
+}
 
 -(id)initializeWithParameters:(UIViewController*) viewController;
 -(void) showGamePhaseView:(NSString*) msg;
@@ -20,6 +22,7 @@
 @property(nonatomic) int activePlayer;
 @property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView;
 @property(strong, nonatomic) UIImageView *gamePhaseActivePlayerIV, *helpActivePlayerIV ;
+//@property(strong, nonatomic) UIImageView *gamePhaseTieIV, *helpTieIV ;
 @property(strong, nonatomic) UILabel *gamePhaseLb, *gamePhaseDetailLb, *gamePhaseMiddleLb;
 @property(strong, nonatomic) UILabel *helpLb, *helpDetailLb, *helpMiddleLb;
 @property(strong, nonatomic) UILabel *exchangeCardsLb, *finalResultLb, *finalResultDetailLb;
