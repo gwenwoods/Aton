@@ -453,6 +453,7 @@
     return result;
 }
 
+/*
 +(BOOL) isYellowFull:(NSMutableArray*) templeArray {
     for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
@@ -467,7 +468,7 @@
     return YES;
 }
 
-+(BOOL) isGreenFull:(NSMutableArray*) templeArray {
++(int) isGreenFull:(NSMutableArray*) templeArray {
     
     int redCount = 0;
     int blueCount = 0;
@@ -495,6 +496,38 @@
     }
     
     return YES;
+}*/
+
+
++(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum {
+    
+    int redCount = 0;
+    int blueCount = 0;
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        for (int j=0; j<12; j++) {
+            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
+            if ([slot colorTypeEnum] == targetColorEnum) {
+                if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
+                    return PLAYER_NONE;
+                    
+                } else  if ([slot occupiedEnum] == OCCUPIED_RED) {
+                    redCount++;
+                    
+                } else  if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+                    blueCount++;
+                    
+                }               
+            } 
+        }
+    }
+    
+    if (redCount == 0) {
+        return PLAYER_BLUE;
+    } else {
+        return PLAYER_RED;
+    }
+
 }
 
 +(int) findTempleFullWinner:(NSMutableArray*) templeArray:(int) templeEnum {

@@ -109,6 +109,7 @@
 		BDF3F6C215524A21005D26EA /* scrollDown_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6BF15524A21005D26EA /* scrollDown_blank.png */; };
 		BDF3F6C315524A21005D26EA /* scrollDown_done.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6C015524A21005D26EA /* scrollDown_done.png */; };
 		BDF3F6C415524A21005D26EA /* scrollDown_exchange.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6C115524A21005D26EA /* scrollDown_exchange.png */; };
+		BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +251,7 @@
 		BDF3F6BF15524A21005D26EA /* scrollDown_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_blank.png; sourceTree = "<group>"; };
 		BDF3F6C015524A21005D26EA /* scrollDown_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_done.png; sourceTree = "<group>"; };
 		BDF3F6C115524A21005D26EA /* scrollDown_exchange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exchange.png; sourceTree = "<group>"; };
+		BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenMusic_Aton_new.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -519,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				BD974090154C9BCC003F4E8F /* chime.mp3 */,
+				BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */,
 				BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */,
 				BDD3AEB61549D2A50013C89A /* sheep.wav */,
 				BDD3AEB41549D2990013C89A /* rooster.aiff */,
@@ -689,6 +692,7 @@
 				BDB5CEA61555EC1600F96A0F /* blueFlame7.png in Resources */,
 				BDB5CEA71555EC1600F96A0F /* blueFlame8.png in Resources */,
 				BDB5CEA81555EC1600F96A0F /* blueFlame9.png in Resources */,
+				BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

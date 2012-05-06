@@ -702,12 +702,21 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
     NSString *msg;
     
-    if ([TempleUtility isYellowFull:para.templeArray]) {
-        msg = @"All Yellow Squares Full|";
-    
-    } else if ([TempleUtility isGreenFull:para.templeArray]) {
-        msg = @"All Green Squares Full|";
-    
+  //  if ([TempleUtility isYellowFull:para.templeArray]) {
+    if ([TempleUtility findColorFullWinner:para.templeArray:YELLOW] != PLAYER_NONE) {
+        int winnerEnum =  [TempleUtility findColorFullWinner:para.templeArray:YELLOW];
+        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
+        msg = @"All Yellow Squares Full\n";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@" Wins|"];
+        
+    } else if ([TempleUtility findColorFullWinner:para.templeArray:GREEN]!= PLAYER_NONE) {
+        int winnerEnum =  [TempleUtility findColorFullWinner:para.templeArray:GREEN];
+        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
+        msg = @"All Green Squares Full\n";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@" Wins|"];
+        
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1] != PLAYER_NONE) {
         int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1];
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
@@ -851,10 +860,15 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 [selectedSlot placePeep:occupiedEnum];
             }
             [TempleUtility disableAllTempleSlotInteraction:[para templeArray]];
-            NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
-            para.gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
-            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
-            [firstPlayer closeMenu];
+            if ([self gameOverCondition] != nil) {
+                [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
+                
+            } else {
+                NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
+                para.gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+                [firstPlayer closeMenu];
+            }
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
@@ -876,7 +890,11 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 [selectedSlot placePeep:occupiedEnum];
             }
             [TempleUtility disableAllTempleSlotInteraction:[para templeArray]];
-            if ([TempleUtility isDeathTempleFull:[para templeArray]]) {
+            
+            if ([self gameOverCondition] != nil) {
+                [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
+                
+            } else if ([TempleUtility isDeathTempleFull:[para templeArray]]) {
              //   [TempleUtility clearDeathTemple:[para templeArray]];
                 para.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[para templeArray]];
                 
@@ -885,13 +903,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Scoring Phase Begin" afterDelay:AFTER_PEEP_DELAY_TIME];
                 //[self run];
             } else {
-                if ([self gameOverCondition] != nil) {
-                    NSString *msg = [self gameOverCondition];
-                    [para.gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
-                } else {
-                    para.gameManager.activePlayer = PLAYER_NONE;
-                    [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
-                }
+                para.gameManager.activePlayer = PLAYER_NONE;
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
+             
             }
             [secondPlayer closeMenu];
         }

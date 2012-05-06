@@ -26,9 +26,10 @@
 +(BOOL) isSelectedOneFromEachTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;
 
-+(BOOL) isYellowFull:(NSMutableArray*) templeArray;
-+(BOOL) isGreenFull:(NSMutableArray*) templeArray;
+//+(BOOL) isYellowFull:(NSMutableArray*) templeArray;
+//+(int) isGreenFull:(NSMutableArray*) templeArray;
 +(int) findTempleFullWinner:(NSMutableArray*) templeArray:(int) templeEnum;
++(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum;
 
 +(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum;
 
