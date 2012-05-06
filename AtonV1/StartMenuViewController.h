@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BoardViewController.h"
-#import "CreditViewController.h"
+
 #import "PlayerViewController.h"
 #import "RuleViewController.h"
+#import "CreditViewController.h"
 
-@interface StartMenuViewController : UIViewController<PlayerViewDelegate, CreditViewDelegate>
+#import "BoardViewController.h"
+
+@interface StartMenuViewController : UIViewController<PlayerViewDelegate, RuleViewDelegate, CreditViewDelegate>
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
@@ -21,8 +23,9 @@
 }
 
 -(IBAction) toPlayerView:(id)sender;
-- (void)clickedButton:(BoardViewController *)subcontroller;
+//- (void)clickedButton:(BoardViewController *)subcontroller;
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
+- (void)dismissRuleViewWithAnimation:(RuleViewController *)subcontroller;
 - (void)dismissCreditViewWithAnimation:(CreditViewController *)subcontroller;
 - (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer;
 

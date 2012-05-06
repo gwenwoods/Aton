@@ -65,6 +65,12 @@
         [self.startMenuViewController.view becomeFirstResponder];
         [self.startMenuViewController viewDidLoad];
         
+    } else if (self.startMenuViewController.ruleViewScreen != nil) {
+        
+        [self.startMenuViewController.ruleViewScreen dismissModalViewControllerAnimated:NO];
+        [self.startMenuViewController.view becomeFirstResponder];
+        [self.startMenuViewController viewDidLoad];
+        
     } else {
         [self.startMenuViewController viewDidLoad];
     }

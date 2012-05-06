@@ -112,6 +112,10 @@
 		BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */; };
 		BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF533EE15573300003BBA23 /* RuleViewController.m */; };
 		BDF533F1155733A5003BBA23 /* rule_all_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F0155733A5003BBA23 /* rule_all_middle.png */; };
+		BDF533FB155740C9003BBA23 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F7155740C9003BBA23 /* button_back.png */; };
+		BDF533FC155740C9003BBA23 /* button_no.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F8155740C9003BBA23 /* button_no.png */; };
+		BDF533FD155740C9003BBA23 /* button_play.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F9155740C9003BBA23 /* button_play.png */; };
+		BDF533FE155740C9003BBA23 /* button_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533FA155740C9003BBA23 /* button_yes.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,6 +261,10 @@
 		BDF533ED15573300003BBA23 /* RuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleViewController.h; sourceTree = "<group>"; };
 		BDF533EE15573300003BBA23 /* RuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleViewController.m; sourceTree = "<group>"; };
 		BDF533F0155733A5003BBA23 /* rule_all_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule_all_middle.png; sourceTree = "<group>"; };
+		BDF533F7155740C9003BBA23 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
+		BDF533F8155740C9003BBA23 /* button_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_no.png; sourceTree = "<group>"; };
+		BDF533F9155740C9003BBA23 /* button_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_play.png; sourceTree = "<group>"; };
+		BDF533FA155740C9003BBA23 /* button_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_yes.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +423,7 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BDF533F215573F03003BBA23 /* button_papyrus */,
 				BDB5CE901555EC1600F96A0F /* BlueFlamePng */,
 				BDB5CE721555E24D00F96A0F /* RedFlamePng */,
 				BDF3F6BE15524A21005D26EA /* ScrollDown_papyrus */,
@@ -561,6 +570,17 @@
 			path = ScrollDown_papyrus;
 			sourceTree = "<group>";
 		};
+		BDF533F215573F03003BBA23 /* button_papyrus */ = {
+			isa = PBXGroup;
+			children = (
+				BDF533F7155740C9003BBA23 /* button_back.png */,
+				BDF533F8155740C9003BBA23 /* button_no.png */,
+				BDF533F9155740C9003BBA23 /* button_play.png */,
+				BDF533FA155740C9003BBA23 /* button_yes.png */,
+			);
+			path = button_papyrus;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -702,6 +722,10 @@
 				BDB5CEA81555EC1600F96A0F /* blueFlame9.png in Resources */,
 				BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */,
 				BDF533F1155733A5003BBA23 /* rule_all_middle.png in Resources */,
+				BDF533FB155740C9003BBA23 /* button_back.png in Resources */,
+				BDF533FC155740C9003BBA23 /* button_no.png in Resources */,
+				BDF533FD155740C9003BBA23 /* button_play.png in Resources */,
+				BDF533FE155740C9003BBA23 /* button_yes.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

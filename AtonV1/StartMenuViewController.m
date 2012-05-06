@@ -226,7 +226,7 @@
                 }
                 
                 ruleViewScreen = [[RuleViewController alloc] initWithNibName:nil bundle:nil];
-                //ruleViewScreen.delegateCreditView = self;
+                ruleViewScreen.delegateRuleView = self;
                 ruleViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:ruleViewScreen animated:YES];
 
@@ -334,6 +334,24 @@
     [self dismissModalViewControllerAnimated:NO];
     [self viewDidLoad];
     self.playerViewScreen = nil;
+}
+
+//------------------------------
+// RuleView delegate functions
+- (void)dismissRuleViewWithAnimation:(RuleViewController *)subcontroller
+{
+    NSLog(@"Rule View Back to Start Menu");
+    [self dismissModalViewControllerAnimated:YES];
+    [self viewDidLoad];
+    self.ruleViewScreen = nil;
+}
+
+- (void)dismissRuleViewWithoutAnimation:(RuleViewController *)subcontroller
+{
+    NSLog(@"Rule View Back to Start Menu");
+    [self dismissModalViewControllerAnimated:NO];
+    [self viewDidLoad];
+    self.ruleViewScreen = nil;
 }
 
 //------------------------------

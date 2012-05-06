@@ -13,6 +13,7 @@
 @end
 
 @implementation RuleViewController
+@synthesize delegateRuleView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,11 +79,12 @@
 {
     // Return YES for supported orientations
 	//return YES;
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+   	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 -(IBAction) backToMenu:(id)sender {
 	[self dismissModalViewControllerAnimated:YES];
+    [delegateRuleView dismissRuleViewWithAnimation:self];
 }
 
 @end
