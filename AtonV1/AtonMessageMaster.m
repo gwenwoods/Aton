@@ -125,24 +125,24 @@
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
         
         AtonPlayer *player = [playerArray objectAtIndex:firstPlayerEnum];
-        msg = [msg stringByAppendingString:@"Round End|"];
+        msg = [msg stringByAppendingString:@"Remove Temple Peeps|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         NSString* playerColor = [self getPlayerColor:firstPlayerEnum];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n\n Remove 1 "]];
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:@"Peep\n From Each Temple"];
+        msg = [msg stringByAppendingString:@"Peep\n From Each Temple\n\n"];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         
         AtonPlayer *player = [playerArray objectAtIndex:secondPlayerEnum];
-        msg = [msg stringByAppendingString:@"Round End|"];
+        msg = [msg stringByAppendingString:@"Remove Temple Peeps|"];
         msg = [msg stringByAppendingString:player.playerName];
         
         NSString* playerColor = [self getPlayerColor:secondPlayerEnum];
-        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Remove 1 "]];
+        msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n\n Remove 1 "]];
         msg = [msg stringByAppendingString:playerColor];
-        msg = [msg stringByAppendingString:@"Peep\n From Each Temple"];
+        msg = [msg stringByAppendingString:@"Peep\n From Each Temple\n\n"];
     }
     
     return  msg;

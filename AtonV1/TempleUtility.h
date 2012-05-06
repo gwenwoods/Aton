@@ -28,7 +28,7 @@
 
 +(BOOL) isYellowFull:(NSMutableArray*) templeArray;
 +(BOOL) isGreenFull:(NSMutableArray*) templeArray;
-+(BOOL) isTempleFull:(NSMutableArray*) templeArray:(int) templeEnum;
++(int) findTempleFullWinner:(NSMutableArray*) templeArray:(int) templeEnum;
 
 +(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum;
 

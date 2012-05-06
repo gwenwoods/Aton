@@ -40,6 +40,8 @@
     [self.view addSubview:boardBgIV];
     [self.view sendSubviewToBack:boardBgIV];
     
+    [self.view setBackgroundColor:[UIColor blackColor]];
+    
 }
 
 - (void)viewDidUnload

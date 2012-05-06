@@ -708,16 +708,20 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     } else if ([TempleUtility isGreenFull:para.templeArray]) {
         msg = @"All Green Squares Full|";
     
-    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_1]) {
-        msg = @"Temple 1 Full|";
+    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1] != PLAYER_NONE) {
+        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1];
+        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
+        msg = @"Temple 1 Full\n";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@" Wins|"];
     
-    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_2]) {
+    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2] != PLAYER_NONE) {
         msg = @"Temple 2 Full|";
         
-    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_3]) {
+    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3] != PLAYER_NONE) {
         msg = @"Temple 3 Full|";
         
-    } else if ([TempleUtility isTempleFull:para.templeArray:TEMPLE_4]) {
+    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_4] != PLAYER_NONE) {
         msg = @"Temple 4 Full|";
     
     }

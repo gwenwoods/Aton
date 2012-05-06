@@ -468,20 +468,36 @@
 }
 
 +(BOOL) isGreenFull:(NSMutableArray*) templeArray {
+    
+    int redCount = 0;
+    int blueCount = 0;
     for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
         for (int j=0; j<12; j++) {
             TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
-            if ([slot colorTypeEnum] == GREEN && [slot occupiedEnum] == OCCUPIED_EMPTY) {
-                return NO;
-                
+            if ([slot colorTypeEnum] == GREEN) {
+                if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
+                     return NO;
+                    
+                } else  if ([slot occupiedEnum] == OCCUPIED_RED) {
+                    redCount++;
+                    
+                } else  if ([slot occupiedEnum] == OCCUPIED_BLUE) {
+                    blueCount++;
+                    
+                }               
             } 
         }
     }
+    
+    if (redCount > 0 && blueCount > 0) {
+        return NO;
+    }
+    
     return YES;
 }
 
-+(BOOL) isTempleFull:(NSMutableArray*) templeArray:(int) templeEnum {
++(int) findTempleFullWinner:(NSMutableArray*) templeArray:(int) templeEnum {
 
     AtonTemple *temple = [templeArray objectAtIndex:templeEnum];
     int redCount = 0;
@@ -489,7 +505,7 @@
     for (int j=0; j<12; j++) {
         TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
         if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
-            return NO;
+            return PLAYER_NONE;
                 
         } else if([slot occupiedEnum] == OCCUPIED_RED) {
             redCount++;
@@ -500,10 +516,17 @@
         }
     }
     
-    if (redCount == 12 || blueCount == 12) {
-        return YES;
+    if (redCount == 12) {
+        return PLAYER_RED;
+    } else if(blueCount == 12) {
+        return PLAYER_BLUE;
+    } else {
+        return PLAYER_NONE;
     }
-    return NO;
+   // if (redCount == 12 || blueCount == 12) {
+   //     return YES;
+   // }
+   // return NO;
 }
 
 +(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum {

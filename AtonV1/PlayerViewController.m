@@ -9,10 +9,10 @@
 #import "PlayerViewController.h"
 
 // This is defined in Math.h
-#define M_PI   3.14159265358979323846264338327950288   /* pi */
+//#define M_PI   3.14159265358979323846264338327950288   /* pi */
 
 // Our conversion definition
-#define DEGREES_TO_RADIANS(angle) (angle / 180.0 * M_PI)
+//#define DEGREES_TO_RADIANS(angle) (angle / 180.0 * M_PI)
 
 @interface PlayerViewController ()
 @end
@@ -57,7 +57,7 @@
     //-----------
     maskIV = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 748.0)];
     [maskIV setBackgroundColor:[UIColor blackColor]];
-    maskIV.alpha = 0.6;
+    maskIV.alpha = 0.75;
     [self.view addSubview:maskIV];
     maskIV.hidden = YES;
     
