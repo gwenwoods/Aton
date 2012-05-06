@@ -50,14 +50,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-   NSLog(@"app will enter foreground");
-     
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
     if (self.startMenuViewController.playerViewScreen != nil) {
         
         PlayerViewController *playerScreen = self.startMenuViewController.playerViewScreen;
@@ -76,6 +68,33 @@
     } else {
         [self.startMenuViewController viewDidLoad];
     }
+
+   NSLog(@"app will enter foreground");
+     
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+/*    if (self.startMenuViewController.playerViewScreen != nil) {
+        
+        PlayerViewController *playerScreen = self.startMenuViewController.playerViewScreen;
+        if (playerScreen.boardScreen == nil) {
+            [self.startMenuViewController.playerViewScreen dismissModalViewControllerAnimated:NO];
+            [self.startMenuViewController.view becomeFirstResponder];
+            [self.startMenuViewController viewDidLoad];
+        }
+        
+    } if (self.startMenuViewController.creditViewScreen != nil) {
+        
+        [self.startMenuViewController.creditViewScreen dismissModalViewControllerAnimated:NO];
+        [self.startMenuViewController.view becomeFirstResponder];
+        [self.startMenuViewController viewDidLoad];
+        
+    } else {
+        [self.startMenuViewController viewDidLoad];
+    }*/
     
   /*  if ([self.startMenuViewController.view isFirstResponder] == YES) {
          [self.startMenuViewController viewDidLoad];

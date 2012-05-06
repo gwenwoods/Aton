@@ -95,10 +95,17 @@
 }
 
 - (IBAction) toMenu:(id)sender {
-    [delegateBoardView dismissBoardViewWithoutAnimation:self];
+ //   [delegateBoardView dismissBoardViewWithoutAnimation:self];
  //   [self dismissModalViewControllerAnimated:YES];
-    
+    atonParameters.gameManager.quitView.hidden = NO;
+}
 
+- (IBAction) quitYes:(id)sender {
+    [delegateBoardView dismissBoardViewWithoutAnimation:self];
+}
+
+- (IBAction) quitNo:(id)sender {
+    atonParameters.gameManager.quitView.hidden = YES;
 }
 
 - (IBAction) doneAction:(id)sender {

@@ -206,7 +206,7 @@
 		    if ([self isWithinImgView:touchLocation:playIV]) {
                 
                 if (audioPlayerOpen.isPlaying) {
-                    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+                    [self performSelector:@selector(fadeVolumeDownQuick:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
                 } else {
                     audioPlayerOpen = nil;
                 }
@@ -256,10 +256,20 @@
 	return NO;
 }
 
--(IBAction) toPlayerView:(id)sender {
+/*-(IBAction) toPlayerView:(id)sender {
     PlayerViewController *screen = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
     screen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:screen animated:YES];
+}*/
+
+- (void)fadeVolumeDownQuick:(AVAudioPlayer *)aPlayer
+{
+    aPlayer.volume = aPlayer.volume - 0.04;
+    if (aPlayer.volume < 0.01) {
+        [aPlayer stop];         
+    } else {
+        [self performSelector:@selector(fadeVolumeDownQuick:) withObject:aPlayer afterDelay:0.1];  
+    }
 }
 
 - (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer
@@ -272,10 +282,9 @@
     }
 }
 
-
 - (void)fadeVolumeUp:(AVAudioPlayer *)aPlayer
 {    
-    aPlayer.volume = aPlayer.volume + 0.0125;
+    aPlayer.volume = aPlayer.volume + 0.025;
     if (aPlayer.volume > 1.0) {
         //[aPlayer stop]; 
         return;

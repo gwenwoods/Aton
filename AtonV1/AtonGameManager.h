@@ -10,6 +10,7 @@
 #import "AtonPlayer.h"
 @interface AtonGameManager : NSObject {
     UIImageView *gamePhaseTieIV, *helpTieIV ;
+    UILabel *quitLb;
 }
 
 -(id)initializeWithParameters:(UIViewController*) viewController;
@@ -20,7 +21,7 @@
 @property(strong, nonatomic) UIViewController *controller;
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int activePlayer;
-@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView;
+@property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView, *quitView;
 @property(strong, nonatomic) UIImageView *gamePhaseActivePlayerIV, *helpActivePlayerIV ;
 //@property(strong, nonatomic) UIImageView *gamePhaseTieIV, *helpTieIV ;
 @property(strong, nonatomic) UILabel *gamePhaseLb, *gamePhaseDetailLb, *gamePhaseMiddleLb;

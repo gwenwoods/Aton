@@ -17,6 +17,7 @@
 @synthesize exchangeCardsView, exchangeCardsLb;
 @synthesize finalResultView, finalResultLb, finalResultDetailLb ;
 @synthesize gamePhaseActivePlayerIV, helpActivePlayerIV;
+@synthesize quitView;
 
 static int TITLE_FONT_SIZE = 26;
 static int DETAIL_FONT_SIZE = 20;
@@ -174,6 +175,37 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:finalResultDetailLb];
         [finalResultView bringSubviewToFront:finalResultDetailLb];
 
+        //-----------
+        quitView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
+        quitView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+        quitView.userInteractionEnabled = YES;
+        quitView.hidden = YES;
+        
+        quitLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        quitLb.backgroundColor = [UIColor clearColor];
+        quitLb.textAlignment = UITextAlignmentCenter;
+        quitLb.lineBreakMode = UILineBreakModeCharacterWrap;
+        quitLb.numberOfLines = 8;     
+        quitLb.textColor = [UIColor blackColor];
+        quitLb.font = [UIFont fontWithName:atonFont size:20];
+        quitLb.text = @"You Will Lose Current\n Game Progress If Quit.\n\n Quit now?";
+        [quitView addSubview:quitLb];
+        [quitView bringSubviewToFront:quitLb];
+        
+        UIButton *quitYesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        quitYesButton.frame = CGRectMake(300 , 250, 40, 50);
+        quitYesButton.userInteractionEnabled = YES;
+        [quitYesButton setTitle:@"Yes" forState:UIControlStateNormal];
+        [quitYesButton addTarget:controller action:@selector(quitYes:) forControlEvents:UIControlEventTouchUpInside];
+        [quitView addSubview:quitYesButton];
+        
+        UIButton *quitNoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        quitNoButton.frame = CGRectMake(150 , 250, 40, 50);
+        quitNoButton.userInteractionEnabled = YES;
+        [quitNoButton setTitle:@"No" forState:UIControlStateNormal];
+        [quitNoButton addTarget:controller action:@selector(quitNo:) forControlEvents:UIControlEventTouchUpInside];
+        [quitView addSubview:quitNoButton];
+        [baseView addSubview:quitView];
     }
     return self;
 }
