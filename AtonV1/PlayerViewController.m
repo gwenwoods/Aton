@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSString* playerViewFont = @"Papyrus";
+    
     redName = @"Player Red";
     blueName = @"Player Blue";
     
@@ -50,18 +52,19 @@
 	[UIView commitAnimations];
     
     
-  //  [self rotateImage:imageToMove duration:3.0 
-  //             curve:UIViewAnimationCurveEaseIn degrees:180];
-    
     //-----------
+    maskIV = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 748.0)];
+    [maskIV setBackgroundColor:[UIColor blackColor]];
+    maskIV.alpha = 0.8;
+    [self.view addSubview:maskIV];
+    maskIV.hidden = YES;
     
     enterNameView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 748.0)];
-    [enterNameView setBackgroundColor:[UIColor blackColor]];
-  //  enterNameView.alpha = 0.5;
+    [enterNameView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:enterNameView];
     enterNameView.hidden = YES;
     
-    NSArray *myImages = [NSArray arrayWithObjects:
+    NSArray *redImages = [NSArray arrayWithObjects:
                 [UIImage imageNamed:@"Redflame1.png"],
                 [UIImage imageNamed:@"Redflame2.png"],
                 [UIImage imageNamed:@"Redflame3.png"],
@@ -77,33 +80,56 @@
                 [UIImage imageNamed:@"Redflame13.png"],
                 [UIImage imageNamed:@"Redflame14.png"],
                 nil];
+    
+    NSArray *blueImages = [NSArray arrayWithObjects:
+                  [UIImage imageNamed:@"blueFlame1.png"],
+                  [UIImage imageNamed:@"blueFlame2.png"],
+                  [UIImage imageNamed:@"blueFlame3.png"],
+                  [UIImage imageNamed:@"blueFlame4.png"],
+                  [UIImage imageNamed:@"blueFlame5.png"],
+                  [UIImage imageNamed:@"blueFlame6.png"],
+                  [UIImage imageNamed:@"blueFlame7.png"],
+                  [UIImage imageNamed:@"blueFlame8.png"],
+                  [UIImage imageNamed:@"blueFlame9.png"],
+                  [UIImage imageNamed:@"blueFlame10.png"],
+                  [UIImage imageNamed:@"blueFlame11.png"],
+                  [UIImage imageNamed:@"blueFlame12.png"],
+                  nil];
 
-    UIImageView *flameIV = [[UIImageView alloc] initWithFrame:CGRectMake(700,100,200,200)];
-    [enterNameView addSubview:flameIV];
+
+    enterNameIconIV = [[UIImageView alloc] initWithFrame:CGRectMake(700,100,200,200)];
+    [enterNameView addSubview:enterNameIconIV];
     
-    UIImageView *handleAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,200,200)];
-    handleAnimationIV.alpha = 1.0;
-    handleAnimationIV.animationImages = myImages;
-    handleAnimationIV.animationDuration = 7.0; // seconds
-    handleAnimationIV.animationRepeatCount = 0; // 0 = loops forever
-    [handleAnimationIV startAnimating];
-    [flameIV addSubview:handleAnimationIV];
+    redAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(-20,-20,240,240)];
+    redAnimationIV.alpha = 1.0;
+    redAnimationIV.animationImages = redImages;
+    redAnimationIV.animationDuration = 2.8; // seconds
+    redAnimationIV.animationRepeatCount = 0; // 0 = loops forever
+    [redAnimationIV startAnimating];
+    [enterNameIconIV addSubview:redAnimationIV];
+    
+    blueAnimationIV = [[UIImageView alloc] initWithFrame:CGRectMake(-20,-20,240,240)];
+    blueAnimationIV.alpha = 1.0;
+    blueAnimationIV.animationImages = blueImages;
+    blueAnimationIV.animationDuration = 2.4; // seconds
+    blueAnimationIV.animationRepeatCount = 0; // 0 = loops forever
+    [blueAnimationIV startAnimating];
+    [enterNameIconIV addSubview:blueAnimationIV];
     
     
-    enterNameLb = [[UILabel alloc] initWithFrame:CGRectMake(200,100,400,60)];
+    enterNameLb = [[UILabel alloc] initWithFrame:CGRectMake(200,124,400,60)];
     enterNameLb.backgroundColor = [UIColor clearColor];
     enterNameLb.textColor = [UIColor whiteColor];
     enterNameLb.text = @"Enter Player Name";
     enterNameLb.textAlignment = UITextAlignmentCenter;
-   // enterNameLb.font = [UIFont fontWithName:@"Courier" size:30];
-    enterNameLb.font = [UIFont fontWithName:@"Courier" size:30];
+    enterNameLb.font = [UIFont fontWithName:playerViewFont size:30];
     [enterNameView addSubview:enterNameLb];
     
     enterNameTextField =  [[UITextField alloc] initWithFrame:CGRectMake(200,200,400,60)];
     enterNameTextField.backgroundColor = [UIColor whiteColor];
     enterNameTextField.userInteractionEnabled = YES;
     enterNameTextField.textAlignment = UITextAlignmentLeft;
-    enterNameTextField.font = [UIFont fontWithName:@"Courier" size:30];
+    enterNameTextField.font = [UIFont fontWithName:playerViewFont size:36];
     [enterNameTextField addTarget:self action:@selector(dismissKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
     enterNameTextField.delegate = self;
     [enterNameView addSubview:enterNameTextField];
@@ -111,7 +137,7 @@
     redNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
     redNameButton.frame = CGRectMake(190,360,238,123);
     redNameButton.userInteractionEnabled = YES;
-    redNameButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:20];
+    redNameButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
     [redNameButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
     [redNameButton setTitle:redName  forState:UIControlStateNormal];
     [redNameButton addTarget:self action:@selector(setRedName:) forControlEvents:UIControlEventTouchUpInside];
@@ -120,7 +146,7 @@
     blueNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
     blueNameButton.frame = CGRectMake(601,360,238,123);
     blueNameButton.userInteractionEnabled = YES;
-    blueNameButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:20];
+    blueNameButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
     [blueNameButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
     [blueNameButton setTitle:blueName  forState:UIControlStateNormal];
     [blueNameButton addTarget:self action:@selector(setBlueName:) forControlEvents:UIControlEventTouchUpInside];
@@ -191,6 +217,7 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Hide Keyboard");
     enterNameView.hidden = YES;
+    maskIV.hidden = YES;
     NSString* name = enterNameTextField.text;
     name = [name stringByTrimmingCharactersInSet:
                                [NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -221,12 +248,25 @@
 }
 
 -(void) toEnterNameView {
+    maskIV.hidden = NO;
     enterNameView.hidden = NO;
     enterNameView.userInteractionEnabled = YES;
+    [self.view bringSubviewToFront:maskIV];
     [self.view bringSubviewToFront:enterNameView];
     
     enterNameTextField.text = @"";
     [enterNameTextField becomeFirstResponder];
+    
+    if (updateRed == YES) {
+        enterNameIconIV.image = [UIImage imageNamed:@"Red_icon_big.png"];
+        redAnimationIV.hidden = NO;
+        blueAnimationIV.hidden = YES;
+    } else {
+        // must be updatedBlue
+        enterNameIconIV.image = [UIImage imageNamed:@"Blue_icon_big.png"];
+        redAnimationIV.hidden = YES;
+        blueAnimationIV.hidden = NO;
+    }
 }
 
 -(void)hadleTimer:(NSTimer *)timer

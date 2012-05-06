@@ -26,6 +26,7 @@
     UIButton *redNameButton, *blueNameButton;
     BOOL updateRed, updateBlue;
     NSString *redName, *blueName;
+    UIImageView *maskIV, *enterNameIconIV, *redAnimationIV, *blueAnimationIV;
     
     AVAudioPlayer *audioPlayerChime;
     float angle;

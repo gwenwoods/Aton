@@ -131,7 +131,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-         [TempleUtility changeSlotBoundaryColor:para.templeArray:[para.atonRoundResult getFirstRemoveTargetEnum]];
+         [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.firstPlayerEnum];
         if (para.atonRoundResult.firstRemoveNum == 0) {
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             gameManager.activePlayer = para.atonRoundResult.secondPlayerEnum;
@@ -167,7 +167,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         }
        
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
-        [TempleUtility changeSlotBoundaryColor:para.templeArray:[para.atonRoundResult getSecondRemoveTargetEnum]];
+        [TempleUtility changeSlotBoundaryColor:para.templeArray:roundResult.secondPlayerEnum];
         
         if (roundResult.secondRemoveNum == 0) {
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
