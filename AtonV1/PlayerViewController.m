@@ -55,7 +55,7 @@
     //-----------
     maskIV = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 748.0)];
     [maskIV setBackgroundColor:[UIColor blackColor]];
-    maskIV.alpha = 0.8;
+    maskIV.alpha = 0.6;
     [self.view addSubview:maskIV];
     maskIV.hidden = YES;
     
@@ -120,7 +120,7 @@
     enterNameLb = [[UILabel alloc] initWithFrame:CGRectMake(200,124,400,60)];
     enterNameLb.backgroundColor = [UIColor clearColor];
     enterNameLb.textColor = [UIColor whiteColor];
-    enterNameLb.text = @"Enter Player Name";
+    enterNameLb.text = @"Please Enter Player Name";
     enterNameLb.textAlignment = UITextAlignmentCenter;
     enterNameLb.font = [UIFont fontWithName:playerViewFont size:30];
     [enterNameView addSubview:enterNameLb];
@@ -175,22 +175,20 @@
 }
 
 -(IBAction) backToMenu:(id)sender {
-	//[self dismissModalViewControllerAnimated:YES];
     [delegatePlayerView dismissPlayerViewWithAnimation:self];
 }
 
--(void) toMain {
-    [delegatePlayerView dismissPlayerViewWithAnimation:self];
-}
+//-(void) toMain {
+//    [delegatePlayerView dismissPlayerViewWithAnimation:self];
+//}
+
 -(IBAction) toPlay:(id)sender {
 
- //   BoardViewController *screen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
     boardScreen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
     boardScreen.delegateBoardView = self;
     boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:boardScreen animated:YES];
     [audioPlayerChime play];
-//	[self dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -207,13 +205,6 @@
     return NO;
 }
 
-/*
--(IBAction)dismissKeyboard: (id)sender {
-    NSLog(@"Hit me!");
-    [sender resignFirstResponder];
-  
-} */
-
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Hide Keyboard");
     enterNameView.hidden = YES;
@@ -225,11 +216,9 @@
         return;
     }
     if (updateRed == YES) {
-      //  [redNameButton setTitle:name forState:UIControlStateNormal];
         redName = name;
         [redNameButton setTitle:redName forState:UIControlStateNormal];
     } else {
-      //  [blueNameButton setTitle:name forState:UIControlStateNormal];
         blueName = name;
         [blueNameButton setTitle:blueName forState:UIControlStateNormal];
     }

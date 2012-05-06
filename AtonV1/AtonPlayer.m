@@ -60,13 +60,13 @@ static float DELAY_TIME = 0.25;
         scrollExchangeIV.userInteractionEnabled = YES;
         [baseView addSubview:scrollExchangeIV];
         
-        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(12, 92, 72, 20)];
+        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(13, 94, 46, 20)];
         actionLb.text = @"Remove";
-     //   actionLb.textAlignment = UITextAlignmentCenter;
+        actionLb.textAlignment = UITextAlignmentCenter;
         actionLb.textColor = [UIColor blackColor];
         [actionLb setBackgroundColor:[UIColor clearColor]];
         actionLb.font = [UIFont systemFontOfSize:12];
-        actionLb.hidden = YES;
+        //actionLb.hidden = YES;
         [scrollDoneIV addSubview:actionLb];
         
         doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -609,9 +609,13 @@ static float DELAY_TIME = 0.25;
     
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneIV.frame];
-   // [animationIV setBackgroundColor:[UIColor whiteColor]];
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
+    
+   // UIImageView *animation1IV = [[UIImageView alloc] initWithFrame:scrollDoneIV.frame];
+   // animation1IV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
+   // [baseView addSubview:animation1IV];
+    
     
     [baseView addSubview:scrollExchangeIV];
     
@@ -623,8 +627,16 @@ static float DELAY_TIME = 0.25;
                          animationIV.frame = scrollDoneAniHomeIV.frame;
                      } 
                      completion:^(BOOL finished){
-                         [animationIV removeFromSuperview];
-                         
+                         [UIView animateWithDuration:0.3
+                                               delay:0.0
+                                             options: UIViewAnimationCurveEaseOut
+                                          animations:^{
+                                              animationIV.alpha = 0.0;
+                                          } 
+                                          completion:^(BOOL finished){
+                                              [animationIV removeFromSuperview];
+                                          }];
+
                      }];
 }
 

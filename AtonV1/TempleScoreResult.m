@@ -14,6 +14,7 @@
 @synthesize resultName;
 @synthesize winningPlayerEnum, winningScore;
 
+/*
 -(NSString*) getWinningMessage {
     
     NSString *msg = resultName;
@@ -35,6 +36,6 @@
         msg = [msg stringByAppendingString:@"s"];
     }
     return  msg;
-}
+}*/
 
 @end

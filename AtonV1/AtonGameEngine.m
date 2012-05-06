@@ -93,7 +93,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString* cardOneWinnerName = [cardOneWinner playerName];
             int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
             msg = [msg stringByAppendingString:cardOneWinnerName];
-            msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n Wins %i Points", cardOneWinningScore]];
+            msg = [msg stringByAppendingString:[NSString stringWithFormat:@"\n\n Wins %i Points\n\n", cardOneWinningScore]];
             
         }
         gameManager.activePlayer = cardOneWinnerEnum;
@@ -481,7 +481,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             
             para.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
             para.gameManager.activePlayer = PLAYER_NONE;
-            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Enter Scoring Phase" afterDelay:AFTER_PEEP_DELAY_TIME];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Scoring Phase Begin" afterDelay:AFTER_PEEP_DELAY_TIME];
             //[self run];
         } else {
             if ([self gameOverCondition] != nil) {
@@ -866,7 +866,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 
                 para.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
                 para.gameManager.activePlayer = PLAYER_NONE;
-                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Enter Scoring Phase" afterDelay:AFTER_PEEP_DELAY_TIME];
+                [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Scoring Phase Begin" afterDelay:AFTER_PEEP_DELAY_TIME];
                 //[self run];
             } else {
                 if ([self gameOverCondition] != nil) {
@@ -911,7 +911,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
             //  NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_DISTRIBUTE_CARD];
             para.gameManager.activePlayer = PLAYER_NONE;
-            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
+            [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Scoring End" afterDelay:AFTER_PEEP_DELAY_TIME];
             [secondPlayer closeMenu];
         }
         

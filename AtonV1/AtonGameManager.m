@@ -18,6 +18,8 @@
 @synthesize finalResultView, finalResultLb, finalResultDetailLb ;
 @synthesize gamePhaseActivePlayerIV, helpActivePlayerIV;
 
+static int TITLE_FONT_SIZE = 26;
+static int DETAIL_FONT_SIZE = 20;
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
     
@@ -32,23 +34,24 @@
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
-        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,20)];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,24)];
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseLb.numberOfLines = 1;     
         gamePhaseLb.textColor = [UIColor blackColor];
-        gamePhaseLb.font = [UIFont fontWithName:atonFont size:20];
+        gamePhaseLb.font = [UIFont fontWithName:atonFont size:TITLE_FONT_SIZE];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
-        gamePhaseDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,80)];
+        gamePhaseDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,100)];
         gamePhaseDetailLb.backgroundColor = [UIColor clearColor];
         gamePhaseDetailLb.textAlignment = UITextAlignmentCenter;
         gamePhaseDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
-        gamePhaseDetailLb.numberOfLines = 4;     
+        gamePhaseDetailLb.numberOfLines = 4;   
         gamePhaseDetailLb.textColor = [UIColor blackColor];
-        gamePhaseDetailLb.font = [UIFont fontWithName:atonFont size:16];
+        gamePhaseDetailLb.font = [UIFont fontWithName:atonFont size:DETAIL_FONT_SIZE];
+       // [gamePhaseDetailLb sizeToFit];
         [gamePhaseView addSubview:gamePhaseDetailLb];
         [gamePhaseView bringSubviewToFront:gamePhaseDetailLb];
         
@@ -58,17 +61,17 @@
         gamePhaseMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseMiddleLb.numberOfLines = 3;     
         gamePhaseMiddleLb.textColor = [UIColor blackColor];
-        gamePhaseMiddleLb.font = [UIFont fontWithName:atonFont size:16];
+        gamePhaseMiddleLb.font = [UIFont fontWithName:atonFont size:DETAIL_FONT_SIZE];
         [gamePhaseView addSubview:gamePhaseMiddleLb];
         [gamePhaseView bringSubviewToFront:gamePhaseMiddleLb];
         
         gamePhaseActivePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 140, 60, 60)];
         [gamePhaseView addSubview:gamePhaseActivePlayerIV];
         
-        gamePhaseTieIV = [[UIImageView alloc] initWithFrame:CGRectMake(198, 140, 120, 60)];
+        gamePhaseTieIV = [[UIImageView alloc] initWithFrame:CGRectMake(193, 140, 130, 60)];
         UIImageView *redIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         redIV.image = [UIImage imageNamed:@"Red_icon.png"];
-        UIImageView *blueIV = [[UIImageView alloc] initWithFrame:CGRectMake(60, 0, 60, 60)];
+        UIImageView *blueIV = [[UIImageView alloc] initWithFrame:CGRectMake(70, 0, 60, 60)];
         blueIV.image = [UIImage imageNamed:@"Blue_icon.png"];
         [gamePhaseTieIV addSubview:redIV];
         [gamePhaseTieIV addSubview:blueIV];
@@ -86,7 +89,7 @@
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpLb.numberOfLines = 4;     
         helpLb.textColor = [UIColor blackColor];
-        helpLb.font = [UIFont fontWithName:atonFont size:20];
+        helpLb.font = [UIFont fontWithName:atonFont size:TITLE_FONT_SIZE];
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
@@ -96,7 +99,7 @@
         helpDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpDetailLb.numberOfLines = 4;     
         helpDetailLb.textColor = [UIColor blackColor];
-        helpDetailLb.font = [UIFont fontWithName:atonFont size:16];
+        helpDetailLb.font = [UIFont fontWithName:atonFont size:DETAIL_FONT_SIZE];
         [helpView addSubview:helpDetailLb];
         [helpView bringSubviewToFront:helpDetailLb];
         
@@ -106,7 +109,7 @@
         helpMiddleLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpMiddleLb.numberOfLines = 3;     
         helpMiddleLb.textColor = [UIColor blackColor];
-        helpMiddleLb.font = [UIFont fontWithName:atonFont size:16];
+        helpMiddleLb.font = [UIFont fontWithName:atonFont size:DETAIL_FONT_SIZE];
         [helpView addSubview:helpMiddleLb];
         [helpView bringSubviewToFront:helpMiddleLb];
         
@@ -125,7 +128,7 @@
         exchangeCardsLb.lineBreakMode = UILineBreakModeCharacterWrap;
         exchangeCardsLb.numberOfLines = 8;     
         exchangeCardsLb.textColor = [UIColor blackColor];
-        exchangeCardsLb.font = [UIFont fontWithName:@"Copperplate" size:20];
+        exchangeCardsLb.font = [UIFont fontWithName:atonFont size:20];
         exchangeCardsLb.text = @"You can exchange cards\n once per game.\n Exchange now?";
         [exchangeCardsView addSubview:exchangeCardsLb];
         [exchangeCardsView bringSubviewToFront:exchangeCardsLb];
