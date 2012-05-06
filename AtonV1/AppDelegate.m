@@ -59,7 +59,7 @@
             [self.startMenuViewController viewDidLoad];
         }
         
-    } if (self.startMenuViewController.creditViewScreen != nil) {
+    } else if (self.startMenuViewController.creditViewScreen != nil) {
         
         [self.startMenuViewController.creditViewScreen dismissModalViewControllerAnimated:NO];
         [self.startMenuViewController.view becomeFirstResponder];

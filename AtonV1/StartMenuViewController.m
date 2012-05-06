@@ -30,15 +30,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton.mp3", [[NSBundle mainBundle] resourcePath]]];
+    NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton_new.wav", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
-	audioPlayerOpen.numberOfLoops = 0;
-    audioPlayerOpen.volume = 0.0;
+	audioPlayerOpen.numberOfLoops = 1000;
+    audioPlayerOpen.volume = 1.0;
     [audioPlayerOpen prepareToPlay];
 
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-    [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:27.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+ //   [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+ //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:27.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 
     //-----------------------------
     // audio when starting to  play
@@ -127,7 +127,6 @@
     } else {
         playAnkhIV.image = nil;
     }
-    
     
     if ([self isWithinImgView:touchLocation:rulesIV]) {
         playAnkhIV.image = nil;

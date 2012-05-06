@@ -210,17 +210,17 @@
 
 -(NSString*) getAllowedTempleString:(int) templeEnum {
     if (templeEnum == TEMPLE_1) {
-        return @" Among\n Temple 1\n";
+        return @" In\n Temple 1\n";
         
     } else if (templeEnum == TEMPLE_2) {
-        return @" Among\n Temple 1, 2\n";
+        return @" In\n Temple 1, 2\n";
         
     } else if (templeEnum == TEMPLE_3) {
-        return @" Among\n Temple 1, 2, 3\n";
+        return @" In\n Temple 1, 2, 3\n";
         
     }
     
-    return @" Among\n Temple 1, 2, 3, 4\n";
+    return @" In\n Temple 1, 2, 3, 4\n";
 } 
 
 -(NSString*) getMessageForTempleScoreResult:(TempleScoreResult*) result {

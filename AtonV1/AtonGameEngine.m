@@ -716,13 +716,25 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         msg = [msg stringByAppendingString:@" Wins|"];
     
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2] != PLAYER_NONE) {
-        msg = @"Temple 2 Full|";
-        
+        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2];
+        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
+        msg = @"Temple 2 Full\n";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@" Wins|"];
+
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3] != PLAYER_NONE) {
-        msg = @"Temple 3 Full|";
+        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3];
+        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
+        msg = @"Temple 3 Full\n";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@" Wins|"];
         
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_4] != PLAYER_NONE) {
-        msg = @"Temple 4 Full|";
+        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2];
+        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
+        msg = @"Temple 4 Full\n";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@" Wins|"];
     
     }
     
