@@ -17,6 +17,7 @@
 @synthesize firstTemple, secondTemple;
 @synthesize cardOneWinnerEnum, cardOneWinningScore;
 @synthesize templeScoreResultArray;
+@synthesize higherScorePlayer, lowerScorePlayer;
 
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray {

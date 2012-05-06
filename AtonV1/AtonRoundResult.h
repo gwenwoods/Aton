@@ -62,6 +62,7 @@ enum GAME_PHASE_ENUM {
 @property(nonatomic) int firstPlaceNum, secondPlaceNum;
 @property(nonatomic) int firstTemple, secondTemple;
 @property(nonatomic) int cardOneWinnerEnum, cardOneWinningScore;
+@property(nonatomic) int higherScorePlayer, lowerScorePlayer;
 @property(strong,nonatomic) NSMutableArray *templeScoreResultArray;
 
 @end

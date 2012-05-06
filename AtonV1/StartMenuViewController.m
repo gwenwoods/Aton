@@ -12,7 +12,7 @@
 @end
 
 @implementation StartMenuViewController
-@synthesize playerViewScreen, creditViewScreen;
+@synthesize playerViewScreen, creditViewScreen, ruleViewScreen;
 @synthesize audioPlayerOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -218,6 +218,18 @@
             }
             
             if ([self isWithinImgView:touchLocation:rulesIV]) {
+                
+                if (audioPlayerOpen.isPlaying) {
+                    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+                } else {
+                    audioPlayerOpen = nil;
+                }
+                
+                ruleViewScreen = [[RuleViewController alloc] initWithNibName:nil bundle:nil];
+                //ruleViewScreen.delegateCreditView = self;
+                ruleViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentModalViewController:ruleViewScreen animated:YES];
+
                 rulesAnkhIV.image = nil;
             }
             

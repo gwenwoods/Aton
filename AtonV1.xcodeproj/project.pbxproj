@@ -110,6 +110,8 @@
 		BDF3F6C315524A21005D26EA /* scrollDown_done.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6C015524A21005D26EA /* scrollDown_done.png */; };
 		BDF3F6C415524A21005D26EA /* scrollDown_exchange.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6C115524A21005D26EA /* scrollDown_exchange.png */; };
 		BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */; };
+		BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF533EE15573300003BBA23 /* RuleViewController.m */; };
+		BDF533F1155733A5003BBA23 /* rule_all_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F0155733A5003BBA23 /* rule_all_middle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +254,9 @@
 		BDF3F6C015524A21005D26EA /* scrollDown_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_done.png; sourceTree = "<group>"; };
 		BDF3F6C115524A21005D26EA /* scrollDown_exchange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exchange.png; sourceTree = "<group>"; };
 		BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenMusic_Aton_new.wav; sourceTree = "<group>"; };
+		BDF533ED15573300003BBA23 /* RuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleViewController.h; sourceTree = "<group>"; };
+		BDF533EE15573300003BBA23 /* RuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleViewController.m; sourceTree = "<group>"; };
+		BDF533F0155733A5003BBA23 /* rule_all_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule_all_middle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +367,8 @@
 				BDD3AEAE15491F7C0013C89A /* CreditViewController.m */,
 				BD940BA8153A1F9300660B35 /* BoardViewController.h */,
 				BD940BA9153A1F9300660B35 /* BoardViewController.m */,
+				BDF533ED15573300003BBA23 /* RuleViewController.h */,
+				BDF533EE15573300003BBA23 /* RuleViewController.m */,
 				BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */,
 				BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */,
 				BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */,
@@ -419,6 +426,7 @@
 				BD97408D154C9AD6003F4E8F /* Red_icon.png */,
 				BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */,
 				BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */,
+				BDF533F0155733A5003BBA23 /* rule_all_middle.png */,
 				BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
 				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
@@ -693,6 +701,7 @@
 				BDB5CEA71555EC1600F96A0F /* blueFlame8.png in Resources */,
 				BDB5CEA81555EC1600F96A0F /* blueFlame9.png in Resources */,
 				BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */,
+				BDF533F1155733A5003BBA23 /* rule_all_middle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +759,7 @@
 				BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */,
 				BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */,
 				BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */,
+				BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "BoardViewController.h"
 #import "CreditViewController.h"
 #import "PlayerViewController.h"
+#import "RuleViewController.h"
 
 @interface StartMenuViewController : UIViewController<PlayerViewDelegate, CreditViewDelegate>
 {
@@ -27,6 +28,8 @@
 
 @property(nonatomic, strong) PlayerViewController *playerViewScreen;
 @property(nonatomic, strong) CreditViewController *creditViewScreen;
+@property(nonatomic, strong) RuleViewController *ruleViewScreen;
+
 @property(nonatomic, strong) AVAudioPlayer *audioPlayerOpen;
 
 @end

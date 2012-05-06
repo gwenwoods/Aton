@@ -188,7 +188,7 @@ static int DETAIL_FONT_SIZE = 20;
         quitLb.numberOfLines = 8;     
         quitLb.textColor = [UIColor blackColor];
         quitLb.font = [UIFont fontWithName:atonFont size:20];
-        quitLb.text = @"You Will Lose Current\n Game Progress If Quit.\n\n Quit now?";
+        quitLb.text = @"Do You Want to Quit Now? \n\n\n\n";
         [quitView addSubview:quitLb];
         [quitView bringSubviewToFront:quitLb];
         
