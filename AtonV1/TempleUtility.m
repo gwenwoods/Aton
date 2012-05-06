@@ -151,37 +151,97 @@
     
     TempleSlot *slot = [allSelectedSlots objectAtIndex:0];
     int occupiedEnum = [slot occupiedEnum];
-    int* templePeepArray = malloc(sizeof(int) * 4);
+    int* templePeepArray = malloc(sizeof(int) * 5);
+    int* templeNeedRemoveCountArray = malloc(sizeof(int) * 5);
+    int* templeSelectedCountArray = malloc(sizeof(int) * 5);
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        templeNeedRemoveCountArray[i] = 0;
+        templeSelectedCountArray[i] = 0;
+    }
     NSMutableArray *requiredTempleEnumArray = [[NSMutableArray alloc] init];
+    
+    int nonEmptyTempleCount=0;
     for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-        templePeepArray[i-1] = [TempleUtility findPeepNumInTemple:temple:occupiedEnum];
-        if (templePeepArray[i-1]>0) {
-             [requiredTempleEnumArray addObject:[NSNumber numberWithInt:i]];
+        templePeepArray[i] = [TempleUtility findPeepNumInTemple:temple:occupiedEnum];
+        if (templePeepArray[i]>0) {
+            [requiredTempleEnumArray addObject:[NSNumber numberWithInt:i]];
+            templeNeedRemoveCountArray[i] ++;
+            nonEmptyTempleCount++;
+            templePeepArray[i] --;
         }
     }
     
-  //  [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_1]];
-  //  [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_2]];
-  //  [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_3]];
-  //  [requiredTempleEnumArray addObject:[NSNumber numberWithInt:TEMPLE_4]];
-    
+    if (nonEmptyTempleCount == 1) {
+        int nonEmptyTempleEnum = [[requiredTempleEnumArray objectAtIndex:0]intValue];
+        templeNeedRemoveCountArray[nonEmptyTempleEnum] = 4;
+        
+    } else if (nonEmptyTempleCount == 2 ) {
+        int maxPeep = 0;
+        int maxPeepTempleEnum = 0;
+        for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+            int templePeep = templePeepArray[i];
+            if (templePeep > maxPeep) {
+                maxPeep = templePeep;
+                maxPeepTempleEnum = i;
+            }
+        }
+        templeNeedRemoveCountArray[maxPeepTempleEnum] ++;
+        templePeepArray[maxPeepTempleEnum] --;
+        
+        //-------
+        // repeat logic again
+        maxPeep = 0;
+        maxPeepTempleEnum = 0;
+        for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+            int templePeep = templePeepArray[i];
+            if (templePeep > maxPeep) {
+                maxPeep = templePeep;
+                maxPeepTempleEnum = i;
+            }
+        }
+        templeNeedRemoveCountArray[maxPeepTempleEnum] ++;
+        templePeepArray[maxPeepTempleEnum] --;
+   
+    }  else if (nonEmptyTempleCount == 3 ) {
+        int maxPeep = 0;
+        int maxPeepTempleEnum = 0;
+        for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+            int templePeep = templePeepArray[i];
+            if (templePeep > maxPeep) {
+                maxPeep = templePeep;
+                maxPeepTempleEnum = i;
+            }
+        }
+        templeNeedRemoveCountArray[maxPeepTempleEnum] ++;
+        templePeepArray[maxPeepTempleEnum] --;
+        
+    }
     NSMutableArray *selectedPeepTempleEnumArray = [[NSMutableArray alloc] init];
     for (int i=0; i<[allSelectedSlots count]; i++) {
         TempleSlot *slot = [allSelectedSlots objectAtIndex:i];
         int slotTempleEnum = slot.templeEnum;
         NSNumber *stNumber = [NSNumber numberWithInt:slotTempleEnum];
         [selectedPeepTempleEnumArray addObject:stNumber];
+        templeSelectedCountArray[slotTempleEnum]++;
     }
     
-    for (int i=0; i<[requiredTempleEnumArray count]; i++) {
+    for (int i=TEMPLE_1; i<=TEMPLE_4; i++) {
+        int needRemoveCount = templeNeedRemoveCountArray[i];
+        int actualRemoveCount = templeSelectedCountArray[i];
+        if( needRemoveCount != actualRemoveCount) {
+            return NO;
+        }
+    }
+    return YES;
+ /*   for (int i=0; i<[requiredTempleEnumArray count]; i++) {
         NSNumber *requiredTempleEnum = [requiredTempleEnumArray objectAtIndex:i];
         if ([selectedPeepTempleEnumArray containsObject:requiredTempleEnum]==NO) {
             return NO;
         }
     }
 
-    return YES;
+    return YES;*/
 }
 
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray {
@@ -452,52 +512,6 @@
     
     return result;
 }
-
-/*
-+(BOOL) isYellowFull:(NSMutableArray*) templeArray {
-    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
-        AtonTemple *temple = [templeArray objectAtIndex:i];
-        for (int j=0; j<12; j++) {
-            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
-            if ([slot colorTypeEnum] == YELLOW && [slot occupiedEnum] == OCCUPIED_EMPTY) {
-                return NO;
-               
-            } 
-        }
-    }
-    return YES;
-}
-
-+(int) isGreenFull:(NSMutableArray*) templeArray {
-    
-    int redCount = 0;
-    int blueCount = 0;
-    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
-        AtonTemple *temple = [templeArray objectAtIndex:i];
-        for (int j=0; j<12; j++) {
-            TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
-            if ([slot colorTypeEnum] == GREEN) {
-                if ([slot occupiedEnum] == OCCUPIED_EMPTY) {
-                     return NO;
-                    
-                } else  if ([slot occupiedEnum] == OCCUPIED_RED) {
-                    redCount++;
-                    
-                } else  if ([slot occupiedEnum] == OCCUPIED_BLUE) {
-                    blueCount++;
-                    
-                }               
-            } 
-        }
-    }
-    
-    if (redCount > 0 && blueCount > 0) {
-        return NO;
-    }
-    
-    return YES;
-}*/
-
 
 +(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum {
     
