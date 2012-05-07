@@ -28,7 +28,9 @@ static int DETAIL_FONT_SIZE = 20;
         controller = viewController;
         baseView = controller.view;
         
-        NSString *atonFont = @"Palatino";
+       // NSString *atonFont = @"Palatino";
+       // NSString *atonFont = @"Optima";
+         NSString *atonFont = @"Cochin";
         
         gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         gamePhaseView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
@@ -133,7 +135,7 @@ static int DETAIL_FONT_SIZE = 20;
         exchangeCardsView.userInteractionEnabled = YES;
         [baseView addSubview:exchangeCardsView];
         
-        exchangeCardsLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        exchangeCardsLb = [[UILabel alloc] initWithFrame:CGRectMake(48,100,400,200)];
         exchangeCardsLb.backgroundColor = [UIColor clearColor];
         exchangeCardsLb.textAlignment = UITextAlignmentCenter;
         exchangeCardsLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -145,7 +147,7 @@ static int DETAIL_FONT_SIZE = 20;
         [exchangeCardsView bringSubviewToFront:exchangeCardsLb];
 
         UIButton *exchangeYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        exchangeYesButton.frame = CGRectMake(280 , 242, 80, 40);
+        exchangeYesButton.frame = CGRectMake(300 , 272, 80, 40);
         exchangeYesButton.userInteractionEnabled = YES;
         //[exchangeYesButton setTitle:@"Yes" forState:UIControlStateNormal];
         [exchangeYesButton setImage:[UIImage imageNamed:@"button_yes.png"] forState:UIControlStateNormal];
@@ -153,7 +155,7 @@ static int DETAIL_FONT_SIZE = 20;
         [exchangeCardsView addSubview:exchangeYesButton];
         
         UIButton *exchangeNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        exchangeNoButton.frame = CGRectMake(148 , 240, 88, 44);
+        exchangeNoButton.frame = CGRectMake(120 , 270, 88, 44);
         exchangeNoButton.userInteractionEnabled = YES;
      //   [exchangeNoButton setTitle:@"No" forState:UIControlStateNormal];
         [exchangeNoButton setImage:[UIImage imageNamed:@"button_no.png"] forState:UIControlStateNormal];
@@ -205,7 +207,7 @@ static int DETAIL_FONT_SIZE = 20;
         [quitView bringSubviewToFront:quitLb];
         
         UIButton *quitYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        quitYesButton.frame = CGRectMake(280 , 252, 80, 40);
+        quitYesButton.frame = CGRectMake(300 , 272, 80, 40);
         quitYesButton.userInteractionEnabled = YES;
         //[quitYesButton setTitle:@"Yes" forState:UIControlStateNormal];
         [quitYesButton setImage:[UIImage imageNamed:@"button_yes.png"] forState:UIControlStateNormal];
@@ -213,7 +215,7 @@ static int DETAIL_FONT_SIZE = 20;
         [quitView addSubview:quitYesButton];
         
         UIButton *quitNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        quitNoButton.frame = CGRectMake(140 , 250, 88, 44);
+        quitNoButton.frame = CGRectMake(120 , 270, 88, 44);
         quitNoButton.userInteractionEnabled = YES;
        // [quitNoButton setTitle:@"No" forState:UIControlStateNormal];
         [quitNoButton setImage:[UIImage imageNamed:@"button_no.png"] forState:UIControlStateNormal];

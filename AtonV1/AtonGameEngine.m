@@ -772,10 +772,16 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     
     NSMutableArray *playerArray = para.playerArray;
     if ([[playerArray objectAtIndex:PLAYER_RED] score] > 40) {
-        msg = @"Player Red\n Reaches 40 Points|";
+        AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_RED];
+        msg = @"";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@"\n Reaches 40 Points And Wins|"];
         
     } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] > 40) {
-        msg = @"Player Blue\n Reaches 40 Points|";
+        AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_BLUE];
+        msg = @"";
+        msg = [msg stringByAppendingString:winner.playerName];
+        msg = [msg stringByAppendingString:@"\n Reaches 40 Points And Wins|"];
         
     }
     
