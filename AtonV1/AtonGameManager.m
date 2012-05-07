@@ -196,14 +196,14 @@ static int DETAIL_FONT_SIZE = 20;
         quitView.userInteractionEnabled = YES;
         quitView.hidden = YES;
         
-        quitLb = [[UILabel alloc] initWithFrame:CGRectMake(40,100,400,200)];
+        quitLb = [[UILabel alloc] initWithFrame:CGRectMake(52,100,400,200)];
         quitLb.backgroundColor = [UIColor clearColor];
         quitLb.textAlignment = UITextAlignmentCenter;
         quitLb.lineBreakMode = UILineBreakModeCharacterWrap;
         quitLb.numberOfLines = 8;     
         quitLb.textColor = [UIColor blackColor];
         quitLb.font = [UIFont fontWithName:atonFont size:20];
-        quitLb.text = @"Do You Want\n to Quit Now? \n\n";
+        quitLb.text = @"Do You Want to Quit Now? \n\n";
         [quitView addSubview:quitLb];
         [quitView bringSubviewToFront:quitLb];
         
