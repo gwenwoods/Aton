@@ -84,7 +84,7 @@ static int DETAIL_FONT_SIZE = 20;
         helpView.hidden = YES;
         [baseView addSubview:helpView];
         
-        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,20)];
+        helpLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,24)];
         helpLb.backgroundColor = [UIColor clearColor];
         helpLb.textAlignment = UITextAlignmentCenter;
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -94,7 +94,7 @@ static int DETAIL_FONT_SIZE = 20;
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
-        helpDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,80)];
+        helpDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,200,400,100)];
         helpDetailLb.backgroundColor = [UIColor clearColor];
         helpDetailLb.textAlignment = UITextAlignmentCenter;
         helpDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -116,6 +116,16 @@ static int DETAIL_FONT_SIZE = 20;
         
         helpActivePlayerIV = [[UIImageView alloc] initWithFrame:CGRectMake(228, 140, 60, 60)];
         [helpView addSubview:helpActivePlayerIV];
+        
+        helpTieIV = [[UIImageView alloc] initWithFrame:CGRectMake(193, 140, 130, 60)];
+        UIImageView *redHelpIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        redIV.image = [UIImage imageNamed:@"Red_icon.png"];
+        UIImageView *blueHelpIV = [[UIImageView alloc] initWithFrame:CGRectMake(70, 0, 60, 60)];
+        blueIV.image = [UIImage imageNamed:@"Blue_icon.png"];
+        [helpTieIV addSubview:redHelpIV];
+        [helpTieIV addSubview:blueHelpIV];
+        [helpView addSubview:helpTieIV];
+
         //---------------------------------
         exchangeCardsView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         exchangeCardsView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
@@ -135,7 +145,7 @@ static int DETAIL_FONT_SIZE = 20;
         [exchangeCardsView bringSubviewToFront:exchangeCardsLb];
 
         UIButton *exchangeYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        exchangeYesButton.frame = CGRectMake(260 , 242, 116, 58);
+        exchangeYesButton.frame = CGRectMake(280 , 242, 80, 40);
         exchangeYesButton.userInteractionEnabled = YES;
         //[exchangeYesButton setTitle:@"Yes" forState:UIControlStateNormal];
         [exchangeYesButton setImage:[UIImage imageNamed:@"button_yes.png"] forState:UIControlStateNormal];
@@ -143,7 +153,7 @@ static int DETAIL_FONT_SIZE = 20;
         [exchangeCardsView addSubview:exchangeYesButton];
         
         UIButton *exchangeNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        exchangeNoButton.frame = CGRectMake(128 , 240, 125, 63);
+        exchangeNoButton.frame = CGRectMake(148 , 240, 88, 44);
         exchangeNoButton.userInteractionEnabled = YES;
      //   [exchangeNoButton setTitle:@"No" forState:UIControlStateNormal];
         [exchangeNoButton setImage:[UIImage imageNamed:@"button_no.png"] forState:UIControlStateNormal];
@@ -195,7 +205,7 @@ static int DETAIL_FONT_SIZE = 20;
         [quitView bringSubviewToFront:quitLb];
         
         UIButton *quitYesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        quitYesButton.frame = CGRectMake(260 , 252, 116, 58);
+        quitYesButton.frame = CGRectMake(280 , 252, 80, 40);
         quitYesButton.userInteractionEnabled = YES;
         //[quitYesButton setTitle:@"Yes" forState:UIControlStateNormal];
         [quitYesButton setImage:[UIImage imageNamed:@"button_yes.png"] forState:UIControlStateNormal];
@@ -203,7 +213,7 @@ static int DETAIL_FONT_SIZE = 20;
         [quitView addSubview:quitYesButton];
         
         UIButton *quitNoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        quitNoButton.frame = CGRectMake(120 , 250, 125, 63);
+        quitNoButton.frame = CGRectMake(140 , 250, 88, 44);
         quitNoButton.userInteractionEnabled = YES;
        // [quitNoButton setTitle:@"No" forState:UIControlStateNormal];
         [quitNoButton setImage:[UIImage imageNamed:@"button_no.png"] forState:UIControlStateNormal];
@@ -262,34 +272,45 @@ static int DETAIL_FONT_SIZE = 20;
 -(void) showHelpView:(NSString*) msg {
     
     helpLb.text = nil;
+    helpDetailLb.text = nil;
+    helpMiddleLb.text = nil;
     
     NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
-    NSString *title = [messageArray objectAtIndex:0];
-    NSString *progressMsg = @"";
     
     if ([messageArray count] > 1) {
-        progressMsg = [messageArray objectAtIndex:1];
+        helpLb.text = [messageArray objectAtIndex:0];
+        helpDetailLb.text = [messageArray objectAtIndex:1];
+    } else {
+        helpMiddleLb.text = [messageArray objectAtIndex:0];
     }
     
     if (activePlayer == PLAYER_RED) {
+        helpTieIV.hidden = YES;
         helpActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
         
     } else if (activePlayer == PLAYER_BLUE) {
+        helpTieIV.hidden = YES;
         helpActivePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
         
     } else {
         helpActivePlayerIV.image = nil;
-        
+        if (helpMiddleLb.text == nil) {
+            helpTieIV.hidden = NO;
+        }
     }
     
-    if ([messageArray count] > 1) {
-        helpLb.text = title;
-        helpDetailLb.text = progressMsg;
-    } else {
-        helpMiddleLb.text = title;
-    }
+    
     helpView.hidden = NO;
-  //  helpLb.text = msg;
+    helpView.alpha = 0.0;
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         helpView.alpha = 1.0;
+                         
+                     } 
+                     completion:^(BOOL finished){
+                     }];
 }
 
 -(void) showFinalResultView:(NSString*) msg {
