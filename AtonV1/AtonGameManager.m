@@ -93,7 +93,7 @@ static int DETAIL_FONT_SIZE = 20;
         helpLb.lineBreakMode = UILineBreakModeCharacterWrap;
         helpLb.numberOfLines = 4;     
         helpLb.textColor = [UIColor blackColor];
-        helpLb.font = [UIFont fontWithName:atonFont size:TITLE_FONT_SIZE];
+        helpLb.font = [UIFont fontWithName:atonFontTitle size:TITLE_FONT_SIZE];
         [helpView addSubview:helpLb];
         [helpView bringSubviewToFront:helpLb];
 
