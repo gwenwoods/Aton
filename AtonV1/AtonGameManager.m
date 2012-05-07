@@ -31,6 +31,7 @@ static int DETAIL_FONT_SIZE = 20;
        // NSString *atonFont = @"Palatino";
        // NSString *atonFont = @"Optima";
          NSString *atonFont = @"Cochin";
+        NSString *atonFontTitle = @"Cochin-Bold";
         
         gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         gamePhaseView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
@@ -43,7 +44,7 @@ static int DETAIL_FONT_SIZE = 20;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;
         gamePhaseLb.numberOfLines = 1;     
         gamePhaseLb.textColor = [UIColor blackColor];
-        gamePhaseLb.font = [UIFont fontWithName:atonFont size:TITLE_FONT_SIZE];
+        gamePhaseLb.font = [UIFont fontWithName:atonFontTitle size:TITLE_FONT_SIZE];
         [gamePhaseView addSubview:gamePhaseLb];
         [gamePhaseView bringSubviewToFront:gamePhaseLb];
         
