@@ -29,7 +29,7 @@
     }
     self.window.rootViewController = self.startMenuViewController;
     
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor clearColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
