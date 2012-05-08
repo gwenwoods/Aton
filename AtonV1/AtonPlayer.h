@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 
 #import "CardElement.h"
@@ -31,6 +32,8 @@ enum PLAYER_ACTION_ENUM {
     UILabel *actionLb;
     
     UIImageView *scrollExchangeIV, *scrollBlankIV, *scrollDoneAniHomeIV;
+    
+    AVAudioPlayer *audioScroll;
 }
 
 -(id)initializeWithParameters:(int) thisPlayerEnum:(NSString*) name:(UIViewController*) viewController;

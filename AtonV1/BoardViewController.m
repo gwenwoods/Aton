@@ -52,13 +52,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-  //  NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/rooster.aiff", [[NSBundle mainBundle] resourcePath]]];
-    //NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/sheep.wav", [[NSBundle mainBundle] resourcePath]]];
 
-   // NSString *str = playerStr;
-   // NSLog(@" %@",playerStr);
+
+    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/egyptJungle.mp3", [[NSBundle mainBundle] resourcePath]]];
+	audioPlayGame = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlayGame error:nil];
+	audioPlayGame.numberOfLoops = 1000;
+    audioPlayGame.volume = 0.25;
+  //  [audioPlayGame prepareToPlay];
+    //  [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:2.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    
+    NSURL *urlPlacePeep = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/switch-22.aiff", [[NSBundle mainBundle] resourcePath]]];
+	audioPlacePeep = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlacePeep error:nil];
+	audioPlacePeep.numberOfLoops = 0;
+    audioPlacePeep.volume = 1.0;
+    [audioPlacePeep prepareToPlay];
+  
+    NSURL *urlTap = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/button-50.wav", [[NSBundle mainBundle] resourcePath]]];
+	audioTap = [[AVAudioPlayer alloc] initWithContentsOfURL:urlTap error:nil];
+	audioTap.numberOfLoops = 0;
+    audioTap.volume = 1.0;
+    [audioTap prepareToPlay];
+    
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
-   
     atonParameters = [AtonGameInitializer initializeNewGame:self:playerRedName:playerBlueName];
     atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters];
     
@@ -79,7 +94,7 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [AtonTouchBeganUtility checkTouch:event:touchElement:atonParameters:atonGameEngine];
+    [AtonTouchBeganUtility checkTouch:event:touchElement:atonParameters:atonGameEngine:audioPlacePeep:audioTap];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -97,10 +112,12 @@
 - (IBAction) toMenu:(id)sender {
  //   [delegateBoardView dismissBoardViewWithoutAnimation:self];
  //   [self dismissModalViewControllerAnimated:YES];
+    
     atonParameters.gameManager.quitView.hidden = NO;
 }
 
 - (IBAction) quitYes:(id)sender {
+    [audioPlayGame stop];
     [delegateBoardView dismissBoardViewWithoutAnimation:self];
 }
 
@@ -144,4 +161,7 @@
      atonParameters.gameManager.exchangeCardsView.hidden = YES;
 }
 
+-(void) playGameMusic {
+    [audioPlayGame play];
+}
 @end

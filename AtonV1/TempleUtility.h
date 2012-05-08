@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import "AtonTemple.h"
 #import "TempleScoreResult.h"
 #import "AtonPlayer.h"
@@ -21,7 +22,7 @@
 +(TempleSlot*) findFirstAvailableDeathSpot:(NSMutableArray*) templeArray;
 +(BOOL) isDeathTempleFull:(NSMutableArray*) templeArray;
 +(void) clearDeathTemple:(NSMutableArray*) templeArray;
-+(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
++(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots:(AVAudioPlayer*) audioToDeath;
 +(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(BOOL) isSelectedOneFromEachTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;

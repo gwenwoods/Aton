@@ -162,6 +162,17 @@
 	audioPlayerChime.numberOfLoops = 0;
     audioPlayerChime.volume = 0.5;
     [audioPlayerChime prepareToPlay];
+    
+    //----------
+    // enterName view
+    NSURL *urlEnterName = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/cherokee_war_drum.aiff", [[NSBundle mainBundle] resourcePath]]];
+	audioEnterName = [[AVAudioPlayer alloc] initWithContentsOfURL:urlEnterName error:nil];
+	audioEnterName.numberOfLoops = 1000;
+    audioEnterName.volume = 0.5;
+    [audioEnterName prepareToPlay];
+    
+    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    [self performSelector:@selector(fadeVolumeUp:) withObject:audioEnterName afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 }
 
 - (void)viewDidUnload
@@ -177,6 +188,7 @@
 }
 
 -(IBAction) backToMenu:(id)sender {
+    [audioEnterName stop];
     [delegatePlayerView dismissPlayerViewWithAnimation:self];
 }
 
@@ -186,6 +198,14 @@
 
 -(IBAction) toPlay:(id)sender {
 
+    if (audioEnterName.isPlaying) 
+    {
+        [audioEnterName stop];
+
+       // [self performSelector:@selector(fadeVolumeDownQuick:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    } else {
+        audioEnterName = nil;
+    }
     boardScreen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
     boardScreen.delegateBoardView = self;
     boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -224,6 +244,8 @@
         blueName = name;
         [blueNameButton setTitle:blueName forState:UIControlStateNormal];
     }
+    
+   
 }
 
 -(IBAction) setRedName:(id)sender {
@@ -258,6 +280,8 @@
         redAnimationIV.hidden = YES;
         blueAnimationIV.hidden = NO;
     }
+    
+    
 }
 
 -(void)hadleTimer:(NSTimer *)timer
@@ -269,5 +293,20 @@
 	
 	CGAffineTransform transform=CGAffineTransformMakeRotation(angle);
 	rotateIV.transform = transform;
+}
+
+-(void) playOpenMusic {
+    [audioEnterName play];
+}
+
+- (void)fadeVolumeUp:(AVAudioPlayer *)aPlayer
+{    
+    aPlayer.volume = aPlayer.volume + 0.025;
+    if (aPlayer.volume > 1.0) {
+        //[aPlayer stop]; 
+        return;
+    } else {
+        [self performSelector:@selector(fadeVolumeUp:) withObject:aPlayer afterDelay:0.1];  
+    }
 }
 @end

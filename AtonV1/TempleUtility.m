@@ -100,7 +100,7 @@
     }
 }
 
-+(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {
++(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots:(AVAudioPlayer*) audioToDeath {
     for (int i=0; i < [allSelectedSlots count]; i++) {
         TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
         TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
@@ -108,7 +108,7 @@
             [selectedSlot removePeep];
             break;
         }
-        
+        [audioToDeath play];
         // create animation IV
         UIImageView *animationIV = [[UIImageView alloc] init];
         animationIV.frame = [selectedSlot getPeepFrame];

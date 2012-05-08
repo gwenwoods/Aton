@@ -73,7 +73,13 @@ static float SCARAB_HEIGHT = 44;
     
     //-----------------------
     // create Aton parameters
-    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray: gameManager];
+    NSURL *urlDeath = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/whip_deathTemple.aiff", [[NSBundle mainBundle] resourcePath]]];
+	AVAudioPlayer *audioToDeath = [[AVAudioPlayer alloc] initWithContentsOfURL:urlDeath error:nil];
+	audioToDeath.numberOfLoops = 0;
+    audioToDeath.volume = 0.25;
+    [audioToDeath prepareToPlay];
+    
+    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray: gameManager:audioToDeath];
     
     
     return  atonParameters;

@@ -236,11 +236,11 @@
             
             if ([self isWithinImgView:touchLocation:creditsIV]) {
                 
-                if (audioPlayerOpen.isPlaying) {
+           /*     if (audioPlayerOpen.isPlaying) {
                     [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
                 } else {
                     audioPlayerOpen = nil;
-                }
+                }*/
                 
                 creditViewScreen = [[CreditViewController alloc] initWithNibName:nil bundle:nil];
                 creditViewScreen.delegateCreditView = self;

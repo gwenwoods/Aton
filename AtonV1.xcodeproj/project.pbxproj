@@ -54,6 +54,14 @@
 		BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */; };
 		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
 		BDAE714B153A9C81001848F8 /* CardElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE714A153A9C81001848F8 /* CardElement.m */; };
+		BDB58EA01558C7CE0084AAC4 /* button-22.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDB58E9F1558C7CE0084AAC4 /* button-22.wav */; };
+		BDB58EA21558CA5E0084AAC4 /* switch-22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA11558CA5E0084AAC4 /* switch-22.mp3 */; };
+		BDB58EA41558CA810084AAC4 /* egyptJungle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */; };
+		BDB58EA61558CC980084AAC4 /* switch-22.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA51558CC980084AAC4 /* switch-22.aiff */; };
+		BDB58EA81558CCB30084AAC4 /* cherokee_war_drum.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA71558CCB30084AAC4 /* cherokee_war_drum.aiff */; };
+		BDB58EAA1558D1540084AAC4 /* whip_deathTemple.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA91558D1540084AAC4 /* whip_deathTemple.aiff */; };
+		BDB58EAC1558D69A0084AAC4 /* page-flip-16.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */; };
+		BDB58EAE1558DBB30084AAC4 /* button-50.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EAD1558DBB30084AAC4 /* button-50.wav */; };
 		BDB5CE811555E24D00F96A0F /* Redflame1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB5CE731555E24D00F96A0F /* Redflame1.png */; };
 		BDB5CE821555E24D00F96A0F /* Redflame10.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB5CE741555E24D00F96A0F /* Redflame10.png */; };
 		BDB5CE831555E24D00F96A0F /* Redflame11.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB5CE751555E24D00F96A0F /* Redflame11.png */; };
@@ -197,6 +205,14 @@
 		BDAE7147153A8BEF001848F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BDAE7149153A9C81001848F8 /* CardElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardElement.h; sourceTree = "<group>"; };
 		BDAE714A153A9C81001848F8 /* CardElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardElement.m; sourceTree = "<group>"; };
+		BDB58E9F1558C7CE0084AAC4 /* button-22.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-22.wav"; sourceTree = "<group>"; };
+		BDB58EA11558CA5E0084AAC4 /* switch-22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "switch-22.mp3"; sourceTree = "<group>"; };
+		BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = egyptJungle.mp3; sourceTree = "<group>"; };
+		BDB58EA51558CC980084AAC4 /* switch-22.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "switch-22.aiff"; sourceTree = "<group>"; };
+		BDB58EA71558CCB30084AAC4 /* cherokee_war_drum.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = cherokee_war_drum.aiff; sourceTree = "<group>"; };
+		BDB58EA91558D1540084AAC4 /* whip_deathTemple.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = whip_deathTemple.aiff; sourceTree = "<group>"; };
+		BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "page-flip-16.mp3"; sourceTree = "<group>"; };
+		BDB58EAD1558DBB30084AAC4 /* button-50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-50.wav"; sourceTree = "<group>"; };
 		BDB5CE731555E24D00F96A0F /* Redflame1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Redflame1.png; sourceTree = "<group>"; };
 		BDB5CE741555E24D00F96A0F /* Redflame10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Redflame10.png; sourceTree = "<group>"; };
 		BDB5CE751555E24D00F96A0F /* Redflame11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Redflame11.png; sourceTree = "<group>"; };
@@ -537,6 +553,14 @@
 		BDD3AEBD1549FC540013C89A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */,
+				BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */,
+				BDB58E9F1558C7CE0084AAC4 /* button-22.wav */,
+				BDB58EA11558CA5E0084AAC4 /* switch-22.mp3 */,
+				BDB58EA51558CC980084AAC4 /* switch-22.aiff */,
+				BDB58EAD1558DBB30084AAC4 /* button-50.wav */,
+				BDB58EA91558D1540084AAC4 /* whip_deathTemple.aiff */,
+				BDB58EA71558CCB30084AAC4 /* cherokee_war_drum.aiff */,
 				BD974090154C9BCC003F4E8F /* chime.mp3 */,
 				BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */,
 				BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */,
@@ -726,6 +750,14 @@
 				BDF533FC155740C9003BBA23 /* button_no.png in Resources */,
 				BDF533FD155740C9003BBA23 /* button_play.png in Resources */,
 				BDF533FE155740C9003BBA23 /* button_yes.png in Resources */,
+				BDB58EA01558C7CE0084AAC4 /* button-22.wav in Resources */,
+				BDB58EA21558CA5E0084AAC4 /* switch-22.mp3 in Resources */,
+				BDB58EA41558CA810084AAC4 /* egyptJungle.mp3 in Resources */,
+				BDB58EA61558CC980084AAC4 /* switch-22.aiff in Resources */,
+				BDB58EA81558CCB30084AAC4 /* cherokee_war_drum.aiff in Resources */,
+				BDB58EAA1558D1540084AAC4 /* whip_deathTemple.aiff in Resources */,
+				BDB58EAC1558D69A0084AAC4 /* page-flip-16.mp3 in Resources */,
+				BDB58EAE1558DBB30084AAC4 /* button-50.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

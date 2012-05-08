@@ -10,18 +10,18 @@
 
 @implementation AtonTouchBeganUtility
 
-+(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters: (AtonGameEngine*) engine {
++(void) checkTouch:(UIEvent *)event:(AtonTouchElement*) touchElement:(AtonGameParameters*) atonParameters: (AtonGameEngine*) engine:(AVAudioPlayer*) audioPlacePeep :(AVAudioPlayer*) audioTap{
     UITouch *touch = [[event allTouches] anyObject];
     NSMutableArray *playerArray = [atonParameters playerArray];
     NSMutableArray *templeArray = [atonParameters templeArray];
    
     
-    [self checkGamePhaseView:atonParameters:engine];
+    [self checkGamePhaseView:atonParameters:engine:audioTap];
     [self playerArrangeCard:touch:touchElement:atonParameters];
-    [self chooseTempleSlot:touch:templeArray:playerArray];
+    [self chooseTempleSlot:touch:templeArray:playerArray:audioPlacePeep];
 }
 
-+(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine {
++(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine:(AVAudioPlayer*) audioTap {
 
     AtonGameManager *gameManager = [atonParameters gameManager];
     AtonRoundResult *result = atonParameters.atonRoundResult;
@@ -39,6 +39,7 @@
     if (gameManager.gamePhaseView.hidden == YES) {
         return;
     } else {
+        [audioTap play];
         gameManager.gamePhaseView.hidden = YES;
         if (atonParameters.gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
             atonParameters.gamePhaseEnum = GAME_PHASE_RED_LAY_CARD;
@@ -214,7 +215,7 @@
     }
 }
 
-+(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray:(NSMutableArray*) playerArray {
++(void) chooseTempleSlot:(UITouch*) touch:(NSMutableArray*) templeArray:(NSMutableArray*) playerArray:(AVAudioPlayer*) audioPlacePeep {
     
     AtonPlayer *currentPlayer;
     for (int i=0; i<[playerArray count]; i++) {
@@ -231,6 +232,7 @@
             TempleSlot *slot = [templeSlotArray objectAtIndex:j];
             if([touch view] == [slot iv]) {
 
+                
                 NSMutableArray *peepArray = currentPlayer.scrollPeepArray;
                 int numPeepsLeftForSelection = 0;
                 for (int k=0; k < [peepArray count]; k++) {
@@ -244,8 +246,9 @@
                     return;
                 }
                 
-                [slot selectOrDeselectSlot];
                 
+                [slot selectOrDeselectSlot];
+                [audioPlacePeep play];
                 
                 if (currentPlayer == nil) {
                     // Code should never reach here

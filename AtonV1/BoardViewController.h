@@ -34,6 +34,7 @@
     __unsafe_unretained id delegateBoardView;
    // id delegate1;
  //   NSString *playerRedName, *playerBlueName;
+    AVAudioPlayer *audioPlacePeep, *audioPlayGame, *audioTap;
   
 }
 

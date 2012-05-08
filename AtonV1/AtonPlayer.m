@@ -125,6 +125,12 @@ static float DELAY_TIME = 0.25;
 
         tempCardElementArray = [[NSMutableArray alloc] init];
         [self initilizeDeck];
+        
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/page-flip-16.mp3", [[NSBundle mainBundle] resourcePath]]];
+        audioScroll = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        audioScroll.numberOfLoops = 0;
+        audioScroll.volume = 0.25;
+        [audioScroll prepareToPlay];
     }  
     return self;
 }
@@ -592,6 +598,7 @@ static float DELAY_TIME = 0.25;
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
      [baseView addSubview:scrollExchangeIV];
+    [audioScroll play];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
@@ -606,7 +613,7 @@ static float DELAY_TIME = 0.25;
 }
 
 -(void) closeMenu {
-    
+
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneIV.frame];
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
@@ -620,6 +627,7 @@ static float DELAY_TIME = 0.25;
     [baseView addSubview:scrollExchangeIV];
     
     scrollDoneIV.hidden = YES;
+   // [audioScroll play];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut

@@ -14,8 +14,10 @@
 @synthesize gameManager;
 @synthesize gamePhaseEnum;
 @synthesize atonRoundResult;
+@synthesize audioToDeath;
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AtonGameManager*) atonGameManager {
+
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AtonGameManager*) atonGameManager:(AVAudioPlayer*) audio {
     
     if (self) {
         playerArray = atonPlayerArray;
@@ -23,6 +25,7 @@
         scarabArray = atonScarabArray;
         gameManager = atonGameManager;
         atonRoundResult = [[AtonRoundResult alloc] initializeWithParameters:playerArray];
+        audioToDeath = audio;
         
     }
     return self;
