@@ -86,7 +86,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         int cardOneWinnerEnum = roundResult.cardOneWinnerEnum;
         
         if (cardOneWinnerEnum == PLAYER_NONE) {
-            msg = [msg stringByAppendingString:@"Tie \n No Player\n Gains Any Point"];
+            msg = [msg stringByAppendingString:@"TIE \n no player gains any point"];
             
         } else {
             AtonPlayer *cardOneWinner = [playerArray objectAtIndex:cardOneWinnerEnum];
