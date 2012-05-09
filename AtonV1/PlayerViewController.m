@@ -20,6 +20,7 @@
 @implementation PlayerViewController
 @synthesize delegatePlayerView;
 @synthesize boardScreen;
+@synthesize audioEnterName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

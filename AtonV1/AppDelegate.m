@@ -53,23 +53,28 @@
     if (self.startMenuViewController.playerViewScreen != nil) {
         
         PlayerViewController *playerScreen = self.startMenuViewController.playerViewScreen;
+        
         if (playerScreen.boardScreen == nil) {
             [self.startMenuViewController.playerViewScreen dismissModalViewControllerAnimated:NO];
             [self.startMenuViewController.view becomeFirstResponder];
             [self.startMenuViewController viewDidLoad];
         }
         
+        playerScreen.audioEnterName = nil;
+        playerScreen = nil;
     } else if (self.startMenuViewController.creditViewScreen != nil) {
         
         [self.startMenuViewController.creditViewScreen dismissModalViewControllerAnimated:NO];
         [self.startMenuViewController.view becomeFirstResponder];
         [self.startMenuViewController viewDidLoad];
+        self.startMenuViewController.creditViewScreen = nil;
         
     } else if (self.startMenuViewController.ruleViewScreen != nil) {
         
         [self.startMenuViewController.ruleViewScreen dismissModalViewControllerAnimated:NO];
         [self.startMenuViewController.view becomeFirstResponder];
         [self.startMenuViewController viewDidLoad];
+        self.startMenuViewController.ruleViewScreen = nil;
         
     } else {
         [self.startMenuViewController viewDidLoad];

@@ -37,4 +37,5 @@
 
 @property (nonatomic, assign) id<PlayerViewDelegate> delegatePlayerView; 
 @property (nonatomic, strong) BoardViewController *boardScreen;
+@property (nonatomic, strong) AVAudioPlayer *audioEnterName;
 @end
