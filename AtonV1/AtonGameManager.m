@@ -170,7 +170,7 @@ static int DETAIL_FONT_SIZE = 20;
         finalResultView.userInteractionEnabled = YES;
         [baseView addSubview:finalResultView];
         
-        finalResultLb = [[UILabel alloc] initWithFrame:CGRectMake(52,112,400,40)];
+        finalResultLb = [[UILabel alloc] initWithFrame:CGRectMake(52,112,400,48)];
         finalResultLb.backgroundColor = [UIColor clearColor];
         finalResultLb.textAlignment = UITextAlignmentCenter;
         finalResultLb.lineBreakMode = UILineBreakModeCharacterWrap;

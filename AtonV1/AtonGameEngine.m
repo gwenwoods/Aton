@@ -105,7 +105,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         int winnerOriginalScore = 0;
         int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
-                if (cardOneWinnerEnum != PLAYER_NONE) {
+        if (cardOneWinnerEnum != PLAYER_NONE) {
             winnerOriginalScore = [[playerArray objectAtIndex:cardOneWinnerEnum] score];
             
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
@@ -771,13 +771,13 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     }
     
     NSMutableArray *playerArray = para.playerArray;
-    if ([[playerArray objectAtIndex:PLAYER_RED] score] > 40) {
+    if ([[playerArray objectAtIndex:PLAYER_RED] score] >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_RED];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
         msg = [msg stringByAppendingString:@"\n Reaches 40 Points And Wins|"];
         
-    } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] > 40) {
+    } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_BLUE];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
