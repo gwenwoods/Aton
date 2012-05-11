@@ -18,6 +18,7 @@
 #import "AtonTouchEndUtility.h"
 #import "AtonTouchElement.h"
 #import "AtonGameEngine.h"
+#import "AtonAIEasy.h"
 
 #import "AtonTemple.h"
 

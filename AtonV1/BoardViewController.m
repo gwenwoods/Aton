@@ -54,12 +54,12 @@
     
 
 
-    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/egyptJungle.mp3", [[NSBundle mainBundle] resourcePath]]];
+    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/BG_sound.aiff", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayGame = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlayGame error:nil];
 	audioPlayGame.numberOfLoops = 1000;
     audioPlayGame.volume = 0.25;
-  //  [audioPlayGame prepareToPlay];
-    //  [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:2.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    [audioPlayGame prepareToPlay];
+    [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:2.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     
     NSURL *urlPlacePeep = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/switch-22.aiff", [[NSBundle mainBundle] resourcePath]]];
 	audioPlacePeep = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlacePeep error:nil];
@@ -78,6 +78,8 @@
     atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters];
     
     [atonGameEngine run];
+    
+    AtonAI *ai = [[AtonAIEasy alloc] init];
 }
 
 - (void)viewDidUnload

@@ -112,6 +112,9 @@
 		BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */; };
 		BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BE153D3202003F3530 /* Red_Cylinder.png */; };
 		BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */; };
+		BDEAF6B3155B84B9007BBC29 /* BG_sound.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDEAF6B2155B84B9007BBC29 /* BG_sound.aiff */; };
+		BDEAF6B7155CBC53007BBC29 /* AtonAI.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEAF6B6155CBC53007BBC29 /* AtonAI.m */; };
+		BDEAF6BA155CBC7A007BBC29 /* AtonAIEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEAF6B9155CBC7A007BBC29 /* AtonAIEasy.m */; };
 		BDF3F6B815524060005D26EA /* Red_icon_big.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6B715524060005D26EA /* Red_icon_big.png */; };
 		BDF3F6BB1552406A005D26EA /* Blue_icon_big.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6BA1552406A005D26EA /* Blue_icon_big.png */; };
 		BDF3F6BD15524093005D26EA /* name_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6BC15524093005D26EA /* name_frame.png */; };
@@ -269,6 +272,11 @@
 		BDDA77BE153D3202003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameEngine.h; sourceTree = "<group>"; };
 		BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameEngine.m; sourceTree = "<group>"; };
+		BDEAF6B2155B84B9007BBC29 /* BG_sound.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = BG_sound.aiff; sourceTree = "<group>"; };
+		BDEAF6B5155CBC53007BBC29 /* AtonAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonAI.h; sourceTree = "<group>"; };
+		BDEAF6B6155CBC53007BBC29 /* AtonAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonAI.m; sourceTree = "<group>"; };
+		BDEAF6B8155CBC7A007BBC29 /* AtonAIEasy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonAIEasy.h; sourceTree = "<group>"; };
+		BDEAF6B9155CBC7A007BBC29 /* AtonAIEasy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonAIEasy.m; sourceTree = "<group>"; };
 		BDF3F6B715524060005D26EA /* Red_icon_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_icon_big.png; sourceTree = "<group>"; };
 		BDF3F6BA1552406A005D26EA /* Blue_icon_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_icon_big.png; sourceTree = "<group>"; };
 		BDF3F6BC15524093005D26EA /* name_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = name_frame.png; sourceTree = "<group>"; };
@@ -388,6 +396,10 @@
 				BDAE7112153A2EEF001848F8 /* Images */,
 				BD940B80153A1F0400660B35 /* Supporting Files */,
 				BD940B88153A1F0400660B35 /* AppDelegate.h */,
+				BDEAF6B5155CBC53007BBC29 /* AtonAI.h */,
+				BDEAF6B6155CBC53007BBC29 /* AtonAI.m */,
+				BDEAF6B8155CBC7A007BBC29 /* AtonAIEasy.h */,
+				BDEAF6B9155CBC7A007BBC29 /* AtonAIEasy.m */,
 				BD940B89153A1F0400660B35 /* AppDelegate.m */,
 				BDD3AEAD15491F7B0013C89A /* CreditViewController.h */,
 				BDD3AEAE15491F7C0013C89A /* CreditViewController.m */,
@@ -557,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */,
+				BDEAF6B2155B84B9007BBC29 /* BG_sound.aiff */,
 				BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */,
 				BDB58E9F1558C7CE0084AAC4 /* button-22.wav */,
 				BDB58EA11558CA5E0084AAC4 /* switch-22.mp3 */,
@@ -762,6 +775,7 @@
 				BDB58EAC1558D69A0084AAC4 /* page-flip-16.mp3 in Resources */,
 				BDB58EAE1558DBB30084AAC4 /* button-50.wav in Resources */,
 				BDB58EB7155A41D10084AAC4 /* aton_CreditsPage_new.png in Resources */,
+				BDEAF6B3155B84B9007BBC29 /* BG_sound.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +834,8 @@
 				BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */,
 				BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */,
 				BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */,
+				BDEAF6B7155CBC53007BBC29 /* AtonAI.m in Sources */,
+				BDEAF6BA155CBC7A007BBC29 /* AtonAIEasy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,11 +927,13 @@
 		BD940BA3153A1F0500660B35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wen-Ching Lin";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AtonV1/AtonV1-Prefix.pch";
 				INFOPLIST_FILE = "AtonV1/AtonV1-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Aton;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A19A5DA7-E73F-4F81-BF64-C31A30EC861F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -923,11 +941,13 @@
 		BD940BA4153A1F0500660B35 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wen-Ching Lin";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AtonV1/AtonV1-Prefix.pch";
 				INFOPLIST_FILE = "AtonV1/AtonV1-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Aton;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A19A5DA7-E73F-4F81-BF64-C31A30EC861F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
