@@ -26,6 +26,7 @@
 +(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(BOOL) isSelectedOneFromEachTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;
++(int) findPeepNumInTemple:(AtonTemple*) temple: (int) occupiedEnum;
 
 //+(BOOL) isYellowFull:(NSMutableArray*) templeArray;
 //+(int) isGreenFull:(NSMutableArray*) templeArray;

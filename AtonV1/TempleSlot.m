@@ -66,6 +66,17 @@ static int BOUNDARY_SIZE = 56;
     isSelected = NO;
 }
 
+-(void) placePeep1:(NSNumber*) occuEnum {
+    peepIV.image = nil;
+    occupiedEnum = occuEnum.intValue;
+    if (occupiedEnum == OCCUPIED_RED) {
+        peepIV.image =  [UIImage imageNamed:@"Red_Disc.png"];
+    } else if (occupiedEnum == OCCUPIED_BLUE) {
+        peepIV.image =  [UIImage imageNamed:@"Blue_Disc.png"];
+    } 
+    isSelected = NO;
+}
+
 -(CGRect) getPeepFrame {
     CGPoint ivOrigin = iv.frame.origin;
     CGRect rect = CGRectMake(ivOrigin.x + 4, ivOrigin.y + 4, PEEP_SIZE, PEEP_SIZE);

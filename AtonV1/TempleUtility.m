@@ -536,10 +536,14 @@
         }
     }
     
-    if (redCount == 0) {
-        return PLAYER_BLUE;
-    } else {
+    if (redCount == 14) {
         return PLAYER_RED;
+        
+    } else if (blueCount == 14){
+        return PLAYER_BLUE;
+        
+    } else {
+        return PLAYER_NONE;
     }
 
 }

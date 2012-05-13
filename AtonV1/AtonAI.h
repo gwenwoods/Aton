@@ -13,7 +13,8 @@
 @interface AtonAI : NSObject
 
 -(id)initializeWithParameters:(NSMutableArray*) atonTempleArray:(AVAudioPlayer*) atonAudioToDeath;
--(void) removePeeps:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum ;
-
+-(void) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum ;
+-(double) placePeeps:(int)targetPlayerEnum:(int)placeNum:(int) maxTempleEnum ;
+-(double) removeOnePeepFromEachTemple:(int) playerEnum;
 
 @end
