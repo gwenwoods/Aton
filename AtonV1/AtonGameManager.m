@@ -11,7 +11,7 @@
 @implementation AtonGameManager
 
 @synthesize controller, baseView;
-@synthesize activePlayer;
+@synthesize messagePlayerEnum;
 @synthesize gamePhaseView, gamePhaseLb, gamePhaseDetailLb, gamePhaseMiddleLb;
 @synthesize helpView, helpLb, helpDetailLb, helpMiddleLb;
 @synthesize exchangeCardsView, exchangeCardsLb;
@@ -242,11 +242,11 @@ static int DETAIL_FONT_SIZE = 20;
         gamePhaseMiddleLb.text = [messageArray objectAtIndex:0];
     }
     
-    if (activePlayer == PLAYER_RED) {
+    if (messagePlayerEnum == PLAYER_RED) {
         gamePhaseTieIV.hidden = YES;
         gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
         
-    } else if (activePlayer == PLAYER_BLUE) {
+    } else if (messagePlayerEnum == PLAYER_BLUE) {
         gamePhaseTieIV.hidden = YES;
         gamePhaseActivePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
         
@@ -287,11 +287,11 @@ static int DETAIL_FONT_SIZE = 20;
         helpMiddleLb.text = [messageArray objectAtIndex:0];
     }
     
-    if (activePlayer == PLAYER_RED) {
+    if (messagePlayerEnum == PLAYER_RED) {
         helpTieIV.hidden = YES;
         helpActivePlayerIV.image = [UIImage imageNamed:@"Red_icon.png"];
         
-    } else if (activePlayer == PLAYER_BLUE) {
+    } else if (messagePlayerEnum == PLAYER_BLUE) {
         helpTieIV.hidden = YES;
         helpActivePlayerIV.image = [UIImage imageNamed:@"Blue_icon.png"];
         

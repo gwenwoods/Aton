@@ -28,6 +28,6 @@
 @property(nonatomic) int gamePhaseEnum;
 @property(strong, nonatomic) AtonRoundResult *atonRoundResult;
 @property(strong, nonatomic) AVAudioPlayer *audioToDeath;
-@property(nonatomic) BOOL useAI;
+@property(nonatomic) BOOL useAI;    
 
 @end

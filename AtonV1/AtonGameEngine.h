@@ -11,12 +11,14 @@
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
 #import "AtonMessageMaster.h"
+#import "AtonPlacePeepEngine.h"
 #import "AtonAIEasy.h"
 
 @interface AtonGameEngine : NSObject {
     AtonMessageMaster *messageMaster;
     AtonAI *ai;
   //  BOOL useAI;
+    AtonPlacePeepEngine *placePeepEngine;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;

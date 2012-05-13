@@ -20,7 +20,7 @@
 
 @property(strong, nonatomic) UIViewController *controller;
 @property(strong, nonatomic) UIView* baseView;
-@property(nonatomic) int activePlayer;
+@property(nonatomic) int messagePlayerEnum;
 @property(strong, nonatomic) UIImageView *gamePhaseView, *helpView, *exchangeCardsView, *finalResultView, *quitView;
 @property(strong, nonatomic) UIImageView *gamePhaseActivePlayerIV, *helpActivePlayerIV ;
 //@property(strong, nonatomic) UIImageView *gamePhaseTieIV, *helpTieIV ;

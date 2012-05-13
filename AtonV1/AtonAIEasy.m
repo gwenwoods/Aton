@@ -183,7 +183,7 @@ static double REMOVE_PEEP_TIME = 1.5;
         NSMutableArray *templeSlotArray = [temple slotArray];
         for (int j=0; j < 12; j++) {
             TempleSlot *slot = [templeSlotArray objectAtIndex:j];
-            if (slot.occupiedEnum == OCCUPIED_EMPTY) {
+            if (slot.occupiedEnum == occupiedEnum) {
                 [selectedSlotArray addObject:slot];
                 [slot selectOrDeselectSlot];
                 

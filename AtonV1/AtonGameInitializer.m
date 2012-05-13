@@ -81,7 +81,7 @@ static float SCARAB_HEIGHT = 44;
     
     AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray: gameManager:audioToDeath];
     
-    
+    atonParameters.useAI = YES;
     return  atonParameters;
 }
 

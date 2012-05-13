@@ -6,10 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+
 #import "AtonAI.h"
-#import "AtonTemple.h"
+
+//#import "AtonTemple.h"
 
 @interface AtonAIEasy : AtonAI {
+    
+
     NSMutableArray *templeArray;
 }
 

@@ -598,7 +598,7 @@ static float DELAY_TIME = 0.25;
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
      [baseView addSubview:scrollExchangeIV];
-    [audioScroll play];
+  //  [audioScroll play];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
