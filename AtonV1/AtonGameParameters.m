@@ -15,6 +15,7 @@
 @synthesize gamePhaseEnum;
 @synthesize atonRoundResult;
 @synthesize audioToDeath;
+@synthesize useAI;
 
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AtonGameManager*) atonGameManager:(AVAudioPlayer*) audio {
@@ -26,6 +27,7 @@
         gameManager = atonGameManager;
         atonRoundResult = [[AtonRoundResult alloc] initializeWithParameters:playerArray];
         audioToDeath = audio;
+        useAI = YES;
         
     }
     return self;

@@ -36,6 +36,7 @@
    // id delegate1;
  //   NSString *playerRedName, *playerBlueName;
     AVAudioPlayer *audioPlacePeep, *audioPlayGame, *audioTap;
+    BOOL useAI;
   
 }
 
@@ -54,7 +55,8 @@
 @property(strong, nonatomic) NSString *playerRedName, *playerBlueName;
 
 @property(strong, nonatomic) AtonTemple* temple1;
-@property (nonatomic, assign) id<BoardViewDelegate> delegateBoardView;   
+@property(nonatomic, assign) id<BoardViewDelegate> delegateBoardView;
+
 //NSString *data;
 //-(NSString *)getData;
 

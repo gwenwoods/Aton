@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AtonPlayer.h"
+#import "TempleUtility.h"
 
 @interface AtonAI : NSObject
+
+-(id)initializeWithParameters:(NSMutableArray*) atonTempleArray:(AVAudioPlayer*) atonAudioToDeath;
+-(void) removePeeps:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum ;
+
 
 @end

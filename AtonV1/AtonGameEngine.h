@@ -11,9 +11,12 @@
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
 #import "AtonMessageMaster.h"
+#import "AtonAIEasy.h"
 
 @interface AtonGameEngine : NSObject {
     AtonMessageMaster *messageMaster;
+    AtonAI *ai;
+  //  BOOL useAI;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
@@ -23,5 +26,6 @@
 
 -(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;
+@property(nonatomic) BOOL useAI;
 
 @end

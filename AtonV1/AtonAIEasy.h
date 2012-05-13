@@ -7,7 +7,11 @@
 //
 
 #import "AtonAI.h"
+#import "AtonTemple.h"
 
-@interface AtonAIEasy : AtonAI
+@interface AtonAIEasy : AtonAI {
+    NSMutableArray *templeArray;
+}
 
+@property(strong, nonatomic) AVAudioPlayer *audioToDeath;
 @end

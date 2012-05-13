@@ -56,7 +56,7 @@
 
     NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/BG_sound.aiff", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayGame = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlayGame error:nil];
-	audioPlayGame.numberOfLoops = 1000;
+	audioPlayGame.numberOfLoops = 1;
     audioPlayGame.volume = 0.25;
     [audioPlayGame prepareToPlay];
     [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:2.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
@@ -79,7 +79,8 @@
     
     [atonGameEngine run];
     
-    AtonAI *ai = [[AtonAIEasy alloc] init];
+    //useAI = YES;
+    
 }
 
 - (void)viewDidUnload
