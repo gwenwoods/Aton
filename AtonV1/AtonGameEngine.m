@@ -231,11 +231,12 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         }
                 
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
-        [placePeepEngine placePeep];
+        [placePeepEngine placePeep: GAME_PHASE_FIRST_PLACE_PEEP];
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
+        [placePeepEngine placePeep: GAME_PHASE_SECOND_PLACE_PEEP];
         
-        if (useAI == YES && roundResult.secondPlayerEnum == PLAYER_BLUE) {
+     /*   if (useAI == YES && roundResult.secondPlayerEnum == PLAYER_BLUE) {
             double animationTime = [ai placePeeps:roundResult.secondPlayerEnum:roundResult.secondPlaceNum:roundResult.secondTemple];
            // [TempleUtility disableAllTempleSlotInteraction:[para templeArray]];
             
@@ -249,7 +250,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             if ([eligibleSlotArray count] == 0) {
                 [TempleUtility disableAllTempleSlotInteraction:templeArray];
                 NSString *msg = @"|No Available Space\n to Place Peep\n";
-                gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
+                gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
                 [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
                 para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_NONE;
                 
@@ -273,7 +274,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 [secondPlayer displayMenu:ACTION_PLACE:roundResult.secondPlaceNum];
             }
 
-        }
+        }*/
         
       //  [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.secondTemple:OCCUPIED_EMPTY];
        // [secondPlayer displayMenu:ACTION_PLACE:roundResult.secondPlaceNum];

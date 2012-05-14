@@ -112,6 +112,7 @@
 		BDDA77BF153D3202003F3530 /* Blue_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BD153D3202003F3530 /* Blue_Cylinder.png */; };
 		BDDA77C0153D3202003F3530 /* Red_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77BE153D3202003F3530 /* Red_Cylinder.png */; };
 		BDDA77C3153DF2CA003F3530 /* AtonGameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */; };
+		BDE325F015602DC40013F733 /* AtonPlacePeepEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE325EF15602DC40013F733 /* AtonPlacePeepEngine.m */; };
 		BDEAF6B3155B84B9007BBC29 /* BG_sound.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDEAF6B2155B84B9007BBC29 /* BG_sound.aiff */; };
 		BDEAF6B7155CBC53007BBC29 /* AtonAI.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEAF6B6155CBC53007BBC29 /* AtonAI.m */; };
 		BDEAF6BA155CBC7A007BBC29 /* AtonAIEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEAF6B9155CBC7A007BBC29 /* AtonAIEasy.m */; };
@@ -272,6 +273,8 @@
 		BDDA77BE153D3202003F3530 /* Red_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Cylinder.png; sourceTree = "<group>"; };
 		BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameEngine.h; sourceTree = "<group>"; };
 		BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameEngine.m; sourceTree = "<group>"; };
+		BDE325EE15602DC40013F733 /* AtonPlacePeepEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonPlacePeepEngine.h; sourceTree = "<group>"; };
+		BDE325EF15602DC40013F733 /* AtonPlacePeepEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonPlacePeepEngine.m; sourceTree = "<group>"; };
 		BDEAF6B2155B84B9007BBC29 /* BG_sound.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = BG_sound.aiff; sourceTree = "<group>"; };
 		BDEAF6B5155CBC53007BBC29 /* AtonAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonAI.h; sourceTree = "<group>"; };
 		BDEAF6B6155CBC53007BBC29 /* AtonAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonAI.m; sourceTree = "<group>"; };
@@ -326,8 +329,6 @@
 				BD16D226153CD4F400ED6DB9 /* AtonGameParameters.m */,
 				BD16D229153CDB3400ED6DB9 /* AtonGameInitializer.h */,
 				BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */,
-				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
-				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 				BD3AF239153F81D30098DE8C /* AtonRoundResult.h */,
 				BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */,
 				BD5A54C4153D188A009F5D71 /* AtonGameManager.h */,
@@ -388,6 +389,7 @@
 		BD940B7F153A1F0400660B35 /* AtonV1 */ = {
 			isa = PBXGroup;
 			children = (
+				BDE325EC15601DD80013F733 /* EngineClass */,
 				BD16D22C153CE05900ED6DB9 /* TempleClass */,
 				BD16D228153CDB0400ED6DB9 /* GameClass */,
 				BDAE713D153A6BB4001848F8 /* TouchClass */,
@@ -396,10 +398,6 @@
 				BDAE7112153A2EEF001848F8 /* Images */,
 				BD940B80153A1F0400660B35 /* Supporting Files */,
 				BD940B88153A1F0400660B35 /* AppDelegate.h */,
-				BDEAF6B5155CBC53007BBC29 /* AtonAI.h */,
-				BDEAF6B6155CBC53007BBC29 /* AtonAI.m */,
-				BDEAF6B8155CBC7A007BBC29 /* AtonAIEasy.h */,
-				BDEAF6B9155CBC7A007BBC29 /* AtonAIEasy.m */,
 				BD940B89153A1F0400660B35 /* AppDelegate.m */,
 				BDD3AEAD15491F7B0013C89A /* CreditViewController.h */,
 				BDD3AEAE15491F7C0013C89A /* CreditViewController.m */,
@@ -598,6 +596,21 @@
 				BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */,
 			);
 			path = Aton_disc_cylinder;
+			sourceTree = "<group>";
+		};
+		BDE325EC15601DD80013F733 /* EngineClass */ = {
+			isa = PBXGroup;
+			children = (
+				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
+				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
+				BDEAF6B5155CBC53007BBC29 /* AtonAI.h */,
+				BDEAF6B6155CBC53007BBC29 /* AtonAI.m */,
+				BDEAF6B8155CBC7A007BBC29 /* AtonAIEasy.h */,
+				BDEAF6B9155CBC7A007BBC29 /* AtonAIEasy.m */,
+				BDE325EE15602DC40013F733 /* AtonPlacePeepEngine.h */,
+				BDE325EF15602DC40013F733 /* AtonPlacePeepEngine.m */,
+			);
+			name = EngineClass;
 			sourceTree = "<group>";
 		};
 		BDF3F6BE15524A21005D26EA /* ScrollDown_papyrus */ = {
@@ -836,6 +849,7 @@
 				BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */,
 				BDEAF6B7155CBC53007BBC29 /* AtonAI.m in Sources */,
 				BDEAF6BA155CBC7A007BBC29 /* AtonAIEasy.m in Sources */,
+				BDE325F015602DC40013F733 /* AtonPlacePeepEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
