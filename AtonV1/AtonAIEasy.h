@@ -8,7 +8,7 @@
 
 
 #import "AtonAI.h"
-
+#import "TempleFunctionUtility.h"
 //#import "AtonTemple.h"
 
 @interface AtonAIEasy : AtonAI {

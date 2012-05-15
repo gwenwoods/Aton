@@ -54,6 +54,7 @@
 		BDAE7146153A79CA001848F8 /* AtonTouchBeganUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */; };
 		BDAE7148153A8BEF001848F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAE7147153A8BEF001848F8 /* QuartzCore.framework */; };
 		BDAE714B153A9C81001848F8 /* CardElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE714A153A9C81001848F8 /* CardElement.m */; };
+		BDB301631561FDE10092E724 /* TempleFunctionUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB301621561FDE10092E724 /* TempleFunctionUtility.m */; };
 		BDB58EA01558C7CE0084AAC4 /* button-22.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDB58E9F1558C7CE0084AAC4 /* button-22.wav */; };
 		BDB58EA21558CA5E0084AAC4 /* switch-22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA11558CA5E0084AAC4 /* switch-22.mp3 */; };
 		BDB58EA41558CA810084AAC4 /* egyptJungle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */; };
@@ -210,6 +211,8 @@
 		BDAE7147153A8BEF001848F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BDAE7149153A9C81001848F8 /* CardElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardElement.h; sourceTree = "<group>"; };
 		BDAE714A153A9C81001848F8 /* CardElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardElement.m; sourceTree = "<group>"; };
+		BDB301611561FDE10092E724 /* TempleFunctionUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleFunctionUtility.h; sourceTree = "<group>"; };
+		BDB301621561FDE10092E724 /* TempleFunctionUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleFunctionUtility.m; sourceTree = "<group>"; };
 		BDB58E9F1558C7CE0084AAC4 /* button-22.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-22.wav"; sourceTree = "<group>"; };
 		BDB58EA11558CA5E0084AAC4 /* switch-22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "switch-22.mp3"; sourceTree = "<group>"; };
 		BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = egyptJungle.mp3; sourceTree = "<group>"; };
@@ -348,6 +351,8 @@
 				BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */,
 				BD16D22D153CE08400ED6DB9 /* TempleUtility.h */,
 				BD16D22E153CE08400ED6DB9 /* TempleUtility.m */,
+				BDB301611561FDE10092E724 /* TempleFunctionUtility.h */,
+				BDB301621561FDE10092E724 /* TempleFunctionUtility.m */,
 			);
 			name = TempleClass;
 			sourceTree = "<group>";
@@ -850,6 +855,7 @@
 				BDEAF6B7155CBC53007BBC29 /* AtonAI.m in Sources */,
 				BDEAF6BA155CBC7A007BBC29 /* AtonAIEasy.m in Sources */,
 				BDE325F015602DC40013F733 /* AtonPlacePeepEngine.m in Sources */,
+				BDB301631561FDE10092E724 /* TempleFunctionUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
