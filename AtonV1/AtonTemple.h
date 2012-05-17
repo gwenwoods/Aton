@@ -25,6 +25,7 @@ enum TEMPLE_ENUM {
 -(TempleSlot*) findSelectedSlot;
 -(NSMutableArray*) findAllSelectedSlots;
 -(void) enableTempleFlame:(int) playerEnum;
+-(NSMutableArray*) findSlotsWithOccupiedEnum:(int) occupiedEnum;
 
 @property(strong, nonatomic) UIView* baseView;
 @property(strong, nonatomic) UIImageView* iv;

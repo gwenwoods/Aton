@@ -34,6 +34,7 @@
 +(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum;
 
 +(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum;
++(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 
 //+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple;

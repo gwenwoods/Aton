@@ -359,6 +359,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         TempleScoreResult *result_orangeBonusForBlue = [roundResult.templeScoreResultArray objectAtIndex:SCORE_ORANGE_BONUS_BLUE];
         float animationTime = [self templeScoreAnimation:result_orangeBonusForBlue];
         
+        // TODO: check game over conditions has to be delayed till all players get their scores
         if ([self gameOverCondition] != nil) {
             [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
             

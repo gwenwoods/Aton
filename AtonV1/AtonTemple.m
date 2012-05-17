@@ -320,4 +320,15 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
         blueAnimationIV.hidden = YES;
     }
 }
+
+-(NSMutableArray*) findSlotsWithOccupiedEnum:(int) occupiedEnum {
+    NSMutableArray *slotsArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<12;i++) {
+        TempleSlot *slot = [slotArray objectAtIndex:i];
+        if (slot.occupiedEnum == occupiedEnum) {
+            [slotsArray addObject:slot];
+        }
+    }
+    return slotsArray;
+}
 @end

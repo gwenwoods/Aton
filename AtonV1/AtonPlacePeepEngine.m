@@ -93,8 +93,9 @@ static float MESSAGE_DELAY_TIME = 0.2;
     
     AtonPlayer *activePlayer = [playerArray objectAtIndex:activePlayerEnum];
     
+    // TODO: should not enable interaction here
     [TempleUtility changeSlotBoundaryColor:para.templeArray:activePlayerEnum];
-    NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
+    NSMutableArray *eligibleSlotArray = [TempleUtility findEligibleTempleSlots:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
     int arrayNum = [eligibleSlotArray count];
     if ([eligibleSlotArray count] == 0) {
         [TempleUtility disableAllTempleSlotInteraction:templeArray];
@@ -164,6 +165,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
             }
                 
         } else {
+            NSMutableArray *eligibleInteractionSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
             [activePlayer displayMenu:ACTION_PLACE:activePlayerPlaceNum];
         }
             

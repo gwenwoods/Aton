@@ -18,6 +18,17 @@
     }
 }
 
++(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum {
+    
+    NSMutableArray *eligiableSlotArray = [[NSMutableArray alloc]init];
+    for (int i=TEMPLE_1; i<= maxTemple; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        NSMutableArray *templeSlotArray = [temple findSlotsWithOccupiedEnum:occupiedEnum];
+        [eligiableSlotArray  addObjectsFromArray:templeSlotArray];
+    }
+    return eligiableSlotArray;
+}
+
 +(NSMutableArray*) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum {
     
     NSMutableArray *eligiableSlotArray = [[NSMutableArray alloc]init];

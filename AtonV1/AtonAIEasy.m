@@ -22,11 +22,22 @@ static double REMOVE_PEEP_TIME = 1.5;
     return self;
 }
 
--(void) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
+-(void) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum {
+    if (removeNum < 0) {
+        [self removeOwnPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
+    } else {
+        [self removeOpponentPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
+    }
+}
+
+-(void) removeOwnPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
     
     if (removeNum == 0) {
         return;
+    } else if (removeNum < 0) {
+        removeNum = -1 * removeNum;
     }
+    
     
     int occupiedEnum = OCCUPIED_RED;
     if (targetPlayerEnum == PLAYER_BLUE) {
@@ -60,9 +71,59 @@ static double REMOVE_PEEP_TIME = 1.5;
     [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
 }
 
+
+-(void) removeOpponentPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
+    
+    if (removeNum == 0) {
+        return;
+    }
+    
+    int occupiedEnum = OCCUPIED_RED;
+    if (targetPlayerEnum == PLAYER_BLUE) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
+    for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:GREY:removeNum:occupiedEnum];
+        if ([selectedSlotArray count] == removeNum) {
+            break;
+        }
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:BLUE:removeNum:occupiedEnum];
+        if ([selectedSlotArray count] == removeNum) {
+            break;
+        }
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:ORANGE_2:removeNum:occupiedEnum];
+        if ([selectedSlotArray count] == removeNum) {
+            break;
+        }
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:ORANGE_1:removeNum:occupiedEnum];
+        if ([selectedSlotArray count] == removeNum) {
+            break;
+        }
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:YELLOW:removeNum:occupiedEnum];
+        if ([selectedSlotArray count] == removeNum) {
+            break;
+        }
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:GREEN:removeNum:occupiedEnum];
+        if ([selectedSlotArray count] == removeNum) {
+            break;
+        }
+    }
+    
+    [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
+}
+
+
 -(double) placePeeps:(int)targetPlayerEnum:(int)placeNum:(int) maxTempleEnum  {
-    [TempleUtility disableAllTempleSlotInteraction:templeArray];
+  //  [TempleUtility disableAllTempleSlotInteraction:templeArray]; // Note --> this one diabled flame
     [TempleUtility deselectAllTempleSlots:templeArray];
+  //  [TempleUtility changeSlotBoundaryColor:templeArray:targetPlayerEnum];
+  //  AtonTemple *tem = [templeArray objectAtIndex:0];
+  //  tem.iv.hidden = NO;
+  //  [tem enableTempleFlame:PLAYER_BLUE];
+    
     int occupiedEnum = OCCUPIED_RED;
     if (targetPlayerEnum == PLAYER_BLUE) {
         occupiedEnum = OCCUPIED_BLUE;
