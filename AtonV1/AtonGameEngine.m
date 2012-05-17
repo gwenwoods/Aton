@@ -25,6 +25,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         useAI = YES;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para.templeArray:para.audioToDeath];
         placePeepEngine = [[AtonPlacePeepEngine alloc] initializeWithParameters:para:messageMaster:ai];
+        removePeepEngine = [[AtonRemovePeepEngine alloc] initializeWithParameters:para:messageMaster:ai];
         
     }
     return self;
@@ -141,7 +142,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-        if (useAI == YES && roundResult.firstPlayerEnum == PLAYER_BLUE) {
+        [removePeepEngine removePeep:GAME_PHASE_FIRST_REMOVE_PEEP];
+        
+    /*    if (useAI == YES && roundResult.firstPlayerEnum == PLAYER_BLUE) {
             [ai removePeepsToDeathTemple:[para.atonRoundResult getFirstRemoveTargetEnum]:[roundResult getFirstRemovePositiveNum]:roundResult.firstTemple];
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             para.gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
@@ -181,7 +184,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             } else {
                 [firstPlayer displayMenu:ACTION_REMOVE:roundResult.firstRemoveNum];
             } 
-        }
+        }*/
        
        
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {

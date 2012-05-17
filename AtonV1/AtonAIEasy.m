@@ -209,13 +209,14 @@ static double REMOVE_PEEP_TIME = 1.5;
             continue;
         }
         NSMutableArray *templeSlotArray = [temple slotArray];
+        int actualRemovedNumInTemple = 0;
         for (int j=0; j < 12; j++) {
             TempleSlot *slot = [templeSlotArray objectAtIndex:j];
             if (slot.occupiedEnum == occupiedEnum) {
                 [selectedSlotArray addObject:slot];
                 [slot selectOrDeselectSlot];
-                
-                if ([selectedSlotArray count] == needRemoveNum) {
+                actualRemovedNumInTemple ++;
+                if (actualRemovedNumInTemple == needRemoveNum) {
                     break;
                 }
             }
@@ -223,7 +224,9 @@ static double REMOVE_PEEP_TIME = 1.5;
     }
 
     [TempleUtility removePeepsToSupply:templeArray:selectedSlotArray];
+    int num = [selectedSlotArray count];
     
+    NSLog(@"Remove %d peeps", num);
     return REMOVE_PEEP_TIME;
 }
 

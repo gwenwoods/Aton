@@ -250,17 +250,23 @@ static float MESSAGE_DELAY_TIME = 0.2;
     }
     
     NSMutableArray *playerArray = para.playerArray;
-    if ([[playerArray objectAtIndex:PLAYER_RED] score] >= 40) {
+    int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
+    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
+    if (redScore >= 40 && blueScore >= 40) {
+        msg = @"";
+        msg = [msg stringByAppendingString:@"Both players reaches 40 points|"];
+        
+    } else if (redScore >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_RED];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n Reaches 40 Points And Wins|"];
+        msg = [msg stringByAppendingString:@"\n reaches 40 points and wins|"];
         
-    } else if ([[playerArray objectAtIndex:PLAYER_BLUE] score] >= 40) {
+    } else if (blueScore >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_BLUE];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n Reaches 40 Points And Wins|"];
+        msg = [msg stringByAppendingString:@"\n reaches 40 points and wins|"];
         
     }
     

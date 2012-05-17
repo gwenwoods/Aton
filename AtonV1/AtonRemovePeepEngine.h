@@ -1,16 +1,17 @@
 //
-//  AtonPlacePeepEngine.h
+//  AtonRemovePeepEngine.h
 //  AtonV1
 //
-//  Created by Wen Lin on 5/13/12.
+//  Created by Wen Lin on 5/15/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "AtonGameParameters.h"
 #import "AtonAI.h"
 #import "AtonMessageMaster.h"
 
-@interface AtonPlacePeepEngine : NSObject{
+@interface AtonRemovePeepEngine : NSObject{
     
     AtonGameParameters *para;
     AtonAI *ai;
@@ -19,8 +20,7 @@
     AtonMessageMaster *messageMaster;
     
 }
-
 -(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonMessageMaster*) atonmMessageMaster:(AtonAI*) atonAI;
-//-(void) placePeep;
--(void) placePeep:(int) gamePhaseEnum;
+-(void) removePeep:(int) gamePhaseEnum;
+
 @end

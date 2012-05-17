@@ -11,6 +11,7 @@
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
 #import "AtonMessageMaster.h"
+#import "AtonRemovePeepEngine.h"
 #import "AtonPlacePeepEngine.h"
 #import "AtonAIEasy.h"
 
@@ -19,6 +20,7 @@
     AtonAI *ai;
   //  BOOL useAI;
     AtonPlacePeepEngine *placePeepEngine;
+    AtonRemovePeepEngine *removePeepEngine;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
