@@ -51,6 +51,15 @@
     
     for (int i=1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
+       // temple.iv.hidden = YES;
+        [temple disableTempleSlotInteraction];
+    }
+}
+
++(void) disableAllTempleSlotInteractionAndFlame:(NSMutableArray*) templeArray {
+    
+    for (int i=1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
         temple.iv.hidden = YES;
         [temple disableTempleSlotInteraction];
     }
@@ -591,15 +600,15 @@
    // return NO;
 }
 
-+(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum {
++(void) enableActiveTemplesFlame: (NSMutableArray*) templeArray:(int) playerEnum:(int) maxTempleEnum {
     
-    UIColor *color = [UIColor redColor];
+  //  UIColor *color = [UIColor redColor];
     
-    if (playerEnum == PLAYER_BLUE) {
-        color = [UIColor blueColor];
-    }
+  //  if (playerEnum == PLAYER_BLUE) {
+  //      color = [UIColor blueColor];
+  //  }
     
-    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+    for (int i=TEMPLE_1; i<= maxTempleEnum; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
        // [temple.iv.layer setBorderColor:color.CGColor];
         [temple enableTempleFlame:playerEnum];
@@ -607,6 +616,25 @@
       //      TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
       //      [slot.boundaryIV.layer setBorderColor:color.CGColor];   
        // }
+    }
+    
+}
+
++(void) disableActiveTemplesFlame: (NSMutableArray*) templeArray {
+    
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+       // temple.iv.hidden = YES;
+        [UIView animateWithDuration:1.0
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             temple.iv.alpha = 0.0;
+                         } 
+                         completion:^(BOOL finished){
+                             temple.iv.hidden = YES;
+                             temple.iv.alpha = 1.0;                         }];
+
     }
     
 }
@@ -622,4 +650,6 @@
     }
     return count;
 }
+
+//+(void) enableTempleFlames:(NSMutableArray*) templeArray:(int) maxTempleEnum;
 @end

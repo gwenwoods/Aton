@@ -101,14 +101,18 @@
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_RED_ANIMATION) {
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION;
-            
+        
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION) {
+            atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORING_END;
+         //   [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum];
+            
+        } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING_END) {
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
-            [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum];
+            [TempleUtility enableActiveTemplesFlame:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum:atonParameters.atonRoundResult.firstTemple];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
-            [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.secondPlayerEnum];
+            [TempleUtility enableActiveTemplesFlame:atonParameters.templeArray:atonParameters.atonRoundResult.secondPlayerEnum:atonParameters.atonRoundResult.secondTemple];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;

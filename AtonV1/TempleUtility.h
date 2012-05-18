@@ -17,6 +17,7 @@
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray;
 +(NSMutableArray*) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 +(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray;
++(void) disableAllTempleSlotInteractionAndFlame:(NSMutableArray*) templeArray;
 +(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray;
 +(NSMutableArray*) findAllSelectedSlots:(NSMutableArray*) templeArray;
 +(TempleSlot*) findFirstAvailableDeathSpot:(NSMutableArray*) templeArray;
@@ -33,7 +34,8 @@
 +(int) findTempleFullWinner:(NSMutableArray*) templeArray:(int) templeEnum;
 +(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum;
 
-+(void) changeSlotBoundaryColor: (NSMutableArray*) templeArray:(int) playerEnum;
++(void) enableActiveTemplesFlame: (NSMutableArray*) templeArray:(int) playerEnum:(int) maxTempleEnum;
++(void) disableActiveTemplesFlame: (NSMutableArray*) templeArray;
 +(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 
 //+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;

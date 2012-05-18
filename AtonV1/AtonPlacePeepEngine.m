@@ -94,7 +94,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     AtonPlayer *activePlayer = [playerArray objectAtIndex:activePlayerEnum];
     
     // TODO: should not enable interaction here
-    [TempleUtility changeSlotBoundaryColor:para.templeArray:activePlayerEnum];
+    
     NSMutableArray *eligibleSlotArray = [TempleUtility findEligibleTempleSlots:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
     int arrayNum = [eligibleSlotArray count];
     if ([eligibleSlotArray count] == 0) {
@@ -144,12 +144,12 @@ static float MESSAGE_DELAY_TIME = 0.2;
             NSLog(@"AtonPlacePeepEngine:placePeep -> useAI");
         }
     } else {
-            
+        [TempleUtility enableActiveTemplesFlame:para.templeArray:activePlayerEnum:activePlayerMaxTempleEnum];
         if (useAI == YES && activePlayerEnum == PLAYER_BLUE) {
             double animationTime = [ai placePeeps:activePlayerEnum:activePlayerPlaceNum:activePlayerMaxTempleEnum];
                 
-            // to remove the slot black boundary
-            [self performSelector:@selector(disableTempleSlotForInteraction) withObject:nil afterDelay:animationTime];
+            // to remove the slot black boundary and flame
+            [self performSelector:@selector(disableTempleSlotForInteractionAndFlame) withObject:nil afterDelay:animationTime];
                 
             if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
                 para.gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
@@ -174,15 +174,19 @@ static float MESSAGE_DELAY_TIME = 0.2;
 }
 
 
--(void) disableTempleSlotForInteraction {
-    [TempleUtility disableAllTempleSlotInteraction:[para templeArray]];
+-(void) disableTempleSlotForInteractionAndFlame {
+    [TempleUtility disableAllTempleSlotInteractionAndFlame:[para templeArray]];
+}
+
+-(void) disableActiveTemplesFlame {
+    [TempleUtility disableActiveTemplesFlame:[para templeArray]];
 }
 
 -(void) checkRoundEnd {
     
-    [self disableTempleSlotForInteraction];
-    if ([self gameOverCondition] != nil) {
-        [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverCondition] afterDelay:0.0];
+    [self disableTempleSlotForInteractionAndFlame];
+    if ([self gameOverConditionSuper] != nil) {
+        [para.gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverConditionSuper] afterDelay:0.0];
         
     } else if ([TempleUtility isDeathTempleFull:[para templeArray]]) {
         //   [TempleUtility clearDeathTemple:[para templeArray]];
@@ -200,94 +204,5 @@ static float MESSAGE_DELAY_TIME = 0.2;
     
 }
 
-
--(NSString*) gameOverCondition {
-    
-    
-    NSString *msg;
-    
-    //  if ([TempleUtility isYellowFull:para.templeArray]) {
-    if ([TempleUtility findColorFullWinner:para.templeArray:YELLOW] != PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findColorFullWinner:para.templeArray:YELLOW];
-        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
-        msg = @"All Yellow Squares Full\n";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" Wins|"];
-        
-    } else if ([TempleUtility findColorFullWinner:para.templeArray:GREEN]!= PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findColorFullWinner:para.templeArray:GREEN];
-        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
-        msg = @"All Green Squares Full\n";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" Wins|"];
-        
-    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1] != PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1];
-        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
-        msg = @"Temple 1 Full\n";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" Wins|"];
-        
-    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2] != PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2];
-        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
-        msg = @"Temple 2 Full\n";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" Wins|"];
-        
-    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3] != PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3];
-        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
-        msg = @"Temple 3 Full\n";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" Wins|"];
-        
-    } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_4] != PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2];
-        AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
-        msg = @"Temple 4 Full\n";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" Wins|"];
-        
-    }
-    
-    NSMutableArray *playerArray = para.playerArray;
-    int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
-    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
-    if (redScore >= 40 && blueScore >= 40) {
-        msg = @"";
-        msg = [msg stringByAppendingString:@"Both players reaches 40 points|"];
-        
-    } else if (redScore >= 40) {
-        AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_RED];
-        msg = @"";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n reaches 40 points and wins|"];
-        
-    } else if (blueScore >= 40) {
-        AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_BLUE];
-        msg = @"";
-        msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n reaches 40 points and wins|"];
-        
-    }
-    
-    if (msg != nil) {
-        msg = [msg stringByAppendingString:[self gameOverResultMsg]];
-    }
-    
-    return msg;
-}
-
--(NSString*) gameOverResultMsg {
-    
-    NSMutableArray *playerArray = para.playerArray;
-    NSString *msg = @"Game Over\n";
-    int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
-    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
-    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Red: %i \n", redScore]];
-    msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Blue: %i \n", blueScore]];
-    return msg;
-}
 
 @end

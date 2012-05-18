@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AbstractAtonEngine.h"
 #import "AtonGameParameters.h"
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
@@ -15,7 +16,7 @@
 #import "AtonPlacePeepEngine.h"
 #import "AtonAIEasy.h"
 
-@interface AtonGameEngine : NSObject {
+@interface AtonGameEngine : AbstractAtonEngine {
     AtonMessageMaster *messageMaster;
     AtonAI *ai;
   //  BOOL useAI;
@@ -26,7 +27,7 @@
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
 -(void) run;
 -(void) playerDoneAction;
--(NSString*) gameOverCondition;
+//-(NSString*) gameOverCondition;
 
 -(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;

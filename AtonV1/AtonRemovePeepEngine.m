@@ -48,7 +48,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     AtonPlayer *firstPlayer = [playerArray objectAtIndex:roundResult.firstPlayerEnum];
     
     
-    [TempleUtility changeSlotBoundaryColor:para.templeArray:activePlayerEnum];
+    
     if (activePlayerRemoveNum == 0) {
         
         if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
@@ -120,6 +120,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
         
 
     } else {
+        [TempleUtility enableActiveTemplesFlame:para.templeArray:activePlayerEnum:activePlayerMaxTempleEnum];
         if (useAI == YES && activePlayerEnum == PLAYER_BLUE) {
             [ai removePeepsToDeathTemple:targetPlayerEnum:activePlayerRemoveNum:activePlayerMaxTempleEnum];
             if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
@@ -140,7 +141,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
 
         } else {
             NSMutableArray *eligibleSlotArray =
-            [TempleUtility enableEligibleTempleSlotInteraction:templeArray:roundResult.firstTemple: occupiedEnum];
+            [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: occupiedEnum];
             [activePlayer displayMenu:ACTION_REMOVE:activePlayerRemoveNum];
         }
             

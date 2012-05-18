@@ -308,6 +308,8 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
 
 -(void) enableTempleFlame:(int) playerEnum {
     
+    iv.hidden = NO;
+    
     if (playerEnum == 0) {
         redAnimationIV.hidden = NO;
         blueAnimationIV.hidden = YES;

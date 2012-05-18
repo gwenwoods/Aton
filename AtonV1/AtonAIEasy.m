@@ -113,6 +113,7 @@ static double REMOVE_PEEP_TIME = 1.5;
     }
     
     [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
+    [TempleUtility disableActiveTemplesFlame:templeArray];
 }
 
 

@@ -65,6 +65,7 @@
 		BDB58EAC1558D69A0084AAC4 /* page-flip-16.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */; };
 		BDB58EAE1558DBB30084AAC4 /* button-50.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EAD1558DBB30084AAC4 /* button-50.wav */; };
 		BDB58EB7155A41D10084AAC4 /* aton_CreditsPage_new.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB58EB6155A41D10084AAC4 /* aton_CreditsPage_new.png */; };
+		BDB5929F1565DE680008B8AD /* AbstractAtonEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB5929E1565DE670008B8AD /* AbstractAtonEngine.m */; };
 		BDB5CE811555E24D00F96A0F /* Redflame1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB5CE731555E24D00F96A0F /* Redflame1.png */; };
 		BDB5CE821555E24D00F96A0F /* Redflame10.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB5CE741555E24D00F96A0F /* Redflame10.png */; };
 		BDB5CE831555E24D00F96A0F /* Redflame11.png in Resources */ = {isa = PBXBuildFile; fileRef = BDB5CE751555E24D00F96A0F /* Redflame11.png */; };
@@ -225,6 +226,8 @@
 		BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "page-flip-16.mp3"; sourceTree = "<group>"; };
 		BDB58EAD1558DBB30084AAC4 /* button-50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-50.wav"; sourceTree = "<group>"; };
 		BDB58EB6155A41D10084AAC4 /* aton_CreditsPage_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aton_CreditsPage_new.png; sourceTree = "<group>"; };
+		BDB5929D1565DE670008B8AD /* AbstractAtonEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractAtonEngine.h; sourceTree = "<group>"; };
+		BDB5929E1565DE670008B8AD /* AbstractAtonEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractAtonEngine.m; sourceTree = "<group>"; };
 		BDB5CE731555E24D00F96A0F /* Redflame1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Redflame1.png; sourceTree = "<group>"; };
 		BDB5CE741555E24D00F96A0F /* Redflame10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Redflame10.png; sourceTree = "<group>"; };
 		BDB5CE751555E24D00F96A0F /* Redflame11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Redflame11.png; sourceTree = "<group>"; };
@@ -609,6 +612,8 @@
 		BDE325EC15601DD80013F733 /* EngineClass */ = {
 			isa = PBXGroup;
 			children = (
+				BDB5929D1565DE670008B8AD /* AbstractAtonEngine.h */,
+				BDB5929E1565DE670008B8AD /* AbstractAtonEngine.m */,
 				BDDA77C1153DF2CA003F3530 /* AtonGameEngine.h */,
 				BDDA77C2153DF2CA003F3530 /* AtonGameEngine.m */,
 				BDEAF6B5155CBC53007BBC29 /* AtonAI.h */,
@@ -862,6 +867,7 @@
 				BDE325F015602DC40013F733 /* AtonPlacePeepEngine.m in Sources */,
 				BDB301631561FDE10092E724 /* TempleFunctionUtility.m in Sources */,
 				BD7B4623156381260085AD43 /* AtonRemovePeepEngine.m in Sources */,
+				BDB5929F1565DE680008B8AD /* AbstractAtonEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

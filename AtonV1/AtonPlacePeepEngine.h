@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AtonGameParameters.h"
+#import "AbstractAtonEngine.h"
 #import "AtonAI.h"
 #import "AtonMessageMaster.h"
 
-@interface AtonPlacePeepEngine : NSObject{
+@interface AtonPlacePeepEngine : AbstractAtonEngine {
     
     AtonGameParameters *para;
     AtonAI *ai;
