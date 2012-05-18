@@ -20,6 +20,7 @@
 		BD5A54C3153D1670009F5D71 /* Aton_OpenView150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */; };
 		BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54C5153D188A009F5D71 /* AtonGameManager.m */; };
 		BD7B4623156381260085AD43 /* AtonRemovePeepEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7B4622156381260085AD43 /* AtonRemovePeepEngine.m */; };
+		BD8B77021566BDA700D66B45 /* AtonArrangeCardsEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B77011566BDA700D66B45 /* AtonArrangeCardsEngine.m */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
 		BD940B7C153A1F0400660B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7B153A1F0400660B35 /* Foundation.framework */; };
 		BD940B7E153A1F0400660B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B7D153A1F0400660B35 /* CoreGraphics.framework */; };
@@ -168,6 +169,8 @@
 		BD5A54C5153D188A009F5D71 /* AtonGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameManager.m; sourceTree = "<group>"; };
 		BD7B4621156381260085AD43 /* AtonRemovePeepEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonRemovePeepEngine.h; sourceTree = "<group>"; };
 		BD7B4622156381260085AD43 /* AtonRemovePeepEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonRemovePeepEngine.m; sourceTree = "<group>"; };
+		BD8B77001566BDA700D66B45 /* AtonArrangeCardsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonArrangeCardsEngine.h; sourceTree = "<group>"; };
+		BD8B77011566BDA700D66B45 /* AtonArrangeCardsEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonArrangeCardsEngine.m; sourceTree = "<group>"; };
 		BD940B75153A1F0400660B35 /* Aton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD940B79153A1F0400660B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BD940B7B153A1F0400660B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -624,6 +627,8 @@
 				BDE325EF15602DC40013F733 /* AtonPlacePeepEngine.m */,
 				BD7B4621156381260085AD43 /* AtonRemovePeepEngine.h */,
 				BD7B4622156381260085AD43 /* AtonRemovePeepEngine.m */,
+				BD8B77001566BDA700D66B45 /* AtonArrangeCardsEngine.h */,
+				BD8B77011566BDA700D66B45 /* AtonArrangeCardsEngine.m */,
 			);
 			name = EngineClass;
 			sourceTree = "<group>";
@@ -868,6 +873,7 @@
 				BDB301631561FDE10092E724 /* TempleFunctionUtility.m in Sources */,
 				BD7B4623156381260085AD43 /* AtonRemovePeepEngine.m in Sources */,
 				BDB5929F1565DE680008B8AD /* AbstractAtonEngine.m in Sources */,
+				BD8B77021566BDA700D66B45 /* AtonArrangeCardsEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -179,7 +179,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
 }
 
 -(void) disableActiveTemplesFlame {
-    [TempleUtility disableActiveTemplesFlame:[para templeArray]];
+    [TempleUtility disableTemplesFlame:[para templeArray]];
 }
 
 -(void) checkRoundEnd {

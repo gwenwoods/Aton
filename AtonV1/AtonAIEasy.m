@@ -69,6 +69,7 @@ static double REMOVE_PEEP_TIME = 1.5;
     }
     
     [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
+    [TempleUtility disableTemplesFlame:templeArray];
 }
 
 
@@ -113,7 +114,7 @@ static double REMOVE_PEEP_TIME = 1.5;
     }
     
     [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
-    [TempleUtility disableActiveTemplesFlame:templeArray];
+    [TempleUtility disableTemplesFlame:templeArray];
 }
 
 
@@ -192,10 +193,12 @@ static double REMOVE_PEEP_TIME = 1.5;
 }
 
 -(double) removeOnePeepFromEachTemple:(int) playerEnum {
+    [TempleUtility enableActiveTemplesFlame:templeArray :playerEnum:TEMPLE_4];
     int occupiedEnum = OCCUPIED_RED;
     if (playerEnum == PLAYER_BLUE) {
         occupiedEnum = OCCUPIED_BLUE;
     }
+  
     int* templePeepArray = malloc(sizeof(int) * 5);
     int* templeNeedRemoveCountArray = malloc(sizeof(int) * 5);
     int* templeSelectedCountArray = malloc(sizeof(int) * 5);
@@ -286,10 +289,14 @@ static double REMOVE_PEEP_TIME = 1.5;
     }
 
     [TempleUtility removePeepsToSupply:templeArray:selectedSlotArray];
+    [TempleUtility disableTemplesFlame:templeArray];
     int num = [selectedSlotArray count];
     
     NSLog(@"Remove %d peeps", num);
     return REMOVE_PEEP_TIME;
 }
 
+-(void) removePeeps1 {
+    
+}
 @end

@@ -831,7 +831,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         } else {
             
             [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
-             [TempleUtility disableActiveTemplesFlame:[para templeArray]];
+             [TempleUtility disableTemplesFlame:[para templeArray]];
             
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             para.gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
@@ -852,7 +852,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         } else {
             
             [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
-             [TempleUtility disableActiveTemplesFlame:[para templeArray]];
+             [TempleUtility disableTemplesFlame:[para templeArray]];
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             para.gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
@@ -942,6 +942,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             
             [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
             
+            [TempleUtility disableTemplesFlame:[para templeArray]];
             para.gameManager.messagePlayerEnum = para.atonRoundResult.lowerScorePlayer;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
@@ -962,6 +963,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         } else {
             
             [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
+            [TempleUtility disableTemplesFlame:[para templeArray]];
             //  NSString* msg = [atonParameters.atonRoundResult getMessageBeforePhase:GAME_PHASE_DISTRIBUTE_CARD];
             para.gameManager.messagePlayerEnum = PLAYER_NONE;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Scoring End" afterDelay:AFTER_PEEP_DELAY_TIME];

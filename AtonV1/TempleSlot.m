@@ -49,6 +49,23 @@ static int BOUNDARY_SIZE = 56;
     return self;
 }
 
+-(void) removePeepWithAnimation {
+   // peepIV.image = nil;
+    occupiedEnum = OCCUPIED_EMPTY;
+    isSelected = NO;
+    
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         peepIV.alpha = 0.0;
+                     } 
+                     completion:^(BOOL finished){
+                         peepIV.image = nil;
+                         peepIV.alpha = 1.0;                         }];
+
+}
+
 -(void) removePeep {
     peepIV.image = nil;
     occupiedEnum = OCCUPIED_EMPTY;

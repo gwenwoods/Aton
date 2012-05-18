@@ -35,7 +35,7 @@
 +(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum;
 
 +(void) enableActiveTemplesFlame: (NSMutableArray*) templeArray:(int) playerEnum:(int) maxTempleEnum;
-+(void) disableActiveTemplesFlame: (NSMutableArray*) templeArray;
++(void) disableTemplesFlame: (NSMutableArray*) templeArray;
 +(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 
 //+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;

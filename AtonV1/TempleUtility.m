@@ -158,7 +158,7 @@
 +(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {
     for (int i=0; i < [allSelectedSlots count]; i++) {
         TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
-        [selectedSlot removePeep];
+        [selectedSlot removePeepWithAnimation];
     }
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }
@@ -620,7 +620,7 @@
     
 }
 
-+(void) disableActiveTemplesFlame: (NSMutableArray*) templeArray {
++(void) disableTemplesFlame: (NSMutableArray*) templeArray {
     
     for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
