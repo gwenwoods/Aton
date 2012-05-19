@@ -12,7 +12,6 @@
 
 @interface AtonPlacePeepEngine : AbstractAtonEngine {
     
-    AtonGameParameters *para;
     AtonAI *ai;
     BOOL useAI;
     

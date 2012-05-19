@@ -28,7 +28,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para.templeArray:para.audioToDeath];
         placePeepEngine = [[AtonPlacePeepEngine alloc] initializeWithParameters:para:messageMaster:ai];
         removePeepEngine = [[AtonRemovePeepEngine alloc] initializeWithParameters:para:messageMaster:ai];
-        
+        arrangeCardEngine = [[AtonArrangeCardsEngine alloc] initializeWithParameters:para:messageMaster:ai];
     }
     return self;
 }
@@ -69,6 +69,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         [playerRed closeCards]; 
         
         if (useAI == YES) {
+            int* newCardArray = malloc(sizeof(int)*4);
+            newCardArray = [arrangeCardEngine arrangeCard:[playerBlue getCardNumberArray]];
+            [playerBlue setCardNumberArray:newCardArray];
             para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
             gameManager.messagePlayerEnum = PLAYER_NONE;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Compare Results" afterDelay:1.0];

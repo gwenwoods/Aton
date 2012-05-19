@@ -12,6 +12,7 @@
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
 #import "AtonMessageMaster.h"
+#import "AtonArrangeCardsEngine.h"
 #import "AtonRemovePeepEngine.h"
 #import "AtonPlacePeepEngine.h"
 #import "AtonAIEasy.h"
@@ -22,12 +23,12 @@
   //  BOOL useAI;
     AtonPlacePeepEngine *placePeepEngine;
     AtonRemovePeepEngine *removePeepEngine;
+    AtonArrangeCardsEngine *arrangeCardEngine;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter;
 -(void) run;
 -(void) playerDoneAction;
-//-(NSString*) gameOverCondition;
 
 -(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;

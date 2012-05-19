@@ -54,7 +54,7 @@
         msg = [msg stringByAppendingString:@" Wins|"];
         
     } else if ([TempleUtility findTempleFullWinner:para1.templeArray:TEMPLE_4] != PLAYER_NONE) {
-        int winnerEnum =  [TempleUtility findTempleFullWinner:para1.templeArray:TEMPLE_2];
+        int winnerEnum =  [TempleUtility findTempleFullWinner:para1.templeArray:TEMPLE_4];
         AtonPlayer *winner = [para1.playerArray objectAtIndex:winnerEnum];
         msg = @"Temple 4 Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
