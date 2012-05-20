@@ -119,7 +119,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     } else if (arrayNum <= activePlayerPlaceNum) {
 
         int occupiedEnum = OCCUPIED_RED;
-        if (roundResult.secondPlayerEnum == PLAYER_BLUE) {
+        if (activePlayerEnum == PLAYER_BLUE) {
                 occupiedEnum = OCCUPIED_BLUE;
         }
         for (int i=0; i < [eligibleSlotArray count]; i++) {

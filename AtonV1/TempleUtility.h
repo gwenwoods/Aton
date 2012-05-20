@@ -37,7 +37,7 @@
 +(void) enableActiveTemplesFlame: (NSMutableArray*) templeArray:(int) playerEnum:(int) maxTempleEnum;
 +(void) disableTemplesFlame: (NSMutableArray*) templeArray;
 +(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
-
++(int*) findPeepDiffEachTemple: (NSMutableArray*) templeArray;
 //+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple;
 //+(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple;

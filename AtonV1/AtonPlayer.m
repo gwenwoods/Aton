@@ -495,6 +495,13 @@ static float DELAY_TIME = 0.25;
     return cardNumberArray;
 }
 
+-(void) setCardNumberArray:(int*) newCardNumberArray {
+    for (int i=0; i<4; i++) {
+        CardElement *ce = [cardElementArray objectAtIndex:i];
+        ce.number = newCardNumberArray[i]; 
+    }
+}
+
 -(void) resetCard {
     for (int i=0; i<4; i++) {
         CardElement *ce = [cardElementArray objectAtIndex:i];

@@ -651,5 +651,26 @@
     return count;
 }
 
-//+(void) enableTempleFlames:(NSMutableArray*) templeArray:(int) maxTempleEnum;
+
++(int*) findPeepDiffEachTemple: (NSMutableArray*) templeArray{
+    
+    int* diffCountArray = malloc(sizeof(int)*5);
+    
+    for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        int redCount = 0;
+        int blueCount = 0;
+        for (int i=0; i<12; i++) {
+            TempleSlot *tSlot = [[temple slotArray] objectAtIndex:i];
+            if ([tSlot occupiedEnum] == OCCUPIED_RED) {
+                redCount++;
+            } else if ([tSlot occupiedEnum] == OCCUPIED_BLUE) {
+                blueCount++;
+            }
+        }
+        diffCountArray[i] = blueCount-redCount;
+    }
+    
+    return diffCountArray;
+}
 @end

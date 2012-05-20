@@ -45,6 +45,7 @@ enum PLAYER_ACTION_ENUM {
 -(void) resetCard;
 -(void) displayMenu:(int) actionEnum:(int) peepNum;
 -(void) closeMenu;
+-(void) setCardNumberArray:(int*) newCardNumberArray;
 
 // arrange cards functions
 -(void) switchCardElement:(AtonTouchElement*) touchElement:(CardElement*) targetCE;

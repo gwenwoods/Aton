@@ -13,4 +13,5 @@
 
 +(NSMutableArray*) addTempleColorSlotForPlace:(AtonTemple*) temple:(NSMutableArray*) selectedSlotArray:(int) colorTypeEnum:(int) requiredSlotNum;
 +(NSMutableArray*) addTempleColorSlotForRemove:(AtonTemple*) temple:(NSMutableArray*) selectedSlotArray:(int) colorTypeEnum:(int) requiredSlotNum:(int) occupiedEnum;
+
 @end

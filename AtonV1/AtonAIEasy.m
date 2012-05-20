@@ -47,7 +47,7 @@ static double REMOVE_PEEP_TIME = 1.5;
     NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
 
     //int removedCount = 0;
-   for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
+   for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
         NSMutableArray *templeSlotArray = [temple slotArray];
         for (int j=0; j < 12; j++) {
@@ -131,14 +131,37 @@ static double REMOVE_PEEP_TIME = 1.5;
         occupiedEnum = OCCUPIED_BLUE;
     }
     
+
     NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
+    
+    //-------------------------
+    // Place on BLUE square first
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:GREY:placeNum];
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:BLUE:placeNum];
         if ([selectedSlotArray count] == placeNum) {
             break;
         }
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:BLUE:placeNum];
+    }
+    
+    if ([selectedSlotArray count] == placeNum) {
+        for (int i=0; i < [selectedSlotArray count]; i++) {
+            TempleSlot *selectedSlot = [selectedSlotArray objectAtIndex:i];
+            // [selectedSlot placePeep:occupiedEnum];
+            [selectedSlot performSelector:@selector(placePeep1:) withObject:[NSNumber numberWithInt:occupiedEnum] afterDelay:PLACE_PEEP_TIME];
+        }
+        return PLACE_PEEP_TIME;
+    }
+    
+    //--------------------------
+    // Place on other colors
+    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+    for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
+        if (peepDiff[i] > 3) {
+            continue;
+        }
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:GREY:placeNum];
         if ([selectedSlotArray count] == placeNum) {
             break;
         }
@@ -159,26 +182,7 @@ static double REMOVE_PEEP_TIME = 1.5;
             break;
         }
     }
-    //int removedCount = 0;
- /*   for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
-        AtonTemple *temple = [templeArray objectAtIndex:i];
-        NSMutableArray *templeSlotArray = [temple slotArray];
-        for (int j=0; j < 12; j++) {
-            TempleSlot *slot = [templeSlotArray objectAtIndex:j];
-            if (slot.occupiedEnum == OCCUPIED_EMPTY) {
-                [selectedSlotArray addObject:slot];
-                [slot selectOrDeselectSlot];
-                
-                if ([selectedSlotArray count] == placeNum) {
-                    break;
-                }
-            }
-        }
-        
-        if ([selectedSlotArray count] == placeNum) {
-            break;
-        }
-    }*/
+
     
     for (int i=0; i < [selectedSlotArray count]; i++) {
         TempleSlot *selectedSlot = [selectedSlotArray objectAtIndex:i];
