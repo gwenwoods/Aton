@@ -87,11 +87,11 @@ static double REMOVE_PEEP_TIME = 1.5;
     NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:GREY:removeNum:occupiedEnum];
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:BLUE:removeNum:occupiedEnum];
         if ([selectedSlotArray count] == removeNum) {
             break;
         }
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:BLUE:removeNum:occupiedEnum];
+        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForRemove:temple:selectedSlotArray:GREY:removeNum:occupiedEnum];
         if ([selectedSlotArray count] == removeNum) {
             break;
         }

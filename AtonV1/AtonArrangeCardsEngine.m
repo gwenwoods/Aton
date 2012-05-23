@@ -251,6 +251,7 @@ CASE_1234
             break;
             
         case CASE_4431:
+            outputCardArray = [self handle_4431];
             outputCardArray[0] = 4;
             outputCardArray[1] = 1;
             outputCardArray[2] = 3;
@@ -294,10 +295,6 @@ CASE_1234
             
         case CASE_3322:
             outputCardArray = [self handle_3322];
-            outputCardArray[0] = 2;
-            outputCardArray[1] = 3;
-            outputCardArray[2] = 2;
-            outputCardArray[3] = 3;
             break;
             
         case CASE_3311:
@@ -429,29 +426,72 @@ CASE_1234
             break;
             
         default:
-            outputCardArray[0] = 2;
-            outputCardArray[1] = 1;
-            outputCardArray[2] = 4;
-            outputCardArray[3] = 3;
+            outputCardArray = [self handle_4321];
             break;
     }
     
     return outputCardArray;
 }
 
+-(int*) handle_4431 {
+    int* outputCardArray = malloc(sizeof(int)*4);
+    NSMutableArray *templeArray = para.templeArray;
+    
+    int t4BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_4] findBlueOccupiedEnum];
+    int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
+    int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
+    int t4RedGreyCount = [[templeArray objectAtIndex:TEMPLE_4] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int t3RedGreyCount = [[templeArray objectAtIndex:TEMPLE_3] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int t2RedGreyCount = [[templeArray objectAtIndex:TEMPLE_2] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+    
+    int t4RedCount_BlueGrey = t4RedGreyCount;
+    if(t4BlueOccupiedEnum == OCCUPIED_RED) {
+        t4RedCount_BlueGrey++;
+    }
+    
+    int t3RedCount_BlueGrey = t3RedGreyCount;
+    if(t3BlueOccupiedEnum == OCCUPIED_RED) {
+        t3RedCount_BlueGrey++;
+    }
+    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+    
+    if (t4RedCount_BlueGrey >= 2 && peepDiff[TEMPLE_4] <3) {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 4;
+        outputCardArray[3] = 3;
+    
+    } else if (t3RedCount_BlueGrey >= 2 && peepDiff[TEMPLE_3] <3) {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 3;
+        outputCardArray[3] = 4;
+    } else {
+        outputCardArray[0] = 4;
+        outputCardArray[1] = 1;
+        outputCardArray[2] = 3;
+        outputCardArray[3] = 4;
+    }
+    return outputCardArray;
+}
 
 -(int*) handle_3322 {
     int* outputCardArray = malloc(sizeof(int)*4);
-    NSMutableArray *templeArray = para.templeArray;int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
+    NSMutableArray *templeArray = para.templeArray;
+    
+    int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
     int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
+    int t3RedGreyCount = [[templeArray objectAtIndex:TEMPLE_3] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int t2RedGreyCount = [[templeArray objectAtIndex:TEMPLE_2] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+
     int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
 
-    if (t3BlueOccupiedEnum == OCCUPIED_RED) {
+    if (t3BlueOccupiedEnum == OCCUPIED_RED || t3RedGreyCount > 0) {
         outputCardArray[0] = 2;
         outputCardArray[1] = 3;
         outputCardArray[2] = 3;
         outputCardArray[3] = 2;
-    } else if (t2BlueOccupiedEnum == OCCUPIED_RED) {
+    } else if (t2BlueOccupiedEnum == OCCUPIED_RED || t2RedGreyCount > 0) {
         outputCardArray[1] = 3;
         outputCardArray[2] = 2;
         if(peepDiff[1] > 3) {
@@ -470,4 +510,41 @@ CASE_1234
     return outputCardArray;
 }
 
+-(int*) handle_4321 {
+    int* outputCardArray = malloc(sizeof(int)*4);
+    NSMutableArray *templeArray = para.templeArray;
+
+    int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
+    int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
+    int t3RedGreyCount = [[templeArray objectAtIndex:TEMPLE_3] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int t2RedGreyCount = [[templeArray objectAtIndex:TEMPLE_2] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+
+    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+
+    if (t3BlueOccupiedEnum == OCCUPIED_RED || t3RedGreyCount > 0) {
+        if (t3RedGreyCount > 1) {
+            outputCardArray[0] = 1;
+            outputCardArray[1] = 4;
+            outputCardArray[2] = 3;
+            outputCardArray[3] = 2;
+        } else {
+            outputCardArray[0] = 1;
+            outputCardArray[1] = 3;
+            outputCardArray[2] = 4;
+            outputCardArray[3] = 2;
+        }
+        
+    } else if (t2BlueOccupiedEnum == OCCUPIED_RED || t2RedGreyCount > 0) {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 2;
+        outputCardArray[3] = 3;
+    } else {
+        outputCardArray[0] = 2;
+        outputCardArray[1] = 1;
+        outputCardArray[2] = 4;
+        outputCardArray[3] = 3;
+    }
+    return outputCardArray;
+}
 @end
