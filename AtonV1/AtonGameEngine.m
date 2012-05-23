@@ -20,7 +20,6 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter {
 	if (self) {
-       // [super initializeWithParameters:parameter];
         para1 = parameter;
         para = parameter;
         messageMaster = [[AtonMessageMaster alloc] initializeWithParameters:para];
@@ -262,7 +261,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
-        [TempleUtility enableActiveTemplesFlame:templeArray:roundResult.firstPlayerEnum:roundResult.firstTemple];
+       // [TempleUtility enableActiveTemplesFlame:templeArray:roundResult.firstPlayerEnum:TEMPLE_4];
+        [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.higherScorePlayer:4];
         if (useAI == YES && roundResult.higherScorePlayer == PLAYER_BLUE) {
             [ai removeOnePeepFromEachTemple:roundResult.higherScorePlayer];
             
@@ -270,11 +270,11 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
             [para.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
         } else {
-            int maxTemple = roundResult.firstTemple;
+        /*    int maxTemple = roundResult.firstTemple;
             if (roundResult.higherScorePlayer == roundResult.secondPlayerEnum) {
                 maxTemple = roundResult.secondTemple;
-            }
-            [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.higherScorePlayer:maxTemple];
+            }*/
+          //  [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.higherScorePlayer:4];
             int targetPlayerEnum = [roundResult higherScorePlayer];
             int occupiedEnum = OCCUPIED_RED;
             if (targetPlayerEnum == PLAYER_BLUE) {
@@ -286,7 +286,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             int arrayNum = [eligibleSlotArray count];
             if (arrayNum == 0) {
                 
-                [TempleUtility disableAllTempleSlotInteraction:templeArray];
+                [TempleUtility disableAllTempleSlotInteractionAndFlame:templeArray];
                 
                 gameManager.messagePlayerEnum = roundResult.higherScorePlayer;
                 NSString *msg = @"|No Available Peeps\n to Remove\n";
@@ -317,7 +317,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
-        [TempleUtility enableActiveTemplesFlame:templeArray:roundResult.secondPlayerEnum:roundResult.secondTemple];
+        //[TempleUtility enableActiveTemplesFlame:templeArray:roundResult.secondPlayerEnum:roundResult.secondTemple];
+        [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.lowerScorePlayer:4];
         if (useAI == YES && roundResult.lowerScorePlayer == PLAYER_BLUE) {
             [ai removeOnePeepFromEachTemple:roundResult.lowerScorePlayer];
             
@@ -328,7 +329,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             if (roundResult.lowerScorePlayer == roundResult.secondPlayerEnum) {
                 maxTemple = roundResult.secondTemple;
             }
-            [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.lowerScorePlayer:maxTemple];
+            //[TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.lowerScorePlayer:maxTemple];
             int targetPlayerEnum = [para.atonRoundResult lowerScorePlayer];
             int occupiedEnum = OCCUPIED_RED;
             if (targetPlayerEnum == PLAYER_BLUE) {
@@ -339,7 +340,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             int arrayNum = [eligibleSlotArray count];
             if (arrayNum == 0) {
                 
-                [TempleUtility disableAllTempleSlotInteraction:templeArray];
+                [TempleUtility disableAllTempleSlotInteractionAndFlame:templeArray];
                 
                 // msg = [msg stringByAppendingString:@"Scoring End"];
                 gameManager.messagePlayerEnum = roundResult.lowerScorePlayer;

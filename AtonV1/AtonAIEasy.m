@@ -157,29 +157,48 @@ static double REMOVE_PEEP_TIME = 1.5;
     // Place on other colors
     int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
-        if (peepDiff[i] > 3) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        
+        if (peepDiff[i] >= 3) {
             continue;
         }
-        AtonTemple *temple = [templeArray objectAtIndex:i];
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:GREY:placeNum];
-        if ([selectedSlotArray count] == placeNum) {
+        
+        int startingCount = [selectedSlotArray count];
+        int newPeepsCount = 0;
+        
+        newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
+        if ((startingCount + newPeepsCount) == placeNum) {
             break;
+        } else if((peepDiff[i] + newPeepsCount) >= 3) {
+            continue;
         }
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:ORANGE_2:placeNum];
-        if ([selectedSlotArray count] == placeNum) {
+        
+        newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_2:placeNum];
+        if ((startingCount + newPeepsCount) == placeNum) {
             break;
+        } else if((peepDiff[i] + newPeepsCount) >= 3) {
+            continue;
         }
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:ORANGE_1:placeNum];
-        if ([selectedSlotArray count] == placeNum) {
+
+        newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_1:placeNum];
+        if ((startingCount + newPeepsCount) == placeNum) {
             break;
+        } else if((peepDiff[i] + newPeepsCount) >= 3) {
+            continue;
         }
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:YELLOW:placeNum];
-        if ([selectedSlotArray count] == placeNum) {
+
+        newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:YELLOW:placeNum];
+        if ((startingCount + newPeepsCount) == placeNum) {
             break;
+        } else if((peepDiff[i] + newPeepsCount) >= 3) {
+            continue;
         }
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:GREEN:placeNum];
-        if ([selectedSlotArray count] == placeNum) {
+
+        newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREEN:placeNum];
+        if ((startingCount + newPeepsCount) == placeNum) {
             break;
+        } else if((peepDiff[i] + newPeepsCount) >= 3) {
+            continue;
         }
     }
 

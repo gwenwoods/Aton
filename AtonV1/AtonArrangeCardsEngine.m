@@ -439,18 +439,29 @@ CASE_1234
     return outputCardArray;
 }
 
+
 -(int*) handle_3322 {
     int* outputCardArray = malloc(sizeof(int)*4);
-    NSMutableArray *templeArray = para.templeArray;
-    int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
-   // int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
+    NSMutableArray *templeArray = para.templeArray;int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
+    int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
+    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
 
-    if(t3BlueOccupiedEnum == PLAYER_RED) {
+    if (t3BlueOccupiedEnum == OCCUPIED_RED) {
         outputCardArray[0] = 2;
         outputCardArray[1] = 3;
         outputCardArray[2] = 3;
         outputCardArray[3] = 2;
-    } else if (t3BlueOccupiedEnum == PLAYER_NONE) {
+    } else if (t2BlueOccupiedEnum == OCCUPIED_RED) {
+        outputCardArray[1] = 3;
+        outputCardArray[2] = 2;
+        if(peepDiff[1] > 3) {
+            outputCardArray[0] = 3;
+            outputCardArray[3] = 2;
+        } else {
+            outputCardArray[0] = 2;
+            outputCardArray[3] = 3;
+        }
+    } else {
         outputCardArray[0] = 2;
         outputCardArray[1] = 2;
         outputCardArray[2] = 3;
@@ -458,4 +469,5 @@ CASE_1234
     }
     return outputCardArray;
 }
+
 @end

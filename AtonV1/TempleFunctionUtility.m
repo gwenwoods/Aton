@@ -27,6 +27,25 @@
     return selectedSlotArray;
 }
 
++(int) addTempleColorSlotForPlace1:(AtonTemple*) temple:(NSMutableArray*) selectedSlotArray:(int) colorTypeEnum:(int) requiredSlotNum {
+    
+    int count = 0;
+    NSMutableArray *templeSlotArray = [temple slotArray];
+    for (int j=0; j < 12; j++) {
+        TempleSlot *slot = [templeSlotArray objectAtIndex:j];
+        if (slot.colorTypeEnum == colorTypeEnum && slot.occupiedEnum == OCCUPIED_EMPTY) {
+            [selectedSlotArray addObject:slot]; 
+            [slot selectOrDeselectSlot];
+            count++;
+            if ([selectedSlotArray count] == requiredSlotNum) {
+                break;
+            }
+        }
+    }
+    
+    return count;
+}
+
 +(NSMutableArray*) addTempleColorSlotForRemove:(AtonTemple*) temple:(NSMutableArray*) selectedSlotArray:(int) colorTypeEnum:(int) requiredSlotNum:(int) occupiedEnum {
     
     NSMutableArray *templeSlotArray = [temple slotArray];
