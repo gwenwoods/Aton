@@ -352,4 +352,24 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
     
     return count;
 }
+
+-(int) findOccupiedSlotsNum {
+    int count = 0;
+    if (templeEnum == 0) {
+        for (int i=0; i < 8; i++) {
+            TempleSlot *slot = [slotArray objectAtIndex:i];
+            if (slot.occupiedEnum != OCCUPIED_EMPTY) {
+                count++;    
+            }
+        }
+    } else {
+        for (int i=0; i < 12; i++) {
+            TempleSlot *slot = [slotArray objectAtIndex:i];
+            if (slot.occupiedEnum != OCCUPIED_EMPTY) {
+                count++;    
+            }
+        }
+    }
+    return count;
+}
 @end

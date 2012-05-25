@@ -28,6 +28,7 @@ enum TEMPLE_ENUM {
 -(NSMutableArray*) findSlotsWithOccupiedEnum:(int) occupiedEnum;
 -(int) findBlueOccupiedEnum;
 -(int) findGreyNumForOccupiedEnum:(int) occupiedEnum;
+-(int) findOccupiedSlotsNum;
 @property(strong, nonatomic) UIView* baseView;
 @property(strong, nonatomic) UIImageView* iv;
 @property(nonatomic) int templeEnum;

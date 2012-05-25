@@ -131,7 +131,7 @@ static double REMOVE_PEEP_TIME = 1.5;
         occupiedEnum = OCCUPIED_BLUE;
     }
     
-
+   
     NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
     
     //-------------------------
@@ -156,12 +156,19 @@ static double REMOVE_PEEP_TIME = 1.5;
     //--------------------------
     // Place on other colors
     int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+    
+    AtonTemple *deathTemple = [templeArray objectAtIndex:0];
+    int deathCount = [deathTemple findOccupiedSlotsNum]; 
+    
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
-        AtonTemple *temple = [templeArray objectAtIndex:i];
         
         if (peepDiff[i] >= 3) {
             continue;
+        } else if (deathCount == 7 && (peepDiff[i] + placeNum) < 0) {
+            continue;
         }
+        
+        AtonTemple *temple = [templeArray objectAtIndex:i];
         
         int startingCount = [selectedSlotArray count];
         int newPeepsCount = 0;
@@ -202,6 +209,43 @@ static double REMOVE_PEEP_TIME = 1.5;
         }
     }
 
+    //-------------
+    // if selected slot is not enough
+    if ([selectedSlotArray count] < placeNum) {
+        for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
+            AtonTemple *temple = [templeArray objectAtIndex:i];
+            
+            int startingCount = [selectedSlotArray count];
+            int newPeepsCount = 0;
+            
+            newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
+            if ((startingCount + newPeepsCount) == placeNum) {
+                break;
+            }
+            
+            newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_2:placeNum];
+            if ((startingCount + newPeepsCount) == placeNum) {
+                break;
+            } 
+            
+            newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_1:placeNum];
+            if ((startingCount + newPeepsCount) == placeNum) {
+                break;
+            }
+            
+            newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:YELLOW:placeNum];
+            if ((startingCount + newPeepsCount) == placeNum) {
+                break;
+            }
+            
+            
+            newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREEN:placeNum];
+            if ((startingCount + newPeepsCount) == placeNum) {
+                break;
+            } 
+        }
+
+    }
     
     for (int i=0; i < [selectedSlotArray count]; i++) {
         TempleSlot *selectedSlot = [selectedSlotArray objectAtIndex:i];
