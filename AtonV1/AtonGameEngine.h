@@ -7,25 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AbstractAtonEngine.h"
 #import "AtonGameParameters.h"
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
 #import "AtonMessageMaster.h"
-#import "AtonArrangeCardsEngine.h"
-#import "AtonRemovePeepEngine.h"
-#import "AtonPlacePeepEngine.h"
+#import "AbstractExecutor.h"
+#import "AtonArrangeCardsExecutor.h"
+#import "AtonRemovePeepExecutor.h"
+#import "AtonPlacePeepExecutor.h"
 #import "AtonAIEasy.h"
 #import "AtonGameManager.h"
 
-@interface AtonGameEngine : AbstractAtonEngine {
+@interface AtonGameEngine:NSObject {
     AtonMessageMaster *messageMaster;
   //  AtonGameManager *gameManager;
     AtonAI *ai;
   //  BOOL useAI;
-    AtonPlacePeepEngine *placePeepEngine;
-    AtonRemovePeepEngine *removePeepEngine;
-    AtonArrangeCardsEngine *arrangeCardEngine;
+    AtonPlacePeepExecutor *placePeepEngine;
+    AtonRemovePeepExecutor *removePeepEngine;
+    AtonArrangeCardsExecutor *arrangeCardEngine;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller;

@@ -75,7 +75,11 @@
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
     atonParameters = [AtonGameInitializer initializeNewGame:self:playerRedName:playerBlueName];
-    atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters];
+    
+    //--------------------------
+    // initialize game engine
+
+    atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters:self];
     
     [atonGameEngine run];
     
@@ -116,7 +120,7 @@
  //   [delegateBoardView dismissBoardViewWithoutAnimation:self];
  //   [self dismissModalViewControllerAnimated:YES];
     
-    atonParameters.gameManager.quitView.hidden = NO;
+    atonGameEngine.gameManager.quitView.hidden = NO;
 }
 
 - (IBAction) quitYes:(id)sender {
@@ -125,7 +129,7 @@
 }
 
 - (IBAction) quitNo:(id)sender {
-    atonParameters.gameManager.quitView.hidden = YES;
+    atonGameEngine.gameManager.quitView.hidden = YES;
 }
 
 - (IBAction) doneAction:(id)sender {
@@ -133,8 +137,8 @@
 }
 
 - (IBAction) exchangeCards:(id)sender {
-    atonParameters.gameManager.exchangeCardsView.hidden = NO;
-    [self.view bringSubviewToFront:atonParameters.gameManager.exchangeCardsView];
+    atonGameEngine.gameManager.exchangeCardsView.hidden = NO;
+    [self.view bringSubviewToFront:atonGameEngine.gameManager.exchangeCardsView];
 }
 
 - (IBAction) exchangeCardsYes:(id)sender {
@@ -157,11 +161,11 @@
     [player distributeCards];
     [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];
     
-    atonParameters.gameManager.exchangeCardsView.hidden = YES;
+    atonGameEngine.gameManager.exchangeCardsView.hidden = YES;
 }
 
 - (IBAction) exchangeCardsNo:(id)sender {
-     atonParameters.gameManager.exchangeCardsView.hidden = YES;
+     atonGameEngine.gameManager.exchangeCardsView.hidden = YES;
 }
 
 -(void) playGameMusic {
