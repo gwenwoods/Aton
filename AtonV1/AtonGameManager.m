@@ -227,6 +227,9 @@ static int DETAIL_FONT_SIZE = 20;
     return self;
 }
 
+-(void) processActionResult:(int) messagePlayerEnum:(NSString*) msg{
+
+}
 -(void) showGamePhaseView:(NSString*) msg {
     
     gamePhaseLb.text = nil;

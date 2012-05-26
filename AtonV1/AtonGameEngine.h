@@ -16,9 +16,11 @@
 #import "AtonRemovePeepEngine.h"
 #import "AtonPlacePeepEngine.h"
 #import "AtonAIEasy.h"
+#import "AtonGameManager.h"
 
 @interface AtonGameEngine : AbstractAtonEngine {
     AtonMessageMaster *messageMaster;
+  //  AtonGameManager *gameManager;
     AtonAI *ai;
   //  BOOL useAI;
     AtonPlacePeepEngine *placePeepEngine;
@@ -26,12 +28,13 @@
     AtonArrangeCardsEngine *arrangeCardEngine;
 }
 
--(id)initializeWithParameters:(AtonGameParameters*) parameter;
+-(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller;
 -(void) run;
 -(void) playerDoneAction;
 
 -(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;
+@property(strong, nonatomic) AtonGameManager *gameManager;
 @property(nonatomic) BOOL useAI;
 
 @end

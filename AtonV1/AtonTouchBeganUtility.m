@@ -23,7 +23,7 @@
 
 +(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine:(AVAudioPlayer*) audioTap {
 
-    AtonGameManager *gameManager = [atonParameters gameManager];
+    AtonGameManager *gameManager = [engine gameManager];
     AtonRoundResult *result = atonParameters.atonRoundResult;
     
     NSMutableArray *playArray = [atonParameters playerArray];

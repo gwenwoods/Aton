@@ -8,19 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "AtonGameParameters.h"
+#import "AtonGameManager.h"
 #import "AtonAI.h"
 #import "AtonMessageMaster.h"
 
 @interface AtonRemovePeepEngine : NSObject{
     
     AtonGameParameters *para;
+    AtonGameManager *gameManager;
     AtonAI *ai;
     BOOL useAI;
     
     AtonMessageMaster *messageMaster;
     
 }
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonMessageMaster*) atonmMessageMaster:(AtonAI*) atonAI;
+-(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
 -(void) removePeep:(int) gamePhaseEnum;
 
 @end

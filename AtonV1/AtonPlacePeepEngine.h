@@ -8,18 +8,19 @@
 
 #import "AbstractAtonEngine.h"
 #import "AtonAI.h"
+#import "AtonGameManager.h"
 #import "AtonMessageMaster.h"
 
 @interface AtonPlacePeepEngine : AbstractAtonEngine {
     
     AtonAI *ai;
     BOOL useAI;
-    
+    AtonGameManager *gameManager;
     AtonMessageMaster *messageMaster;
     
 }
 
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonMessageMaster*) atonmMessageMaster:(AtonAI*) atonAI;
+-(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
 //-(void) placePeep;
 -(void) placePeep:(int) gamePhaseEnum;
 @end

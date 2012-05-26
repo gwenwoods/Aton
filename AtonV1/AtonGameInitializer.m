@@ -41,9 +41,7 @@ static float SCARAB_HEIGHT = 44;
     [templeArray addObject:temple4];
     
     
-    //--------------------------
-    // initialize game manager
-    AtonGameManager *gameManager = [[AtonGameManager alloc] initializeWithParameters:controller];
+   
 
     //------------------------
     // initialize score scarab array
@@ -79,7 +77,7 @@ static float SCARAB_HEIGHT = 44;
     audioToDeath.volume = 0.25;
     [audioToDeath prepareToPlay];
     
-    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray: gameManager:audioToDeath];
+    AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray:audioToDeath];
     
     atonParameters.useAI = YES;
     return  atonParameters;

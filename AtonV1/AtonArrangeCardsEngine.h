@@ -8,11 +8,13 @@
 
 #import "AbstractAtonEngine.h"
 #import "AtonAI.h"
+#import "AtonGameManager.h"
 #import "AtonMessageMaster.h"
 
 @interface AtonArrangeCardsEngine : AbstractAtonEngine{
     
     AtonGameParameters *para;
+    AtonGameManager *gameManager;
     AtonAI *ai;
     BOOL useAI;
     
@@ -20,7 +22,7 @@
     
 }
 
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonMessageMaster*) atonmMessageMaster:(AtonAI*) atonAI;
+-(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonmMessageMaster:(AtonAI*) atonAI;
 -(int*) arrangeCard:(int*) inputCardArray;
 
 @end

@@ -17,7 +17,7 @@
 -(void) showGamePhaseView:(NSString*) msg;
 -(void) showHelpView:(NSString*) msg;
 -(void) showFinalResultView:(NSString*) msg;
-
+-(void) processActionResult:(int) messagePlayerEnum:(NSString*) msg;
 @property(strong, nonatomic) UIViewController *controller;
 @property(strong, nonatomic) UIView* baseView;
 @property(nonatomic) int messagePlayerEnum;

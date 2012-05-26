@@ -23,9 +23,10 @@ CASE_2243, CASE_2241, CASE_2231, CASE_1143, CASE_1142, CASE_1132,
 
 CASE_1234
 };
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI {
+-(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI {
 	if (self) {
         para = atonParameter;
+        gameManager = atonGameManager;
         messageMaster = atonMessageMaster;
         useAI = para.useAI;
         ai = atonAI;

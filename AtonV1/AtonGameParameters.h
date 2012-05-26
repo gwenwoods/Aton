@@ -12,7 +12,7 @@
 
 #import "AtonPlayer.h"
 #import "AtonTemple.h"
-#import "AtonGameManager.h"
+//#import "AtonGameManager.h"
 #import "AtonRoundResult.h"
 #import "ScoreScarab.h"
 
@@ -21,10 +21,10 @@
 
 @interface AtonGameParameters : NSObject
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray: (AtonGameManager*) atonGameManager:(AVAudioPlayer*) audio;
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AVAudioPlayer*) audio;
 
 @property(strong, nonatomic) NSMutableArray *playerArray, *templeArray, *scarabArray;
-@property(strong, nonatomic) AtonGameManager *gameManager;
+//@property(strong, nonatomic) AtonGameManager *gameManager;
 @property(nonatomic) int gamePhaseEnum;
 @property(strong, nonatomic) AtonRoundResult *atonRoundResult;
 @property(strong, nonatomic) AVAudioPlayer *audioToDeath;

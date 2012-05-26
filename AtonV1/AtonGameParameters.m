@@ -11,20 +11,20 @@
 @implementation AtonGameParameters
 
 @synthesize playerArray, templeArray, scarabArray;
-@synthesize gameManager;
+//@synthesize gameManager;
 @synthesize gamePhaseEnum;
 @synthesize atonRoundResult;
 @synthesize audioToDeath;
 @synthesize useAI;
 
 
--(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AtonGameManager*) atonGameManager:(AVAudioPlayer*) audio {
+-(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AVAudioPlayer*) audio {
     
     if (self) {
         playerArray = atonPlayerArray;
         templeArray = atonTempleArray;
         scarabArray = atonScarabArray;
-        gameManager = atonGameManager;
+     //   gameManager = atonGameManager;
         atonRoundResult = [[AtonRoundResult alloc] initializeWithParameters:playerArray];
         audioToDeath = audio;
         useAI = YES;
