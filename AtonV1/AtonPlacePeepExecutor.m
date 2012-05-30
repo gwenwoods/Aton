@@ -95,7 +95,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     AtonPlayer *activePlayer = [playerArray objectAtIndex:activePlayerEnum];
     int firstPlayerEnum = para1.atonRoundResult.firstPlayerEnum;
   //  AtonGameManager *gameManager  = para1.gameManager;
-    int secondPlayerEnum = para1.atonRoundResult.secondPlayerEnum;
+   // int secondPlayerEnum = para1.atonRoundResult.secondPlayerEnum;
     // TODO: should not enable interaction here
     
     NSMutableArray *eligibleSlotArray = [TempleUtility findEligibleTempleSlots:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
@@ -105,7 +105,6 @@ static float MESSAGE_DELAY_TIME = 0.2;
         NSString *msg = @"|No Available Space\n to Place Peep\n";
 
         if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
-           // [gameManager processActionResult:firstPlayerEnum:msg];
             gameManager.messagePlayerEnum = firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para1.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_NONE;
@@ -169,7 +168,8 @@ static float MESSAGE_DELAY_TIME = 0.2;
             }
                 
         } else {
-            NSMutableArray *eligibleInteractionSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
+         //   NSMutableArray *eligibleInteractionSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
+             [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
             [activePlayer displayMenu:ACTION_PLACE:activePlayerPlaceNum];
         }
             

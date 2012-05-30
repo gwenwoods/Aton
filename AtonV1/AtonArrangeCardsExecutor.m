@@ -447,10 +447,10 @@ CASE_1234
     
     int t4BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_4] findBlueOccupiedEnum];
     int t3BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_3] findBlueOccupiedEnum];
-    int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
+  //  int t2BlueOccupiedEnum = [[templeArray objectAtIndex:TEMPLE_2] findBlueOccupiedEnum];
     int t4RedGreyCount = [[templeArray objectAtIndex:TEMPLE_4] findGreyNumForOccupiedEnum:OCCUPIED_RED];
     int t3RedGreyCount = [[templeArray objectAtIndex:TEMPLE_3] findGreyNumForOccupiedEnum:OCCUPIED_RED];
-    int t2RedGreyCount = [[templeArray objectAtIndex:TEMPLE_2] findGreyNumForOccupiedEnum:OCCUPIED_RED];
+  //  int t2RedGreyCount = [[templeArray objectAtIndex:TEMPLE_2] findGreyNumForOccupiedEnum:OCCUPIED_RED];
     
     int t4RedCount_BlueGrey = t4RedGreyCount;
     if(t4BlueOccupiedEnum == OCCUPIED_RED) {
@@ -541,7 +541,7 @@ CASE_1234
     int t3RedGreyCount = [[templeArray objectAtIndex:TEMPLE_3] findGreyNumForOccupiedEnum:OCCUPIED_RED];
     int t2RedGreyCount = [[templeArray objectAtIndex:TEMPLE_2] findGreyNumForOccupiedEnum:OCCUPIED_RED];
 
-    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+  //  int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
 
     if (t3BlueOccupiedEnum == OCCUPIED_RED || t3RedGreyCount > 0) {
         if (t3RedGreyCount > 1) {

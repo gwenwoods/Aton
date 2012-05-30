@@ -141,8 +141,9 @@ static float MESSAGE_DELAY_TIME = 0.2;
 
 
         } else {
-            NSMutableArray *eligibleSlotArray =
-            [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: occupiedEnum];
+           // NSMutableArray *eligibleSlotArray =
+           // [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: occupiedEnum];
+             [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: occupiedEnum];
             [activePlayer displayMenu:ACTION_REMOVE:activePlayerRemoveNum];
         }
             

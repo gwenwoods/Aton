@@ -109,4 +109,9 @@ static int BOUNDARY_SIZE = 56;
         boundaryIV.hidden = NO;
     }
 }
+
+-(void) select {
+    isSelected = YES;
+    boundaryIV.hidden = NO;
+}
 @end

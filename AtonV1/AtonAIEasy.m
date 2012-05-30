@@ -119,18 +119,13 @@ static double REMOVE_PEEP_TIME = 1.5;
 
 
 -(double) placePeeps:(int)targetPlayerEnum:(int)placeNum:(int) maxTempleEnum  {
-  //  [TempleUtility disableAllTempleSlotInteraction:templeArray]; // Note --> this one diabled flame
-    [TempleUtility deselectAllTempleSlots:templeArray];
-  //  [TempleUtility changeSlotBoundaryColor:templeArray:targetPlayerEnum];
-  //  AtonTemple *tem = [templeArray objectAtIndex:0];
-  //  tem.iv.hidden = NO;
-  //  [tem enableTempleFlame:PLAYER_BLUE];
     
+    [TempleUtility deselectAllTempleSlots:templeArray];
+
     int occupiedEnum = OCCUPIED_RED;
     if (targetPlayerEnum == PLAYER_BLUE) {
         occupiedEnum = OCCUPIED_BLUE;
     }
-    
    
     NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
     
@@ -138,7 +133,7 @@ static double REMOVE_PEEP_TIME = 1.5;
     // Place on BLUE square first
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-        selectedSlotArray = [TempleFunctionUtility addTempleColorSlotForPlace:temple:selectedSlotArray:BLUE:placeNum];
+        [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:BLUE:placeNum];
         if ([selectedSlotArray count] == placeNum) {
             break;
         }
@@ -147,7 +142,7 @@ static double REMOVE_PEEP_TIME = 1.5;
     if ([selectedSlotArray count] == placeNum) {
         for (int i=0; i < [selectedSlotArray count]; i++) {
             TempleSlot *selectedSlot = [selectedSlotArray objectAtIndex:i];
-            // [selectedSlot placePeep:occupiedEnum];
+            [selectedSlot select];
             [selectedSlot performSelector:@selector(placePeep1:) withObject:[NSNumber numberWithInt:occupiedEnum] afterDelay:PLACE_PEEP_TIME];
         }
         return PLACE_PEEP_TIME;
@@ -249,12 +244,9 @@ static double REMOVE_PEEP_TIME = 1.5;
     
     for (int i=0; i < [selectedSlotArray count]; i++) {
         TempleSlot *selectedSlot = [selectedSlotArray objectAtIndex:i];
-       // [selectedSlot placePeep:occupiedEnum];
+        [selectedSlot select];
         [selectedSlot performSelector:@selector(placePeep1:) withObject:[NSNumber numberWithInt:occupiedEnum] afterDelay:PLACE_PEEP_TIME];
     }
-
-    
-   // [self performSelector:@selector(placePeepsAnimation) withObject:nil afterDelay:PLACE_PEEP_TIME];
     
     return  PLACE_PEEP_TIME;
 }
@@ -355,15 +347,21 @@ static double REMOVE_PEEP_TIME = 1.5;
         }
     }
 
-    [TempleUtility removePeepsToSupply:templeArray:selectedSlotArray];
-    [TempleUtility disableTemplesFlame:templeArray];
+    for (int i=0; i < [selectedSlotArray count]; i++) {
+        TempleSlot *slot = [selectedSlotArray objectAtIndex:i];
+        [slot select];
+    }
+
+    [self performSelector:@selector(removeSelectedSlotsAndTempleFlame:) withObject:selectedSlotArray afterDelay:REMOVE_PEEP_TIME];
     int num = [selectedSlotArray count];
     
     NSLog(@"Remove %d peeps", num);
     return REMOVE_PEEP_TIME;
 }
 
--(void) removePeeps1 {
+-(void) removeSelectedSlotsAndTempleFlame:(NSMutableArray*) selectedSlotArray {
+    [TempleUtility removePeepsToSupply:templeArray:selectedSlotArray];
+    [TempleUtility disableTemplesFlame:templeArray];
     
 }
 @end

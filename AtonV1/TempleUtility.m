@@ -29,7 +29,7 @@
     return eligiableSlotArray;
 }
 
-+(NSMutableArray*) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum {
++(void) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum {
     
     NSMutableArray *eligiableSlotArray = [[NSMutableArray alloc]init];
     for (int i=1; i<= TEMPLE_4; i++) {
@@ -44,7 +44,7 @@
         [temple enableTempleSlotInteraction:occupiedEnum];
         [eligiableSlotArray  addObjectsFromArray:templeSlotArray];
     }
-    return eligiableSlotArray;
+   // return eligiableSlotArray;
 }
 
 +(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray {
@@ -158,7 +158,8 @@
 +(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {
     for (int i=0; i < [allSelectedSlots count]; i++) {
         TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
-        [selectedSlot removePeepWithAnimation];
+    //    [selectedSlot removePeepWithAnimation];
+        [selectedSlot removePeep];
     }
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
 }

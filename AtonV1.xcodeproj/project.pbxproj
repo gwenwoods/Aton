@@ -14,7 +14,6 @@
 		BD16D22B153CDB3400ED6DB9 /* AtonGameInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22A153CDB3400ED6DB9 /* AtonGameInitializer.m */; };
 		BD16D22F153CE08400ED6DB9 /* TempleUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D22E153CE08400ED6DB9 /* TempleUtility.m */; };
 		BD3AF23B153F81D30098DE8C /* AtonRoundResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3AF23A153F81D30098DE8C /* AtonRoundResult.m */; };
-		BD5557101570374600EC54CF /* OpenMusic_Aton_new.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD55570F1570374600EC54CF /* OpenMusic_Aton_new.wav */; };
 		BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */; };
 		BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */; };
 		BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C0153D126C009F5D71 /* ankh_small.png */; };
@@ -825,7 +824,6 @@
 				BDB58EAE1558DBB30084AAC4 /* button-50.wav in Resources */,
 				BDB58EB7155A41D10084AAC4 /* aton_CreditsPage_new.png in Resources */,
 				BDEAF6B3155B84B9007BBC29 /* BG_sound.aiff in Resources */,
-				BD5557101570374600EC54CF /* OpenMusic_Aton_new.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,7 @@ enum SCORE_ENUM {
 
 @interface TempleScoreResult : NSObject
 
--(NSString*) getWinningMessage;
+//-(NSString*) getWinningMessage;
 
 @property(nonatomic) int templeEnum;
 @property(strong, nonatomic) NSString* resultName;

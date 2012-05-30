@@ -15,7 +15,7 @@
 @interface TempleUtility : NSObject
 
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray;
-+(NSMutableArray*) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
++(void) enableEligibleTempleSlotInteraction:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 +(void) disableAllTempleSlotInteraction:(NSMutableArray*) templeArray;
 +(void) disableAllTempleSlotInteractionAndFlame:(NSMutableArray*) templeArray;
 +(TempleSlot*) findSelectedSlot:(NSMutableArray*) templeArray;
