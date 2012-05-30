@@ -31,6 +31,9 @@
     AVAudioPlayer *audioPlayerChime, *audioEnterName;
     float angle;
     UIImageView *rotateIV;
+    
+    BOOL useAI;
+    UIButton *useAIButton;
 }
 
 -(IBAction) backToMenu:(id)sender;

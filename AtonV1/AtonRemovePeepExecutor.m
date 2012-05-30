@@ -46,7 +46,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     
     AtonPlayer *activePlayer = [playerArray objectAtIndex:activePlayerEnum];
 
-    AtonPlayer *firstPlayer = [playerArray objectAtIndex:roundResult.firstPlayerEnum];
+    //AtonPlayer *firstPlayer = [playerArray objectAtIndex:roundResult.firstPlayerEnum];
     
     
     

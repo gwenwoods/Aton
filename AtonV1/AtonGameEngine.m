@@ -25,7 +25,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         para = parameter;
         gameManager = [[AtonGameManager alloc] initializeWithParameters:controller];
         messageMaster = [[AtonMessageMaster alloc] initializeWithParameters:para];
-        useAI = YES;
+        useAI = para.useAI;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para.templeArray:para.audioToDeath];
         placePeepEngine = [[AtonPlacePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
         removePeepEngine = [[AtonRemovePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
@@ -47,8 +47,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     
     AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
     AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
-    AtonPlayer *firstPlayer = [playerArray objectAtIndex:roundResult.firstPlayerEnum];
-    AtonPlayer *secondPlayer = [playerArray objectAtIndex:roundResult.secondPlayerEnum];
+ //   AtonPlayer *firstPlayer = [playerArray objectAtIndex:roundResult.firstPlayerEnum];
+ //   AtonPlayer *secondPlayer = [playerArray objectAtIndex:roundResult.secondPlayerEnum];
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];

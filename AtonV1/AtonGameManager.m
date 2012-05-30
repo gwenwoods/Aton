@@ -19,7 +19,7 @@
 @synthesize gamePhaseActivePlayerIV, helpActivePlayerIV;
 @synthesize quitView;
 
-static int TITLE_FONT_SIZE = 26;
+static int TITLE_FONT_SIZE = 24;
 static int DETAIL_FONT_SIZE = 20;
 
 -(id)initializeWithParameters:(UIViewController*) viewController {
@@ -38,7 +38,7 @@ static int DETAIL_FONT_SIZE = 20;
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
-        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,108,400,24)];
+        gamePhaseLb = [[UILabel alloc] initWithFrame:CGRectMake(52,110,400,24)];
         gamePhaseLb.backgroundColor = [UIColor clearColor];
         gamePhaseLb.textAlignment = UITextAlignmentCenter;
         gamePhaseLb.lineBreakMode = UILineBreakModeCharacterWrap;

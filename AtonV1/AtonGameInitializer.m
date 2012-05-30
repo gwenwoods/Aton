@@ -14,7 +14,7 @@
 static float SCARAB_WIDTH = 40;
 static float SCARAB_HEIGHT = 44;
 
-+(AtonGameParameters*) initializeNewGame:(UIViewController*) controller:(NSString*) redName: (NSString*) blueName{
++(AtonGameParameters*) initializeNewGame:(UIViewController*) controller:(NSString*) redName: (NSString*) blueName: (BOOL) useAtonAI{
     
     //----------------------
     // initialize players
@@ -79,7 +79,7 @@ static float SCARAB_HEIGHT = 44;
     
     AtonGameParameters *atonParameters = [[AtonGameParameters alloc] initializeWithParameters:playerArray :templeArray: scarabArray:audioToDeath];
     
-    atonParameters.useAI = YES;
+    atonParameters.useAI = useAtonAI;
     return  atonParameters;
 }
 

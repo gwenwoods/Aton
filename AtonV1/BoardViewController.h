@@ -47,7 +47,7 @@
 - (IBAction) exchangeCardsNo:(id)sender;
 - (IBAction) quitYes:(id)sender;
 - (IBAction) quitNo:(id)sender;
-- (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName;
+- (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName:(BOOL) useAtonAI;
 //@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
 @property(strong, nonatomic) AtonGameEngine *atonGameEngine;
 @property(strong, nonatomic) AtonGameParameters *atonParameters;

@@ -24,13 +24,11 @@
 +(void) checkGamePhaseView:(AtonGameParameters*) atonParameters:(AtonGameEngine*) engine:(AVAudioPlayer*) audioTap {
 
     AtonGameManager *gameManager = [engine gameManager];
-    AtonRoundResult *result = atonParameters.atonRoundResult;
+   // AtonRoundResult *result = atonParameters.atonRoundResult;
     
     NSMutableArray *playArray = [atonParameters playerArray];
     AtonPlayer *redPlayer = [playArray objectAtIndex:PLAYER_RED];
     AtonPlayer *bluePlayer = [playArray objectAtIndex:PLAYER_BLUE];
-    AtonPlayer *firstPlayer = [playArray objectAtIndex:result.firstPlayerEnum];
-    AtonPlayer *secondPlayer = [playArray objectAtIndex:result.secondPlayerEnum];
     
     if (gameManager.helpView.hidden == NO) {
         gameManager.helpView.hidden = YES;
@@ -57,23 +55,15 @@
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
-          //  [firstPlayer displayMenu];
-         //   [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:[atonParameters.atonRoundResult getFirstRemoveTargetEnum]];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
-         //   [secondPlayer displayMenu];
-           // [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:[atonParameters.atonRoundResult getSecondRemoveTargetEnum]];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
-         //   [firstPlayer displayMenu];
-          //  [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
-         //   [secondPlayer displayMenu];
-         //   [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.secondPlayerEnum];
             
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP ) {
             atonParameters.gamePhaseEnum = GAME_PHASE_DISTRIBUTE_CARD;
@@ -104,8 +94,7 @@
         
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_ORANGE_BONUS_FOR_BLUE_ANIMATION) {
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_SCORING_END;
-         //   [TempleUtility changeSlotBoundaryColor:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum];
-            
+           
         } else if(atonParameters.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING_END) {
             atonParameters.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
             [TempleUtility enableActiveTemplesFlame:atonParameters.templeArray:atonParameters.atonRoundResult.firstPlayerEnum:atonParameters.atonRoundResult.firstTemple];

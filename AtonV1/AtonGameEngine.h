@@ -32,7 +32,7 @@
 -(void) run;
 -(void) playerDoneAction;
 
--(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
+//-(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;
 @property(strong, nonatomic) AtonGameManager *gameManager;
 @property(nonatomic) BOOL useAI;

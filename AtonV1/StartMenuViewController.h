@@ -22,7 +22,7 @@
     AVAudioPlayer *audioPlayerEnterPlay, *audioPlayerOpen;
 }
 
--(IBAction) toPlayerView:(id)sender;
+//-(IBAction) toPlayerView:(id)sender;
 //- (void)clickedButton:(BoardViewController *)subcontroller;
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
 - (void)dismissRuleViewWithAnimation:(RuleViewController *)subcontroller;

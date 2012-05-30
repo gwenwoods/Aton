@@ -23,6 +23,7 @@
 
 @synthesize temple1;
 
+/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,9 +33,9 @@
         //delegate1 = self;
     }
     return self;
-}
+}*/
 
-- (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName 
+- (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName:(BOOL) useAtonAI
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -43,6 +44,7 @@
         //delegate1 = self;
         playerRedName = redName;
         playerBlueName = blueName;
+        useAI = useAtonAI;
     }
     return self;
 }
@@ -74,7 +76,7 @@
     [audioTap prepareToPlay];
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
-    atonParameters = [AtonGameInitializer initializeNewGame:self:playerRedName:playerBlueName];
+    atonParameters = [AtonGameInitializer initializeNewGame:self:playerRedName:playerBlueName:useAI];
     
     //--------------------------
     // initialize game engine

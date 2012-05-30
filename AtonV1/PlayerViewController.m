@@ -155,7 +155,14 @@
     [blueNameButton addTarget:self action:@selector(setBlueName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:blueNameButton];
     
-    
+    useAIButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    useAIButton.frame = CGRectMake(601,40,200,80);
+    useAIButton.userInteractionEnabled = YES;
+    useAIButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
+   // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
+    [useAIButton setTitle:@"Human Player"  forState:UIControlStateNormal];
+    [useAIButton addTarget:self action:@selector(chooseAIPlayer:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:useAIButton];
     //----------
     // audio when starting to  play
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
@@ -207,7 +214,7 @@
     } else {
         audioEnterName = nil;
     }
-    boardScreen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName];
+    boardScreen = [[BoardViewController alloc] initWithNibNameAndPara:@"BoardViewController_iPad" bundle:nil red:redName blue:blueName:useAI];
     boardScreen.delegateBoardView = self;
     boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:boardScreen animated:YES];
@@ -259,6 +266,22 @@
     updateBlue = YES;
     updateRed = NO;
     [self toEnterNameView];
+}
+
+-(IBAction) chooseAIPlayer:(id)sender {
+    if (useAI) {
+        useAI = NO;
+        [useAIButton setTitle:@"Human Player" forState:UIControlStateNormal];
+        blueName = @"Player Blue";
+        blueNameButton.userInteractionEnabled = YES;
+        [blueNameButton setTitle:blueName forState:UIControlStateNormal];
+    } else {
+        useAI = YES;
+        [useAIButton setTitle:@"AI Player" forState:UIControlStateNormal];
+        blueName = @"AI";
+        blueNameButton.userInteractionEnabled = NO;
+        [blueNameButton setTitle:blueName forState:UIControlStateNormal];
+    }
 }
 
 -(void) toEnterNameView {

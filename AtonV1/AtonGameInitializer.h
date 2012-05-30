@@ -12,5 +12,5 @@
 @interface AtonGameInitializer : NSObject
 
 //+(AtonGameParameters*) initializeNewGame:(UIViewController*) controller;
-+(AtonGameParameters*) initializeNewGame:(UIViewController*) controller:(NSString*) redName: (NSString*) blueName;
++(AtonGameParameters*) initializeNewGame:(UIViewController*) controller:(NSString*) redName: (NSString*) blueName: (BOOL) useAtonAI;
 @end
