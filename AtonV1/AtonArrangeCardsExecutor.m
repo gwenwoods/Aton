@@ -227,10 +227,7 @@ CASE_1234
             break;
             
         case CASE_4432:
-            outputCardArray[0] = 4;
-            outputCardArray[1] = 2;
-            outputCardArray[2] = 3;
-            outputCardArray[3] = 4;
+            outputCardArray = [self handle_4432];
             break;
             
         case CASE_4431:
@@ -238,10 +235,7 @@ CASE_1234
             break;
             
         case CASE_4421:
-            outputCardArray[0] = 2;
-            outputCardArray[1] = 1;
-            outputCardArray[2] = 4;
-            outputCardArray[3] = 4;
+            outputCardArray = [self handle_4421];
             break;
         
         case CASE_3333:
@@ -296,8 +290,6 @@ CASE_1234
             outputCardArray[2] = 4;
             outputCardArray[3] = 3;
             break;
-            
-
             
         case CASE_3321:
             outputCardArray[0] = 1;
@@ -633,6 +625,42 @@ CASE_1234
     return outputCardArray;
 }
 
+-(int*) handle_4432 {
+    int* outputCardArray = malloc(sizeof(int)*4);
+    if([self nearGameEnd]) {
+        outputCardArray[0] = 4;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 3;
+        outputCardArray[3] = 2;
+        return outputCardArray;
+    }
+    NSMutableArray *templeArray = para.templeArray;
+    
+    int t4RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_4] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int t3RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_3] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+    
+    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+    
+    if (t4RedCount_BlueGrey >= 2 && peepDiff[TEMPLE_4] <3) {
+        outputCardArray[0] = 2;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 4;
+        outputCardArray[3] = 3;
+        
+    } else if (t3RedCount_BlueGrey >= 2 && peepDiff[TEMPLE_3] <3) {
+        outputCardArray[0] = 2;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 3;
+        outputCardArray[3] = 4;
+    } else {
+        outputCardArray[0] = 4;
+        outputCardArray[1] = 2;
+        outputCardArray[2] = 3;
+        outputCardArray[3] = 4;
+    }
+    return outputCardArray;
+}
+
 -(int*) handle_4431 {
     int* outputCardArray = malloc(sizeof(int)*4);
     if([self nearGameEnd]) {
@@ -664,6 +692,42 @@ CASE_1234
         outputCardArray[0] = 4;
         outputCardArray[1] = 1;
         outputCardArray[2] = 3;
+        outputCardArray[3] = 4;
+    }
+    return outputCardArray;
+}
+
+-(int*) handle_4421 {
+    int* outputCardArray = malloc(sizeof(int)*4);
+    if([self nearGameEnd]) {
+        outputCardArray[0] = 4;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 1;
+        outputCardArray[3] = 2;
+        return outputCardArray;
+    }
+    NSMutableArray *templeArray = para.templeArray;
+    
+    int t4RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_4] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int t2RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_2] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+    
+    int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+    
+    if (t4RedCount_BlueGrey >= 2 && peepDiff[TEMPLE_4] <3) {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 4;
+        outputCardArray[3] = 2;
+        
+    } else if (t2RedCount_BlueGrey >= 2 && peepDiff[TEMPLE_2] <3) {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 4;
+        outputCardArray[2] = 2;
+        outputCardArray[3] = 4;
+    } else {
+        outputCardArray[0] = 4;
+        outputCardArray[1] = 1;
+        outputCardArray[2] = 2;
         outputCardArray[3] = 4;
     }
     return outputCardArray;

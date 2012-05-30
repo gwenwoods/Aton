@@ -85,8 +85,6 @@
     
     [atonGameEngine run];
     
-    //useAI = YES;
-    
 }
 
 - (void)viewDidUnload

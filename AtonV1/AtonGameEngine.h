@@ -25,7 +25,7 @@
   //  BOOL useAI;
     AtonPlacePeepExecutor *placePeepEngine;
     AtonRemovePeepExecutor *removePeepEngine;
-    AtonArrangeCardsExecutor *arrangeCardEngine;
+    AtonArrangeCardsExecutor *arrangeCardExecutor;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller;

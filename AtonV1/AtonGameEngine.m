@@ -28,7 +28,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para.templeArray:para.audioToDeath];
         placePeepEngine = [[AtonPlacePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
         removePeepEngine = [[AtonRemovePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
-        arrangeCardEngine = [[AtonArrangeCardsExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
+        arrangeCardExecutor = [[AtonArrangeCardsExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
     }
     return self;
 }
@@ -68,11 +68,18 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         
         if (useAI == YES) {
             int* newCardArray = malloc(sizeof(int)*4);
-            newCardArray = [arrangeCardEngine arrangeCard:[playerBlue getCardNumberArray]];
+            newCardArray = [playerBlue getCardNumberArray];
+            double animationTime = 0.0;
+            if ((newCardArray[0] + newCardArray[1] + newCardArray[2] + newCardArray[3]) <= 6) {
+                [playerBlue resetCard];
+                [playerBlue distributeCards];
+                animationTime = 3.0;
+            }
+            newCardArray = [arrangeCardExecutor arrangeCard:[playerBlue getCardNumberArray]];
             [playerBlue setCardNumberArray:newCardArray];
             para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
             gameManager.messagePlayerEnum = PLAYER_NONE;
-            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Compare Results" afterDelay:1.0];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Compare Results" afterDelay:1.0 + animationTime];
         } else {
             NSString *msg = @"|";
             msg = [msg stringByAppendingString:playerBlue.playerName];
