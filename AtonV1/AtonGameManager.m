@@ -30,7 +30,7 @@ static int DETAIL_FONT_SIZE = 20;
         
        // NSString *atonFont = @"Palatino";
        // NSString *atonFont = @"Optima";
-         NSString *atonFont = @"Cochin";
+        NSString *atonFont = @"Cochin";
         NSString *atonFontTitle = @"Cochin-Bold";
         
         gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
@@ -166,7 +166,7 @@ static int DETAIL_FONT_SIZE = 20;
         //---------------------------------
         finalResultView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         finalResultView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
-        finalResultView.hidden = YES;
+       // finalResultView.hidden = YES;
         finalResultView.userInteractionEnabled = YES;
         [baseView addSubview:finalResultView];
         
@@ -180,7 +180,7 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:finalResultLb];
         [finalResultView bringSubviewToFront:finalResultLb];
         
-        finalResultDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,168,400,80)];
+        finalResultDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,180,400,80)];
         finalResultDetailLb.backgroundColor = [UIColor clearColor];
         finalResultDetailLb.textAlignment = UITextAlignmentCenter;
         finalResultDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -190,6 +190,12 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:finalResultDetailLb];
         [finalResultView bringSubviewToFront:finalResultDetailLb];
 
+        UIButton *closeFinalButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        closeFinalButton.frame = CGRectMake(200,280,80,40);
+        [closeFinalButton setTitle:@"close"  forState:UIControlStateNormal];
+        [closeFinalButton addTarget:self action:@selector(closeFinalView:) forControlEvents:UIControlEventTouchUpInside];
+        [finalResultView addSubview:closeFinalButton];
+        
         //-----------
         quitView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
         quitView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
@@ -338,5 +344,9 @@ static int DETAIL_FONT_SIZE = 20;
                      } 
                      completion:^(BOOL finished){
                      }];
+}
+
+-(IBAction) closeFinalView :(id)sender {
+    finalResultView.hidden = YES;
 }
 @end

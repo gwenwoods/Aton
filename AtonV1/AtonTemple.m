@@ -353,6 +353,21 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
     return count;
 }
 
+-(int) findBlueAndGreyNumForOccupiedEnum:(int) occupiedEnum {
+    
+    int count = 0;
+    for (int j=0; j < 12; j++) {
+        TempleSlot *slot = [slotArray objectAtIndex:j];
+        if (slot.colorTypeEnum == GREY && slot.occupiedEnum == occupiedEnum) {
+            count++;    
+        } else if (slot.colorTypeEnum == BLUE && slot.occupiedEnum == occupiedEnum) {
+            count++;    
+        }
+    }
+    
+    return count;
+}
+
 -(int) findOccupiedSlotsNum {
     int count = 0;
     if (templeEnum == 0) {

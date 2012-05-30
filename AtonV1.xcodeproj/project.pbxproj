@@ -39,7 +39,6 @@
 		BD97408F154C9AD6003F4E8F /* Red_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97408D154C9AD6003F4E8F /* Red_icon.png */; };
 		BD974091154C9BCC003F4E8F /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974090154C9BCC003F4E8F /* chime.mp3 */; };
 		BD974093154CB86A003F4E8F /* OpenMusic_Aton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */; };
-		BDA7FF8E156E72E300B0E310 /* DeviceParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDA7FF8D156E72E300B0E310 /* DeviceParameters.cpp */; };
 		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
 		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
 		BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7122153A3BED001848F8 /* Blue_Card3.png */; };
@@ -198,8 +197,6 @@
 		BD97408D154C9AD6003F4E8F /* Red_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_icon.png; sourceTree = "<group>"; };
 		BD974090154C9BCC003F4E8F /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chime.mp3; sourceTree = "<group>"; };
 		BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = OpenMusic_Aton.mp3; sourceTree = "<group>"; };
-		BDA7FF8D156E72E300B0E310 /* DeviceParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeviceParameters.cpp; sourceTree = "<group>"; };
-		BDA7FF8F156E730200B0E310 /* DeviceParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceParameters.h; sourceTree = "<group>"; };
 		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
 		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
 		BDAE7122153A3BED001848F8 /* Blue_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card3.png; sourceTree = "<group>"; };
@@ -407,7 +404,6 @@
 		BD940B7F153A1F0400660B35 /* AtonV1 */ = {
 			isa = PBXGroup;
 			children = (
-				BDA7FF8C156E72AE00B0E310 /* DeviceClass */,
 				BDE325EC15601DD80013F733 /* EngineClass */,
 				BD16D22C153CE05900ED6DB9 /* TempleClass */,
 				BD16D228153CDB0400ED6DB9 /* GameClass */,
@@ -465,15 +461,6 @@
 				BD940B9A153A1F0500660B35 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BDA7FF8C156E72AE00B0E310 /* DeviceClass */ = {
-			isa = PBXGroup;
-			children = (
-				BDA7FF8D156E72E300B0E310 /* DeviceParameters.cpp */,
-				BDA7FF8F156E730200B0E310 /* DeviceParameters.h */,
-			);
-			name = DeviceClass;
 			sourceTree = "<group>";
 		};
 		BDAE7112153A2EEF001848F8 /* Images */ = {
@@ -889,7 +876,6 @@
 				BD7B4623156381260085AD43 /* AtonRemovePeepExecutor.m in Sources */,
 				BDB5929F1565DE680008B8AD /* AbstractExecutor.m in Sources */,
 				BD8B77021566BDA700D66B45 /* AtonArrangeCardsExecutor.m in Sources */,
-				BDA7FF8E156E72E300B0E310 /* DeviceParameters.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

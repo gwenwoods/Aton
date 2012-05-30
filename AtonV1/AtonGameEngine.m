@@ -304,7 +304,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             [ai removeOnePeepFromEachTemple:roundResult.lowerScorePlayer];
             
             gameManager.messagePlayerEnum = PLAYER_NONE;
-            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Scoring End" afterDelay:AFTER_PEEP_DELAY_TIME];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Scoring End" afterDelay:AFTER_PEEP_DELAY_TIME + AFTER_PEEP_DELAY_TIME];
         } else {
             int maxTemple = roundResult.firstTemple;
             if (roundResult.lowerScorePlayer == roundResult.secondPlayerEnum) {
