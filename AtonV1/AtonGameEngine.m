@@ -19,7 +19,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 @synthesize gameManager;
 @synthesize useAI;
 
--(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller {
+-(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime {
 	if (self) {
         para = parameter;
         gameManager = [[AtonGameManager alloc] initializeWithParameters:controller];
@@ -29,6 +29,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         placePeepEngine = [[AtonPlacePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
         removePeepEngine = [[AtonRemovePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
         arrangeCardExecutor = [[AtonArrangeCardsExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
+        audioPlayGame = atonAudioPlayGame;
+        audioChime = atonAudioChime;
     }
     return self;
 }
@@ -71,9 +73,13 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             newCardArray = [playerBlue getCardNumberArray];
             double animationTime = 0.0;
             if ((newCardArray[0] + newCardArray[1] + newCardArray[2] + newCardArray[3]) <= 6) {
-                [playerBlue resetCard];
-                [playerBlue distributeCards];
-                animationTime = 3.0;
+                if(playerBlue.exchangeCardsButton.hidden == NO) {
+                   playerBlue.scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
+                   [playerBlue resetCard];
+                   [playerBlue distributeCards];
+                   animationTime = 3.0;
+                    playerBlue.exchangeCardsButton.hidden = YES;
+                }
             }
             newCardArray = [arrangeCardExecutor arrangeCard:[playerBlue getCardNumberArray]];
             [playerBlue setCardNumberArray:newCardArray];
@@ -308,10 +314,10 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
         [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.lowerScorePlayer:4];
         if (useAI == YES && roundResult.lowerScorePlayer == PLAYER_BLUE) {
-            [ai removeOnePeepFromEachTemple:roundResult.lowerScorePlayer];
+            double animationTime = [ai removeOnePeepFromEachTemple:roundResult.lowerScorePlayer];
             
             gameManager.messagePlayerEnum = PLAYER_NONE;
-            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Scoring End" afterDelay:AFTER_PEEP_DELAY_TIME + AFTER_PEEP_DELAY_TIME];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Scoring End" afterDelay:animationTime + AFTER_PEEP_DELAY_TIME];
         } else {
             int maxTemple = roundResult.firstTemple;
             if (roundResult.lowerScorePlayer == roundResult.secondPlayerEnum) {
@@ -322,8 +328,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
             if (targetPlayerEnum == PLAYER_BLUE) {
                 occupiedEnum = OCCUPIED_BLUE;
             }
-            
-          //  NSMutableArray *eligibleSlotArray = [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+
             NSMutableArray *eligibleSlotArray = [TempleUtility findEligibleTempleSlots:templeArray:TEMPLE_4: occupiedEnum];
             int arrayNum = [eligibleSlotArray count];
             if (arrayNum == 0) {
@@ -814,6 +819,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 -(void) showFinalResult {
 
     NSString *msg = [self gameOverConditionSuper];
+    [audioPlayGame stop];
+    [audioChime play];
+    NSLog(@"game over ...");
     [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:0.0];
 }
 

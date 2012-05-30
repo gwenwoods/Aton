@@ -56,10 +56,10 @@
     
 
 
-    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/BG_sound.aiff", [[NSBundle mainBundle] resourcePath]]];
+    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_PlayBGMusic.wav", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayGame = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlayGame error:nil];
-	audioPlayGame.numberOfLoops = 1;
-    audioPlayGame.volume = 0.25;
+	audioPlayGame.numberOfLoops = 1000;
+    audioPlayGame.volume = 1.0;
     [audioPlayGame prepareToPlay];
     [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:2.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     
@@ -75,13 +75,19 @@
     audioTap.volume = 1.0;
     [audioTap prepareToPlay];
     
+    NSURL *urlChime = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
+	audioChime = [[AVAudioPlayer alloc] initWithContentsOfURL:urlChime error:nil];
+	audioChime.numberOfLoops = 0;
+    audioChime.volume = 0.5;
+    [audioChime prepareToPlay];
+    
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];
     atonParameters = [AtonGameInitializer initializeNewGame:self:playerRedName:playerBlueName:useAI];
     
     //--------------------------
     // initialize game engine
 
-    atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters:self];
+    atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters:self:audioPlayGame:audioChime];
     
     [atonGameEngine run];
     

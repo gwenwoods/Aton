@@ -190,9 +190,9 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:finalResultDetailLb];
         [finalResultView bringSubviewToFront:finalResultDetailLb];
 
-        UIButton *closeFinalButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        closeFinalButton.frame = CGRectMake(200,280,80,40);
-        [closeFinalButton setTitle:@"close"  forState:UIControlStateNormal];
+        UIButton *closeFinalButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        closeFinalButton.frame = CGRectMake(197,280,110,40);
+        [closeFinalButton setImage:[UIImage imageNamed:@"Button_Done.png"] forState:UIControlStateNormal];
         [closeFinalButton addTarget:self action:@selector(closeFinalView:) forControlEvents:UIControlEventTouchUpInside];
         [finalResultView addSubview:closeFinalButton];
         

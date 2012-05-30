@@ -155,12 +155,12 @@
     [blueNameButton addTarget:self action:@selector(setBlueName:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:blueNameButton];
     
-    useAIButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    useAIButton.frame = CGRectMake(601,40,200,80);
+    useAIButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    useAIButton.frame = CGRectMake(620,60,200,62);
     useAIButton.userInteractionEnabled = YES;
     useAIButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
-    [useAIButton setTitle:@"Human Player"  forState:UIControlStateNormal];
+    [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
     [useAIButton addTarget:self action:@selector(chooseAIPlayer:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:useAIButton];
     //----------
@@ -271,14 +271,14 @@
 -(IBAction) chooseAIPlayer:(id)sender {
     if (useAI) {
         useAI = NO;
-        [useAIButton setTitle:@"Human Player" forState:UIControlStateNormal];
+        [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
         blueName = @"Player Blue";
         blueNameButton.userInteractionEnabled = YES;
         [blueNameButton setTitle:blueName forState:UIControlStateNormal];
     } else {
         useAI = YES;
-        [useAIButton setTitle:@"AI Player" forState:UIControlStateNormal];
-        blueName = @"AI";
+        [useAIButton setImage:[UIImage imageNamed:@"Button_AI.png"]   forState:UIControlStateNormal];
+        blueName = @"A.I.";
         blueNameButton.userInteractionEnabled = NO;
         [blueNameButton setTitle:blueName forState:UIControlStateNormal];
     }

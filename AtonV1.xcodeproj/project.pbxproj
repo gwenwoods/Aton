@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD0CED05157697C90039F8BA /* Aton_PlayBGMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED04157697C90039F8BA /* Aton_PlayBGMusic.wav */; };
+		BD0CED131576A3DD0039F8BA /* Button_Human.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED111576A3DD0039F8BA /* Button_Human.png */; };
+		BD0CED151576A45F0039F8BA /* Button_AI.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED141576A45F0039F8BA /* Button_AI.png */; };
+		BD0CED171576A5CE0039F8BA /* Button_Done.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED161576A5CE0039F8BA /* Button_Done.png */; };
 		BD16D21D153BC91F00ED6DB9 /* AtonTouchMovedUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */; };
 		BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D220153C94BB00ED6DB9 /* TempleSlot.m */; };
 		BD16D224153CBF5A00ED6DB9 /* AtonTemple.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */; };
@@ -146,6 +150,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD0CED04157697C90039F8BA /* Aton_PlayBGMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Aton_PlayBGMusic.wav; sourceTree = "<group>"; };
+		BD0CED111576A3DD0039F8BA /* Button_Human.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Human.png; sourceTree = "<group>"; };
+		BD0CED141576A45F0039F8BA /* Button_AI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_AI.png; sourceTree = "<group>"; };
+		BD0CED161576A5CE0039F8BA /* Button_Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Done.png; sourceTree = "<group>"; };
 		BD16D21B153BC91F00ED6DB9 /* AtonTouchMovedUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchMovedUtility.h; sourceTree = "<group>"; };
 		BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchMovedUtility.m; sourceTree = "<group>"; };
 		BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleSlot.h; sourceTree = "<group>"; };
@@ -582,6 +590,7 @@
 			isa = PBXGroup;
 			children = (
 				BD55570F1570374600EC54CF /* OpenMusic_Aton_new.wav */,
+				BD0CED04157697C90039F8BA /* Aton_PlayBGMusic.wav */,
 				BDB58EAB1558D69A0084AAC4 /* page-flip-16.mp3 */,
 				BDEAF6B2155B84B9007BBC29 /* BG_sound.aiff */,
 				BDB58EA31558CA810084AAC4 /* egyptJungle.mp3 */,
@@ -648,6 +657,9 @@
 		BDF533F215573F03003BBA23 /* button_papyrus */ = {
 			isa = PBXGroup;
 			children = (
+				BD0CED141576A45F0039F8BA /* Button_AI.png */,
+				BD0CED111576A3DD0039F8BA /* Button_Human.png */,
+				BD0CED161576A5CE0039F8BA /* Button_Done.png */,
 				BDF533F7155740C9003BBA23 /* button_back.png */,
 				BDF533F8155740C9003BBA23 /* button_no.png */,
 				BDF533F9155740C9003BBA23 /* button_play.png */,
@@ -811,6 +823,10 @@
 				BDB58EAE1558DBB30084AAC4 /* button-50.wav in Resources */,
 				BDB58EB7155A41D10084AAC4 /* aton_CreditsPage_new.png in Resources */,
 				BDEAF6B3155B84B9007BBC29 /* BG_sound.aiff in Resources */,
+				BD0CED05157697C90039F8BA /* Aton_PlayBGMusic.wav in Resources */,
+				BD0CED131576A3DD0039F8BA /* Button_Human.png in Resources */,
+				BD0CED151576A45F0039F8BA /* Button_AI.png in Resources */,
+				BD0CED171576A5CE0039F8BA /* Button_Done.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

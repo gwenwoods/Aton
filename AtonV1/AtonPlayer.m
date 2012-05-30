@@ -72,9 +72,6 @@ static float DELAY_TIME = 0.25;
         doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         doneButton.frame = CGRectMake(8,240, 56, 56);
         doneButton.userInteractionEnabled = YES;
-      //  doneButton.alpha = 0.4;
-      //  [doneButton setTitle:@"Done"  forState:UIControlStateNormal];  
-     //   [doneButton setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         [scrollDoneIV addSubview:doneButton];
         
@@ -601,11 +598,10 @@ static float DELAY_TIME = 0.25;
     
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneAniHomeIV.frame];
-   // [animationIV setBackgroundColor:[UIColor whiteColor]];
     animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
     [baseView addSubview:animationIV]; 
      [baseView addSubview:scrollExchangeIV];
-  //  [audioScroll play];
+    [audioScroll play];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut
@@ -634,7 +630,7 @@ static float DELAY_TIME = 0.25;
     [baseView addSubview:scrollExchangeIV];
     
     scrollDoneIV.hidden = YES;
-   // [audioScroll play];
+    [audioScroll play];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationCurveEaseOut

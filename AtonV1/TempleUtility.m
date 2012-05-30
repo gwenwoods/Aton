@@ -125,7 +125,8 @@
         TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
         TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
         if (deathSlot == nil) {
-            [selectedSlot removePeep];
+           [selectedSlot removePeep];
+            //deathSlot = [[[templeArray objectAtIndex:TEMPLE_DEATH] slotArray] objectAtIndex:7];
             break;
         }
         [audioToDeath play];

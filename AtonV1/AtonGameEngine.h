@@ -19,6 +19,7 @@
 #import "AtonGameManager.h"
 
 @interface AtonGameEngine:NSObject {
+    
     AtonMessageMaster *messageMaster;
   //  AtonGameManager *gameManager;
     AtonAI *ai;
@@ -26,9 +27,11 @@
     AtonPlacePeepExecutor *placePeepEngine;
     AtonRemovePeepExecutor *removePeepEngine;
     AtonArrangeCardsExecutor *arrangeCardExecutor;
+    
+    AVAudioPlayer *audioPlayGame, *audioChime;
 }
 
--(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller;
+-(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime;
 -(void) run;
 -(void) playerDoneAction;
 

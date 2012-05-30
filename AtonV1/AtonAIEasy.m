@@ -11,8 +11,8 @@
 @implementation AtonAIEasy
 @synthesize audioToDeath;
 
-static double PLACE_PEEP_TIME = 1.5;
-static double REMOVE_PEEP_TIME = 1.5;
+static double PLACE_PEEP_TIME = 2.0;
+static double REMOVE_PEEP_TIME = 2.0;
 
 -(id)initializeWithParameters:(NSMutableArray*) atonTempleArray:(AVAudioPlayer*) atonAudioToDeath {
 	if (self) {
