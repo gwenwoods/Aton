@@ -23,6 +23,7 @@ static double REMOVE_PEEP_TIME = 1.5;
 }
 
 -(void) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum {
+    
     if (removeNum < 0) {
         [self removeOwnPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
     } else {

@@ -6,16 +6,13 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-
 #import "AtonAI.h"
 #import "TempleFunctionUtility.h"
-//#import "AtonTemple.h"
 
 @interface AtonAIEasy : AtonAI {
-    
-
     NSMutableArray *templeArray;
 }
 
 @property(strong, nonatomic) AVAudioPlayer *audioToDeath;
+
 @end

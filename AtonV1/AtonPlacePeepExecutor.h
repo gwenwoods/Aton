@@ -12,15 +12,12 @@
 #import "AtonMessageMaster.h"
 
 @interface AtonPlacePeepExecutor: AbstractExecutor {
-    
     AtonAI *ai;
     BOOL useAI;
     AtonGameManager *gameManager;
-    AtonMessageMaster *messageMaster;
-    
+    AtonMessageMaster *messageMaster;    
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
-//-(void) placePeep;
 -(void) placePeep:(int) gamePhaseEnum;
 @end
