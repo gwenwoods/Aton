@@ -27,8 +27,6 @@
     AtonPlacePeepExecutor *placePeepEngine;
     AtonRemovePeepExecutor *removePeepEngine;
     AtonArrangeCardsExecutor *arrangeCardExecutor;
-    
-    AVAudioPlayer *audioPlayGame, *audioChime;
 }
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime;

@@ -11,9 +11,10 @@
 @interface AtonGameManager : NSObject {
     UIImageView *gamePhaseTieIV, *helpTieIV ;
     UILabel *quitLb;
+    AVAudioPlayer *audioPlayGame, *audioChime;
 }
 
--(id)initializeWithParameters:(UIViewController*) viewController;
+-(id)initializeWithParameters:(UIViewController*) viewController:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime;
 -(void) showGamePhaseView:(NSString*) msg;
 -(void) showHelpView:(NSString*) msg;
 -(void) showFinalResultView:(NSString*) msg;

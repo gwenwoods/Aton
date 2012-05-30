@@ -56,7 +56,7 @@
     
 
 
-    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_PlayBGMusic.wav", [[NSBundle mainBundle] resourcePath]]];
+    NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_PlayBGMusic_loop.wav", [[NSBundle mainBundle] resourcePath]]];
 	audioPlayGame = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlayGame error:nil];
 	audioPlayGame.numberOfLoops = 1000;
     audioPlayGame.volume = 1.0;
@@ -78,7 +78,7 @@
     NSURL *urlChime = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
 	audioChime = [[AVAudioPlayer alloc] initWithContentsOfURL:urlChime error:nil];
 	audioChime.numberOfLoops = 0;
-    audioChime.volume = 0.5;
+    audioChime.volume = 1.5;
     [audioChime prepareToPlay];
     
     touchElement = [[AtonTouchElement alloc] initializeWithParameters:self];

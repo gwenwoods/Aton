@@ -22,15 +22,13 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 -(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime {
 	if (self) {
         para = parameter;
-        gameManager = [[AtonGameManager alloc] initializeWithParameters:controller];
+        gameManager = [[AtonGameManager alloc] initializeWithParameters:controller:atonAudioPlayGame:atonAudioChime];
         messageMaster = [[AtonMessageMaster alloc] initializeWithParameters:para];
         useAI = para.useAI;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para.templeArray:para.audioToDeath];
         placePeepEngine = [[AtonPlacePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
         removePeepEngine = [[AtonRemovePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
         arrangeCardExecutor = [[AtonArrangeCardsExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
-        audioPlayGame = atonAudioPlayGame;
-        audioChime = atonAudioChime;
     }
     return self;
 }
@@ -819,9 +817,6 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 -(void) showFinalResult {
 
     NSString *msg = [self gameOverConditionSuper];
-    [audioPlayGame stop];
-    [audioChime play];
-    NSLog(@"game over ...");
     [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:0.0];
 }
 

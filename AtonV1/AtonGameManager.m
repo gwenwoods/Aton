@@ -22,12 +22,13 @@
 static int TITLE_FONT_SIZE = 24;
 static int DETAIL_FONT_SIZE = 20;
 
--(id)initializeWithParameters:(UIViewController*) viewController {
+-(id)initializeWithParameters:(UIViewController*) viewController:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime {
     
     if (self) {
         controller = viewController;
         baseView = controller.view;
-        
+        audioPlayGame = atonAudioPlayGame;
+        audioChime = atonAudioChime;
        // NSString *atonFont = @"Palatino";
        // NSString *atonFont = @"Optima";
         NSString *atonFont = @"Cochin";
@@ -326,6 +327,9 @@ static int DETAIL_FONT_SIZE = 20;
 }
 
 -(void) showFinalResultView:(NSString*) msg {
+    
+    [audioPlayGame stop];
+    [audioChime play];
     
     NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
     finalResultLb.text = [messageArray objectAtIndex:0];

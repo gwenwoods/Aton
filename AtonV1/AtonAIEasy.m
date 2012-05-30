@@ -75,6 +75,7 @@ static double REMOVE_PEEP_TIME = 2.0;
 
 
 -(void) removeOpponentPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
+    NSLog(@"target player Enum %d  %d  %d", targetPlayerEnum, removeNum, maxTempleEnum);
     
     if (removeNum == 0) {
         return;
@@ -113,7 +114,11 @@ static double REMOVE_PEEP_TIME = 2.0;
             break;
         }
     }
-    
+    for (int i=0; i < [selectedSlotArray count]; i++) {
+        TempleSlot *slot = [selectedSlotArray objectAtIndex:i];
+        [slot select];
+    }
+    NSLog(@"removed count %d", [selectedSlotArray count]);
     [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
     [TempleUtility disableTemplesFlame:templeArray];
 }
