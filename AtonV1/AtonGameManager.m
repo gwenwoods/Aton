@@ -22,6 +22,7 @@
 static int TITLE_FONT_SIZE = 24;
 static int DETAIL_FONT_SIZE = 20;
 
+
 -(id)initializeWithParameters:(UIViewController*) viewController:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime {
     
     if (self) {
@@ -34,8 +35,11 @@ static int DETAIL_FONT_SIZE = 20;
         NSString *atonFont = @"Cochin";
         NSString *atonFontTitle = @"Cochin-Bold";
         
-        gamePhaseView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
-        gamePhaseView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+       // CGRect viewFrame = CGRectMake(200, 120, 618, 448);
+        CGRect viewFrame = CGRectMake(255,120,510, 448);
+        NSString *viewBgName = @"Aton_MessageScroll_new.png";
+        gamePhaseView = [[UIImageView alloc] initWithFrame:viewFrame];
+        gamePhaseView.image = [UIImage imageNamed:@"Aton_MessageScroll_new.png"];
         gamePhaseView.hidden = YES;
         [baseView addSubview:gamePhaseView];
         
@@ -83,8 +87,8 @@ static int DETAIL_FONT_SIZE = 20;
         [gamePhaseView addSubview:gamePhaseTieIV];
         
         //---------------------------------
-        helpView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
-        helpView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+        helpView = [[UIImageView alloc] initWithFrame:viewFrame];
+        helpView.image = [UIImage imageNamed:@"Aton_MessageScroll_new.png"];
         helpView.hidden = YES;
         [baseView addSubview:helpView];
         
@@ -131,8 +135,8 @@ static int DETAIL_FONT_SIZE = 20;
         [helpView addSubview:helpTieIV];
 
         //---------------------------------
-        exchangeCardsView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
-        exchangeCardsView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+        exchangeCardsView = [[UIImageView alloc] initWithFrame:viewFrame];
+        exchangeCardsView.image = [UIImage imageNamed:@"Aton_MessageScroll_new.png"];
         exchangeCardsView.hidden = YES;
         exchangeCardsView.userInteractionEnabled = YES;
         [baseView addSubview:exchangeCardsView];
@@ -165,8 +169,8 @@ static int DETAIL_FONT_SIZE = 20;
         [exchangeCardsView addSubview:exchangeNoButton];
 
         //---------------------------------
-        finalResultView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
-        finalResultView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+        finalResultView = [[UIImageView alloc] initWithFrame:viewFrame];
+        finalResultView.image = [UIImage imageNamed:@"Aton_MessageScroll_new.png"];
        // finalResultView.hidden = YES;
         finalResultView.userInteractionEnabled = YES;
         [baseView addSubview:finalResultView];
@@ -198,8 +202,8 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:closeFinalButton];
         
         //-----------
-        quitView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 120,510, 448)];
-        quitView.image = [UIImage imageNamed:@"Aton_MessageScroll.png"];
+        quitView = [[UIImageView alloc] initWithFrame:viewFrame];
+        quitView.image = [UIImage imageNamed:@"Aton_MessageScroll_new.png"];
         quitView.userInteractionEnabled = YES;
         quitView.hidden = YES;
         

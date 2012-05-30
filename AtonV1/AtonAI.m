@@ -16,7 +16,7 @@
     return self;
 }
 
--(void) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum{}
+-(double) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum{return 0;}
 -(double) placePeeps:(int)targetPlayerEnum:(int)placeNum:(int) maxTempleEnum{return 0;}
 -(double) removeOnePeepFromEachTemple:(int) playerEnum{return 0;}
 

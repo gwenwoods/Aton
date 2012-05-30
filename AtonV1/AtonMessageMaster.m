@@ -244,4 +244,11 @@
     msg = [msg stringByAppendingString:@"\n\n"];
     return  msg;
 }
+
+-(NSString*) getMessageForEnum:(int) msgEnum {
+    if (msgEnum == PLAYER_ARRANGE_CARD) {
+        return @"\n\n Please Arrange\n Your Card Placements";
+    }
+    return nil;
+}
 @end

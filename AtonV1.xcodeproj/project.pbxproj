@@ -11,6 +11,7 @@
 		BD0CED151576A45F0039F8BA /* Button_AI.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED141576A45F0039F8BA /* Button_AI.png */; };
 		BD0CED171576A5CE0039F8BA /* Button_Done.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED161576A5CE0039F8BA /* Button_Done.png */; };
 		BD0CED191576B5260039F8BA /* Aton_PlayBGMusic_loop.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED181576B5260039F8BA /* Aton_PlayBGMusic_loop.wav */; };
+		BD0CED1F1576D3130039F8BA /* Aton_MessageScroll_new.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED1E1576D3130039F8BA /* Aton_MessageScroll_new.png */; };
 		BD16D21D153BC91F00ED6DB9 /* AtonTouchMovedUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */; };
 		BD16D221153C94BB00ED6DB9 /* TempleSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D220153C94BB00ED6DB9 /* TempleSlot.m */; };
 		BD16D224153CBF5A00ED6DB9 /* AtonTemple.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16D223153CBF5A00ED6DB9 /* AtonTemple.m */; };
@@ -102,7 +103,6 @@
 		BDD3AE9515435E290013C89A /* Blue_CardBack_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AE9415435E290013C89A /* Blue_CardBack_stack.png */; };
 		BDD3AEA015476BA90013C89A /* TempleScoreResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AE9F15476BA90013C89A /* TempleScoreResult.m */; };
 		BDD3AEA71548F80E0013C89A /* aton_mainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */; };
-		BDD3AEAA154913080013C89A /* Aton_MessageScroll.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */; };
 		BDD3AEAC154913200013C89A /* Aton_CreditsPage.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */; };
 		BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AEAE15491F7C0013C89A /* CreditViewController.m */; };
 		BDD3AEB51549D2990013C89A /* rooster.aiff in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEB41549D2990013C89A /* rooster.aiff */; };
@@ -154,6 +154,7 @@
 		BD0CED141576A45F0039F8BA /* Button_AI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_AI.png; sourceTree = "<group>"; };
 		BD0CED161576A5CE0039F8BA /* Button_Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Done.png; sourceTree = "<group>"; };
 		BD0CED181576B5260039F8BA /* Aton_PlayBGMusic_loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Aton_PlayBGMusic_loop.wav; sourceTree = "<group>"; };
+		BD0CED1E1576D3130039F8BA /* Aton_MessageScroll_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_MessageScroll_new.png; sourceTree = "<group>"; };
 		BD16D21B153BC91F00ED6DB9 /* AtonTouchMovedUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonTouchMovedUtility.h; sourceTree = "<group>"; };
 		BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonTouchMovedUtility.m; sourceTree = "<group>"; };
 		BD16D21F153C94BB00ED6DB9 /* TempleSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleSlot.h; sourceTree = "<group>"; };
@@ -273,7 +274,6 @@
 		BDD3AE9E15476BA80013C89A /* TempleScoreResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleScoreResult.h; sourceTree = "<group>"; };
 		BDD3AE9F15476BA90013C89A /* TempleScoreResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleScoreResult.m; sourceTree = "<group>"; };
 		BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aton_mainBackground.png; sourceTree = "<group>"; };
-		BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_MessageScroll.png; sourceTree = "<group>"; };
 		BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_CreditsPage.png; sourceTree = "<group>"; };
 		BDD3AEAD15491F7B0013C89A /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
 		BDD3AEAE15491F7C0013C89A /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
@@ -475,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				BDB58EB6155A41D10084AAC4 /* aton_CreditsPage_new.png */,
+				BD0CED1E1576D3130039F8BA /* Aton_MessageScroll_new.png */,
 				BDF533F215573F03003BBA23 /* button_papyrus */,
 				BDB5CE901555EC1600F96A0F /* BlueFlamePng */,
 				BDB5CE721555E24D00F96A0F /* RedFlamePng */,
@@ -488,7 +489,6 @@
 				BDD3AEAB154913200013C89A /* Aton_CreditsPage.png */,
 				BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */,
 				BDF533F0155733A5003BBA23 /* rule_all_middle.png */,
-				BDD3AEA9154913080013C89A /* Aton_MessageScroll.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
 				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
 				BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */,
@@ -765,7 +765,6 @@
 				BDD3AE931543552D0013C89A /* Red_CardBack_stack.png in Resources */,
 				BDD3AE9515435E290013C89A /* Blue_CardBack_stack.png in Resources */,
 				BDD3AEA71548F80E0013C89A /* aton_mainBackground.png in Resources */,
-				BDD3AEAA154913080013C89A /* Aton_MessageScroll.png in Resources */,
 				BDD3AEAC154913200013C89A /* Aton_CreditsPage.png in Resources */,
 				BDD3AEB51549D2990013C89A /* rooster.aiff in Resources */,
 				BDD3AEB71549D2A50013C89A /* sheep.wav in Resources */,
@@ -827,6 +826,7 @@
 				BD0CED151576A45F0039F8BA /* Button_AI.png in Resources */,
 				BD0CED171576A5CE0039F8BA /* Button_Done.png in Resources */,
 				BD0CED191576B5260039F8BA /* Aton_PlayBGMusic_loop.wav in Resources */,
+				BD0CED1F1576D3130039F8BA /* Aton_MessageScroll_new.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,19 +22,21 @@ static double REMOVE_PEEP_TIME = 2.0;
     return self;
 }
 
--(void) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum {
+-(double) removePeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum {
     
+    double animationTime = 0.0;
     if (removeNum < 0) {
-        [self removeOwnPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
+        animationTime =[self removeOwnPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
     } else {
-        [self removeOpponentPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
+        animationTime =[self removeOpponentPeepsToDeathTemple:targetPlayerEnum:removeNum:maxTempleEnum];
     }
+    return animationTime;
 }
 
--(void) removeOwnPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
+-(double) removeOwnPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
     
     if (removeNum == 0) {
-        return;
+        return 0;
     } else if (removeNum < 0) {
         removeNum = -1 * removeNum;
     }
@@ -69,16 +71,24 @@ static double REMOVE_PEEP_TIME = 2.0;
         }
     }
     
-    [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
-    [TempleUtility disableTemplesFlame:templeArray];
+    for (int i=0; i < [selectedSlotArray count]; i++) {
+        TempleSlot *slot = [selectedSlotArray objectAtIndex:i];
+        [slot select];
+    }
+    [self performSelector:@selector(removeSelectedSlotsToDeathAndTempleFlame:) withObject:selectedSlotArray afterDelay:REMOVE_PEEP_TIME];
+
+  //  [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
+  //  [TempleUtility disableTemplesFlame:templeArray];
+    
+    return REMOVE_PEEP_TIME;
 }
 
 
--(void) removeOpponentPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
+-(double) removeOpponentPeepsToDeathTemple:(int)targetPlayerEnum:(int)removeNum:(int) maxTempleEnum  {
     NSLog(@"target player Enum %d  %d  %d", targetPlayerEnum, removeNum, maxTempleEnum);
     
     if (removeNum == 0) {
-        return;
+        return 0;
     }
     
     int occupiedEnum = OCCUPIED_RED;
@@ -119,8 +129,12 @@ static double REMOVE_PEEP_TIME = 2.0;
         [slot select];
     }
     NSLog(@"removed count %d", [selectedSlotArray count]);
-    [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
-    [TempleUtility disableTemplesFlame:templeArray];
+    
+    [self performSelector:@selector(removeSelectedSlotsToDeathAndTempleFlame:) withObject:selectedSlotArray afterDelay:REMOVE_PEEP_TIME];
+    
+    //[TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
+    //[TempleUtility disableTemplesFlame:templeArray];
+    return  REMOVE_PEEP_TIME;
 }
 
 
@@ -367,6 +381,12 @@ static double REMOVE_PEEP_TIME = 2.0;
 
 -(void) removeSelectedSlotsAndTempleFlame:(NSMutableArray*) selectedSlotArray {
     [TempleUtility removePeepsToSupply:templeArray:selectedSlotArray];
+    [TempleUtility disableTemplesFlame:templeArray];
+    
+}
+
+-(void) removeSelectedSlotsToDeathAndTempleFlame:(NSMutableArray*) selectedSlotArray {
+    [TempleUtility removePeepsToDeathTemple:templeArray:selectedSlotArray:audioToDeath];
     [TempleUtility disableTemplesFlame:templeArray];
     
 }

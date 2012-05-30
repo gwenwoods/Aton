@@ -61,7 +61,7 @@
 	audioPlayGame.numberOfLoops = 1000;
     audioPlayGame.volume = 1.0;
     [audioPlayGame prepareToPlay];
-    [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:2.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    [self performSelector:@selector(playGameMusic) withObject:nil afterDelay:4.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     
     NSURL *urlPlacePeep = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/switch-22.aiff", [[NSBundle mainBundle] resourcePath]]];
 	audioPlacePeep = [[AVAudioPlayer alloc] initWithContentsOfURL:urlPlacePeep error:nil];
