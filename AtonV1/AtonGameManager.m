@@ -205,6 +205,7 @@ static int DETAIL_FONT_SIZE = 20;
         welcomeView = [[UIImageView alloc] initWithFrame:viewFrame];
         welcomeView.image = [UIImage imageNamed:viewBgName];
         welcomeView.userInteractionEnabled = YES;
+        welcomeView.hidden = YES;
         [baseView addSubview:welcomeView];
         
         UILabel *welcomeLb = [[UILabel alloc] initWithFrame:CGRectMake(52,160,400,48)];
@@ -214,7 +215,7 @@ static int DETAIL_FONT_SIZE = 20;
         welcomeLb.numberOfLines = 2;     
         welcomeLb.textColor = [UIColor blackColor];
         welcomeLb.font = [UIFont fontWithName:atonFont size:20];
-        welcomeLb.text = @"Welcome to ancient Egypt";
+        welcomeLb.text = @"Welcome to ancient Egypt\n\n You are the highest priest of Son God";
         [welcomeView addSubview:welcomeLb];
         [welcomeView bringSubviewToFront:welcomeLb];
         
