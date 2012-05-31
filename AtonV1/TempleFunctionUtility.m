@@ -34,15 +34,19 @@
     for (int j=0; j < 12; j++) {
         TempleSlot *slot = [templeSlotArray objectAtIndex:j];
         if (slot.colorTypeEnum == colorTypeEnum && slot.occupiedEnum == OCCUPIED_EMPTY) {
-            [selectedSlotArray addObject:slot];
+            
             if ([slot isSelected]) {
                 continue;
+            } else {
+                [selectedSlotArray addObject:slot];
+                [slot select];
+                count++;
             }
-            [slot selectOrDeselectSlot];
-            count++;
-            if ([selectedSlotArray count] == requiredSlotNum) {
-                break;
-            }
+            
+        }
+        
+        if ([selectedSlotArray count] == requiredSlotNum) {
+            break;
         }
     }
     

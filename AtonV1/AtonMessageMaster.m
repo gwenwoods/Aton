@@ -14,8 +14,8 @@
 static NSString *REMOVE_TEMPLE_COUNTERS = @"Remove Temple Counters|";
 static NSString *CARD_2_RESULT = @"Card 2 Result|";
 static NSString *CARD_4_RESULT = @"Card 4 Result|";
-static NSString *RED_SPACE = @"red ";
-static NSString *BLUE_SPACE = @"blue ";
+static NSString *RED_SPACE = @"Red ";
+static NSString *BLUE_SPACE = @"Blue ";
 static NSString *COUNTER = @"counter";
 static NSString *REMOVE_N = @"\n\n Remove %i ";
 static NSString *PLACE_N = @"\n\n Place %i ";
@@ -237,8 +237,9 @@ static NSString *PLACE_N = @"\n\n Place %i ";
     
     NSString *msg = result.resultName;
     msg = [msg stringByAppendingString:@"|"];
+    
     if (result.winningPlayerEnum == PLAYER_NONE) {
-        msg = [self getMessageForEnum:MSG_TIE];
+        msg = [msg stringByAppendingString:[self getMessageForEnum:MSG_TIE]];
         return msg;
     }
     
@@ -271,10 +272,10 @@ static NSString *PLACE_N = @"\n\n Place %i ";
         return @"Black Square Score";
         
     } else if (resultEnum == SCORE_ORANGE_BONUS_RED) {
-        return @"Orange Square Bonus for Red";
+        return @"Orange Bonus for Red";
         
     } else if (resultEnum == SCORE_ORANGE_BONUS_BLUE) {
-        return @"Orange Square Bonus for Blue";
+        return @"Orange Bonus for Blue";
         
     }
     
@@ -290,7 +291,7 @@ static NSString *PLACE_N = @"\n\n Place %i ";
         return @"Compare Results";
         
     } else if (msgEnum == MSG_TIE) {
-        return @"TIE\n No player gains point";
+        return @"TIE\n\n No player gains point";
         
     } else if (msgEnum == MSG_NO_PEEP_TO_REMOVE) {
         return @"|No available counter\n to remove\n";
@@ -308,7 +309,7 @@ static NSString *PLACE_N = @"\n\n Place %i ";
         return @"Kingdom of the Dead is full\n\n Scoring Phase begins";
         
     } else if (msgEnum == MSG_TURN_END) {
-        return @"Turn Ends";
+        return @"End of Turn";
         
     } else if (msgEnum == MSG_NEW_ROUND_BEGIN) {
         return @"New Round Begins";

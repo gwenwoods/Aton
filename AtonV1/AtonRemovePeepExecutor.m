@@ -120,13 +120,13 @@ static float MESSAGE_DELAY_TIME = 0.2;
         [TempleUtility removePeepsToDeathTemple:templeArray:eligibleSlotArray:para.audioToDeath];
       //  NSString *msg = @"|All Eligible\n Peeps Removed\n";
        if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
-           [TempleUtility disableTemplesFlame:[para templeArray]];
+           //[TempleUtility disableTemplesFlame:[para templeArray]];
            NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
            gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
         
         } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
-            [TempleUtility disableTemplesFlame:[para templeArray]];
+            //[TempleUtility disableTemplesFlame:[para templeArray]];
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];

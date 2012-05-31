@@ -171,6 +171,7 @@ static double REMOVE_PEEP_TIME = 2.0;
     //--------------------------
     // Place on other colors
     int* peepDiff = [TempleUtility findPeepDiffEachTemple:templeArray];
+    // peepDiff: Blue-Red
     
     AtonTemple *deathTemple = [templeArray objectAtIndex:0];
     int deathCount = [deathTemple findOccupiedSlotsNum]; 
