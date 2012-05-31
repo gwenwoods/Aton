@@ -294,13 +294,13 @@ static NSString *PLACE_N = @"\n\n Place %i ";
         return @"TIE\n\n No player gains point";
         
     } else if (msgEnum == MSG_NO_PEEP_TO_REMOVE) {
-        return @"|No available counter\n to remove\n";
+        return @"|No counter to remove\n";
         
     } else if (msgEnum == MSG_ALL_PEEPS_REMOVED) {
-        return @"|All counters removed\n";
+        return @"|All available counters removed\n";
         
     }  else if (msgEnum == MSG_NO_SQUARE_TO_PLACE) {
-        return @"|No available square\n to place counter\n";
+        return @"|No space available\n to place counter\n";
         
     } else if (msgEnum == MSG_ALL_SQUARE_FILLED) {
         return @"|All available sqares\n filled with counters\n";
