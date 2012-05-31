@@ -186,38 +186,42 @@ static double REMOVE_PEEP_TIME = 2.0;
         AtonTemple *temple = [templeArray objectAtIndex:i];
         
         int startingCount = [selectedSlotArray count];
+        startingCount+=0;
         int newPeepsCount = 0;
         
         newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
-        if ((startingCount + newPeepsCount) == placeNum) {
+        if ((startingCount + newPeepsCount) >= placeNum) {
+            // NOTE: this should always be ==, not >=
+            // BUT in case of time deplay problem,
+            // we use >= to minimize the potential bugs
             break;
         } else if((peepDiff[i] + newPeepsCount) >= 3) {
             continue;
         }
         
         newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_2:placeNum];
-        if ((startingCount + newPeepsCount) == placeNum) {
+        if ((startingCount + newPeepsCount) >= placeNum) {
             break;
         } else if((peepDiff[i] + newPeepsCount) >= 3) {
             continue;
         }
 
         newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_1:placeNum];
-        if ((startingCount + newPeepsCount) == placeNum) {
+        if ((startingCount + newPeepsCount) >= placeNum) {
             break;
         } else if((peepDiff[i] + newPeepsCount) >= 3) {
             continue;
         }
 
         newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:YELLOW:placeNum];
-        if ((startingCount + newPeepsCount) == placeNum) {
+        if ((startingCount + newPeepsCount) >= placeNum) {
             break;
         } else if((peepDiff[i] + newPeepsCount) >= 3) {
             continue;
         }
 
         newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREEN:placeNum];
-        if ((startingCount + newPeepsCount) == placeNum) {
+        if ((startingCount + newPeepsCount) >= placeNum) {
             break;
         } else if((peepDiff[i] + newPeepsCount) >= 3) {
             continue;
@@ -231,31 +235,32 @@ static double REMOVE_PEEP_TIME = 2.0;
             AtonTemple *temple = [templeArray objectAtIndex:i];
             
             int startingCount = [selectedSlotArray count];
+            startingCount+=0;
             int newPeepsCount = 0;
             
             newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
-            if ((startingCount + newPeepsCount) == placeNum) {
+            if ((startingCount + newPeepsCount) >= placeNum) {
                 break;
             }
             
             newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_2:placeNum];
-            if ((startingCount + newPeepsCount) == placeNum) {
+            if ((startingCount + newPeepsCount) >= placeNum) {
                 break;
             } 
             
             newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_1:placeNum];
-            if ((startingCount + newPeepsCount) == placeNum) {
+            if ((startingCount + newPeepsCount) >= placeNum) {
                 break;
             }
             
             newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:YELLOW:placeNum];
-            if ((startingCount + newPeepsCount) == placeNum) {
+            if ((startingCount + newPeepsCount) >= placeNum) {
                 break;
             }
             
             
             newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREEN:placeNum];
-            if ((startingCount + newPeepsCount) == placeNum) {
+            if ((startingCount + newPeepsCount) >= placeNum) {
                 break;
             } 
         }

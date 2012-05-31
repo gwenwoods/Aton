@@ -10,6 +10,16 @@
 
 @implementation TempleUtility
 
+/*
+static NSString *TEMPLE_1_SCORE = @"Temple 1 Score";
+static NSString *TEMPLE_2_SCORE = @"Temple 2 Score";
+static NSString *TEMPLE_3_SCORE = @"Temple 3 Score";
+static NSString *TEMPLE_4_SCORE = @"Temple 4 Score";
+static NSString *BLACK_SQUARE_SCORE = @"Black Square Score";
+static NSString *ORANGE_SQUARE_BONUS_RED = @"Orange Square Bonus for Red";
+static NSString *ORANGE_SQUARE_BONUS_BLUE = @"Orange Square Bonus for Blue";*/
+
+
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray {
     // only for temple 1 - temple 4
     for (int i=1; i< [templeArray count]; i++) {
@@ -126,8 +136,10 @@
         TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
         if (deathSlot == nil) {
            [selectedSlot removePeep];
+             NSLog(@"remove to death -- death full");
             //deathSlot = [[[templeArray objectAtIndex:TEMPLE_DEATH] slotArray] objectAtIndex:7];
-            break;
+            continue;
+           
         }
         [audioToDeath play];
         // create animation IV
@@ -256,14 +268,6 @@
         }
     }
     return YES;
- /*   for (int i=0; i<[requiredTempleEnumArray count]; i++) {
-        NSNumber *requiredTempleEnum = [requiredTempleEnumArray objectAtIndex:i];
-        if ([selectedPeepTempleEnumArray containsObject:requiredTempleEnum]==NO) {
-            return NO;
-        }
-    }
-
-    return YES;*/
 }
 
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray {
@@ -318,7 +322,7 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Temple 1 ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_TEMPLE_1];
     
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
@@ -347,7 +351,7 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Temple 2 ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_TEMPLE_2];
     
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
@@ -375,7 +379,7 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Temple 3 ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_TEMPLE_3];
     
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
@@ -406,7 +410,7 @@
     }
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Temple 4 ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_TEMPLE_4];
     
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
@@ -461,7 +465,7 @@
     
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Grey Bonus ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_GREY_BONUS];
     
     if (redCount > blueCount) {
         result.winningPlayerEnum = PLAYER_RED;
@@ -498,7 +502,7 @@
     
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Orange Bonus For Red ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_ORANGE_BONUS_RED];
     
     result.winningPlayerEnum = PLAYER_RED;
     result.winningScore = points;
@@ -527,7 +531,7 @@
     
     
     TempleScoreResult *result = [[TempleScoreResult alloc] init];
-    result.resultName = @"Orange Bonus For Blue ";
+    result.resultName = [AtonMessageMaster getTempleScoreResultName:SCORE_ORANGE_BONUS_BLUE];
     
     result.winningPlayerEnum = PLAYER_BLUE;
     result.winningScore = points;
@@ -596,30 +600,14 @@
     } else {
         return PLAYER_NONE;
     }
-   // if (redCount == 12 || blueCount == 12) {
-   //     return YES;
-   // }
-   // return NO;
 }
 
 +(void) enableActiveTemplesFlame: (NSMutableArray*) templeArray:(int) playerEnum:(int) maxTempleEnum {
-    
-  //  UIColor *color = [UIColor redColor];
-    
-  //  if (playerEnum == PLAYER_BLUE) {
-  //      color = [UIColor blueColor];
-  //  }
-    
+
     for (int i=TEMPLE_1; i<= maxTempleEnum; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-       // [temple.iv.layer setBorderColor:color.CGColor];
         [temple enableTempleFlame:playerEnum];
-     //   for (int j=0; j<12; j++) {
-      //      TempleSlot *slot = [[temple slotArray] objectAtIndex:j];
-      //      [slot.boundaryIV.layer setBorderColor:color.CGColor];   
-       // }
     }
-    
 }
 
 +(void) disableTemplesFlame: (NSMutableArray*) templeArray {

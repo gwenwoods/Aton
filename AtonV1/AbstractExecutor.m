@@ -10,7 +10,7 @@
 
 @implementation AbstractExecutor
 
-
+/*
 
 -(NSString*) gameOverConditionSuper {
     
@@ -100,5 +100,5 @@
     msg = [msg stringByAppendingString:[NSString stringWithFormat:@"Player Blue: %i \n", blueScore]];
     return msg;
 }
-
+*/
 @end

@@ -52,7 +52,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     int arrayNum = [eligibleSlotArray count];
     if ([eligibleSlotArray count] == 0) {
         [TempleUtility disableAllTempleSlotInteraction:templeArray];
-        NSString *msg = @"|No Available Space\n to Place Peep\n";
+        NSString *msg = [messageMaster getMessageForEnum:MSG_NO_SQUARE_TO_PLACE];
 
         if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
             gameManager.messagePlayerEnum = firstPlayerEnum;
@@ -81,7 +81,8 @@ static float MESSAGE_DELAY_TIME = 0.2;
         }
         [TempleUtility disableAllTempleSlotInteraction:[para1 templeArray]];
             
-        NSString *msg = @"|All Eligible Spaces\n Filled With Peeps\n";
+        NSString *msg = [messageMaster getMessageForEnum:MSG_ALL_SQUARE_FILLED];
+      //  NSString *msg = @"|All Available Spaces\n Filled With Peeps\n";
         if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
             gameManager.messagePlayerEnum = para1.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
@@ -137,25 +138,20 @@ static float MESSAGE_DELAY_TIME = 0.2;
 
 -(void) checkRoundEnd {
     
-  //  [self disableTempleSlotForInteractionAndFlame];
-    if ([self gameOverConditionSuper] != nil) {
-        [gameManager performSelector:@selector(showFinalResultView:) withObject:[self gameOverConditionSuper] afterDelay:0.0];
+    if ([gameManager gameOverConditionSuper] != nil) {
+        [gameManager performSelector:@selector(showFinalResultView:) withObject:[gameManager gameOverConditionSuper] afterDelay:0.0];
         
     } else if ([TempleUtility isDeathTempleFull:[para1 templeArray]]) {
-        //   [TempleUtility clearDeathTemple:[para templeArray]];
         para1.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[para1 templeArray]];
-        
         para1.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
         gameManager.messagePlayerEnum = PLAYER_NONE;
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Death Temple Full\n Scoring Phase Begin" afterDelay: AFTER_PEEP_DELAY_TIME];
-        //[self run];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_DEAD_KINGDOM_FULL] afterDelay: AFTER_PEEP_DELAY_TIME];
+        
     } else {
         gameManager.messagePlayerEnum = PLAYER_NONE;
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:@"Round End" afterDelay:AFTER_PEEP_DELAY_TIME];
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_TURN_END] afterDelay:AFTER_PEEP_DELAY_TIME];
         
     }
-    
 }
-
 
 @end

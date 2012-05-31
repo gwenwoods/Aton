@@ -11,6 +11,8 @@
 #import "AtonTemple.h"
 #import "TempleScoreResult.h"
 #import "AtonPlayer.h"
+#import "AtonMessageMaster.h"
+
 
 @interface TempleUtility : NSObject
 
@@ -29,8 +31,6 @@
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;
 +(int) findPeepNumInTemple:(AtonTemple*) temple: (int) occupiedEnum;
 
-//+(BOOL) isYellowFull:(NSMutableArray*) templeArray;
-//+(int) isGreenFull:(NSMutableArray*) templeArray;
 +(int) findTempleFullWinner:(NSMutableArray*) templeArray:(int) templeEnum;
 +(int) findColorFullWinner:(NSMutableArray*) templeArray:(int) targetColorEnum;
 
@@ -38,8 +38,5 @@
 +(void) disableTemplesFlame: (NSMutableArray*) templeArray;
 +(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 +(int*) findPeepDiffEachTemple: (NSMutableArray*) templeArray;
-//+(TempleScoreResult*) computeScoreTemple1:(AtonTemple*) temple;
-//+(TempleScoreResult*) computeScoreTemple2:(AtonTemple*) temple;
-//+(TempleScoreResult*) computeScoreTemple3:(AtonTemple*) temple;
-//+(TempleScoreResult*) computeScoreTemple4:(NSMutableArray*) templeArray;
+
 @end
