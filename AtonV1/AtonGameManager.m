@@ -238,7 +238,7 @@ static int DETAIL_FONT_SIZE = 20;
         quitLb.numberOfLines = 8;     
         quitLb.textColor = [UIColor blackColor];
         quitLb.font = [UIFont fontWithName:atonFont size:20];
-        quitLb.text = @"Do You Want to Quit Now? \n\n";
+        quitLb.text = @"Do you want to quit now? \n\n";
         [quitView addSubview:quitLb];
         [quitView bringSubviewToFront:quitLb];
         
