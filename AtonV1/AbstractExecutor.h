@@ -15,6 +15,4 @@
     AtonGameParameters *para1;
 }
 
-//-(NSString*) gameOverConditionSuper;
-
 @end

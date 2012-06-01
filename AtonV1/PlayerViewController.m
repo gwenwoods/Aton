@@ -196,7 +196,11 @@
 }
 
 -(IBAction) backToMenu:(id)sender {
-    [audioEnterName stop];
+    if (audioEnterName.isPlaying){
+        [audioEnterName stop];
+    } else {
+        audioEnterName = nil;
+    }
     [delegatePlayerView dismissPlayerViewWithAnimation:self];
 }
 
@@ -210,7 +214,7 @@
     {
         [audioEnterName stop];
 
-       // [self performSelector:@selector(fadeVolumeDownQuick:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+      //  [self performSelector:@selector(fadeVolumeDownQuick:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     } else {
         audioEnterName = nil;
     }

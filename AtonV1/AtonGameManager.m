@@ -149,7 +149,7 @@ static int DETAIL_FONT_SIZE = 20;
         exchangeCardsLb.numberOfLines = 8;     
         exchangeCardsLb.textColor = [UIColor blackColor];
         exchangeCardsLb.font = [UIFont fontWithName:atonFont size:20];
-        exchangeCardsLb.text = @"You Can Exchange Cards\n Once Per Game.\n Exchange Now?";
+        exchangeCardsLb.text = @"You can exchange cards\n once per game.\n Exchange now?";
         [exchangeCardsView addSubview:exchangeCardsLb];
         [exchangeCardsView bringSubviewToFront:exchangeCardsLb];
 
