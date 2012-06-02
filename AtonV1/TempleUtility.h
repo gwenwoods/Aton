@@ -25,7 +25,7 @@
 +(TempleSlot*) findFirstAvailableDeathSpot:(NSMutableArray*) templeArray;
 +(BOOL) isDeathTempleFull:(NSMutableArray*) templeArray;
 +(void) clearDeathTemple:(NSMutableArray*) templeArray;
-+(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots:(AVAudioPlayer*) audioToDeath;
++(double) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots:(AVAudioPlayer*) audioToDeath;
 +(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(BOOL) isSelectedOneFromEachTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots;
 +(NSMutableArray*) computeAllTempleScore:(NSMutableArray*) templeArray;

@@ -10,7 +10,7 @@
 
 @implementation AtonAI
 
--(id)initializeWithParameters:(NSMutableArray*) atonTempleArray:(AVAudioPlayer*) atonAudioToDeath {
+-(id)initializeWithParameters:(AtonGameParameters*)atonPara {
     if (self) {
     }
     return self;

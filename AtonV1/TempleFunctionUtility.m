@@ -29,6 +29,10 @@
 
 +(int) addTempleColorSlotForPlace1:(AtonTemple*) temple:(NSMutableArray*) selectedSlotArray:(int) colorTypeEnum:(int) requiredSlotNum {
     
+    if ([selectedSlotArray count] >= requiredSlotNum) {
+        return 0;
+    }
+    
     int count = 0;
     NSMutableArray *templeSlotArray = [temple slotArray];
     for (int j=0; j < 12; j++) {

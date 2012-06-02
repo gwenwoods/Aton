@@ -12,7 +12,7 @@
 #import "AtonPlayer.h"
 
 @interface AbstractExecutor : NSObject {
-    AtonGameParameters *para1;
+ //   AtonGameParameters *para1;
 }
 
 @end

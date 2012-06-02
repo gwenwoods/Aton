@@ -407,4 +407,33 @@ static int colorEnumArray_temple4[12] = {YELLOW, YELLOW, YELLOW, ORANGE_2, GREY,
     }
     return count;
 }
+
+-(BOOL) wonByPlayer:(int) playerEnum {
+    
+    int redCount = 0;
+    int blueCount = 0;
+    
+    for (int i=0; i < 12; i++) {
+        TempleSlot *slot = [slotArray objectAtIndex:i];
+        if (slot.occupiedEnum == OCCUPIED_RED) {
+            redCount ++;
+        } else if (slot.occupiedEnum == OCCUPIED_BLUE) {
+            blueCount ++;
+        }
+    }
+    
+    if (playerEnum == 0) {
+        if (redCount > blueCount) {
+            return YES;
+        } else {
+            return NO;
+        }
+    } else {
+        if(blueCount > redCount) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
 @end

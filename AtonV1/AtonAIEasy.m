@@ -14,10 +14,11 @@
 static double PLACE_PEEP_TIME = 2.0;
 static double REMOVE_PEEP_TIME = 2.0;
 
--(id)initializeWithParameters:(NSMutableArray*) atonTempleArray:(AVAudioPlayer*) atonAudioToDeath {
+-(id)initializeWithParameters:(AtonGameParameters*)atonPara {
 	if (self) {
-        templeArray = atonTempleArray;
-        audioToDeath = atonAudioToDeath;
+        para = atonPara;
+        templeArray = para.templeArray;
+        audioToDeath = para.audioToDeath;
     }
     return self;
 }
@@ -140,6 +141,11 @@ static double REMOVE_PEEP_TIME = 2.0;
 
 -(double) placePeeps:(int)targetPlayerEnum:(int)placeNum:(int) maxTempleEnum  {
     
+    int secondPlayerEnum = para.atonRoundResult.secondPlayerEnum;
+    BOOL isSecondPlayer = targetPlayerEnum == secondPlayerEnum;
+    BOOL isDeathFull = [TempleUtility isDeathTempleFull:templeArray];
+    
+    
     [TempleUtility deselectAllTempleSlots:templeArray];
 
     int occupiedEnum = OCCUPIED_RED;
@@ -150,16 +156,25 @@ static double REMOVE_PEEP_TIME = 2.0;
     NSMutableArray *selectedSlotArray = [[NSMutableArray alloc]init];
     
     //-------------------------
-    // Place on BLUE square first
+    // Place on BLUE and GREY square first
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
+        if (isDeathFull && isSecondPlayer && [temple wonByPlayer:targetPlayerEnum]) {
+            continue;
+        }
+        
         [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:BLUE:placeNum];
-        if ([selectedSlotArray count] == placeNum) {
+        if ([selectedSlotArray count] >= placeNum) {
+            break;
+        }
+        
+        [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
+        if ([selectedSlotArray count] >= placeNum) {
             break;
         }
     }
     
-    if ([selectedSlotArray count] == placeNum) {
+    if ([selectedSlotArray count] >= placeNum) {
         for (int i=0; i < [selectedSlotArray count]; i++) {
             TempleSlot *selectedSlot = [selectedSlotArray objectAtIndex:i];
             [selectedSlot select];
@@ -178,19 +193,23 @@ static double REMOVE_PEEP_TIME = 2.0;
     
     for (int i=maxTempleEnum; i>= TEMPLE_1; i--) {
         
+         AtonTemple *temple = [templeArray objectAtIndex:i];
+        
+        if (isDeathFull && isSecondPlayer && [temple wonByPlayer:targetPlayerEnum]) {
+            continue;
+        }
+        
         if (peepDiff[i] >= 3) {
             continue;
         } else if (deathCount == 7 && (peepDiff[i] + placeNum) < 0) {
             continue;
         }
         
-        AtonTemple *temple = [templeArray objectAtIndex:i];
-        
         int startingCount = [selectedSlotArray count];
         startingCount+=0;
         int newPeepsCount = 0;
         
-        newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
+   /*     newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:GREY:placeNum];
         if ((startingCount + newPeepsCount) >= placeNum) {
             // NOTE: this should always be ==, not >=
             // BUT in case of time deplay problem,
@@ -198,7 +217,7 @@ static double REMOVE_PEEP_TIME = 2.0;
             break;
         } else if((peepDiff[i] + newPeepsCount) >= 3) {
             continue;
-        }
+        }*/
         
         newPeepsCount += [TempleFunctionUtility addTempleColorSlotForPlace1:temple:selectedSlotArray:ORANGE_2:placeNum];
         if ((startingCount + newPeepsCount) >= placeNum) {

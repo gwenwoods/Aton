@@ -19,6 +19,8 @@ static NSString *BLACK_SQUARE_SCORE = @"Black Square Score";
 static NSString *ORANGE_SQUARE_BONUS_RED = @"Orange Square Bonus for Red";
 static NSString *ORANGE_SQUARE_BONUS_BLUE = @"Orange Square Bonus for Blue";*/
 
+double static PEEP_TO_DEATH_TIME = 0.5;
+
 
 +(void) deselectAllTempleSlots:(NSMutableArray*) templeArray {
     // only for temple 1 - temple 4
@@ -130,7 +132,7 @@ static NSString *ORANGE_SQUARE_BONUS_BLUE = @"Orange Square Bonus for Blue";*/
     }
 }
 
-+(void) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots:(AVAudioPlayer*) audioToDeath {
++(double) removePeepsToDeathTemple:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots:(AVAudioPlayer*) audioToDeath {
     for (int i=0; i < [allSelectedSlots count]; i++) {
         TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
         TempleSlot *deathSlot = [TempleUtility findFirstAvailableDeathSpot:templeArray];
@@ -153,7 +155,7 @@ static NSString *ORANGE_SQUARE_BONUS_BLUE = @"Orange Square Bonus for Blue";*/
         deathSlot.peepIV.alpha = 0.0;
         [selectedSlot removePeep];
         
-        [UIView animateWithDuration:0.5
+        [UIView animateWithDuration:PEEP_TO_DEATH_TIME
                               delay:0.0
                             options: UIViewAnimationCurveEaseOut
                          animations:^{
@@ -166,6 +168,8 @@ static NSString *ORANGE_SQUARE_BONUS_BLUE = @"Orange Square Bonus for Blue";*/
 
     }
     [TempleUtility disableAllTempleSlotInteraction:templeArray];
+    
+    return PEEP_TO_DEATH_TIME;
 }
 
 +(void) removePeepsToSupply:(NSMutableArray*) templeArray:(NSMutableArray*) allSelectedSlots {

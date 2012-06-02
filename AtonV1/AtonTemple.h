@@ -31,6 +31,8 @@ enum TEMPLE_ENUM {
 -(int) findBlueAndGreyNumForOccupiedEnum:(int) occupiedEnum;
 -(int) findOccupiedSlotsNum;
 -(int) findEmptySlotsNum;
+-(BOOL) wonByPlayer:(int) playerEnum;
+
 @property(strong, nonatomic) UIView* baseView;
 @property(strong, nonatomic) UIImageView* iv;
 @property(nonatomic) int templeEnum;

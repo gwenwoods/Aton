@@ -12,6 +12,7 @@
 #import "AtonMessageMaster.h"
 
 @interface AtonPlacePeepExecutor: AbstractExecutor {
+    AtonGameParameters *para;
     AtonAI *ai;
     BOOL useAI;
     AtonGameManager *gameManager;

@@ -7,9 +7,11 @@
 //
 
 #import "AtonAI.h"
+#import "AtonGameParameters.h"
 #import "TempleFunctionUtility.h"
 
 @interface AtonAIEasy : AtonAI {
+    AtonGameParameters *para;
     NSMutableArray *templeArray;
 }
 

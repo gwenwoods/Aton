@@ -191,7 +191,7 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:finalScoreIV];
         [finalResultView bringSubviewToFront:finalScoreIV];
         
-        [self showFinalResultView:@"A.I. reaches 40 points and wins"];
+    //    [self showFinalResultView:@"A.I. reaches 40 points and wins"];
      /*   finalResultDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(214,220,400,60)];
         finalResultDetailLb.backgroundColor = [UIColor clearColor];
         finalResultDetailLb.textAlignment = UITextAlignmentLeft;
@@ -425,6 +425,10 @@ static int DETAIL_FONT_SIZE = 20;
     int blueNameLength = [bluePlayer.playerName length];
     
     UILabel *blueScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+ 20 + blueNameLength*7,240,400,40)];
+    if (para.useAI == YES) {
+        blueScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+ 20 + 12,240,400,40)];
+    }
+    
     blueScoreLb.backgroundColor = [UIColor clearColor];
     blueScoreLb.textAlignment = UITextAlignmentLeft;
     blueScoreLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -540,13 +544,14 @@ static int DETAIL_FONT_SIZE = 20;
         
     }
     
-    if (msg != nil) {
-        msg = [msg stringByAppendingString:[self gameOverResultMsg]];
-    }
+  //  if (msg != nil) {
+  //      msg = [msg stringByAppendingString:[self gameOverResultMsg]];
+  //  }
     
     return msg;
 }
 
+/*
 -(NSString*) gameOverResultMsg {
     
     NSMutableArray *playerArray = para.playerArray;
@@ -564,6 +569,6 @@ static int DETAIL_FONT_SIZE = 20;
     msg = [msg stringByAppendingString:blueName];
     msg = [msg stringByAppendingString:[NSString stringWithFormat:@": %i \n", blueScore]];
     return msg;
-}
+}*/
 
 @end
