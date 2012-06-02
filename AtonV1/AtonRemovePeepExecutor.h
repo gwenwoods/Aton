@@ -25,5 +25,5 @@
 }
 -(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
 -(void) removePeep:(int) gamePhaseEnum;
-
+-(void) removeOneFromEachTemple:(int) gamePhaseEnum;
 @end

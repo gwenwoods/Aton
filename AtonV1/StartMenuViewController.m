@@ -15,6 +15,8 @@
 @synthesize playerViewScreen, creditViewScreen, ruleViewScreen;
 @synthesize audioPlayerOpen;
 
+static double ANIMATION_FADE_IN_TIME = 0.5;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,16 +33,18 @@
     [self.view setBackgroundColor:[UIColor blackColor]];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton_new.wav", [[NSBundle mainBundle] resourcePath]]];
-	audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
+   // NSURL *urlOpen = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/OpenMusic_Aton_new.wav", [[NSBundle mainBundle] resourcePath]]];
+	//audioPlayerOpen = [[AVAudioPlayer alloc] initWithContentsOfURL:urlOpen error:nil];
 	audioPlayerOpen.numberOfLoops = 1000;
     audioPlayerOpen.volume = 1.0;
     [audioPlayerOpen prepareToPlay];
 
-    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
- //   [self performSelector:@selector(fadeVolumeUp:) withObject:audioPlayerOpen afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
- //   [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:27.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+   // [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    
+    audioPlayerOpen = [AudioUtility initLoopAudio:@"%@/OpenMusic_Aton_new.wav":1.0];
 
+    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:1.0];
+    
     //-----------------------------
     // audio when starting to  play
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/chime.mp3", [[NSBundle mainBundle] resourcePath]]];
@@ -62,7 +66,8 @@
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
--(void) showPlayAnimation {
+/*
+-(void) showPlayAnimation1 {
     playAnkhIV.alpha = 0.0;
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -75,7 +80,7 @@
                      }];
 }
 
--(void) showRulesAnimation {
+-(void) showRulesAnimation1 {
     rulesAnkhIV.alpha = 0.0;
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -89,7 +94,7 @@
 }
 
 
--(void) showCreditsAnimation {
+-(void) showCreditsAnimation1 {
     creditsAnkhIV.alpha = 0.0;
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -100,9 +105,9 @@
                      } 
                      completion:^(BOOL finished){
                      }];
-}
+} */
 
--(void) fadeCreditsAnimation {
+/*-(void) fadeCreditsAnimation1 {
     creditsAnkhIV.alpha = 1.0;
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -113,7 +118,7 @@
                      } 
                      completion:^(BOOL finished){
                      }];
-}
+}*/
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [[event allTouches] anyObject];
@@ -124,7 +129,8 @@
         playAnkhIV.image = [UIImage imageNamed:@"ankh_small.png"];
         rulesAnkhIV.image = nil;
         creditsAnkhIV.image = nil;
-        [self showPlayAnimation];
+        [AnimationUtility fadeInIV:playAnkhIV :ANIMATION_FADE_IN_TIME];
+      //  [self showPlayAnimation];
     } else {
         playAnkhIV.image = nil;
     }
@@ -133,7 +139,8 @@
         playAnkhIV.image = nil;
         rulesAnkhIV.image = [UIImage imageNamed:@"ankh_small.png"];
         creditsAnkhIV.image = nil;
-        [self showRulesAnimation];
+        [AnimationUtility fadeInIV:rulesAnkhIV:ANIMATION_FADE_IN_TIME];
+       // [self showRulesAnimation];
         
     } else {
         rulesAnkhIV.image = nil;
@@ -143,7 +150,8 @@
         playAnkhIV.image = nil;
         rulesAnkhIV.image = nil;
         creditsAnkhIV.image = [UIImage imageNamed:@"ankh_small.png"];
-        [self showCreditsAnimation];
+        [AnimationUtility fadeInIV:creditsAnkhIV:ANIMATION_FADE_IN_TIME];
+       // [self showCreditsAnimation];
         
     } else {
         creditsAnkhIV.image = nil;
@@ -159,7 +167,7 @@
     
     if ([self isWithinImgView:touchLocation:playIV]) {
         if (playAnkhIV.image == nil) {
-            [self showPlayAnimation];
+             [AnimationUtility fadeInIV:playAnkhIV :ANIMATION_FADE_IN_TIME];
         }
         playAnkhIV.image = [UIImage imageNamed:@"ankh_small.png"];
         rulesAnkhIV.image = nil;
@@ -173,7 +181,7 @@
     if ([self isWithinImgView:touchLocation:rulesIV]) {
         playAnkhIV.image = nil;
         if (rulesAnkhIV.image == nil) {
-            [self showRulesAnimation];
+            [AnimationUtility fadeInIV:rulesAnkhIV:ANIMATION_FADE_IN_TIME];
         }
         rulesAnkhIV.image = [UIImage imageNamed:@"ankh_small.png"];
         creditsAnkhIV.image = nil;
@@ -186,7 +194,7 @@
         playAnkhIV.image = nil;
         rulesAnkhIV.image = nil;
         if (creditsAnkhIV.image == nil) {
-            [self showCreditsAnimation];
+            [AnimationUtility fadeInIV:creditsAnkhIV:ANIMATION_FADE_IN_TIME];
         }
         creditsAnkhIV.image = [UIImage imageNamed:@"ankh_small.png"];
         

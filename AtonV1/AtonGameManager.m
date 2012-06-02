@@ -172,10 +172,10 @@ static int DETAIL_FONT_SIZE = 20;
         //---------------------------------
         finalResultView = [[UIImageView alloc] initWithFrame:viewFrame];
         finalResultView.image = [UIImage imageNamed:viewBgName];
-        finalResultView.hidden = YES;
+        // finalResultView.hidden = YES;
         finalResultView.userInteractionEnabled = YES;
         [baseView addSubview:finalResultView];
-        
+
         finalResultLb = [[UILabel alloc] initWithFrame:CGRectMake(52,112,400,48)];
         finalResultLb.backgroundColor = [UIColor clearColor];
         finalResultLb.textAlignment = UITextAlignmentCenter;
@@ -186,17 +186,24 @@ static int DETAIL_FONT_SIZE = 20;
         [finalResultView addSubview:finalResultLb];
         [finalResultView bringSubviewToFront:finalResultLb];
         
-        finalResultDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(52,180,400,80)];
+        UIImageView *finalScoreIV = [[UIImageView alloc] initWithFrame:CGRectMake(174,180,160,40)];
+        finalScoreIV.image = [UIImage imageNamed:@"final_score.png"];
+        [finalResultView addSubview:finalScoreIV];
+        [finalResultView bringSubviewToFront:finalScoreIV];
+        
+        [self showFinalResultView:@"A.I. reaches 40 points and wins"];
+     /*   finalResultDetailLb = [[UILabel alloc] initWithFrame:CGRectMake(214,220,400,60)];
         finalResultDetailLb.backgroundColor = [UIColor clearColor];
-        finalResultDetailLb.textAlignment = UITextAlignmentCenter;
+        finalResultDetailLb.textAlignment = UITextAlignmentLeft;
         finalResultDetailLb.lineBreakMode = UILineBreakModeCharacterWrap;
         finalResultDetailLb.numberOfLines = 6;     
         finalResultDetailLb.textColor = [UIColor blackColor];
-        finalResultDetailLb.font = [UIFont fontWithName:atonFont size:20];
+        finalResultDetailLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
+        finalResultDetailLb.text = @" Jessica  24 pt\n  A.I.  45 pt";
         [finalResultView addSubview:finalResultDetailLb];
-        [finalResultView bringSubviewToFront:finalResultDetailLb];
+        [finalResultView bringSubviewToFront:finalResultDetailLb];*/
         UIButton *closeFinalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        closeFinalButton.frame = CGRectMake(197,280,110,40);
+        closeFinalButton.frame = CGRectMake(200,280,110,40);
         [closeFinalButton setImage:[UIImage imageNamed:@"Button_Done.png"] forState:UIControlStateNormal];
         [closeFinalButton addTarget:self action:@selector(closeFinalView:) forControlEvents:UIControlEventTouchUpInside];
         [finalResultView addSubview:closeFinalButton];
@@ -361,9 +368,73 @@ static int DETAIL_FONT_SIZE = 20;
     
     NSArray *messageArray = [msg componentsSeparatedByString: @"|"];
     finalResultLb.text = [messageArray objectAtIndex:0];
-    finalResultDetailLb.text = [messageArray objectAtIndex:1];
+   // finalResultDetailLb.text = [messageArray objectAtIndex:1];
     
-   // finalResultDetailLb.text = msg;
+    NSMutableArray *playerArray = para.playerArray;
+    AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
+    AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
+    
+ /*   NSString* text = @"ABC > def";
+    UILabel *redResultLb = [[[TTTAttributedLabel alloc] initWithFrame:CGRectMake(214,220,400,40)]];
+    attributedLabel.numberOfLines = 0;
+    attributedLabel.lineBreakMode = UILineBreakModeWordWrap;
+    attributedLabel.fontColor = [UIColor brownColor];
+    [attributedLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^(NSMutableAttributedString *mutableAttributedString) {
+        NSRange whiteRange = [text rangeOfString:@"def"];
+        if (whiteRange.location != NSNotFound) {
+            // Core Text APIs use C functions without a direct bridge to UIFont. See Apple's "Core Text Programming Guide" to learn how to configure string attributes.
+            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)[UIColor whiteColor].CGColor range:whiteRange];
+        }
+    }];*/
+
+    
+    UILabel *redResultLb = [[UILabel alloc] initWithFrame:CGRectMake(214,220,400,40)];
+    redResultLb.backgroundColor = [UIColor clearColor];
+    redResultLb.textAlignment = UITextAlignmentLeft;
+    redResultLb.lineBreakMode = UILineBreakModeCharacterWrap;
+    redResultLb.numberOfLines = 6;     
+    redResultLb.textColor = [UIColor blackColor];
+    redResultLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
+    redResultLb.text = redPlayer.playerName; 
+    [finalResultView addSubview:redResultLb];
+    [finalResultView bringSubviewToFront:redResultLb];
+    int redNameLength = [redPlayer.playerName length];
+    
+    UILabel *redScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+20 +redNameLength*7,220,400,40)];
+    redScoreLb.backgroundColor = [UIColor clearColor];
+    redScoreLb.textAlignment = UITextAlignmentLeft;
+    redScoreLb.lineBreakMode = UILineBreakModeCharacterWrap;
+    redScoreLb.numberOfLines = 6;     
+    redScoreLb.textColor = [UIColor redColor];
+    redScoreLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
+    redScoreLb.text = [NSString stringWithFormat:@"%i pt", [redPlayer getScore]];
+    [finalResultView addSubview:redScoreLb];
+    [finalResultView bringSubviewToFront:redScoreLb];
+    
+    
+    UILabel *blueResultLb = [[UILabel alloc] initWithFrame:CGRectMake(214,240,400,40)];
+    blueResultLb.backgroundColor = [UIColor clearColor];
+    blueResultLb.textAlignment = UITextAlignmentLeft;
+    blueResultLb.lineBreakMode = UILineBreakModeCharacterWrap;
+    blueResultLb.numberOfLines = 6;     
+    blueResultLb.textColor = [UIColor blackColor];
+    blueResultLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
+    blueResultLb.text = bluePlayer.playerName;  
+    [finalResultView addSubview:blueResultLb];
+    [finalResultView bringSubviewToFront:blueResultLb];
+    int blueNameLength = [bluePlayer.playerName length];
+    
+    UILabel *blueScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+ 20 + blueNameLength*7,240,400,40)];
+    blueScoreLb.backgroundColor = [UIColor clearColor];
+    blueScoreLb.textAlignment = UITextAlignmentLeft;
+    blueScoreLb.lineBreakMode = UILineBreakModeCharacterWrap;
+    blueScoreLb.numberOfLines = 6;     
+    blueScoreLb.textColor = [UIColor blueColor];
+    blueScoreLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
+    blueScoreLb.text = [NSString stringWithFormat:@"%i pt", [bluePlayer getScore]]; 
+    [finalResultView addSubview:blueScoreLb];
+    [finalResultView bringSubviewToFront:blueScoreLb];
+    
     finalResultView.hidden = NO;
     finalResultView.alpha = 0.0;
     
@@ -449,8 +520,8 @@ static int DETAIL_FONT_SIZE = 20;
     }
     
     NSMutableArray *playerArray = para.playerArray;
-    int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
-    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
+    int redScore = [[playerArray objectAtIndex:PLAYER_RED] getScore];
+    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] getScore];
     if (redScore >= 40 && blueScore >= 40) {
         msg = @"";
         msg = [msg stringByAppendingString:@"Both players reaches 40 points|"];
@@ -479,9 +550,9 @@ static int DETAIL_FONT_SIZE = 20;
 -(NSString*) gameOverResultMsg {
     
     NSMutableArray *playerArray = para.playerArray;
-    NSString *msg = @"Game Over\n";
-    int redScore = [[playerArray objectAtIndex:PLAYER_RED] score];
-    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] score];
+    NSString *msg = @"";
+    int redScore = [[playerArray objectAtIndex:PLAYER_RED] getScore];
+    int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] getScore];
     
     AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
     AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];

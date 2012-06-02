@@ -27,6 +27,7 @@ enum PLAYER_ACTION_ENUM {
     CGPoint *startOriginArray;
     UILabel *deckCountLb;
     UIButton *doneButton;
+    int score;
     
    // NSMutableArray *scrollPeepArray;
     UILabel *actionLb;
@@ -54,15 +55,18 @@ enum PLAYER_ACTION_ENUM {
 -(void) pushTargetToTemp:(CardElement*) targetCE;
 -(void) placeCardElementFromTouch:(AtonTouchElement*) touchElement:(CardElement*) targetCE;
 
+-(void) updateScore:(int) newScore;
+-(int) getScore;
+
 @property (strong, nonatomic) UIViewController *controller;
 @property (strong, nonatomic) UIView *baseView;
 @property (nonatomic) int playerEnum;
 @property (strong, nonatomic) NSString *playerName;
-@property (nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cardElementArray, *emptyCardElementArray, *tempCardElementArray;
 @property (strong, nonatomic) NSMutableArray *deckArray, *scrollPeepArray;
 @property (strong, nonatomic) UIImageView *deckIV, *deckAnimationIV;
 @property (strong, nonatomic) UIButton *exchangeCardsButton;
 @property (strong, nonatomic) UIImageView *scrollExchangeIV, *scrollDoneIV;
+@property (strong, nonatomic)  UILabel *scoreLb;
 
 @end

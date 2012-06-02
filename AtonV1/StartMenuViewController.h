@@ -13,6 +13,8 @@
 #import "CreditViewController.h"
 
 #import "BoardViewController.h"
+#import "AnimationUtility.h"
+#import "AudioUtility.h"
 
 @interface StartMenuViewController : UIViewController<PlayerViewDelegate, RuleViewDelegate, CreditViewDelegate>
 {

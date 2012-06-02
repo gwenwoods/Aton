@@ -164,4 +164,71 @@ static float MESSAGE_DELAY_TIME = 0.2;
         }
     } 
 }
+
+-(void) removeOneFromEachTemple:(int) gamePhaseEnum {
+    
+    NSMutableArray *templeArray = para.templeArray;
+    NSMutableArray *playerArray = para.playerArray;
+    AtonRoundResult *roundResult = para.atonRoundResult;
+    
+    int activePlayerEnum = roundResult.higherScorePlayer;
+    if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+        activePlayerEnum = roundResult.lowerScorePlayer;
+    }
+    
+    [TempleUtility enableActiveTemplesFlame:para.templeArray:activePlayerEnum:4];
+    if (useAI == YES && activePlayerEnum == PLAYER_BLUE) {
+        double animationTime = [ai removeOnePeepFromEachTemple:activePlayerEnum];
+        
+        if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
+            gameManager.messagePlayerEnum = roundResult.lowerScorePlayer;
+            NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay: animationTime + AFTER_PEEP_DELAY_TIME];
+        } else {            
+            gameManager.messagePlayerEnum = PLAYER_NONE;
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_NEW_ROUND_BEGIN] afterDelay:animationTime + AFTER_PEEP_DELAY_TIME];
+        }
+        
+    } else {
+        
+        int targetPlayerEnum = activePlayerEnum;
+        int occupiedEnum = OCCUPIED_RED;
+        if (targetPlayerEnum == PLAYER_BLUE) {
+            occupiedEnum = OCCUPIED_BLUE;
+        }
+        
+        [TempleUtility disableAllTempleSlotInteractionAndFlame:templeArray];
+        NSMutableArray *eligibleSlotArray = [TempleUtility findEligibleTempleSlots:templeArray :TEMPLE_4:occupiedEnum];
+        int arrayNum = [eligibleSlotArray count];
+        
+        if (arrayNum == 0) {
+            gameManager.messagePlayerEnum = activePlayerEnum;
+            NSString *msg = [messageMaster getMessageForEnum:MSG_NO_PEEP_TO_REMOVE];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+            if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+                para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE;
+            }
+            
+        } else if (arrayNum <= 4) {
+            // TODO: add animation and black edge slot here
+            [TempleUtility removePeepsToSupply:templeArray:eligibleSlotArray];
+            
+            gameManager.messagePlayerEnum = activePlayerEnum;
+            NSString *msg = [messageMaster getMessageForEnum:MSG_ALL_PEEPS_REMOVED];
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+            if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+               para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE;
+            }
+            
+        } else {
+            [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
+            [[playerArray objectAtIndex:activePlayerEnum] displayMenu:ACTION_REMOVE:-4];
+        }
+    }
+}
+
 @end

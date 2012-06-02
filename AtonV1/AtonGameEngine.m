@@ -41,7 +41,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     
     int gamePhaseEnum = para.gamePhaseEnum;
     NSMutableArray *playerArray = para.playerArray;
-    NSMutableArray *templeArray = para.templeArray;
+   // NSMutableArray *templeArray = para.templeArray;
     AtonRoundResult *roundResult = para.atonRoundResult;
     
     AtonPlayer *playerRed = [playerArray objectAtIndex:PLAYER_RED];
@@ -133,7 +133,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         int winnerOriginalScore = 0;
         int cardOneWinningScore = para.atonRoundResult.cardOneWinningScore;
         if (cardOneWinnerEnum != PLAYER_NONE) {
-            winnerOriginalScore = [[playerArray objectAtIndex:cardOneWinnerEnum] score];
+            winnerOriginalScore = [[playerArray objectAtIndex:cardOneWinnerEnum] getScore];
             
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
@@ -250,12 +250,12 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             
             roundResult.higherScorePlayer = PLAYER_RED;
             roundResult.lowerScorePlayer = PLAYER_BLUE;
-            if(bluePlayer.score > redPlayer.score) {
+            if([bluePlayer getScore] > [redPlayer getScore]) {
                 higherScorePlayer = PLAYER_BLUE;
                 roundResult.lowerScorePlayer = PLAYER_RED;
                 roundResult.higherScorePlayer = PLAYER_BLUE;
                // Add Tie case - random decide
-            } else if (bluePlayer.score == redPlayer.score) {
+            } else if ([bluePlayer getScore] == [redPlayer getScore]) {
                 int randomFirst = rand()%2;
                 int randomSecond = (randomFirst + 1)%2;
                 roundResult.higherScorePlayer = randomFirst;
@@ -267,7 +267,8 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
-        [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.higherScorePlayer:4];
+         [removePeepEngine removeOneFromEachTemple:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
+ /*       [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.higherScorePlayer:4];
         if (useAI == YES && roundResult.higherScorePlayer == PLAYER_BLUE) {
             double animationTime = [ai removeOnePeepFromEachTemple:roundResult.higherScorePlayer];
             
@@ -303,11 +304,12 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 [[playerArray objectAtIndex:roundResult.higherScorePlayer] displayMenu:ACTION_REMOVE:-4];
             }
             
-        }
+        }*/
         
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
-        [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.lowerScorePlayer:4];
+        [removePeepEngine removeOneFromEachTemple:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+   /*     [TempleUtility enableActiveTemplesFlame:para.templeArray:roundResult.lowerScorePlayer:4];
         if (useAI == YES && roundResult.lowerScorePlayer == PLAYER_BLUE) {
             double animationTime = [ai removeOnePeepFromEachTemple:roundResult.lowerScorePlayer];
             
@@ -345,7 +347,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
                 [[playerArray objectAtIndex:roundResult.lowerScorePlayer] displayMenu:ACTION_REMOVE:-4];
             }
-        }
+        } */
 
         
        
@@ -479,7 +481,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     NSMutableArray *playerArray = para.playerArray;
     AtonPlayer *winningPlayer = [playerArray objectAtIndex:playerEnum];
     
-    int oldScore = [winningPlayer score];
+    int oldScore = [winningPlayer getScore];
     int newScore = oldScore + winningScore;
     
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
@@ -526,9 +528,9 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     NSMutableArray *playerArray = [para playerArray];
     NSMutableArray *scarabArray = [para scarabArray];
     AtonPlayer *cardOneWinner = [playerArray objectAtIndex:playerEnum];
-    int oldScore = [cardOneWinner score];
+    int oldScore = [cardOneWinner getScore];
     if (oldScore >= 41) {
-        cardOneWinner.score = newScore;
+        [cardOneWinner updateScore:newScore];
         return;
     }
     
@@ -572,7 +574,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                              newScarab.blueIV.hidden = NO;
                              [newScarab.iv bringSubviewToFront:newScarab.blueIV];
                          }
-                         cardOneWinner.score = newScore;
+                         [cardOneWinner updateScore:newScore];
                      }];
 }
 
@@ -584,7 +586,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     if (playerEnum != PLAYER_NONE && winningScore > 0) {
         
         AtonPlayer *player = [para.playerArray objectAtIndex:playerEnum];
-        int playerOriginalScore = player.score;
+        int playerOriginalScore = [player getScore];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(assignScoreToPlayer:withWinningScore:)]];
         [invocation setTarget:self];

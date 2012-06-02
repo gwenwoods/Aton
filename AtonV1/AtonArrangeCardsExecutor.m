@@ -1257,7 +1257,7 @@ CASE_1234
     NSMutableArray *playerArray = para.playerArray;
     AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
     AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
-    if(redPlayer.score >= 32 || bluePlayer.score >= 32) {
+    if([redPlayer getScore] >= 32 || [bluePlayer getScore] >= 32) {
         return YES;
     }
     return NO;

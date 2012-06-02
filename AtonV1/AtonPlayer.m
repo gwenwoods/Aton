@@ -24,7 +24,7 @@ static float DELAY_TIME = 0.25;
 
 @synthesize controller, baseView;
 @synthesize playerEnum, playerName;
-@synthesize score;
+@synthesize scoreLb;
 @synthesize cardElementArray, emptyCardElementArray, tempCardElementArray;
 @synthesize deckIV, deckAnimationIV, deckArray;
 @synthesize exchangeCardsButton;
@@ -59,6 +59,22 @@ static float DELAY_TIME = 0.25;
         scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_exchange.png"];
         scrollExchangeIV.userInteractionEnabled = YES;
         [baseView addSubview:scrollExchangeIV];
+        
+        UIImageView *scarabIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4.0 + playerEnum *975.0, 90.0, 57, 80)];
+        scarabIV.image = [UIImage imageNamed:@"score_scarab.png"];
+        [baseView addSubview:scarabIV];
+        
+        scoreLb = [[UILabel alloc] initWithFrame:CGRectMake(playerEnum *975.0, 104.0, 48, 48)];
+        scoreLb.textAlignment = UITextAlignmentCenter;
+        scoreLb.textColor = [UIColor whiteColor];
+        [scoreLb setBackgroundColor:[UIColor clearColor]];
+        scoreLb.font = [UIFont fontWithName:@"Verdana-Bold" size:18];
+        scoreLb.text = @"0";
+        //actionLb.hidden = YES;
+        [baseView addSubview:scoreLb];
+
+        
+        
         
         actionLb = [[UILabel alloc] initWithFrame:CGRectMake(13, 94, 46, 20)];
         actionLb.text = @"Remove";
@@ -657,5 +673,14 @@ static float DELAY_TIME = 0.25;
     } else {
         return @"Blue_Disc.png";
     }
+}
+
+-(void) updateScore:(int) newScore {
+    score = newScore;
+    scoreLb.text = [NSString stringWithFormat:@"%i", score];
+}
+
+-(int) getScore {
+    return score;
 }
 @end

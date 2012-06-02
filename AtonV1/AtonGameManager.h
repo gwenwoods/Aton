@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import <CoreText/CoreText.h>
 #import "AtonPlayer.h"
 #import "TempleUtility.h"
 
 
-@interface AtonGameManager : NSObject {
+
+@interface AtonGameManager : NSObject{
     
     AtonGameParameters *para;
     UIImageView *gamePhaseTieIV, *helpTieIV ;
