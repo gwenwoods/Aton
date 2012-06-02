@@ -1148,6 +1148,9 @@ CASE_1234
     }
     NSMutableArray *templeArray = para.templeArray;
     int t1RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_1] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+  //  int blueGreyCountBeforeT1 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_1:OCCUPIED_BLUE];
+  //  int blueGreyCountBeforeT3 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_3:OCCUPIED_BLUE];
+    
     
     if (t1RedCount_BlueGrey >= 1) {
         outputCardArray[0] = 1;
@@ -1176,6 +1179,8 @@ CASE_1234
     NSMutableArray *templeArray = para.templeArray;
     int t1RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_1] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
     int t1EmptyCount = [[templeArray objectAtIndex:TEMPLE_1] findEmptySlotsNum];
+    int blueGreyCountBeforeT1 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_1:OCCUPIED_BLUE];
+    int blueGreyCountBeforeT3 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_3:OCCUPIED_BLUE];
     
     if (t1RedCount_BlueGrey >= 2) {
         outputCardArray[0] = 3;
@@ -1183,17 +1188,36 @@ CASE_1234
         outputCardArray[2] = 1;
         outputCardArray[3] = 1;
         
-    } else if (t1EmptyCount >= 4){
-        outputCardArray[0] = 3;
+    } else if (blueGreyCountBeforeT3 == 0){
+        
+        outputCardArray[1] = 1;
+        outputCardArray[2] = 3;
+        
+        if (t1EmptyCount >= 4){
+            outputCardArray[0] = 1;
+            outputCardArray[3] = 4;
+        } else {
+            outputCardArray[0] = 4;
+            outputCardArray[3] = 1;
+        }
+
+    } else if (blueGreyCountBeforeT1 == 0){
         outputCardArray[1] = 1;
         outputCardArray[2] = 1;
-        outputCardArray[3] = 4;
+        
+        if (t1EmptyCount >= 4){
+            outputCardArray[0] = 3;
+            outputCardArray[3] = 4;
+        } else {
+            outputCardArray[0] = 4;
+            outputCardArray[3] = 3;
+        }
         
     } else {
         outputCardArray[0] = 4;
-        outputCardArray[1] = 1;
+        outputCardArray[1] = 3;
         outputCardArray[2] = 1;
-        outputCardArray[3] = 3;
+        outputCardArray[3] = 1;
         
     }
     return outputCardArray;
@@ -1210,6 +1234,9 @@ CASE_1234
     }
     NSMutableArray *templeArray = para.templeArray;
     int t1RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_1] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int blueGreyCountBeforeT1 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_1:OCCUPIED_BLUE];
+    int blueGreyCountBeforeT2 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_2:OCCUPIED_BLUE];
+    int t1EmptyCount = [[templeArray objectAtIndex:TEMPLE_1] findEmptySlotsNum];
     
     if (t1RedCount_BlueGrey >= 2) {
         outputCardArray[0] = 2;
@@ -1217,11 +1244,27 @@ CASE_1234
         outputCardArray[2] = 1;
         outputCardArray[3] = 1;
         
-    } else {
-        outputCardArray[0] = 4;
+    } else if (blueGreyCountBeforeT2 == 0){
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 1;
+        outputCardArray[2] = 2;
+        outputCardArray[3] = 4;
+        
+    } else if (blueGreyCountBeforeT1 == 0){
+        outputCardArray[0] = 2;
         outputCardArray[1] = 1;
         outputCardArray[2] = 1;
-        outputCardArray[3] = 2;
+        outputCardArray[3] = 4;
+    } else {
+        outputCardArray[1] = 2;
+        outputCardArray[2] = 1;
+        if (t1EmptyCount >= 4) {
+            outputCardArray[0] = 1;
+            outputCardArray[3] = 4;
+        } else {
+            outputCardArray[0] = 4;
+            outputCardArray[3] = 1;
+        }
     }
     return outputCardArray;
 }
@@ -1237,6 +1280,8 @@ CASE_1234
     }
     NSMutableArray *templeArray = para.templeArray;
     int t1RedCount_BlueGrey = [[templeArray objectAtIndex:TEMPLE_1] findBlueAndGreyNumForOccupiedEnum:OCCUPIED_RED];
+    int blueGreyCountBeforeT1 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_1:OCCUPIED_BLUE];
+    int blueGreyCountBeforeT2 = [TempleUtility findGreyBlueNumBeforeTempleForPlayer:templeArray:TEMPLE_2:OCCUPIED_BLUE];
     
     if (t1RedCount_BlueGrey >= 1) {
         outputCardArray[0] = 2;
@@ -1244,11 +1289,22 @@ CASE_1234
         outputCardArray[2] = 1;
         outputCardArray[3] = 1;
         
-    } else {
-        outputCardArray[0] = 3;
+    } else if (blueGreyCountBeforeT2 == 0) {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 1;
+        outputCardArray[2] = 2;
+        outputCardArray[3] = 3;
+        
+    } else if (blueGreyCountBeforeT1 == 0){
+        outputCardArray[0] = 2;
         outputCardArray[1] = 1;
         outputCardArray[2] = 1;
-        outputCardArray[3] = 2;
+        outputCardArray[3] = 3;
+    } else {
+        outputCardArray[0] = 1;
+        outputCardArray[1] = 2;
+        outputCardArray[2] = 1;
+        outputCardArray[3] = 3;
     }
     return outputCardArray;
 }

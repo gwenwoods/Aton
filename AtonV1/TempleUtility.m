@@ -618,8 +618,8 @@ double static PEEP_TO_DEATH_TIME = 0.5;
     
     for (int i=TEMPLE_1; i<= TEMPLE_4; i++) {
         AtonTemple *temple = [templeArray objectAtIndex:i];
-       // temple.iv.hidden = YES;
-        [UIView animateWithDuration:1.0
+        temple.iv.hidden = YES;
+    /*    [UIView animateWithDuration:1.0
                               delay:0.0
                             options: UIViewAnimationCurveEaseOut
                          animations:^{
@@ -627,7 +627,7 @@ double static PEEP_TO_DEATH_TIME = 0.5;
                          } 
                          completion:^(BOOL finished){
                              temple.iv.hidden = YES;
-                             temple.iv.alpha = 1.0;                         }];
+                             temple.iv.alpha = 1.0;                         }];*/
 
     }
     
@@ -666,5 +666,23 @@ double static PEEP_TO_DEATH_TIME = 0.5;
     }
     
     return diffCountArray;
+}
+
++(int) findGreyBlueNumBeforeTempleForPlayer:(NSMutableArray*) templeArray:(int) maxTemple:(int) playerEnum {
+    
+    int occupiedEnum = OCCUPIED_RED;
+    if(playerEnum == PLAYER_BLUE) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    int count = 0;
+    for (int i=TEMPLE_1; i<= maxTemple; i++) {
+        AtonTemple *temple = [templeArray objectAtIndex:i];
+        count += [temple findGreyNumForOccupiedEnum:occupiedEnum];
+        if ([temple findBlueOccupiedEnum] == occupiedEnum) {
+            count ++;
+        }
+    }
+    return count;
 }
 @end

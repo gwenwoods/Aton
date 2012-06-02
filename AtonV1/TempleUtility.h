@@ -38,5 +38,6 @@
 +(void) disableTemplesFlame: (NSMutableArray*) templeArray;
 +(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 +(int*) findPeepDiffEachTemple: (NSMutableArray*) templeArray;
++(int) findGreyBlueNumBeforeTempleForPlayer:(NSMutableArray*) templeArray:(int) maxTemple:(int) playerEnum;
 
 @end
