@@ -54,6 +54,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    menuButton.frame = CGRectMake(966 , 685, 56, 24);
+    menuButton.userInteractionEnabled = YES;
+    [menuButton setImage:[UIImage imageNamed:@"Menu.png"] forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(toMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:menuButton];
 
 
     NSURL *urlPlayGame = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Aton_PlayBGMusic_loop.wav", [[NSBundle mainBundle] resourcePath]]];

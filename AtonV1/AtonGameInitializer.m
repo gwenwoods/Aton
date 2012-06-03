@@ -39,9 +39,6 @@ static float SCARAB_HEIGHT = 44;
     [templeArray addObject:temple2];
     [templeArray addObject:temple3];
     [templeArray addObject:temple4];
-    
-    
-   
 
     //------------------------
     // initialize score scarab array
@@ -83,16 +80,4 @@ static float SCARAB_HEIGHT = 44;
     return  atonParameters;
 }
 
-/*
--(int) shuffleCardArray {
-    int *cardIntArray;
-    cardIntArray = malloc(sizeof(int) * 10);
-
-    
-    for (int i=0; i<40; i++) {
-        cardIntArray[i] = i+1;
-    }
-  
-    
-} */
 @end

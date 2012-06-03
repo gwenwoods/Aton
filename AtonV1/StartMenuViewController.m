@@ -52,6 +52,7 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 	audioPlayerEnterPlay.numberOfLoops = 0;
     audioPlayerEnterPlay.volume = 0.5;
     [audioPlayerEnterPlay prepareToPlay];
+
 }
 
 - (void)viewDidUnload

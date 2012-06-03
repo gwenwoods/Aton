@@ -36,7 +36,8 @@
     // Do any additional setup after loading the view from its nib.
     
     UIImageView *boardBgIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024,748)]; 
-    boardBgIV.image = [UIImage imageNamed:@"aton_CreditsPage_new1.png"];
+   // boardBgIV.image = [UIImage imageNamed:@"aton_CreditsPage_new1.png"];
+     boardBgIV.image = [UIImage imageNamed:@"Aton_Rules_P4.png"];
     [self.view addSubview:boardBgIV];
     [self.view sendSubviewToBack:boardBgIV];
     
