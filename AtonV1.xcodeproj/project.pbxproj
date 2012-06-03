@@ -125,8 +125,6 @@
 		BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AEC2154B93300013C89A /* PlayerViewController.m */; };
 		BDD3AEC5154B93340013C89A /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEC3154B93330013C89A /* PlayerViewController.xib */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
-		BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AD153D2E43003F3530 /* White_Cylinder.png */; };
-		BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */; };
 		BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */; };
 		BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B7153D3038003F3530 /* Blue_Disc.png */; };
 		BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B9153D3070003F3530 /* Red_Disc.png */; };
@@ -143,8 +141,6 @@
 		BDF3F6C215524A21005D26EA /* scrollDown_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6BF15524A21005D26EA /* scrollDown_blank.png */; };
 		BDF3F6C315524A21005D26EA /* scrollDown_done.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF3F6C015524A21005D26EA /* scrollDown_done.png */; };
 		BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */; };
-		BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF533EE15573300003BBA23 /* RuleViewController.m */; };
-		BDF533F1155733A5003BBA23 /* rule_all_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F0155733A5003BBA23 /* rule_all_middle.png */; };
 		BDF533FB155740C9003BBA23 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F7155740C9003BBA23 /* button_back.png */; };
 		BDF533FC155740C9003BBA23 /* button_no.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F8155740C9003BBA23 /* button_no.png */; };
 		BDF533FD155740C9003BBA23 /* button_play.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF533F9155740C9003BBA23 /* button_play.png */; };
@@ -193,7 +189,7 @@
 		BD3CC3B415795F5B004682E6 /* AudioUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUtility.m; sourceTree = "<group>"; };
 		BD3CC3BA157A9320004682E6 /* final_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_score.png; sourceTree = "<group>"; };
 		BD3CC3BB157A9320004682E6 /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu.png; sourceTree = "<group>"; };
-		BD3CC3BC157A9320004682E6 /* score_scarab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = score_scarab.png; sourceTree = "<group>"; };
+		BD3CC3BC157A9320004682E6 /* score_scarab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = score_scarab.png; path = ../score_scarab.png; sourceTree = "<group>"; };
 		BD3CC3C4157AAC7E004682E6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BD55570F1570374600EC54CF /* OpenMusic_Aton_new.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenMusic_Aton_new.wav; sourceTree = "<group>"; };
 		BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMenuViewController.h; sourceTree = "<group>"; };
@@ -313,8 +309,6 @@
 		BDD3AEC2154B93300013C89A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		BDD3AEC3154B93330013C89A /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
-		BDDA77AD153D2E43003F3530 /* White_Cylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = White_Cylinder.png; sourceTree = "<group>"; };
-		BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */ = {isa = PBXFileReference; lastKnownFileType = file; path = White_Cylinder.png.tmp$$; sourceTree = "<group>"; };
 		BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_IconPrist.png; sourceTree = "<group>"; };
 		BDDA77B7153D3038003F3530 /* Blue_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Disc.png; sourceTree = "<group>"; };
 		BDDA77B9153D3070003F3530 /* Red_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Disc.png; sourceTree = "<group>"; };
@@ -335,9 +329,6 @@
 		BDF3F6BF15524A21005D26EA /* scrollDown_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_blank.png; sourceTree = "<group>"; };
 		BDF3F6C015524A21005D26EA /* scrollDown_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_done.png; sourceTree = "<group>"; };
 		BDF533EA1556ED11003BBA23 /* OpenMusic_Aton_new.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenMusic_Aton_new.wav; sourceTree = "<group>"; };
-		BDF533ED15573300003BBA23 /* RuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleViewController.h; sourceTree = "<group>"; };
-		BDF533EE15573300003BBA23 /* RuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleViewController.m; sourceTree = "<group>"; };
-		BDF533F0155733A5003BBA23 /* rule_all_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule_all_middle.png; sourceTree = "<group>"; };
 		BDF533F7155740C9003BBA23 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		BDF533F8155740C9003BBA23 /* button_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_no.png; sourceTree = "<group>"; };
 		BDF533F9155740C9003BBA23 /* button_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_play.png; sourceTree = "<group>"; };
@@ -371,6 +362,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD07CBCD157B3606006409EE /* PlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				BDF3F6BA1552406A005D26EA /* Blue_icon_big.png */,
+				BDF3F6B715524060005D26EA /* Red_icon_big.png */,
+				BDF3F6BC15524093005D26EA /* name_frame.png */,
+			);
+			name = PlayerView;
+			sourceTree = "<group>";
+		};
 		BD16D228153CDB0400ED6DB9 /* GameClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,10 +409,16 @@
 		BD3CC3C8157ADFC7004682E6 /* GameBoard */ = {
 			isa = PBXGroup;
 			children = (
+				BDAE711F153A3BED001848F8 /* Aton_card */,
+				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
+				BDF3F6BE15524A21005D26EA /* ScrollDown_papyrus */,
 				BDD3AEA61548F80E0013C89A /* aton_mainBackground.png */,
 				BDAE7134153A3C90001848F8 /* Aton_gameBoard.png */,
 				BD0CED1E1576D3130039F8BA /* Aton_MessageScroll_new.png */,
 				BD3CC3BB157A9320004682E6 /* Menu.png */,
+				BD3CC3BA157A9320004682E6 /* final_score.png */,
+				BD97408C154C9AD6003F4E8F /* Blue_icon.png */,
+				BD97408D154C9AD6003F4E8F /* Red_icon.png */,
 			);
 			name = GameBoard;
 			sourceTree = "<group>";
@@ -468,8 +475,6 @@
 				BDD3AEAE15491F7C0013C89A /* CreditViewController.m */,
 				BD940BA8153A1F9300660B35 /* BoardViewController.h */,
 				BD940BA9153A1F9300660B35 /* BoardViewController.m */,
-				BDF533ED15573300003BBA23 /* RuleViewController.h */,
-				BDF533EE15573300003BBA23 /* RuleViewController.m */,
 				BDAA716D157AEA97009C45DD /* RuleView1Controller.h */,
 				BDAA716E157AEA97009C45DD /* RuleView1Controller.m */,
 				BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */,
@@ -533,26 +538,15 @@
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BD3CC3C8157ADFC7004682E6 /* GameBoard */,
 				BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */,
+				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
 				BD07CBBF157B254D006409EE /* aton_CreditsPage_new1.png */,
-				BD3CC3BA157A9320004682E6 /* final_score.png */,
-				BD3CC3BC157A9320004682E6 /* score_scarab.png */,
+				BD07CBCD157B3606006409EE /* PlayerView */,
+				BD3CC3C8157ADFC7004682E6 /* GameBoard */,
 				BDF533F215573F03003BBA23 /* button_papyrus */,
 				BDB5CE901555EC1600F96A0F /* BlueFlamePng */,
 				BDB5CE721555E24D00F96A0F /* RedFlamePng */,
-				BDF3F6BE15524A21005D26EA /* ScrollDown_papyrus */,
-				BD97408C154C9AD6003F4E8F /* Blue_icon.png */,
-				BDF3F6B715524060005D26EA /* Red_icon_big.png */,
-				BDF3F6BA1552406A005D26EA /* Blue_icon_big.png */,
-				BDF3F6BC15524093005D26EA /* name_frame.png */,
-				BDAE7141153A7853001848F8 /* AtonTouchElement.h */,
-				BD97408D154C9AD6003F4E8F /* Red_icon.png */,
-				BDF533F0155733A5003BBA23 /* rule_all_middle.png */,
 				BDAA7161157AE692009C45DD /* Rules_new */,
-				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
-				BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */,
-				BDAE711F153A3BED001848F8 /* Aton_card */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -596,6 +590,7 @@
 				BDAE7145153A79CA001848F8 /* AtonTouchBeganUtility.m */,
 				BDAE713E153A6BE4001848F8 /* AtonTouchEndUtility.h */,
 				BDAE713F153A6BE4001848F8 /* AtonTouchEndUtility.m */,
+				BDAE7141153A7853001848F8 /* AtonTouchElement.h */,
 				BDAE7142153A7853001848F8 /* AtonTouchElement.m */,
 				BD16D21B153BC91F00ED6DB9 /* AtonTouchMovedUtility.h */,
 				BD16D21C153BC91F00ED6DB9 /* AtonTouchMovedUtility.m */,
@@ -673,8 +668,6 @@
 				BDDA77BE153D3202003F3530 /* Red_Cylinder.png */,
 				BDDA77B7153D3038003F3530 /* Blue_Disc.png */,
 				BDDA77B9153D3070003F3530 /* Red_Disc.png */,
-				BDDA77AD153D2E43003F3530 /* White_Cylinder.png */,
-				BDDA77AE153D2E43003F3530 /* White_Cylinder.png.tmp$$ */,
 			);
 			path = Aton_disc_cylinder;
 			sourceTree = "<group>";
@@ -703,6 +696,7 @@
 		BDF3F6BE15524A21005D26EA /* ScrollDown_papyrus */ = {
 			isa = PBXGroup;
 			children = (
+				BD3CC3BC157A9320004682E6 /* score_scarab.png */,
 				BDF3F6BF15524A21005D26EA /* scrollDown_blank.png */,
 				BDF3F6C015524A21005D26EA /* scrollDown_done.png */,
 				BD07CBC7157B3226006409EE /* scrollDown_done_xlong.png */,
@@ -814,8 +808,6 @@
 				BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */,
 				BD5A54C3153D1670009F5D71 /* Aton_OpenView150dpi.png in Resources */,
 				BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */,
-				BDDA77B3153D2E43003F3530 /* White_Cylinder.png in Resources */,
-				BDDA77B4153D2E43003F3530 /* White_Cylinder.png.tmp$$ in Resources */,
 				BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */,
 				BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */,
 				BDDA77BA153D3070003F3530 /* Red_Disc.png in Resources */,
@@ -861,7 +853,6 @@
 				BDB5CEA71555EC1600F96A0F /* blueFlame8.png in Resources */,
 				BDB5CEA81555EC1600F96A0F /* blueFlame9.png in Resources */,
 				BDF533EB1556ED11003BBA23 /* OpenMusic_Aton_new.wav in Resources */,
-				BDF533F1155733A5003BBA23 /* rule_all_middle.png in Resources */,
 				BDF533FB155740C9003BBA23 /* button_back.png in Resources */,
 				BDF533FC155740C9003BBA23 /* button_no.png in Resources */,
 				BDF533FD155740C9003BBA23 /* button_play.png in Resources */,
@@ -951,7 +942,6 @@
 				BDD3AEAF15491F7D0013C89A /* CreditViewController.m in Sources */,
 				BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */,
 				BD974089154C7571003F4E8F /* AtonMessageMaster.m in Sources */,
-				BDF533EF15573300003BBA23 /* RuleViewController.m in Sources */,
 				BDEAF6B7155CBC53007BBC29 /* AtonAI.m in Sources */,
 				BDEAF6BA155CBC7A007BBC29 /* AtonAIEasy.m in Sources */,
 				BDE325F015602DC40013F733 /* AtonPlacePeepExecutor.m in Sources */,

@@ -423,7 +423,7 @@ static int DETAIL_FONT_SIZE = 20;
     blueResultLb.textColor = [UIColor blueColor];
     blueResultLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
     NSString *blueResult = bluePlayer.playerName;
-    blueResult = [blueResult stringByAppendingString:[NSString stringWithFormat:@  "%i", [bluePlayer getScore]]];
+    blueResult = [blueResult stringByAppendingString:[NSString stringWithFormat:@"  %i", [bluePlayer getScore]]];
     blueResultLb.text = blueResult;  
     [finalResultView addSubview:blueResultLb];
     [finalResultView bringSubviewToFront:blueResultLb];
@@ -539,13 +539,13 @@ static int DETAIL_FONT_SIZE = 20;
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_RED];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n reaches 40 points and wins|"];
+        msg = [msg stringByAppendingString:@"\n Reaches 40 points and wins|"];
         
     } else if (blueScore >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_BLUE];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n reaches 40 points and wins|"];
+        msg = [msg stringByAppendingString:@"\n Reaches 40 points and wins|"];
         
     }
     
