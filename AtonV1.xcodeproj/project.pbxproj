@@ -54,7 +54,8 @@
 		BDAA7166157AE692009C45DD /* Aton_Rules_P1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7162157AE692009C45DD /* Aton_Rules_P1.png */; };
 		BDAA7167157AE692009C45DD /* Aton_Rules_P2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7163157AE692009C45DD /* Aton_Rules_P2.png */; };
 		BDAA7168157AE692009C45DD /* Aton_Rules_P3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7164157AE692009C45DD /* Aton_Rules_P3.png */; };
-		BDAA7169157AE692009C45DD /* Aton_Rules_P4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7165157AE692009C45DD /* Aton_Rules_P4.png */; };
+		BDAA716C157AE916009C45DD /* Aton_Rules_P4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA716B157AE916009C45DD /* Aton_Rules_P4.png */; };
+		BDAA716F157AEA97009C45DD /* RuleView1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAA716E157AEA97009C45DD /* RuleView1Controller.m */; };
 		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
 		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
 		BDAE712C153A3BED001848F8 /* Blue_Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7122153A3BED001848F8 /* Blue_Card3.png */; };
@@ -227,7 +228,9 @@
 		BDAA7162157AE692009C45DD /* Aton_Rules_P1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P1.png; sourceTree = "<group>"; };
 		BDAA7163157AE692009C45DD /* Aton_Rules_P2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P2.png; sourceTree = "<group>"; };
 		BDAA7164157AE692009C45DD /* Aton_Rules_P3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P3.png; sourceTree = "<group>"; };
-		BDAA7165157AE692009C45DD /* Aton_Rules_P4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P4.png; sourceTree = "<group>"; };
+		BDAA716B157AE916009C45DD /* Aton_Rules_P4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P4.png; sourceTree = "<group>"; };
+		BDAA716D157AEA97009C45DD /* RuleView1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleView1Controller.h; sourceTree = "<group>"; };
+		BDAA716E157AEA97009C45DD /* RuleView1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleView1Controller.m; sourceTree = "<group>"; };
 		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
 		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
 		BDAE7122153A3BED001848F8 /* Blue_Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card3.png; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 				BD940BA9153A1F9300660B35 /* BoardViewController.m */,
 				BDF533ED15573300003BBA23 /* RuleViewController.h */,
 				BDF533EE15573300003BBA23 /* RuleViewController.m */,
+				BDAA716D157AEA97009C45DD /* RuleView1Controller.h */,
+				BDAA716E157AEA97009C45DD /* RuleView1Controller.m */,
 				BD940BAA153A1F9300660B35 /* BoardViewController_iPad.xib */,
 				BD5A54B9153D0703009F5D71 /* StartMenuViewController.h */,
 				BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */,
@@ -514,7 +519,7 @@
 				BDAA7162157AE692009C45DD /* Aton_Rules_P1.png */,
 				BDAA7163157AE692009C45DD /* Aton_Rules_P2.png */,
 				BDAA7164157AE692009C45DD /* Aton_Rules_P3.png */,
-				BDAA7165157AE692009C45DD /* Aton_Rules_P4.png */,
+				BDAA716B157AE916009C45DD /* Aton_Rules_P4.png */,
 			);
 			path = Rules_new;
 			sourceTree = "<group>";
@@ -880,7 +885,7 @@
 				BDAA7166157AE692009C45DD /* Aton_Rules_P1.png in Resources */,
 				BDAA7167157AE692009C45DD /* Aton_Rules_P2.png in Resources */,
 				BDAA7168157AE692009C45DD /* Aton_Rules_P3.png in Resources */,
-				BDAA7169157AE692009C45DD /* Aton_Rules_P4.png in Resources */,
+				BDAA716C157AE916009C45DD /* Aton_Rules_P4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +953,7 @@
 				BD8B77021566BDA700D66B45 /* AtonArrangeCardsExecutor.m in Sources */,
 				BD3CC3B115795BE4004682E6 /* AnimationUtility.m in Sources */,
 				BD3CC3B515795F5B004682E6 /* AudioUtility.m in Sources */,
+				BDAA716F157AEA97009C45DD /* RuleView1Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 
 #import "PlayerViewController.h"
-#import "RuleViewController.h"
+//#import "RuleViewController.h"
+#import "RuleView1Controller.h"
 #import "CreditViewController.h"
 
 #import "BoardViewController.h"
 #import "AnimationUtility.h"
 #import "AudioUtility.h"
 
-@interface StartMenuViewController : UIViewController<PlayerViewDelegate, RuleViewDelegate, CreditViewDelegate>
+@interface StartMenuViewController : UIViewController<PlayerViewDelegate, RuleView1Delegate, CreditViewDelegate>
 {
     IBOutlet UIImageView *playIV, *rulesIV, *creditsIV;
     IBOutlet UIImageView *playAnkhIV, *rulesAnkhIV, *creditsAnkhIV;
@@ -27,13 +28,13 @@
 //-(IBAction) toPlayerView:(id)sender;
 //- (void)clickedButton:(BoardViewController *)subcontroller;
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
-- (void)dismissRuleViewWithAnimation:(RuleViewController *)subcontroller;
+- (void)dismissRuleViewWithAnimation:(RuleView1Controller *)subcontroller;
 - (void)dismissCreditViewWithAnimation:(CreditViewController *)subcontroller;
 - (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer;
 
 @property(nonatomic, strong) PlayerViewController *playerViewScreen;
 @property(nonatomic, strong) CreditViewController *creditViewScreen;
-@property(nonatomic, strong) RuleViewController *ruleViewScreen;
+@property(nonatomic, strong) RuleView1Controller *ruleViewScreen;
 
 @property(nonatomic, strong) AVAudioPlayer *audioPlayerOpen;
 

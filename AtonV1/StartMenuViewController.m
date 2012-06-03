@@ -235,7 +235,7 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
                     audioPlayerOpen = nil;
                 }
                 
-                ruleViewScreen = [[RuleViewController alloc] initWithNibName:nil bundle:nil];
+                ruleViewScreen = [[RuleView1Controller alloc] initWithNibName:nil bundle:nil];
                 ruleViewScreen.delegateRuleView = self;
                 ruleViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentModalViewController:ruleViewScreen animated:YES];
@@ -348,7 +348,7 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 
 //------------------------------
 // RuleView delegate functions
-- (void)dismissRuleViewWithAnimation:(RuleViewController *)subcontroller
+- (void)dismissRuleViewWithAnimation:(RuleView1Controller *)subcontroller
 {
     NSLog(@"Rule View Back to Start Menu");
     [self dismissModalViewControllerAnimated:YES];
@@ -356,7 +356,7 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
     self.ruleViewScreen = nil;
 }
 
-- (void)dismissRuleViewWithoutAnimation:(RuleViewController *)subcontroller
+- (void)dismissRuleViewWithoutAnimation:(RuleView1Controller *)subcontroller
 {
     NSLog(@"Rule View Back to Start Menu");
     [self dismissModalViewControllerAnimated:NO];
