@@ -28,7 +28,7 @@
     NSString *redName, *blueName;
     UIImageView *maskIV, *enterNameIconIV, *redAnimationIV, *blueAnimationIV;
     
-    AVAudioPlayer *audioPlayerChime, *audioEnterName;
+    AVAudioPlayer *audioPlayerChime, *audioEnterName, *audioSwitch;
     float angle;
     UIImageView *rotateIV;
     

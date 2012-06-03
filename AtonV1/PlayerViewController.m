@@ -179,6 +179,12 @@
     audioEnterName.volume = 0.5;
     [audioEnterName prepareToPlay];
     
+    NSURL *urlSwitch = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/switch-22.aiff", [[NSBundle mainBundle] resourcePath]]];
+	audioSwitch = [[AVAudioPlayer alloc] initWithContentsOfURL:urlSwitch error:nil];
+	audioSwitch.numberOfLoops = 0;
+    audioSwitch.volume = 1.0;
+    [audioSwitch prepareToPlay];
+    
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioEnterName afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 }
@@ -273,6 +279,7 @@
 }
 
 -(IBAction) chooseAIPlayer:(id)sender {
+    [audioSwitch play];
     if (useAI) {
         useAI = NO;
         [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];

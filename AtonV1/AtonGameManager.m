@@ -172,7 +172,7 @@ static int DETAIL_FONT_SIZE = 20;
         //---------------------------------
         finalResultView = [[UIImageView alloc] initWithFrame:viewFrame];
         finalResultView.image = [UIImage imageNamed:viewBgName];
-        // finalResultView.hidden = YES;
+        finalResultView.hidden = YES;
         finalResultView.userInteractionEnabled = YES;
         [baseView addSubview:finalResultView];
 

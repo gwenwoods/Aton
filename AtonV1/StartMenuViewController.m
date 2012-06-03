@@ -230,7 +230,8 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
             if ([self isWithinImgView:touchLocation:rulesIV]) {
                 
                 if (audioPlayerOpen.isPlaying) {
-                    [self performSelector:@selector(fadeVolumeDown:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+                    audioPlayerOpen.numberOfLoops = 0;
+                    [self performSelector:@selector(fadeVolumeDownSlow:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
                 } else {
                     audioPlayerOpen = nil;
                 }
@@ -300,6 +301,16 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
         [aPlayer stop];         
     } else {
         [self performSelector:@selector(fadeVolumeDown:) withObject:aPlayer afterDelay:0.1];  
+    }
+}
+
+- (void)fadeVolumeDownSlow:(AVAudioPlayer *)aPlayer
+{
+    aPlayer.volume = aPlayer.volume - 0.005;
+    if (aPlayer.volume < 0.01) {
+        [aPlayer stop];         
+    } else {
+        [self performSelector:@selector(fadeVolumeDownSlow:) withObject:aPlayer afterDelay:0.1];  
     }
 }
 
