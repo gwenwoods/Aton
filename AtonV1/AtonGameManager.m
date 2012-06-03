@@ -393,14 +393,17 @@ static int DETAIL_FONT_SIZE = 20;
     redResultLb.textAlignment = UITextAlignmentLeft;
     redResultLb.lineBreakMode = UILineBreakModeCharacterWrap;
     redResultLb.numberOfLines = 6;     
-    redResultLb.textColor = [UIColor blackColor];
+    redResultLb.textColor = [UIColor redColor];
     redResultLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
-    redResultLb.text = redPlayer.playerName; 
+    NSString *redResult = redPlayer.playerName;
+    
+    redResult = [redResult stringByAppendingString:[NSString stringWithFormat:@"  %i", [redPlayer getScore]]];
+    redResultLb.text = redResult;
     [finalResultView addSubview:redResultLb];
     [finalResultView bringSubviewToFront:redResultLb];
-    int redNameLength = [redPlayer.playerName length];
+   // int redNameLength = [redPlayer.playerName length];
     
-    UILabel *redScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+20 +redNameLength*7,220,400,40)];
+ /*   UILabel *redScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+20 +redNameLength*7,220,400,40)];
     redScoreLb.backgroundColor = [UIColor clearColor];
     redScoreLb.textAlignment = UITextAlignmentLeft;
     redScoreLb.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -409,7 +412,7 @@ static int DETAIL_FONT_SIZE = 20;
     redScoreLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
     redScoreLb.text = [NSString stringWithFormat:@"%i pt", [redPlayer getScore]];
     [finalResultView addSubview:redScoreLb];
-    [finalResultView bringSubviewToFront:redScoreLb];
+    [finalResultView bringSubviewToFront:redScoreLb];*/
     
     
     UILabel *blueResultLb = [[UILabel alloc] initWithFrame:CGRectMake(214,240,400,40)];
@@ -417,14 +420,16 @@ static int DETAIL_FONT_SIZE = 20;
     blueResultLb.textAlignment = UITextAlignmentLeft;
     blueResultLb.lineBreakMode = UILineBreakModeCharacterWrap;
     blueResultLb.numberOfLines = 6;     
-    blueResultLb.textColor = [UIColor blackColor];
+    blueResultLb.textColor = [UIColor blueColor];
     blueResultLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
-    blueResultLb.text = bluePlayer.playerName;  
+    NSString *blueResult = bluePlayer.playerName;
+    blueResult = [blueResult stringByAppendingString:[NSString stringWithFormat:@  "%i", [bluePlayer getScore]]];
+    blueResultLb.text = blueResult;  
     [finalResultView addSubview:blueResultLb];
     [finalResultView bringSubviewToFront:blueResultLb];
-    int blueNameLength = [bluePlayer.playerName length];
+  //  int blueNameLength = [bluePlayer.playerName length];
     
-    UILabel *blueScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+ 20 + blueNameLength*7,240,400,40)];
+/*    UILabel *blueScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+ 20 + blueNameLength*7,240,400,40)];
     if (para.useAI == YES) {
         blueScoreLb = [[UILabel alloc] initWithFrame:CGRectMake(214+ 20 + 12,240,400,40)];
     }
@@ -437,7 +442,7 @@ static int DETAIL_FONT_SIZE = 20;
     blueScoreLb.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:16];
     blueScoreLb.text = [NSString stringWithFormat:@"%i pt", [bluePlayer getScore]]; 
     [finalResultView addSubview:blueScoreLb];
-    [finalResultView bringSubviewToFront:blueScoreLb];
+    [finalResultView bringSubviewToFront:blueScoreLb];*/
     
     finalResultView.hidden = NO;
     finalResultView.alpha = 0.0;
