@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <AVFoundation/AVFoundation.h>
 
 @class RuleView1Controller;
 
@@ -21,6 +22,7 @@
     UIScrollView *scrollView;
     UIImageView *iv;
     int pageIndex;
+    AVAudioPlayer *audioFlip;
 }
 
 -(IBAction) backToMenu:(id)sender;

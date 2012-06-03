@@ -15,6 +15,8 @@
 @implementation RuleView1Controller
 @synthesize delegateRuleView;
 
+static int PAGE_NUM = 6;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,16 +39,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //  [self.view setBackgroundColor:[UIColor redColor]];
-    // scrollView.frame = CGRectMake(0, 0, 4096, 4096);
+
     [self.view setBackgroundColor:[UIColor blackColor]];
-    iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    iv = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,1024,748)];
     iv.image = [UIImage imageNamed:@"Aton_Rules_P1.png"];
     pageIndex = 0;
     [self.view addSubview:iv];
-   // [scrollView bringSubviewToFront:iv];
     
+    //--------------
+    // return button
+    UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    returnButton.frame = CGRectMake(910.0, 700.0, 100.0, 40.0);
+    [returnButton setUserInteractionEnabled:YES];
+    [returnButton addTarget:self action:@selector(backToMenu:) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:returnButton];
+    [self.view bringSubviewToFront:returnButton];
+    
+    //---------------
+    // gesture recognizer
     UISwipeGestureRecognizer *oneFingerSwipeLeft = 
     [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeLeft:)];
     [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
@@ -57,17 +67,13 @@
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [[self view] addGestureRecognizer:oneFingerSwipeRight];
     
-    UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    returnButton.frame = CGRectMake(880.0, 660.0, 100.0, 40.0);
-    returnButton.alpha = 0.5;
-    returnButton.titleLabel.font = [UIFont fontWithName:@"Courier" size:24];
-    // returnButton.hidden = NO;
-    // [returnButton setImage:[UIImage imageNamed:@"buttonDone.png"] forState:UIControlStateNormal];
-    [returnButton setTitle:@"Back" forState:UIControlStateNormal];
-    [returnButton setUserInteractionEnabled:YES];
-    [returnButton addTarget:self action:@selector(backToMenu:) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:returnButton];
-    [self.view bringSubviewToFront:returnButton];
+    //----------------
+    // audio
+    NSURL *urlFlip = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/page-flip-3.wav", [[NSBundle mainBundle] resourcePath]]];
+	audioFlip = [[AVAudioPlayer alloc] initWithContentsOfURL:urlFlip error:nil];
+	audioFlip.numberOfLoops = 0;
+    audioFlip.volume = 1.0;
+    [audioFlip prepareToPlay];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -94,10 +100,10 @@
 - (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer *)recognizer 
 { 
    // CGPoint point = [recognizer locationInView:[self view]];
-    if (pageIndex == 3) {
+    if (pageIndex == 5) {
         return;
     }
-    pageIndex = (pageIndex+1)%4;
+    pageIndex = (pageIndex+1)%PAGE_NUM;
     [self displayNextPage];
     //NSLog(@"Swipe down - start location: %f,%f", point.x, point.y);
 }
@@ -108,41 +114,44 @@
         return;
     }
     // CGPoint point = [recognizer locationInView:[self view]];
-    pageIndex = (pageIndex-1+4)%4;
+    pageIndex = (pageIndex-1+PAGE_NUM)%PAGE_NUM;
     [self displayPreviousPage];
     //NSLog(@"Swipe down - start location: %f,%f", point.x, point.y);
 }
 
 -(void) displayNextPage {
-    
-    if (pageIndex == 0) {
-        iv.image = [UIImage imageNamed:@"Aton_Rules_P2.png"];
-       
-    } else if (pageIndex == 1) {
-        iv.image = [UIImage imageNamed:@"Aton_Rules_P3.png"];
-        
-    } else if (pageIndex == 2) {
-        iv.image = [UIImage imageNamed:@"Aton_Rules_P4.png"];
-        
-    } 
-    
-     [self imagesTransitionPushFromRight:iv:0.5];
+    [self setNewPageIV];
+    [self imagesTransitionPushFromRight:iv:0.5];
+    [audioFlip play];
 }
 
 -(void) displayPreviousPage {
+    [self setNewPageIV];
+    [self imagesTransitionPushFromLeft:iv:0.5];
+    [audioFlip play];
+}
+
+-(void) setNewPageIV {
     
-    if (pageIndex == 3) {
-        iv.image = [UIImage imageNamed:@"Aton_Rules_P3.png"];
-        
-    } else if (pageIndex == 2) {
-        iv.image = [UIImage imageNamed:@"Aton_Rules_P2.png"];
-        
-    } else if (pageIndex == 1) {
+    if (pageIndex == 0) {
         iv.image = [UIImage imageNamed:@"Aton_Rules_P1.png"];
         
+    } else if (pageIndex == 1) {
+        iv.image = [UIImage imageNamed:@"Aton_Rules_P2.png"];
+        
+    } else if (pageIndex == 2) {
+        iv.image = [UIImage imageNamed:@"Aton_Rules_P3.png"];
+        
+    } else if (pageIndex == 3) {
+        iv.image = [UIImage imageNamed:@"Aton_Rules_P4.png"];
+        
+    } else if (pageIndex == 4) {
+        iv.image = [UIImage imageNamed:@"Aton_Rules_P5.png"];
+        
+    } else if (pageIndex == 5) {
+        iv.image = [UIImage imageNamed:@"Aton_Rules_P6.png"];
+        
     } 
-    
-    [self imagesTransitionPushFromLeft:iv:0.5];
 }
 
 -(void) imagesTransitionPushFromRight:(UIImageView*) view:(float) transTime {
@@ -162,4 +171,5 @@
     transition.subtype = kCATransitionFromLeft;
 	[view.layer addAnimation:transition forKey:nil];
 }
+
 @end
