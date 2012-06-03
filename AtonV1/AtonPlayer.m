@@ -47,36 +47,43 @@ static float DELAY_TIME = 0.25;
         scrollBlankIV.userInteractionEnabled = YES;
         [baseView addSubview:scrollBlankIV];
         
-        scrollDoneAniHomeIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, -106.2, 76.5, 318.6)];
-        
-        scrollDoneIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, 20.0, 76.5, 318.6)];
-        scrollDoneIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
+     //   scrollDoneAniHomeIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, -106.2, 76.5, 318.6)];
+         scrollDoneAniHomeIV = [[UIImageView alloc] initWithFrame:CGRectMake(-8.0 + playerEnum *976.0, -177.6, 72, 390)];
+      //  scrollDoneIV = [[UIImageView alloc] initWithFrame:CGRectMake(-12.0 + playerEnum *978.0, 20.0, 76.5, 318.6)];
+      //  scrollDoneIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
+        scrollDoneIV = [[UIImageView alloc] initWithFrame:CGRectMake(-8.0 + playerEnum *976.0, 20.0, 72, 390)];
+        scrollDoneIV.image = [UIImage imageNamed:@"scrollDown_done_xlong.png"];
         scrollDoneIV.hidden = YES;
         scrollDoneIV.userInteractionEnabled = YES;
         [baseView addSubview:scrollDoneIV];
         
         scrollExchangeIV = [[UIImageView alloc] initWithFrame:CGRectMake(-10.0 + playerEnum *978.0, 0.0, 76.5, 106.2)];
-        scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_exchange.png"];
+        scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_exchange_new.png"];
         scrollExchangeIV.userInteractionEnabled = YES;
         [baseView addSubview:scrollExchangeIV];
         
-        UIImageView *scarabIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4.0 + playerEnum *975.0, 90.0, 57, 80)];
+        scarabIV = [[UIImageView alloc] initWithFrame:CGRectMake(-4.0 + playerEnum *975.0, 90.0, 57, 80)];
         scarabIV.image = [UIImage imageNamed:@"score_scarab.png"];
         [baseView addSubview:scarabIV];
         
-        scoreLb = [[UILabel alloc] initWithFrame:CGRectMake(playerEnum *975.0, 104.0, 48, 48)];
+       // scoreLb = [[UILabel alloc] initWithFrame:CGRectMake(playerEnum *975.0, 104.0, 48, 48)];
+        scoreLb = [[UILabel alloc] initWithFrame:CGRectMake(4, 14.0, 48, 48)];
         scoreLb.textAlignment = UITextAlignmentCenter;
         scoreLb.textColor = [UIColor whiteColor];
         [scoreLb setBackgroundColor:[UIColor clearColor]];
         scoreLb.font = [UIFont fontWithName:@"Verdana-Bold" size:18];
         scoreLb.text = @"0";
         //actionLb.hidden = YES;
-        [baseView addSubview:scoreLb];
+        //[baseView addSubview:scoreLb];
+        [scarabIV addSubview:scoreLb];
 
         
+        UIImageView *lineIV = [[UIImageView alloc] initWithFrame:CGRectMake(6,150, 58, 6)];
+        lineIV.image = [UIImage imageNamed:@"divided_line.png"];
+        [scrollDoneIV addSubview:lineIV];
+
         
-        
-        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(13, 94, 46, 20)];
+        actionLb = [[UILabel alloc] initWithFrame:CGRectMake(10, 154, 46, 20)];
         actionLb.text = @"Remove";
         actionLb.textAlignment = UITextAlignmentCenter;
         actionLb.textColor = [UIColor blackColor];
@@ -86,29 +93,28 @@ static float DELAY_TIME = 0.25;
         [scrollDoneIV addSubview:actionLb];
         
         doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        doneButton.frame = CGRectMake(8,240, 56, 56);
+        doneButton.frame = CGRectMake(8,312, 48, 48);
+        doneButton.alpha = 0.4;
+        //[doneButton setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
         doneButton.userInteractionEnabled = YES;
         [doneButton addTarget:controller action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
         [scrollDoneIV addSubview:doneButton];
         
-        UIImageView *p0 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 120, 32, 32)];
-     //   p0.image = [UIImage imageNamed:@"Red_Disc"];
-        UIImageView *p1 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 152, 32, 32)];
-    //    p1.image = [UIImage imageNamed:@"Red_Disc"];
-        UIImageView *p2 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 184, 32, 32)];
-      //  p2.image = [UIImage imageNamed:@"Red_Disc"];
-        UIImageView *p3 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 216, 32, 32)];
-     //   p3.image = [UIImage imageNamed:@"Red_Disc"];
+        UIImageView *p0 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 178, 32, 32)];
+        UIImageView *p1 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 210, 32, 32)];
+        UIImageView *p2 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 242, 32, 32)];
+        UIImageView *p3 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 274, 32, 32)];
         [scrollDoneIV addSubview:p0];
         [scrollDoneIV addSubview:p1];
         [scrollDoneIV addSubview:p2];
         [scrollDoneIV addSubview:p3];
+        
         scrollPeepArray = [[NSMutableArray alloc] init];
         [scrollPeepArray addObject:p0];
         [scrollPeepArray addObject:p1];
         [scrollPeepArray addObject:p2];
         [scrollPeepArray addObject:p3];
-       // [menuView setBackgroundColor:[UIColor whiteColor]];
+
         //--------
         startOriginArray = (CGPoint*)malloc(sizeof(CGPoint) * 4);
         startOriginArray[0] =  CGPointMake(58.0 + thisPlayerEnum * START_SPACE, 82.0);
@@ -614,9 +620,14 @@ static float DELAY_TIME = 0.25;
     
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneAniHomeIV.frame];
-    animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
-    [baseView addSubview:animationIV]; 
-     [baseView addSubview:scrollExchangeIV];
+    animationIV.image = [UIImage imageNamed:@"scrollDown_done_xlong.png"];
+    [baseView addSubview:animationIV];
+    
+    [baseView bringSubviewToFront:scrollExchangeIV];
+    [baseView bringSubviewToFront:scarabIV];
+    
+   // [baseView addSubview:scrollExchangeIV];
+   // [baseView addSubview:scarabIV];
     [audioScroll play];
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -635,15 +646,18 @@ static float DELAY_TIME = 0.25;
 
     // create animation IV
     UIImageView *animationIV = [[UIImageView alloc] initWithFrame:scrollDoneIV.frame];
-    animationIV.image = [UIImage imageNamed:@"scrollDown_done.png"];
-    [baseView addSubview:animationIV]; 
+    animationIV.image = [UIImage imageNamed:@"scrollDown_done_xlong.png"];
+    [baseView addSubview:animationIV];
+    
+    [baseView bringSubviewToFront:scrollExchangeIV];
+    [baseView bringSubviewToFront:scarabIV];
     
    // UIImageView *animation1IV = [[UIImageView alloc] initWithFrame:scrollDoneIV.frame];
    // animation1IV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
    // [baseView addSubview:animation1IV];
     
     
-    [baseView addSubview:scrollExchangeIV];
+   // [baseView addSubview:scrollExchangeIV];
     
     scrollDoneIV.hidden = YES;
     [audioScroll play];

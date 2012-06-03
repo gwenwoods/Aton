@@ -168,7 +168,7 @@
     }
 
     player.exchangeCardsButton.hidden = YES;
-    player.scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_blank.png"];
+    player.scrollExchangeIV.image = [UIImage imageNamed:@"scrollDown_exch_blank.png"];
     [player resetCard];
     [player distributeCards];
     [player performSelector:@selector(openCardsForArrange) withObject:nil afterDelay:3.0];

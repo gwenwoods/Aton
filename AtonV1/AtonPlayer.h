@@ -33,7 +33,7 @@ enum PLAYER_ACTION_ENUM {
     UILabel *actionLb;
     
     UIImageView *scrollExchangeIV, *scrollBlankIV, *scrollDoneAniHomeIV;
-    
+    UIImageView *scarabIV;
     AVAudioPlayer *audioScroll;
 }
 
