@@ -343,7 +343,11 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 // PlayerView delegate functions
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller
 {
-    
+    if (audioPlayerOpen.isPlaying) {
+        [audioPlayerOpen stop];
+    } else {
+        audioPlayerOpen = nil;
+    }
     NSLog(@"Player View Back to Start Menu");
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
@@ -352,6 +356,11 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 
 - (void)dismissPlayerViewWithoutAnimation:(PlayerViewController *)subcontroller
 {
+    if (audioPlayerOpen.isPlaying) {
+        [audioPlayerOpen stop];
+    } else {
+        audioPlayerOpen = nil;
+    }
     NSLog(@"Player View Back to Start Menu");
     [self dismissModalViewControllerAnimated:NO];
     [self viewDidLoad];

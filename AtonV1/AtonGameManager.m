@@ -489,42 +489,42 @@ static int DETAIL_FONT_SIZE = 20;
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
         msg = @"All Yellow Squares Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" wins|"];
+        msg = [msg stringByAppendingString:@" wins!|"];
         
     } else if ([TempleUtility findColorFullWinner:para.templeArray:GREEN]!= PLAYER_NONE) {
         int winnerEnum =  [TempleUtility findColorFullWinner:para.templeArray:GREEN];
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
         msg = @"All Green Squares Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" wins|"];
+        msg = [msg stringByAppendingString:@" wins!|"];
         
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1] != PLAYER_NONE) {
         int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_1];
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
         msg = @"Temple 1 Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" wins|"];
+        msg = [msg stringByAppendingString:@" wins!|"];
         
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2] != PLAYER_NONE) {
         int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_2];
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
         msg = @"Temple 2 Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" wins|"];
+        msg = [msg stringByAppendingString:@" wins!|"];
         
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3] != PLAYER_NONE) {
         int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_3];
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
         msg = @"Temple 3 Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" wins|"];
+        msg = [msg stringByAppendingString:@" wins!|"];
         
     } else if ([TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_4] != PLAYER_NONE) {
         int winnerEnum =  [TempleUtility findTempleFullWinner:para.templeArray:TEMPLE_4];
         AtonPlayer *winner = [para.playerArray objectAtIndex:winnerEnum];
         msg = @"Temple 4 Full\n";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@" wins|"];
+        msg = [msg stringByAppendingString:@" wins!|"];
         
     }
     
@@ -533,19 +533,31 @@ static int DETAIL_FONT_SIZE = 20;
     int blueScore = [[playerArray objectAtIndex:PLAYER_BLUE] getScore];
     if (redScore >= 40 && blueScore >= 40) {
         msg = @"";
-        msg = [msg stringByAppendingString:@"Both players reaches 40 points|"];
+    //    msg = [msg stringByAppendingString:@"Both players reaches 40 points|"];
+    //     msg = [msg stringByAppendingString:@"Both players reaches 40 points\n"];
+        if (redScore > blueScore) {
+            AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
+            msg = [msg stringByAppendingString:redPlayer.playerName];
+            msg = [msg stringByAppendingString:@"\n Has more points and wins!|"];
+        } else if (blueScore > redScore) {
+            AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
+            msg =[msg stringByAppendingString:bluePlayer.playerName];
+            msg = [msg stringByAppendingString:@"\n Has more points and wins!|"];
+        } else {
+            msg = [msg stringByAppendingString:@"Both players have equal points.\n The game is a draw.|"];
+        }
         
     } else if (redScore >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_RED];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n Reaches 40 points and wins|"];
+        msg = [msg stringByAppendingString:@"\n Reaches 40 points and wins!|"];
         
     } else if (blueScore >= 40) {
         AtonPlayer *winner = [para.playerArray objectAtIndex:PLAYER_BLUE];
         msg = @"";
         msg = [msg stringByAppendingString:winner.playerName];
-        msg = [msg stringByAppendingString:@"\n Reaches 40 points and wins|"];
+        msg = [msg stringByAppendingString:@"\n Reaches 40 points and wins!|"];
         
     }
     

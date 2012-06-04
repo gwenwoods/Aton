@@ -289,7 +289,7 @@
     } else {
         useAI = YES;
         [useAIButton setImage:[UIImage imageNamed:@"Button_AI.png"]   forState:UIControlStateNormal];
-        blueName = @"A.I.";
+        blueName = @" A.I.";
         blueNameButton.userInteractionEnabled = NO;
         [blueNameButton setTitle:blueName forState:UIControlStateNormal];
     }
