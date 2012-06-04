@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BD07CBBE157B24FE006409EE /* Aton_Rules_P1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBBD157B24FE006409EE /* Aton_Rules_P1.png */; };
-		BD07CBC0157B254D006409EE /* aton_CreditsPage_new1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBBF157B254D006409EE /* aton_CreditsPage_new1.png */; };
 		BD07CBC4157B2F1B006409EE /* scrollDown_exchange_new.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC3157B2F1B006409EE /* scrollDown_exchange_new.png */; };
 		BD07CBC8157B3226006409EE /* scrollDown_done_xlong.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC7157B3226006409EE /* scrollDown_done_xlong.png */; };
 		BD07CBCA157B3239006409EE /* scrollDown_exch_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC9157B3239006409EE /* scrollDown_exch_blank.png */; };
@@ -161,7 +160,6 @@
 
 /* Begin PBXFileReference section */
 		BD07CBBD157B24FE006409EE /* Aton_Rules_P1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P1.png; sourceTree = "<group>"; };
-		BD07CBBF157B254D006409EE /* aton_CreditsPage_new1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aton_CreditsPage_new1.png; sourceTree = "<group>"; };
 		BD07CBC3157B2F1B006409EE /* scrollDown_exchange_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exchange_new.png; sourceTree = "<group>"; };
 		BD07CBC7157B3226006409EE /* scrollDown_done_xlong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_done_xlong.png; sourceTree = "<group>"; };
 		BD07CBC9157B3239006409EE /* scrollDown_exch_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exch_blank.png; sourceTree = "<group>"; };
@@ -545,7 +543,6 @@
 			children = (
 				BD5A54C2153D1670009F5D71 /* Aton_OpenView150dpi.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
-				BD07CBBF157B254D006409EE /* aton_CreditsPage_new1.png */,
 				BD07CBD0157C41C5006409EE /* aton_CreditsPage_new2_wQueenLogo.png */,
 				BD07CBCD157B3606006409EE /* PlayerView */,
 				BD3CC3C8157ADFC7004682E6 /* GameBoard */,
@@ -886,7 +883,6 @@
 				BDAA7177157AF766009C45DD /* Aton_Rules_P6.png in Resources */,
 				BDAA717D157AFBA2009C45DD /* page-flip-3.wav in Resources */,
 				BD07CBBE157B24FE006409EE /* Aton_Rules_P1.png in Resources */,
-				BD07CBC0157B254D006409EE /* aton_CreditsPage_new1.png in Resources */,
 				BD07CBC4157B2F1B006409EE /* scrollDown_exchange_new.png in Resources */,
 				BD07CBC8157B3226006409EE /* scrollDown_done_xlong.png in Resources */,
 				BD07CBCA157B3239006409EE /* scrollDown_exch_blank.png in Resources */,
