@@ -343,6 +343,7 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 // PlayerView delegate functions
 - (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller
 {
+    
     NSLog(@"Player View Back to Start Menu");
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
@@ -361,7 +362,13 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 // RuleView delegate functions
 - (void)dismissRuleViewWithAnimation:(RuleView1Controller *)subcontroller
 {
-    NSLog(@"Rule View Back to Start Menu");
+    if (audioPlayerOpen.isPlaying) {
+        [audioPlayerOpen stop];
+    } else {
+        audioPlayerOpen = nil;
+    }
+    
+    NSLog(@"Rule View Back to Start Menu with Animation");
     [self dismissModalViewControllerAnimated:YES];
     [self viewDidLoad];
     self.ruleViewScreen = nil;
@@ -369,6 +376,13 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 
 - (void)dismissRuleViewWithoutAnimation:(RuleView1Controller *)subcontroller
 {
+    
+    if (audioPlayerOpen.isPlaying) {
+        [audioPlayerOpen stop];
+    } else {
+        audioPlayerOpen = nil;
+    }
+    
     NSLog(@"Rule View Back to Start Menu");
     [self dismissModalViewControllerAnimated:NO];
     [self viewDidLoad];

@@ -15,7 +15,7 @@
 @implementation RuleView1Controller
 @synthesize delegateRuleView;
 
-static int PAGE_NUM = 6;
+static int PAGE_NUM = 7;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -100,7 +100,7 @@ static int PAGE_NUM = 6;
 - (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer *)recognizer 
 { 
    // CGPoint point = [recognizer locationInView:[self view]];
-    if (pageIndex == 5) {
+    if (pageIndex == (PAGE_NUM - 1)) {
         return;
     }
     pageIndex = (pageIndex+1)%PAGE_NUM;
@@ -137,18 +137,21 @@ static int PAGE_NUM = 6;
         iv.image = [UIImage imageNamed:@"Aton_Rules_P1.png"];
         
     } else if (pageIndex == 1) {
+        iv.image = [UIImage imageNamed:@"Aton_Rules_P15.png"];
+        
+    }  else if (pageIndex == 2) {
         iv.image = [UIImage imageNamed:@"Aton_Rules_P2.png"];
         
-    } else if (pageIndex == 2) {
+    } else if (pageIndex == 3) {
         iv.image = [UIImage imageNamed:@"Aton_Rules_P3.png"];
         
-    } else if (pageIndex == 3) {
+    } else if (pageIndex == 4) {
         iv.image = [UIImage imageNamed:@"Aton_Rules_P4.png"];
         
-    } else if (pageIndex == 4) {
+    } else if (pageIndex == 5) {
         iv.image = [UIImage imageNamed:@"Aton_Rules_P5.png"];
         
-    } else if (pageIndex == 5) {
+    } else if (pageIndex == 6) {
         iv.image = [UIImage imageNamed:@"Aton_Rules_P6.png"];
         
     } 
