@@ -19,7 +19,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 @synthesize gameManager;
 @synthesize useAI;
 
-static NSString *CARD_1_RESULT = @"Card 1 Result|";
+static NSString *CARD_1_RESULT = @"Cartouche 1 Result|";
 static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 
 -(id)initializeWithParameters:(AtonGameParameters*) parameter:(UIViewController*) controller:(AVAudioPlayer*) atonAudioPlayGame:(AVAudioPlayer*) atonAudioChime {

@@ -558,7 +558,7 @@ static float DELAY_TIME = 0.25;
     //------------------------------
     int n = (time(0) + playerEnum *7 )%100;
     srand(time(0) + playerEnum *7);
-    
+    n = n + 20;
     for (int count = 0; count < n; count++) {
         for (int i=0; i<(CARD_NUM-1); i++) {
             int r = i + (rand() % (CARD_NUM-i)); // Random remaining position.

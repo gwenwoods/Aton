@@ -12,8 +12,8 @@
 @synthesize para;
 
 static NSString *REMOVE_TEMPLE_COUNTERS = @"Remove Temple Counters|";
-static NSString *CARD_2_RESULT = @"Card 2 Result|";
-static NSString *CARD_4_RESULT = @"Card 4 Result|";
+static NSString *CARD_2_RESULT = @"Cartouche 2 Result|";
+static NSString *CARD_4_RESULT = @"Cartouche 4 Result|";
 static NSString *RED_SPACE = @"Red ";
 static NSString *BLUE_SPACE = @"Blue ";
 static NSString *COUNTER = @"counter";
