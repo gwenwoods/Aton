@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD0525C7157C620600D2466D /* aton_CreditsPage_new2_wQueenLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0525C6157C620600D2466D /* aton_CreditsPage_new2_wQueenLogo.png */; };
-		BD07CBBE157B24FE006409EE /* Aton_Rules_P1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBBD157B24FE006409EE /* Aton_Rules_P1.png */; };
 		BD07CBC4157B2F1B006409EE /* scrollDown_exchange_new.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC3157B2F1B006409EE /* scrollDown_exchange_new.png */; };
 		BD07CBC8157B3226006409EE /* scrollDown_done_xlong.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC7157B3226006409EE /* scrollDown_done_xlong.png */; };
 		BD07CBCA157B3239006409EE /* scrollDown_exch_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC9157B3239006409EE /* scrollDown_exch_blank.png */; };
 		BD07CBCC157B337E006409EE /* divided_line.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBCB157B337E006409EE /* divided_line.png */; };
-		BD07CBCF157BD567006409EE /* Aton_Rules_P15.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBCE157BD567006409EE /* Aton_Rules_P15.png */; };
 		BD07CBD3157C5915006409EE /* Aton_OpenView150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBD2157C5915006409EE /* Aton_OpenView150dpi.png */; };
 		BD0CED131576A3DD0039F8BA /* Button_Human.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED111576A3DD0039F8BA /* Button_Human.png */; };
 		BD0CED151576A45F0039F8BA /* Button_AI.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED141576A45F0039F8BA /* Button_AI.png */; };
@@ -57,12 +54,8 @@
 		BD97408F154C9AD6003F4E8F /* Red_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97408D154C9AD6003F4E8F /* Red_icon.png */; };
 		BD974091154C9BCC003F4E8F /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974090154C9BCC003F4E8F /* chime.mp3 */; };
 		BD974093154CB86A003F4E8F /* OpenMusic_Aton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */; };
-		BDAA7167157AE692009C45DD /* Aton_Rules_P2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7163157AE692009C45DD /* Aton_Rules_P2.png */; };
-		BDAA7168157AE692009C45DD /* Aton_Rules_P3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7164157AE692009C45DD /* Aton_Rules_P3.png */; };
-		BDAA716C157AE916009C45DD /* Aton_Rules_P4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA716B157AE916009C45DD /* Aton_Rules_P4.png */; };
+		BD9FCF2B157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = BD9FCF2A157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png */; };
 		BDAA716F157AEA97009C45DD /* RuleView1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAA716E157AEA97009C45DD /* RuleView1Controller.m */; };
-		BDAA7176157AF766009C45DD /* Aton_Rules_P5.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7174157AF766009C45DD /* Aton_Rules_P5.png */; };
-		BDAA7177157AF766009C45DD /* Aton_Rules_P6.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAA7175157AF766009C45DD /* Aton_Rules_P6.png */; };
 		BDAA717D157AFBA2009C45DD /* page-flip-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = BDAA717C157AFBA2009C45DD /* page-flip-3.wav */; };
 		BDAE712A153A3BED001848F8 /* Blue_Card1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7120153A3BED001848F8 /* Blue_Card1.png */; };
 		BDAE712B153A3BED001848F8 /* Blue_Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDAE7121153A3BED001848F8 /* Blue_Card2.png */; };
@@ -159,13 +152,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BD0525C6157C620600D2466D /* aton_CreditsPage_new2_wQueenLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aton_CreditsPage_new2_wQueenLogo.png; sourceTree = "<group>"; };
-		BD07CBBD157B24FE006409EE /* Aton_Rules_P1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P1.png; sourceTree = "<group>"; };
 		BD07CBC3157B2F1B006409EE /* scrollDown_exchange_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exchange_new.png; sourceTree = "<group>"; };
 		BD07CBC7157B3226006409EE /* scrollDown_done_xlong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_done_xlong.png; sourceTree = "<group>"; };
 		BD07CBC9157B3239006409EE /* scrollDown_exch_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exch_blank.png; sourceTree = "<group>"; };
 		BD07CBCB157B337E006409EE /* divided_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divided_line.png; sourceTree = "<group>"; };
-		BD07CBCE157BD567006409EE /* Aton_Rules_P15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P15.png; sourceTree = "<group>"; };
 		BD07CBD2157C5915006409EE /* Aton_OpenView150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_OpenView150dpi.png; sourceTree = "<group>"; };
 		BD0CED111576A3DD0039F8BA /* Button_Human.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Human.png; sourceTree = "<group>"; };
 		BD0CED141576A45F0039F8BA /* Button_AI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_AI.png; sourceTree = "<group>"; };
@@ -230,13 +220,9 @@
 		BD97408D154C9AD6003F4E8F /* Red_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_icon.png; sourceTree = "<group>"; };
 		BD974090154C9BCC003F4E8F /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chime.mp3; sourceTree = "<group>"; };
 		BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = OpenMusic_Aton.mp3; sourceTree = "<group>"; };
-		BDAA7163157AE692009C45DD /* Aton_Rules_P2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P2.png; sourceTree = "<group>"; };
-		BDAA7164157AE692009C45DD /* Aton_Rules_P3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P3.png; sourceTree = "<group>"; };
-		BDAA716B157AE916009C45DD /* Aton_Rules_P4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P4.png; sourceTree = "<group>"; };
+		BD9FCF2A157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aton_CreditsPage_new2_wQueenLogo.png; sourceTree = "<group>"; };
 		BDAA716D157AEA97009C45DD /* RuleView1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleView1Controller.h; sourceTree = "<group>"; };
 		BDAA716E157AEA97009C45DD /* RuleView1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleView1Controller.m; sourceTree = "<group>"; };
-		BDAA7174157AF766009C45DD /* Aton_Rules_P5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P5.png; sourceTree = "<group>"; };
-		BDAA7175157AF766009C45DD /* Aton_Rules_P6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P6.png; sourceTree = "<group>"; };
 		BDAA717C157AFBA2009C45DD /* page-flip-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "page-flip-3.wav"; sourceTree = "<group>"; };
 		BDAE7120153A3BED001848F8 /* Blue_Card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card1.png; sourceTree = "<group>"; };
 		BDAE7121153A3BED001848F8 /* Blue_Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Card2.png; sourceTree = "<group>"; };
@@ -527,13 +513,6 @@
 		BDAA7161157AE692009C45DD /* Rules_new */ = {
 			isa = PBXGroup;
 			children = (
-				BD07CBBD157B24FE006409EE /* Aton_Rules_P1.png */,
-				BD07CBCE157BD567006409EE /* Aton_Rules_P15.png */,
-				BDAA7163157AE692009C45DD /* Aton_Rules_P2.png */,
-				BDAA7164157AE692009C45DD /* Aton_Rules_P3.png */,
-				BDAA716B157AE916009C45DD /* Aton_Rules_P4.png */,
-				BDAA7174157AF766009C45DD /* Aton_Rules_P5.png */,
-				BDAA7175157AF766009C45DD /* Aton_Rules_P6.png */,
 			);
 			path = Rules_new;
 			sourceTree = "<group>";
@@ -542,7 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				BD07CBD2157C5915006409EE /* Aton_OpenView150dpi.png */,
-				BD0525C6157C620600D2466D /* aton_CreditsPage_new2_wQueenLogo.png */,
+				BD9FCF2A157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
 				BD07CBCD157B3606006409EE /* PlayerView */,
 				BD3CC3C8157ADFC7004682E6 /* GameBoard */,
@@ -875,20 +854,13 @@
 				BD3CC3BD157A9320004682E6 /* final_score.png in Resources */,
 				BD3CC3BE157A9320004682E6 /* Menu.png in Resources */,
 				BD3CC3BF157A9320004682E6 /* score_scarab.png in Resources */,
-				BDAA7167157AE692009C45DD /* Aton_Rules_P2.png in Resources */,
-				BDAA7168157AE692009C45DD /* Aton_Rules_P3.png in Resources */,
-				BDAA716C157AE916009C45DD /* Aton_Rules_P4.png in Resources */,
-				BDAA7176157AF766009C45DD /* Aton_Rules_P5.png in Resources */,
-				BDAA7177157AF766009C45DD /* Aton_Rules_P6.png in Resources */,
 				BDAA717D157AFBA2009C45DD /* page-flip-3.wav in Resources */,
-				BD07CBBE157B24FE006409EE /* Aton_Rules_P1.png in Resources */,
 				BD07CBC4157B2F1B006409EE /* scrollDown_exchange_new.png in Resources */,
 				BD07CBC8157B3226006409EE /* scrollDown_done_xlong.png in Resources */,
 				BD07CBCA157B3239006409EE /* scrollDown_exch_blank.png in Resources */,
 				BD07CBCC157B337E006409EE /* divided_line.png in Resources */,
-				BD07CBCF157BD567006409EE /* Aton_Rules_P15.png in Resources */,
 				BD07CBD3157C5915006409EE /* Aton_OpenView150dpi.png in Resources */,
-				BD0525C7157C620600D2466D /* aton_CreditsPage_new2_wQueenLogo.png in Resources */,
+				BD9FCF2B157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
