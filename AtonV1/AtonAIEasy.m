@@ -398,7 +398,7 @@ static double REMOVE_PEEP_TIME = 2.0;
     }
 
     [self performSelector:@selector(removeSelectedSlotsAndTempleFlame:) withObject:selectedSlotArray afterDelay:REMOVE_PEEP_TIME];
-    int num = [selectedSlotArray count];
+   // int num = [selectedSlotArray count];
     
     //NSLog(@"Remove %d peeps", num);
     return REMOVE_PEEP_TIME;
