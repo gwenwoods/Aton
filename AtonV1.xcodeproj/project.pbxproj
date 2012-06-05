@@ -118,6 +118,13 @@
 		BDD3AEBA1549F7C90013C89A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3AEB01549D2170013C89A /* AVFoundation.framework */; };
 		BDD3AEC4154B93340013C89A /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD3AEC2154B93300013C89A /* PlayerViewController.m */; };
 		BDD3AEC5154B93340013C89A /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDD3AEC3154B93330013C89A /* PlayerViewController.xib */; };
+		BDD9AFCB157DA7C0003478C1 /* Aton_Rules_P1.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFC4157DA7C0003478C1 /* Aton_Rules_P1.png */; };
+		BDD9AFCC157DA7C0003478C1 /* Aton_Rules_P2.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFC5157DA7C0003478C1 /* Aton_Rules_P2.png */; };
+		BDD9AFCD157DA7C0003478C1 /* Aton_Rules_P3.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFC6157DA7C0003478C1 /* Aton_Rules_P3.png */; };
+		BDD9AFCE157DA7C0003478C1 /* Aton_Rules_P4.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFC7157DA7C0003478C1 /* Aton_Rules_P4.png */; };
+		BDD9AFCF157DA7C0003478C1 /* Aton_Rules_P5.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFC8157DA7C0003478C1 /* Aton_Rules_P5.png */; };
+		BDD9AFD0157DA7C0003478C1 /* Aton_Rules_P6.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFC9157DA7C0003478C1 /* Aton_Rules_P6.png */; };
+		BDD9AFD1157DA7C0003478C1 /* Aton_Rules_P15.png in Resources */ = {isa = PBXBuildFile; fileRef = BDD9AFCA157DA7C0003478C1 /* Aton_Rules_P15.png */; };
 		BDDA77A7153D2983003F3530 /* Aton_Icon72dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */; };
 		BDDA77B6153D2FCC003F3530 /* Aton_IconPrist.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */; };
 		BDDA77B8153D3038003F3530 /* Blue_Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = BDDA77B7153D3038003F3530 /* Blue_Disc.png */; };
@@ -296,6 +303,13 @@
 		BDD3AEC1154B932E0013C89A /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		BDD3AEC2154B93300013C89A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		BDD3AEC3154B93330013C89A /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		BDD9AFC4157DA7C0003478C1 /* Aton_Rules_P1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P1.png; sourceTree = "<group>"; };
+		BDD9AFC5157DA7C0003478C1 /* Aton_Rules_P2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P2.png; sourceTree = "<group>"; };
+		BDD9AFC6157DA7C0003478C1 /* Aton_Rules_P3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P3.png; sourceTree = "<group>"; };
+		BDD9AFC7157DA7C0003478C1 /* Aton_Rules_P4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P4.png; sourceTree = "<group>"; };
+		BDD9AFC8157DA7C0003478C1 /* Aton_Rules_P5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P5.png; sourceTree = "<group>"; };
+		BDD9AFC9157DA7C0003478C1 /* Aton_Rules_P6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P6.png; sourceTree = "<group>"; };
+		BDD9AFCA157DA7C0003478C1 /* Aton_Rules_P15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Rules_P15.png; sourceTree = "<group>"; };
 		BDDA77A5153D293C003F3530 /* Aton_Icon72dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_Icon72dpi.png; sourceTree = "<group>"; };
 		BDDA77B5153D2FCC003F3530 /* Aton_IconPrist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_IconPrist.png; sourceTree = "<group>"; };
 		BDDA77B7153D3038003F3530 /* Blue_Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Disc.png; sourceTree = "<group>"; };
@@ -510,16 +524,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BDAA7161157AE692009C45DD /* Rules_new */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Rules_new;
-			sourceTree = "<group>";
-		};
 		BDAE7112153A2EEF001848F8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BDD9AFC3157DA76B003478C1 /* Rules */,
 				BD07CBD2157C5915006409EE /* Aton_OpenView150dpi.png */,
 				BD9FCF2A157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png */,
 				BD5A54C0153D126C009F5D71 /* ankh_small.png */,
@@ -528,7 +536,6 @@
 				BDF533F215573F03003BBA23 /* button_papyrus */,
 				BDB5CE901555EC1600F96A0F /* BlueFlamePng */,
 				BDB5CE721555E24D00F96A0F /* RedFlamePng */,
-				BDAA7161157AE692009C45DD /* Rules_new */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -641,6 +648,20 @@
 				BD974092154CB86A003F4E8F /* OpenMusic_Aton.mp3 */,
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		BDD9AFC3157DA76B003478C1 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				BDD9AFC4157DA7C0003478C1 /* Aton_Rules_P1.png */,
+				BDD9AFC5157DA7C0003478C1 /* Aton_Rules_P2.png */,
+				BDD9AFC6157DA7C0003478C1 /* Aton_Rules_P3.png */,
+				BDD9AFC7157DA7C0003478C1 /* Aton_Rules_P4.png */,
+				BDD9AFC8157DA7C0003478C1 /* Aton_Rules_P5.png */,
+				BDD9AFC9157DA7C0003478C1 /* Aton_Rules_P6.png */,
+				BDD9AFCA157DA7C0003478C1 /* Aton_Rules_P15.png */,
+			);
+			name = Rules;
 			sourceTree = "<group>";
 		};
 		BDDA77A8153D2E43003F3530 /* Aton_disc_cylinder */ = {
@@ -861,6 +882,13 @@
 				BD07CBCC157B337E006409EE /* divided_line.png in Resources */,
 				BD07CBD3157C5915006409EE /* Aton_OpenView150dpi.png in Resources */,
 				BD9FCF2B157DA642000D8109 /* aton_CreditsPage_new2_wQueenLogo.png in Resources */,
+				BDD9AFCB157DA7C0003478C1 /* Aton_Rules_P1.png in Resources */,
+				BDD9AFCC157DA7C0003478C1 /* Aton_Rules_P2.png in Resources */,
+				BDD9AFCD157DA7C0003478C1 /* Aton_Rules_P3.png in Resources */,
+				BDD9AFCE157DA7C0003478C1 /* Aton_Rules_P4.png in Resources */,
+				BDD9AFCF157DA7C0003478C1 /* Aton_Rules_P5.png in Resources */,
+				BDD9AFD0157DA7C0003478C1 /* Aton_Rules_P6.png in Resources */,
+				BDD9AFD1157DA7C0003478C1 /* Aton_Rules_P15.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
