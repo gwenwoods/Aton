@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BoardViewController.h"
+#import "GameCenterHelper.h"
 
 @class PlayerViewController;
 

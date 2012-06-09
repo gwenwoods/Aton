@@ -187,6 +187,9 @@
     
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioEnterName afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
+    
+    [[GameCenterHelper sharedInstance] authenticateLocalUser];
+    [GameCenterHelper test1];
 }
 
 - (void)viewDidUnload
