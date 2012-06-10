@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
 #import "PlayerViewController.h"
 //#import "RuleViewController.h"
@@ -14,6 +15,7 @@
 #import "CreditViewController.h"
 
 #import "BoardViewController.h"
+#import "OnlineViewController.h"
 #import "AnimationUtility.h"
 #import "AudioUtility.h"
 

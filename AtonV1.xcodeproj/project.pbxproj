@@ -29,6 +29,7 @@
 		BD3CC3BD157A9320004682E6 /* final_score.png in Resources */ = {isa = PBXBuildFile; fileRef = BD3CC3BA157A9320004682E6 /* final_score.png */; };
 		BD3CC3BE157A9320004682E6 /* Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BD3CC3BB157A9320004682E6 /* Menu.png */; };
 		BD3CC3BF157A9320004682E6 /* score_scarab.png in Resources */ = {isa = PBXBuildFile; fileRef = BD3CC3BC157A9320004682E6 /* score_scarab.png */; };
+		BD538A3015842D5700EAA3A2 /* OnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD538A2F15842D5700EAA3A2 /* OnlineViewController.m */; };
 		BD59B5CD15840B4200FA1545 /* GameCenterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD59B5CC15840B4200FA1545 /* GameCenterHelper.m */; };
 		BD59B5D015840C3400FA1545 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59B5CF15840C3400FA1545 /* GameKit.framework */; };
 		BD5A54BC153D0703009F5D71 /* StartMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54BA153D0703009F5D71 /* StartMenuViewController.m */; };
@@ -191,6 +192,8 @@
 		BD3CC3BA157A9320004682E6 /* final_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_score.png; sourceTree = "<group>"; };
 		BD3CC3BB157A9320004682E6 /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu.png; sourceTree = "<group>"; };
 		BD3CC3BC157A9320004682E6 /* score_scarab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = score_scarab.png; path = ../score_scarab.png; sourceTree = "<group>"; };
+		BD538A2E15842D5700EAA3A2 /* OnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineViewController.h; sourceTree = "<group>"; };
+		BD538A2F15842D5700EAA3A2 /* OnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineViewController.m; sourceTree = "<group>"; };
 		BD55570F1570374600EC54CF /* OpenMusic_Aton_new.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenMusic_Aton_new.wav; sourceTree = "<group>"; };
 		BD59B5CB15840B4200FA1545 /* GameCenterHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterHelper.h; sourceTree = "<group>"; };
 		BD59B5CC15840B4200FA1545 /* GameCenterHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterHelper.m; sourceTree = "<group>"; };
@@ -495,6 +498,8 @@
 				BD3CC3B415795F5B004682E6 /* AudioUtility.m */,
 				BD59B5CB15840B4200FA1545 /* GameCenterHelper.h */,
 				BD59B5CC15840B4200FA1545 /* GameCenterHelper.m */,
+				BD538A2E15842D5700EAA3A2 /* OnlineViewController.h */,
+				BD538A2F15842D5700EAA3A2 /* OnlineViewController.m */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				BD3CC3B515795F5B004682E6 /* AudioUtility.m in Sources */,
 				BDAA716F157AEA97009C45DD /* RuleView1Controller.m in Sources */,
 				BD59B5CD15840B4200FA1545 /* GameCenterHelper.m in Sources */,
+				BD538A3015842D5700EAA3A2 /* OnlineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

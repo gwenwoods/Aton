@@ -52,6 +52,17 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
 	audioPlayerEnterPlay.numberOfLoops = 0;
     audioPlayerEnterPlay.volume = 0.5;
     [audioPlayerEnterPlay prepareToPlay];
+    
+    UIButton *gameCenterButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    gameCenterButton.frame = CGRectMake(800,500,100,60);
+    gameCenterButton.userInteractionEnabled = YES;
+    [gameCenterButton setTitle:@"Play Online" forState:UIControlStateNormal];
+  //  gameCenterButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
+    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
+  //  [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
+    [gameCenterButton addTarget:self action:@selector(goOnline:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:gameCenterButton];
+
 
 }
 
@@ -414,5 +425,15 @@ static double ANIMATION_FADE_IN_TIME = 0.5;
     [self dismissModalViewControllerAnimated:NO];
     [self viewDidLoad];
     self.creditViewScreen = nil;
+}
+
+//--------------
+-(IBAction) goOnline:(id)sender {
+    
+
+    UIViewController *onlineScreen = [[OnlineViewController alloc] initWithNibName:nil bundle:nil];
+    onlineScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:onlineScreen animated:YES];
+
 }
 @end
