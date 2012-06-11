@@ -8,19 +8,23 @@
 
 #import "OnlineViewController.h"
 
-@interface OnlineViewController ()
+//@interface OnlineViewController ()
 
-@end
+//@end
 
 @implementation OnlineViewController
 @synthesize match;
 @synthesize boardScreen;
+@synthesize delegateOnlineView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        gameCenterStateEnum = GAME_CENTER_WAITING_LOCAL_AUTHENTICATION;
+        localRandomNum = -1;
+        remoteRandomNum = -1;
+        localPlayerEnum = -1;
     }
     return self;
 }
@@ -36,44 +40,16 @@
     label.hidden = YES;
     [self.view addSubview:label];
     
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(600, 200, 300, 100)];
-    [textField setBackgroundColor:[UIColor whiteColor]];
-    textField.userInteractionEnabled = YES;
-    textField.hidden = YES;
-    [self.view addSubview:textField];
-    
-    sendMessageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    sendMessageButton.frame = CGRectMake(800,400,100,60);
-    sendMessageButton.userInteractionEnabled = YES;
-    [sendMessageButton setTitle:@"Send Message" forState:UIControlStateNormal];
-    //  gameCenterButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
-    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
-    //  [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
-    [sendMessageButton addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
-    sendMessageButton.hidden = YES;
-    [self.view addSubview:sendMessageButton];
-
     playGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     playGameButton.frame = CGRectMake(800,600,100,60);
     playGameButton.userInteractionEnabled = YES;
     [playGameButton setTitle:@"Play Game" forState:UIControlStateNormal];
-    //  gameCenterButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
-    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
-    //  [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
     [playGameButton addTarget:self action:@selector(playGame:) forControlEvents:UIControlEventTouchUpInside];
     playGameButton.hidden = YES;
     [self.view addSubview:playGameButton];
     
-    match = nil;
-    
     [[GameCenterHelper sharedInstance] authenticateLocalUser];
-    
-   // [self showMatchViewController];
-    [self performSelector:@selector(showMatchViewController) withObject:nil afterDelay:2.0];
-    
-    [self communicateWithRemotePlayer];
-   
- 	
+    [self performSelector:@selector(showMatchViewController) withObject:nil afterDelay:2.0];	
 }
 
 - (void)viewDidUnload
@@ -88,210 +64,107 @@
 }
 
 
+//---------------------------------------------------
 //#pragma mark GKMatchmakerViewControllerDelegate
-
-// The user has cancelled matchmaking
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
-    NSLog(@"match cancelled "); 
+    NSLog(@"Match cancelled"); 
     [self dismissModalViewControllerAnimated:YES];
 }
 
-// Matchmaking has failed with an error
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
-    
     NSLog(@"Error finding match: %@", error.localizedDescription); 
     [self dismissModalViewControllerAnimated:YES];
 }
 
-// A peer-to-peer match has been found, the game should start
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)theMatch {
-    [self dismissModalViewControllerAnimated:YES];
-    textField.hidden = NO;
-    label.hidden = NO;
-    sendMessageButton.hidden = NO;
-    playGameButton.hidden = NO;
+    if (gameCenterStateEnum != GAME_CENTER_WAITING_FIND_MATCH) {
+        return;
+    }
     
+    NSLog(@"Match found");
+    [self dismissModalViewControllerAnimated:YES];
     match = theMatch;
     match.delegate = self;
-    NSLog(@"expected player = %d", match.expectedPlayerCount);
-    if (!matchStarted && match.expectedPlayerCount == 0) {
-        NSLog(@"Ready to start match! player count %d", theMatch.playerIDs.count);
-        // [self dismissModalViewControllerAnimated:YES];
-
-    }
-   // [self lookupPlayers];
-}
-
-- (void) showMatchViewController {
-
-    GKMatchRequest *request = [[GKMatchRequest alloc] init];
-    request.minPlayers = 2;
-    request.maxPlayers = 2;
-
-    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
-    mmvc.matchmakerDelegate = self;
-    mmvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:mmvc animated:YES];
-}
-
-- (void)lookupPlayers {
     
-    NSLog(@"Looking up %d players...", match.playerIDs.count);
-    [GKPlayer loadPlayersForIdentifiers:match.playerIDs withCompletionHandler:^(NSArray *players, NSError *error) {
-        
-        if (error != nil) {
-            NSLog(@"Error retrieving player info: %@", error.localizedDescription);
-            matchStarted = NO;
-          //  [delegate matchEnded];
-        } else {
-            
-            // Populate players dict
-            playersDict = [NSMutableDictionary dictionaryWithCapacity:players.count];
-            for (GKPlayer *player in players) {
-                remotePlayer = player;
-                NSLog(@"Found player: %@", player.alias);
-                [playersDict setObject:player forKey:player.playerID];
-                NSString *msg = @"   ";
-                msg = [msg stringByAppendingString:player.alias];
-                msg = [msg stringByAppendingString:@" says HELLO !"];
-                
-                
-                label.text = msg;
-                [self.view addSubview:label];
-            }
-            
-            // Notify delegate match can begin
-            matchStarted = YES;
-            //[delegate matchStarted];
-            
-        }
-    }];
+    gameCenterStateEnum = GAME_CENTER_WAITING_RANDOM_NUMBER;
+    playGameButton.hidden = NO;
+    label.hidden = NO;
     
+   
 }
 
-#pragma mark GKMatchDelegate
+//---------------------------------------------
+//#pragma mark GKMatchDelegate
 
-// The match received data sent from the player.
 - (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
-    if (match != theMatch) return;
     NSLog(@"received data");
+    
+    if (match != theMatch) return;
+    if (gameCenterStateEnum != GAME_CENTER_WAITING_RANDOM_NUMBER) {
+        return;
+    }
     
     GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (receivedData != nil) {
         remoteRandomNum = [receivedData.randomNum intValue];
-        remoteOK = YES;
+        gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
         [self checkGameStart];
     }
-    
-  //  [self match:theMatch didReceiveData:data fromPlayer:playerID];
- /*   NSString *content =[ NSString stringWithCString:[data bytes] encoding:NSUTF8StringEncoding];
-    if (content == nil) {
-        return;
-    }
-    NSString* msg = [[playersDict objectForKey:playerID] alias];
-    msg = [msg stringByAppendingString:@" : "];
-    msg = [msg stringByAppendingString:content];
-    label.text =msg;*/
-  //  label.text = [label.text stringByAppendingString:msg];
 }
 
 // The player state changed (eg. connected or disconnected)
 - (void)match:(GKMatch *)theMatch player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {   
-    NSLog(@"woof");
     if (match != theMatch) return;
-    
     switch (state) {
         case GKPlayerStateConnected: 
             // handle a new player connection.
             NSLog(@"Player connected!");
-            
-            if (!matchStarted && theMatch.expectedPlayerCount == 0) {
-                NSLog(@"Ready to start match!");
-                [self lookupPlayers];
-            }
-            
+             [self lookupPlayers];
             break; 
         case GKPlayerStateDisconnected:
             // a player just disconnected. 
             NSLog(@"Player disconnected!");
-            matchStarted = NO;
-          //  [delegate matchEnded];
             break;
     }                     
 }
 
 // The match was unable to connect with the player due to an error.
 - (void)match:(GKMatch *)theMatch connectionWithPlayerFailed:(NSString *)playerID withError:(NSError *)error {
-    
     if (match != theMatch) return;
-    
     NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
-    matchStarted = NO;
-   // [delegate matchEnded];
 }
 
 // The match was unable to be established with any players due to an error.
 - (void)match:(GKMatch *)theMatch didFailWithError:(NSError *)error {
-    
     if (match != theMatch) return;
-    
     NSLog(@"Match failed with error: %@", error.localizedDescription);
-    matchStarted = NO;
-   // [delegate matchEnded];
+}
+
+
+//------------------------------
+// Board view delegate
+- (void)dismissBoardViewWithoutAnimation:(BoardViewController *)subcontroller
+{
+    NSLog(@"Board View Back to Player View");
+    [self dismissModalViewControllerAnimated:NO];
+    [delegateOnlineView dismissOnlineViewWithoutAnimation:self];
 }
 
 //--------------
--(IBAction) sendMessage:(id)sender {
-    NSString *myMsg = @"Me : ";
-    myMsg = [myMsg stringByAppendingString:textField.text];
-    label.text = myMsg;
-    
-    NSString* str= textField.text;
-    NSData* data=[str dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSError *error;
-    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-    textField.text = @"";
-    
-}
-
-//--------------
+// UI Outlet
 -(IBAction) playGame:(id)sender {
-    localOK = YES;
-    
-    localRandomNum = arc4random();
-    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
-    
-    NSError *error;
-    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-    NSLog(@"send data ...");
-
+    playGameButton.hidden = YES;
+    [self sendRandomNumber];
     [self checkGameStart];
-      
 }
 
 //-----------------
 -(void) goToAtonGameView {
-    int localPlayerEnum = -1;
-    if (localRandomNum > remoteRandomNum) {
-        localPlayerEnum = 0;
-    } else if (localRandomNum < remoteRandomNum) {
-        localPlayerEnum = 1;
-    } else {
-        localRandomNum = arc4random();
-        GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
-        
-        NSError *error;
-        [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-        NSLog(@"send data ...");
-        return;
+    
 
-    }
     
     localPlayer = [GKLocalPlayer localPlayer];
-    
+    NSLog(@"local player enum = %d", localPlayerEnum);
     
     onlinePara = [[OnlineParameters alloc] initWithPara:match:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
     boardScreen = [[BoardViewController alloc] initWithOnlinePara:onlinePara];
@@ -311,8 +184,97 @@
 }
 
 -(void) checkGameStart {
-    if (localOK && remoteOK) {
-        [self goToAtonGameView];
+    NSLog(@"check game start!");
+    NSLog(@"local random = %d", localRandomNum);
+    NSLog(@"remote random = %d", remoteRandomNum);
+    if (localRandomNum < 0 || remoteRandomNum < 0) {
+        return;
     }
+
+    if (localRandomNum > remoteRandomNum) {
+        localPlayerEnum = 0;
+    } else if (localRandomNum < remoteRandomNum) {
+        localPlayerEnum = 1;
+    } else {
+        remoteRandomNum = -1;
+        gameCenterStateEnum = GAME_CENTER_WAITING_RANDOM_NUMBER;
+        [self sendRandomNumber];
+        [self checkGameStart];
+    
+     /*   localRandomNum = arc4random()%10000;
+        GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+        
+        NSError *error;
+        [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+        NSLog(@"send data ...");*/
+        return;
+    }
+    
+    [self goToAtonGameView];
+}
+
+-(void) checkAuthentication {
+    if ([GKLocalPlayer localPlayer].isAuthenticated == NO) {
+        label.text = @"Game center account required to play online";
+    } else {
+        [self performSelector:@selector(showMatchViewController) withObject:nil afterDelay:2.0];
+    }
+}
+
+- (void) showMatchViewController {
+    
+    if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
+        gameCenterStateEnum = GAME_CENTER_WAITING_FIND_MATCH;
+    }
+    
+    GKMatchRequest *request = [[GKMatchRequest alloc] init];
+    request.minPlayers = 2;
+    request.maxPlayers = 2;
+    
+    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
+    mmvc.matchmakerDelegate = self;
+    mmvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:mmvc animated:YES];
+}
+
+- (void)lookupPlayers {
+    
+    NSLog(@"Looking up %d players...", match.playerIDs.count);
+    [GKPlayer loadPlayersForIdentifiers:match.playerIDs withCompletionHandler:^(NSArray *players, NSError *error) {
+        
+        if (error != nil) {
+            NSLog(@"Error retrieving player info: %@", error.localizedDescription);
+            
+        } else {
+            for (GKPlayer *player in players) {
+                remotePlayer = player;
+                NSLog(@"Found player: %@", player.alias);
+                //[playersDict setObject:player forKey:player.playerID];
+                NSString *msg = @"Found player ";
+                msg = [msg stringByAppendingString:player.alias];
+               // msg = [msg stringByAppendingString:@" says HELLO !"];
+                
+                
+                label.text = msg;
+                
+            }
+            
+            // Notify delegate match can begin
+           // matchStarted = YES;
+            //[delegate matchStarted];
+            
+        }
+    }];
+}
+
+-(void) sendRandomNumber {
+    localRandomNum = arc4random()%10000;
+    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+    
+    NSError *error;
+    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    NSLog(@"send random number ...");
 }
 @end

@@ -48,7 +48,7 @@ static GameCenterHelper *sharedHelper = nil;
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
     
     // check if the device is running iOS 4.1 or later
-    NSString *reqSysVer = @"5.0";
+    NSString *reqSysVer = @"4.1";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     BOOL osVersionSupported = ([currSysVer compare:reqSysVer 
                                            options:NSNumericSearch] != NSOrderedAscending);

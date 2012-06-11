@@ -25,9 +25,9 @@
 
 @property(strong, nonatomic) NSMutableArray *playerArray, *templeArray, *scarabArray;
 //@property(strong, nonatomic) AtonGameManager *gameManager;
-@property(nonatomic) int gamePhaseEnum;
+@property(nonatomic) int gamePhaseEnum, localPlayerEnum;
 @property(strong, nonatomic) AtonRoundResult *atonRoundResult;
 @property(strong, nonatomic) AVAudioPlayer *audioToDeath;
-@property(nonatomic) BOOL useAI;    
+@property(nonatomic) BOOL useAI, onlineMode;    
 
 @end

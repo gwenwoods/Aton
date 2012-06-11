@@ -34,7 +34,8 @@
    // id delegate1;
  //   NSString *playerRedName, *playerBlueName;
     AVAudioPlayer *audioPlacePeep, *audioPlayGame, *audioTap, *audioChime;
-    BOOL useAI;
+    BOOL useAI, onlineMode;
+    int localPlayerEnum;
   
 }
 

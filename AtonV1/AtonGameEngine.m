@@ -49,19 +49,41 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     
     AtonPlayer *redPlayer = [playerArray objectAtIndex:PLAYER_RED];
     AtonPlayer *bluePlayer = [playerArray objectAtIndex:PLAYER_BLUE];
+    
+    int localPlayerEnum = para.localPlayerEnum;
+    BOOL onlineMode = para.onlineMode;
 
     if (gamePhaseEnum == GAME_PHASE_DISTRIBUTE_CARD) {
+
         for (int i=0; i< [playerArray count]; i++) {
             AtonPlayer *player = [playerArray objectAtIndex:i];
             [player resetCard];
             [player distributeCards];
         }
         
-        NSString *msg = @"|";
-        msg = [msg stringByAppendingString:playerRed.playerName];
-        msg = [msg stringByAppendingString:[messageMaster getMessageForEnum:MSG_PLAYER_ARRANGE_CARD]];
-        gameManager.messagePlayerEnum = PLAYER_RED;
-        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];    
+        if (onlineMode) {
+            if (localPlayerEnum == PLAYER_RED) {
+                NSString *msg = @"|";
+                msg = [msg stringByAppendingString:playerRed.playerName];
+                msg = [msg stringByAppendingString:[messageMaster getMessageForEnum:MSG_PLAYER_ARRANGE_CARD]];
+                gameManager.messagePlayerEnum = PLAYER_RED;
+                [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];
+            } else {
+                NSString *msg = @"|";
+                msg = [msg stringByAppendingString:playerBlue.playerName];
+                msg = [msg stringByAppendingString:[messageMaster getMessageForEnum:MSG_PLAYER_ARRANGE_CARD]];
+                gameManager.messagePlayerEnum = PLAYER_BLUE;
+                [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
+                gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
+            }
+        } else {
+            NSString *msg = @"|";
+            msg = [msg stringByAppendingString:playerRed.playerName];
+            msg = [msg stringByAppendingString:[messageMaster getMessageForEnum:MSG_PLAYER_ARRANGE_CARD]];
+            gameManager.messagePlayerEnum = PLAYER_RED;
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];
+        }
+            
     
     } else if(gamePhaseEnum == GAME_PHASE_RED_LAY_CARD) {
         [playerRed openCardsForArrange];   
@@ -69,7 +91,9 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     } else if(gamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
         [playerRed closeCards]; 
         
-        if (useAI == YES) {
+        if (onlineMode) {
+            gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
+        } else if (useAI == YES) {
             int* newCardArray = malloc(sizeof(int)*4);
             newCardArray = [playerBlue getCardNumberArray];
             double animationTime = 0.0;

@@ -12,10 +12,10 @@
 
 @synthesize playerArray, templeArray, scarabArray;
 //@synthesize gameManager;
-@synthesize gamePhaseEnum;
+@synthesize gamePhaseEnum, localPlayerEnum;
 @synthesize atonRoundResult;
 @synthesize audioToDeath;
-@synthesize useAI;
+@synthesize useAI, onlineMode;
 
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AVAudioPlayer*) audio {

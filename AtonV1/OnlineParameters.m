@@ -17,7 +17,7 @@
         match = gkMatch;
         localPlayerName = localName;
         remotePlayerName = remoteName;
-        localEnum = localPlayerEnum;
+        localPlayerEnum = localEnum;
     }
     return self;
 }

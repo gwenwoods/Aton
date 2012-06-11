@@ -53,7 +53,8 @@
 {
     self = [super initWithNibName:@"BoardViewController_iPad" bundle:nil];
     if (self) {
-        int localPlayerEnum = onlinePara.localPlayerEnum;
+        onlineMode = YES;
+        localPlayerEnum = onlinePara.localPlayerEnum;
         
         if (localPlayerEnum == PLAYER_RED) {
             playerRedName = onlinePara.localPlayerName;
@@ -119,7 +120,8 @@
     // initialize game engine
 
     atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters:self:audioPlayGame:audioChime];
-    
+    [atonParameters setOnlineMode:onlineMode];
+    [atonParameters setLocalPlayerEnum:localPlayerEnum];
     [atonGameEngine run];
     
 }
