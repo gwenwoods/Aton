@@ -14,6 +14,7 @@
 
 @implementation OnlineViewController
 @synthesize match;
+@synthesize boardScreen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,12 +53,25 @@
     sendMessageButton.hidden = YES;
     [self.view addSubview:sendMessageButton];
 
+    playGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    playGameButton.frame = CGRectMake(800,600,100,60);
+    playGameButton.userInteractionEnabled = YES;
+    [playGameButton setTitle:@"Play Game" forState:UIControlStateNormal];
+    //  gameCenterButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
+    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
+    //  [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
+    [playGameButton addTarget:self action:@selector(playGame:) forControlEvents:UIControlEventTouchUpInside];
+    playGameButton.hidden = YES;
+    [self.view addSubview:playGameButton];
     
     match = nil;
     
     [[GameCenterHelper sharedInstance] authenticateLocalUser];
+    
    // [self showMatchViewController];
     [self performSelector:@selector(showMatchViewController) withObject:nil afterDelay:2.0];
+    
+    [self communicateWithRemotePlayer];
    
  	
 }
@@ -95,6 +109,7 @@
     textField.hidden = NO;
     label.hidden = NO;
     sendMessageButton.hidden = NO;
+    playGameButton.hidden = NO;
     
     match = theMatch;
     match.delegate = self;
@@ -133,6 +148,7 @@
             // Populate players dict
             playersDict = [NSMutableDictionary dictionaryWithCapacity:players.count];
             for (GKPlayer *player in players) {
+                remotePlayer = player;
                 NSLog(@"Found player: %@", player.alias);
                 [playersDict setObject:player forKey:player.playerID];
                 NSString *msg = @"   ";
@@ -142,7 +158,6 @@
                 
                 label.text = msg;
                 [self.view addSubview:label];
-                
             }
             
             // Notify delegate match can begin
@@ -160,15 +175,23 @@
 - (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
     if (match != theMatch) return;
     NSLog(@"received data");
+    
+    GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (receivedData != nil) {
+        remoteRandomNum = [receivedData.randomNum intValue];
+        remoteOK = YES;
+        [self checkGameStart];
+    }
+    
   //  [self match:theMatch didReceiveData:data fromPlayer:playerID];
-    NSString *content =[ NSString stringWithCString:[data bytes] encoding:NSUTF8StringEncoding];
+ /*   NSString *content =[ NSString stringWithCString:[data bytes] encoding:NSUTF8StringEncoding];
     if (content == nil) {
         return;
     }
     NSString* msg = [[playersDict objectForKey:playerID] alias];
     msg = [msg stringByAppendingString:@" : "];
     msg = [msg stringByAppendingString:content];
-    label.text =msg;
+    label.text =msg;*/
   //  label.text = [label.text stringByAppendingString:msg];
 }
 
@@ -230,5 +253,66 @@
     [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
     textField.text = @"";
     
+}
+
+//--------------
+-(IBAction) playGame:(id)sender {
+    localOK = YES;
+    
+    localRandomNum = arc4random();
+    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+    
+    NSError *error;
+    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    NSLog(@"send data ...");
+
+    [self checkGameStart];
+      
+}
+
+//-----------------
+-(void) goToAtonGameView {
+    int localPlayerEnum = -1;
+    if (localRandomNum > remoteRandomNum) {
+        localPlayerEnum = 0;
+    } else if (localRandomNum < remoteRandomNum) {
+        localPlayerEnum = 1;
+    } else {
+        localRandomNum = arc4random();
+        GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+        
+        NSError *error;
+        [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+        NSLog(@"send data ...");
+        return;
+
+    }
+    
+    localPlayer = [GKLocalPlayer localPlayer];
+    
+    
+    onlinePara = [[OnlineParameters alloc] initWithPara:match:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
+    boardScreen = [[BoardViewController alloc] initWithOnlinePara:onlinePara];
+    boardScreen.delegateBoardView = self;
+    boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:boardScreen animated:YES];
+   // [audioPlayerChime play];
+}
+
+-(void) communicateWithRemotePlayer {
+    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:5]:@"Morning"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+    GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    NSLog(@" num = %d ", [receivedData.randomNum intValue]);
+    NSLog(@" %@",[receivedData str]);
+}
+
+-(void) checkGameStart {
+    if (localOK && remoteOK) {
+        [self goToAtonGameView];
+    }
 }
 @end

@@ -36,6 +36,8 @@
 		BD5A54BD153D0703009F5D71 /* StartMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54BB153D0703009F5D71 /* StartMenuViewController.xib */; };
 		BD5A54C1153D126C009F5D71 /* ankh_small.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5A54C0153D126C009F5D71 /* ankh_small.png */; };
 		BD5A54C6153D188A009F5D71 /* AtonGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A54C5153D188A009F5D71 /* AtonGameManager.m */; };
+		BD5D5A241585372E00F1F793 /* OnlineParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5D5A231585372E00F1F793 /* OnlineParameters.m */; };
+		BD5D5A28158552E900F1F793 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5D5A27158552E900F1F793 /* GameData.m */; };
 		BD7B4623156381260085AD43 /* AtonRemovePeepExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7B4622156381260085AD43 /* AtonRemovePeepExecutor.m */; };
 		BD8B77021566BDA700D66B45 /* AtonArrangeCardsExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B77011566BDA700D66B45 /* AtonArrangeCardsExecutor.m */; };
 		BD940B7A153A1F0400660B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD940B79153A1F0400660B35 /* UIKit.framework */; };
@@ -204,6 +206,10 @@
 		BD5A54C0153D126C009F5D71 /* ankh_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ankh_small.png; sourceTree = "<group>"; };
 		BD5A54C4153D188A009F5D71 /* AtonGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonGameManager.h; sourceTree = "<group>"; };
 		BD5A54C5153D188A009F5D71 /* AtonGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonGameManager.m; sourceTree = "<group>"; };
+		BD5D5A221585372E00F1F793 /* OnlineParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineParameters.h; sourceTree = "<group>"; };
+		BD5D5A231585372E00F1F793 /* OnlineParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineParameters.m; sourceTree = "<group>"; };
+		BD5D5A26158552E800F1F793 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		BD5D5A27158552E900F1F793 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		BD7B4621156381260085AD43 /* AtonRemovePeepExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonRemovePeepExecutor.h; sourceTree = "<group>"; };
 		BD7B4622156381260085AD43 /* AtonRemovePeepExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtonRemovePeepExecutor.m; sourceTree = "<group>"; };
 		BD8B77001566BDA700D66B45 /* AtonArrangeCardsExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtonArrangeCardsExecutor.h; sourceTree = "<group>"; };
@@ -498,8 +504,12 @@
 				BD3CC3B415795F5B004682E6 /* AudioUtility.m */,
 				BD59B5CB15840B4200FA1545 /* GameCenterHelper.h */,
 				BD59B5CC15840B4200FA1545 /* GameCenterHelper.m */,
+				BD5D5A26158552E800F1F793 /* GameData.h */,
+				BD5D5A27158552E900F1F793 /* GameData.m */,
 				BD538A2E15842D5700EAA3A2 /* OnlineViewController.h */,
 				BD538A2F15842D5700EAA3A2 /* OnlineViewController.m */,
+				BD5D5A221585372E00F1F793 /* OnlineParameters.h */,
+				BD5D5A231585372E00F1F793 /* OnlineParameters.m */,
 			);
 			path = AtonV1;
 			sourceTree = "<group>";
@@ -968,6 +978,8 @@
 				BDAA716F157AEA97009C45DD /* RuleView1Controller.m in Sources */,
 				BD59B5CD15840B4200FA1545 /* GameCenterHelper.m in Sources */,
 				BD538A3015842D5700EAA3A2 /* OnlineViewController.m in Sources */,
+				BD5D5A241585372E00F1F793 /* OnlineParameters.m in Sources */,
+				BD5D5A28158552E900F1F793 /* GameData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

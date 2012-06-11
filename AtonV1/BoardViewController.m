@@ -49,6 +49,31 @@
     return self;
 }
 
+- (id)initWithOnlinePara:(OnlineParameters*) onlinePara
+{
+    self = [super initWithNibName:@"BoardViewController_iPad" bundle:nil];
+    if (self) {
+        int localPlayerEnum = onlinePara.localPlayerEnum;
+        
+        if (localPlayerEnum == PLAYER_RED) {
+            playerRedName = onlinePara.localPlayerName;
+            playerBlueName = onlinePara.remotePlayerName;
+        } else {
+            playerRedName = onlinePara.remotePlayerName;
+            playerBlueName = onlinePara.localPlayerName;
+        }
+
+        useAI = NO;
+        // Custom initialization
+        //delegate1 = [[myDelegate alloc]init];
+        //delegate1 = self;
+      //  playerRedName = redName;
+      //  playerBlueName = blueName;
+      //  useAI = useAtonAI;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

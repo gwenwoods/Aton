@@ -18,6 +18,7 @@
 #import "AtonAIEasy.h"
 
 #import "AtonTemple.h"
+#import "OnlineParameters.h"
 
 @class BoardViewController;
 
@@ -45,6 +46,7 @@
 - (IBAction) quitYes:(id)sender;
 - (IBAction) quitNo:(id)sender;
 - (id)initWithNibNameAndPara:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil red:(NSString*)redName blue:(NSString*) blueName:(BOOL) useAtonAI;
+- (id)initWithOnlinePara:(OnlineParameters*) onlinePara;
 //@property(strong, nonatomic) AtonPlayer *redPlayer, *bluePlayer;
 @property(strong, nonatomic) AtonGameEngine *atonGameEngine;
 @property(strong, nonatomic) AtonGameParameters *atonParameters;

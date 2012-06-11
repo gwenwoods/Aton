@@ -7,16 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BoardViewController.h"
 #import "GameCenterHelper.h"
+#import "OnlineParameters.h"
+#import "GameData.h"
 
-@interface OnlineViewController : UIViewController<GKMatchmakerViewControllerDelegate, GKMatchDelegate> {
+@interface OnlineViewController : UIViewController<GKMatchmakerViewControllerDelegate, GKMatchDelegate, BoardViewDelegate> {
     GKMatch *match;
     BOOL matchStarted;
     NSMutableDictionary *playersDict;
     UITextField *textField;
     UILabel *label;
-    UIButton *sendMessageButton;
+    UIButton *sendMessageButton, *playGameButton;
+    BOOL localOK, remoteOK;
+    OnlineParameters *onlinePara;
+    int remoteRandomNum, localRandomNum;
+    
+    GKPlayer *localPlayer, *remotePlayer;
 }
 
 @property (strong, nonatomic) GKMatch *match;
+@property (nonatomic, strong) BoardViewController *boardScreen;
+
 @end
