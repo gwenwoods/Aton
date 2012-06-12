@@ -9,7 +9,8 @@
 #import "OnlineParameters.h"
 
 @implementation OnlineParameters
-@synthesize localPlayerName, remotePlayerName, localPlayerEnum;
+@synthesize match;
+@synthesize localPlayerName, remotePlayerName, localPlayerEnum, remoteGamePhaseEnum;
 
 - (id)initWithPara:(GKMatch*) gkMatch:(NSString *)localName:(NSString*) remoteName:(int) localEnum
 {

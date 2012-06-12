@@ -15,6 +15,7 @@
 //#import "AtonGameManager.h"
 #import "AtonRoundResult.h"
 #import "ScoreScarab.h"
+#import "OnlineParameters.h"
 
 
 
@@ -29,5 +30,5 @@
 @property(strong, nonatomic) AtonRoundResult *atonRoundResult;
 @property(strong, nonatomic) AVAudioPlayer *audioToDeath;
 @property(nonatomic) BOOL useAI, onlineMode;    
-
+@property(strong, nonatomic) OnlineParameters *onlinePara;
 @end

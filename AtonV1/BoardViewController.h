@@ -36,6 +36,8 @@
     AVAudioPlayer *audioPlacePeep, *audioPlayGame, *audioTap, *audioChime;
     BOOL useAI, onlineMode;
     int localPlayerEnum;
+    
+    OnlineParameters *onlinePara;
   
 }
 

@@ -12,6 +12,7 @@
 		BD07CBCA157B3239006409EE /* scrollDown_exch_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBC9157B3239006409EE /* scrollDown_exch_blank.png */; };
 		BD07CBCC157B337E006409EE /* divided_line.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBCB157B337E006409EE /* divided_line.png */; };
 		BD07CBD3157C5915006409EE /* Aton_OpenView150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07CBD2157C5915006409EE /* Aton_OpenView150dpi.png */; };
+		BD0C11DF1586558C0088B304 /* LiteSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = BD0C11DE1586558C0088B304 /* LiteSlot.m */; };
 		BD0CED131576A3DD0039F8BA /* Button_Human.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED111576A3DD0039F8BA /* Button_Human.png */; };
 		BD0CED151576A45F0039F8BA /* Button_AI.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED141576A45F0039F8BA /* Button_AI.png */; };
 		BD0CED171576A5CE0039F8BA /* Button_Done.png in Resources */ = {isa = PBXBuildFile; fileRef = BD0CED161576A5CE0039F8BA /* Button_Done.png */; };
@@ -168,6 +169,8 @@
 		BD07CBC9157B3239006409EE /* scrollDown_exch_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollDown_exch_blank.png; sourceTree = "<group>"; };
 		BD07CBCB157B337E006409EE /* divided_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divided_line.png; sourceTree = "<group>"; };
 		BD07CBD2157C5915006409EE /* Aton_OpenView150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aton_OpenView150dpi.png; sourceTree = "<group>"; };
+		BD0C11DD1586558C0088B304 /* LiteSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiteSlot.h; sourceTree = "<group>"; };
+		BD0C11DE1586558C0088B304 /* LiteSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiteSlot.m; sourceTree = "<group>"; };
 		BD0CED111576A3DD0039F8BA /* Button_Human.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Human.png; sourceTree = "<group>"; };
 		BD0CED141576A45F0039F8BA /* Button_AI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_AI.png; sourceTree = "<group>"; };
 		BD0CED161576A5CE0039F8BA /* Button_Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_Done.png; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				BD16D22E153CE08400ED6DB9 /* TempleUtility.m */,
 				BDB301611561FDE10092E724 /* TempleFunctionUtility.h */,
 				BDB301621561FDE10092E724 /* TempleFunctionUtility.m */,
+				BD0C11DD1586558C0088B304 /* LiteSlot.h */,
+				BD0C11DE1586558C0088B304 /* LiteSlot.m */,
 			);
 			name = TempleClass;
 			sourceTree = "<group>";
@@ -980,6 +985,7 @@
 				BD538A3015842D5700EAA3A2 /* OnlineViewController.m in Sources */,
 				BD5D5A241585372E00F1F793 /* OnlineParameters.m in Sources */,
 				BD5D5A28158552E900F1F793 /* GameData.m in Sources */,
+				BD0C11DF1586558C0088B304 /* LiteSlot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 @synthesize atonRoundResult;
 @synthesize audioToDeath;
 @synthesize useAI, onlineMode;
+@synthesize onlinePara;
 
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AVAudioPlayer*) audio {

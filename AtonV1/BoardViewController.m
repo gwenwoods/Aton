@@ -49,11 +49,12 @@
     return self;
 }
 
-- (id)initWithOnlinePara:(OnlineParameters*) onlinePara
+- (id)initWithOnlinePara:(OnlineParameters*) onlinePararameter
 {
     self = [super initWithNibName:@"BoardViewController_iPad" bundle:nil];
     if (self) {
         onlineMode = YES;
+        onlinePara = onlinePararameter;
         localPlayerEnum = onlinePara.localPlayerEnum;
         
         if (localPlayerEnum == PLAYER_RED) {
@@ -122,6 +123,10 @@
     atonGameEngine = [[AtonGameEngine alloc] initializeWithParameters:atonParameters:self:audioPlayGame:audioChime];
     [atonParameters setOnlineMode:onlineMode];
     [atonParameters setLocalPlayerEnum:localPlayerEnum];
+    [atonParameters setOnlinePara:onlinePara];
+    if(onlinePara.match == nil) {
+        NSLog(@"empty match");
+    }
     [atonGameEngine run];
     
 }

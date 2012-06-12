@@ -73,8 +73,9 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 msg = [msg stringByAppendingString:playerBlue.playerName];
                 msg = [msg stringByAppendingString:[messageMaster getMessageForEnum:MSG_PLAYER_ARRANGE_CARD]];
                 gameManager.messagePlayerEnum = PLAYER_BLUE;
-                [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.75];
-                gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
+                para.gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
+                [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:3.0];
+                
             }
         } else {
             NSString *msg = @"|";
@@ -93,6 +94,8 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         
         if (onlineMode) {
             gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
+            gameManager.messagePlayerEnum = PLAYER_NONE;
+            [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
         } else if (useAI == YES) {
             int* newCardArray = malloc(sizeof(int)*4);
             newCardArray = [playerBlue getCardNumberArray];
@@ -672,6 +675,30 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         }
         para.gamePhaseEnum = GAME_PHASE_RED_CLOSE_CARD;
         [redPlayer closeMenu];
+        if (para.onlineMode) {
+            [redPlayer closeCards];
+            
+            // send data
+            NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+            NSNumber *nsPlayerEnum = [NSNumber numberWithInt:PLAYER_RED];
+            NSMutableArray *nsCardNumArray = [[NSMutableArray alloc] init];
+            int *cardNumArray = [redPlayer getCardNumberArray];
+            for (int i=0; i<4; i++) {
+                [nsCardNumArray addObject:[NSNumber numberWithInt:cardNumArray[i]]];
+            }
+            GameData *gameData = [[GameData alloc] initWithCardArray:nsGamePhaseEnum:nsPlayerEnum:nsCardNumArray];
+            [self sendGameData:gameData];
+            
+            
+            if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                gameManager.messagePlayerEnum = PLAYER_NONE;
+                [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
+            } else {
+                // waiting for remote player ...
+                para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD;
+            }
+        } 
         [self run];
         
     } else if (para.gamePhaseEnum == GAME_PHASE_BLUE_LAY_CARD) {
@@ -682,6 +709,32 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         }
         para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
         [bluePlayer closeMenu];
+        
+        if (para.onlineMode) {
+            [bluePlayer closeCards];
+            
+            // send data
+            NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+            NSNumber *nsPlayerEnum = [NSNumber numberWithInt:PLAYER_BLUE];
+            NSMutableArray *nsCardNumArray = [[NSMutableArray alloc] init];
+            int *cardNumArray = [bluePlayer getCardNumberArray];
+            for (int i=0; i<4; i++) {
+                [nsCardNumArray addObject:[NSNumber numberWithInt:cardNumArray[i]]];
+            }
+            GameData *gameData = [[GameData alloc] initWithCardArray:nsGamePhaseEnum:nsPlayerEnum:nsCardNumArray];
+            [self sendGameData:gameData];
+            
+            
+            if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                gameManager.messagePlayerEnum = PLAYER_NONE;
+                [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
+            } else {
+                // waiting for remote player ...
+                para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD;
+            }
+        } 
+
         [self run];
         
     } else if (para.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
@@ -840,6 +893,99 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 
     NSString *msg = [gameManager gameOverConditionSuper];
     [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:0.0];
+}
+
+-(void) sendGameData:(GameData*) gameData {
+
+   // GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+    
+    GKMatch *match = para.onlinePara.match;
+    NSError *error;
+    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    NSLog(@"send game data ...");
+}
+
+//---------------------------------------------
+//#pragma mark GKMatchDelegate
+
+- (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
+    NSLog(@"received data ... mi...");
+    
+    if (para.onlinePara.match != theMatch) return;
+    
+     NSLog(@"same match");
+  //  if (gameCenterStateEnum != GAME_CENTER_WAITING_RANDOM_NUMBER) {
+  //      return;
+  //  }
+    
+    GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (receivedData == nil) {
+        NSLog(@"received NULL data");
+    }
+    if (receivedData != nil) {
+        para.onlinePara.remoteGamePhaseEnum = receivedData.gamePhaseEnum.intValue;
+        NSLog(@"remote game phase enum : %d ", para.onlinePara.remoteGamePhaseEnum);
+        NSMutableArray *nsCardArray = receivedData.cardNumArray;
+        if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+            AtonPlayer *bluePlayer = [para.playerArray objectAtIndex:PLAYER_BLUE];
+            int *remoteNumberArray = malloc(sizeof(int)*4);
+            for (int i=0; i < 4; i++) {
+                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+            }
+            [bluePlayer setCardNumberArray:remoteNumberArray];
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                [self run];
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+            AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
+            int *remoteNumberArray = malloc(sizeof(int)*4);
+            for (int i=0; i < 4; i++) {
+                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+            }
+            [redPlayer setCardNumberArray:remoteNumberArray];
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                [self run];
+            }
+        }
+        
+        
+       // remoteRandomNum = [receivedData.randomNum intValue];
+       // gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
+       // [self checkGameStart];
+    }
+}
+
+// The player state changed (eg. connected or disconnected)
+- (void)match:(GKMatch *)theMatch player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {   
+    if (para.onlinePara.match != theMatch) return;
+    switch (state) {
+        case GKPlayerStateConnected: 
+            // handle a new player connection.
+            NSLog(@"Player connected!");
+           // [self lookupPlayers];
+            break; 
+        case GKPlayerStateDisconnected:
+            // a player just disconnected. 
+            NSLog(@"Player disconnected!");
+            break;
+    }                     
+}
+
+// The match was unable to connect with the player due to an error.
+- (void)match:(GKMatch *)theMatch connectionWithPlayerFailed:(NSString *)playerID withError:(NSError *)error {
+    if (para.onlinePara.match != theMatch) return;
+    NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
+}
+
+// The match was unable to be established with any players due to an error.
+- (void)match:(GKMatch *)theMatch didFailWithError:(NSError *)error {
+    if (para.onlinePara.match != theMatch) return;
+    NSLog(@"Match failed with error: %@", error.localizedDescription);
 }
 
 

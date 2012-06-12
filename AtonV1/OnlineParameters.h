@@ -16,11 +16,13 @@
     NSString* localPlayerName;
     NSString* remotePlayerName;
     int localPlayerEnum;
+    int remoteGamePhaseEnum;
 }
 
 - (id)initWithPara:(GKMatch*) gkMatch:(NSString *)localName:(NSString*) remoteName:(int) localEnum;
 
-
+@property(strong, nonatomic) GKMatch *match;
 @property(strong, nonatomic) NSString *localPlayerName, *remotePlayerName;
-@property(nonatomic) int localPlayerEnum;
+@property(nonatomic) int localPlayerEnum, remoteGamePhaseEnum;
+
 @end

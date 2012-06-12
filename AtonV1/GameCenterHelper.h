@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
+#import "OnlineViewController.h"
+
+enum GAME_CENTER_STATE_ENUM {
+    GAME_CENTER_WAITING_LOCAL_AUTHENTICATION,
+    GAME_CENTER_WAITING_FIND_MATCH,
+    GAME_CENTER_WAITING_RANDOM_NUMBER,
+    GAME_CENTER_WAITING_GAME_START
+};
 
 
 @protocol GameCenterHelperDelegate 
@@ -20,6 +28,7 @@
 @interface GameCenterHelper : NSObject<GKMatchmakerViewControllerDelegate, GKMatchDelegate> {
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
+    int gameCenterStateEnum;
     
     UIViewController *presentingViewController;
     GKMatch *match;
@@ -34,7 +43,9 @@
 - (void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers 
                  viewController:(UIViewController *)viewController 
                        delegate:(id<GameCenterHelperDelegate>)theDelegate;
-
+-(void)displayMatchViewController:(UIViewController *) viewController 
+                         delegate:(id<GameCenterHelperDelegate>)theDelegate;
+-(void) sendRandomNumber;
 @property (retain) UIViewController *presentingViewController;
 @property (retain) GKMatch *match;
 @property (assign) id <GameCenterHelperDelegate> delegate;

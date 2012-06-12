@@ -12,12 +12,7 @@
 #import "OnlineParameters.h"
 #import "GameData.h"
 
-enum GAME_CENTER_STATE_ENUM {
-  GAME_CENTER_WAITING_LOCAL_AUTHENTICATION,
-  GAME_CENTER_WAITING_FIND_MATCH,
-  GAME_CENTER_WAITING_RANDOM_NUMBER,
-  GAME_CENTER_WAITING_GAME_START
-};
+
 
 @class OnlineViewController;
 
@@ -45,9 +40,12 @@ enum GAME_CENTER_STATE_ENUM {
     
     
 }
-
+-(void) checkGameStart;
 @property (strong, nonatomic) GKMatch *match;
 @property (nonatomic, strong) BoardViewController *boardScreen;
 @property (nonatomic, assign) id<OnlineViewDelegate> delegateOnlineView; 
-
+@property (nonatomic, strong) UIButton *playGameButton;
+@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) GKPlayer *localPlayer, *remotePlayer;
+@property (nonatomic) int localRandomNum, remoteRandomNum;
 @end

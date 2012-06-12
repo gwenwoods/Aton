@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GameKit/GameKit.h>
 #import "AtonGameParameters.h"
 #import "AtonRoundResult.h"
 #import "TempleUtility.h"
@@ -17,8 +18,9 @@
 #import "AtonPlacePeepExecutor.h"
 #import "AtonAIEasy.h"
 #import "AtonGameManager.h"
+#import "GameData.h"
 
-@interface AtonGameEngine:NSObject {
+@interface AtonGameEngine:NSObject<GKMatchDelegate> {
     
     AtonMessageMaster *messageMaster;
   //  AtonGameManager *gameManager;

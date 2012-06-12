@@ -16,6 +16,9 @@
 @synthesize match;
 @synthesize boardScreen;
 @synthesize delegateOnlineView;
+@synthesize playGameButton, label;
+@synthesize localRandomNum, remoteRandomNum;
+@synthesize localPlayer, remotePlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,7 +100,7 @@
 //#pragma mark GKMatchDelegate
 
 - (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
-    NSLog(@"received data");
+    NSLog(@"received data ... in online view");
     
     if (match != theMatch) return;
     if (gameCenterStateEnum != GAME_CENTER_WAITING_RANDOM_NUMBER) {
@@ -119,7 +122,7 @@
         case GKPlayerStateConnected: 
             // handle a new player connection.
             NSLog(@"Player connected!");
-             [self lookupPlayers];
+           //  [self lookupPlayers];
             break; 
         case GKPlayerStateDisconnected:
             // a player just disconnected. 
@@ -224,7 +227,9 @@
 
 - (void) showMatchViewController {
     
-    if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
+     [[GameCenterHelper sharedInstance] displayMatchViewController:self delegate:self];
+    
+ /*   if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
         gameCenterStateEnum = GAME_CENTER_WAITING_FIND_MATCH;
     }
     
@@ -235,9 +240,10 @@
     GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
     mmvc.matchmakerDelegate = self;
     mmvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:mmvc animated:YES];
+    [self presentModalViewController:mmvc animated:YES];*/
 }
 
+/*
 - (void)lookupPlayers {
     
     NSLog(@"Looking up %d players...", match.playerIDs.count);
@@ -266,15 +272,16 @@
             
         }
     }];
-}
+}*/
 
 -(void) sendRandomNumber {
-    localRandomNum = arc4random()%10000;
+    [[GameCenterHelper sharedInstance] sendRandomNumber];
+   /* localRandomNum = arc4random()%10000;
     GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
     
     NSError *error;
     [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-    NSLog(@"send random number ...");
+    NSLog(@"send random number ...");*/
 }
 @end
