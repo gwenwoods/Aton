@@ -21,8 +21,8 @@
 -(void)dismissOnlineViewWithoutAnimation:(OnlineViewController*) subController;
 @end
 
-@interface OnlineViewController : UIViewController<GKMatchmakerViewControllerDelegate, GKMatchDelegate, BoardViewDelegate> {
-    GKMatch *match;
+@interface OnlineViewController : UIViewController<GameCenterHelperDelegate, BoardViewDelegate> {
+    //GKMatch *match;
     GKPlayer *localPlayer, *remotePlayer;
     int localRandomNum, remoteRandomNum;
     int localPlayerEnum;
@@ -34,14 +34,14 @@
    // NSMutableDictionary *playersDict;
    // UITextField *textField;
     UILabel *label;
-    UIButton *sendMessageButton, *playGameButton;
+    UIButton *playGameButton;
     OnlineParameters *onlinePara;
     
     
     
 }
 -(void) checkGameStart;
-@property (strong, nonatomic) GKMatch *match;
+//@property (strong, nonatomic) GKMatch *match;
 @property (nonatomic, strong) BoardViewController *boardScreen;
 @property (nonatomic, assign) id<OnlineViewDelegate> delegateOnlineView; 
 @property (nonatomic, strong) UIButton *playGameButton;

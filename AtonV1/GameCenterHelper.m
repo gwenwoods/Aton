@@ -13,6 +13,7 @@
 @synthesize presentingViewController;
 @synthesize match;
 @synthesize delegate;
+//@synthesize atonEngine;
 
 //@synthesize gameCenterAvailable;
 static GameCenterHelper *sharedHelper = nil;
@@ -121,14 +122,16 @@ static GameCenterHelper *sharedHelper = nil;
         return;
     }
     
-    NSLog(@"Match found");
+    NSLog(@"Match found in GC");
     [presentingViewController dismissModalViewControllerAnimated:YES];
     match = theMatch;
     match.delegate = self;
     
     gameCenterStateEnum = GAME_CENTER_WAITING_RANDOM_NUMBER;
-    [(OnlineViewController* )presentingViewController playGameButton].hidden = NO;
-    [(OnlineViewController* )presentingViewController label].hidden = NO;
+    
+    [delegate matchFound];
+   // [(OnlineViewController* )presentingViewController playGameButton].hidden = NO;
+   // [(OnlineViewController* )presentingViewController label].hidden = NO;
    // label.hidden = NO;
 
    /* [presentingViewController dismissModalViewControllerAnimated:YES];
@@ -151,12 +154,49 @@ static GameCenterHelper *sharedHelper = nil;
     }
     
     GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if (receivedData != nil) {
+    if (receivedData == nil) return;
+    
+    [delegate receivedGameData:receivedData];
+    
+   /* if (receivedData.randomNum != nil) {
         int remoteRandomNum = [receivedData.randomNum intValue];
-        [(OnlineViewController* )presentingViewController setRemoteRandomNum:remoteRandomNum];
+  //      [(OnlineViewController* )presentingViewController setRemoteRandomNum:remoteRandomNum];
         gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
-        [(OnlineViewController* )presentingViewController checkGameStart];
-    }
+//        [(OnlineViewController* )presentingViewController checkGameStart];
+    
+    } else {*/
+   /*     atonEngine.para.onlinePara.remoteGamePhaseEnum = receivedData.gamePhaseEnum.intValue;
+        NSLog(@"remote game phase enum : %d ", atonEngine.para.onlinePara.remoteGamePhaseEnum);
+        NSMutableArray *nsCardArray = receivedData.cardNumArray;
+        if (atonEngine.para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+            AtonPlayer *bluePlayer = [atonEngine.para.playerArray objectAtIndex:PLAYER_BLUE];
+            int *remoteNumberArray = malloc(sizeof(int)*4);
+            for (int i=0; i < 4; i++) {
+                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+            }
+            [bluePlayer setCardNumberArray:remoteNumberArray];
+            
+            if (atonEngine.para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                atonEngine.para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                [atonEngine run];
+            }
+        } else if (atonEngine.para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+            AtonPlayer *redPlayer = [atonEngine.para.playerArray objectAtIndex:PLAYER_RED];
+            int *remoteNumberArray = malloc(sizeof(int)*4);
+            for (int i=0; i < 4; i++) {
+                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+            }
+            [redPlayer setCardNumberArray:remoteNumberArray];
+            
+            if (atonEngine.para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                atonEngine.para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                [atonEngine run];
+            }
+        }*/
+  //  }
+
+                
+    
     
     // if (match != theMatch) return;
     
@@ -228,7 +268,7 @@ static GameCenterHelper *sharedHelper = nil;
     if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
         gameCenterStateEnum = GAME_CENTER_WAITING_FIND_MATCH;
     }
-   // delegate = theDelegate;    
+    delegate = theDelegate;    
     self.presentingViewController = viewController;
     
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
@@ -244,13 +284,28 @@ static GameCenterHelper *sharedHelper = nil;
 
 -(void) sendRandomNumber {
     int localRandomNum = arc4random()%10000;
-    [(OnlineViewController* )presentingViewController setLocalRandomNum:localRandomNum];
+   // [(OnlineViewController* )presentingViewController setLocalRandomNum:localRandomNum];
     GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
     
     NSError *error;
     [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
     NSLog(@"send random number ...");
+}
+
+
+-(void) sendGameData:(GameData*) gameData {
+    
+  //  if (atonEngine == nil) {
+  //      atonEngine = engine;
+  //  }
+    // GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+    
+   // GKMatch *match = para.onlinePara.match;
+    NSError *error;
+    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    NSLog(@"send game data ...");
 }
 
 - (void)lookupPlayers {
@@ -263,7 +318,7 @@ static GameCenterHelper *sharedHelper = nil;
             
         } else {
             for (GKPlayer *player in players) {
-                [(OnlineViewController* )presentingViewController setRemotePlayer:player];
+            //    [(OnlineViewController* )presentingViewController setRemotePlayer:player];
                 NSLog(@"Found player: %@", player.alias);
                 //[playersDict setObject:player forKey:player.playerID];
                 NSString *msg = @"Found player ";
@@ -271,7 +326,7 @@ static GameCenterHelper *sharedHelper = nil;
                 // msg = [msg stringByAppendingString:@" says HELLO !"];
                 
                 
-                [(OnlineViewController* )presentingViewController label].text = msg;
+            //    [(OnlineViewController* )presentingViewController label].text = msg;
                 
             }
             

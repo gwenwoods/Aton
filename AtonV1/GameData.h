@@ -11,8 +11,8 @@
 @interface GameData : NSObject<NSCoding> {
     NSNumber *randomNum;
     NSString *str;
-    
-    NSNumber *gamePhaseEnum;
+
+    NSNumber *gamePhaseEnum, *gameCenterStateEnum;
     NSNumber *senderEnum;
     NSMutableArray* cardNumArray;
     
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSNumber *randomNum;
 @property (nonatomic, strong) NSString *str;
 
-@property (nonatomic) NSNumber *senderEnum, *gamePhaseEnum;
+@property (nonatomic) NSNumber *senderEnum, *gamePhaseEnum, *gameCenterStateEnum;
 @property (nonatomic, strong) NSMutableArray* cardNumArray, *liteSlotArray;
 
 

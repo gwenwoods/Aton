@@ -8,12 +8,8 @@
 
 #import "OnlineViewController.h"
 
-//@interface OnlineViewController ()
-
-//@end
-
 @implementation OnlineViewController
-@synthesize match;
+//@synthesize match;
 @synthesize boardScreen;
 @synthesize delegateOnlineView;
 @synthesize playGameButton, label;
@@ -66,7 +62,7 @@
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-
+/*
 //---------------------------------------------------
 //#pragma mark GKMatchmakerViewControllerDelegate
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
@@ -95,10 +91,10 @@
     
    
 }
-
+*/
 //---------------------------------------------
 //#pragma mark GKMatchDelegate
-
+/*
 - (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
     NSLog(@"received data ... in online view");
     
@@ -142,16 +138,9 @@
     if (match != theMatch) return;
     NSLog(@"Match failed with error: %@", error.localizedDescription);
 }
+*/
 
 
-//------------------------------
-// Board view delegate
-- (void)dismissBoardViewWithoutAnimation:(BoardViewController *)subcontroller
-{
-    NSLog(@"Board View Back to Player View");
-    [self dismissModalViewControllerAnimated:NO];
-    [delegateOnlineView dismissOnlineViewWithoutAnimation:self];
-}
 
 //--------------
 // UI Outlet
@@ -162,28 +151,27 @@
 }
 
 //-----------------
--(void) goToAtonGameView {
-    
 
-    
-    localPlayer = [GKLocalPlayer localPlayer];
-    NSLog(@"local player enum = %d", localPlayerEnum);
-    
-    onlinePara = [[OnlineParameters alloc] initWithPara:match:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
-    boardScreen = [[BoardViewController alloc] initWithOnlinePara:onlinePara];
-    boardScreen.delegateBoardView = self;
-    boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:boardScreen animated:YES];
-   // [audioPlayerChime play];
-}
 
--(void) communicateWithRemotePlayer {
+/*-(void) communicateWithRemotePlayer {
     GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:5]:@"Morning"];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
     GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
     NSLog(@" num = %d ", [receivedData.randomNum intValue]);
     NSLog(@" %@",[receivedData str]);
+}*/
+
+- (void) showMatchViewController {
+    gameCenterStateEnum = GAME_CENTER_WAITING_FIND_MATCH;
+    [[GameCenterHelper sharedInstance] displayMatchViewController:self delegate:self];
+}
+
+-(void) sendRandomNumber {
+     localRandomNum = arc4random()%10000;
+    // [(OnlineViewController* )presentingViewController setLocalRandomNum:localRandomNum];
+    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+    [[GameCenterHelper sharedInstance] sendGameData:gameData];
 }
 
 -(void) checkGameStart {
@@ -203,85 +191,110 @@
         gameCenterStateEnum = GAME_CENTER_WAITING_RANDOM_NUMBER;
         [self sendRandomNumber];
         [self checkGameStart];
-    
-     /*   localRandomNum = arc4random()%10000;
-        GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
-        
-        NSError *error;
-        [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-        NSLog(@"send data ...");*/
         return;
     }
     
     [self goToAtonGameView];
 }
 
+-(void) goToAtonGameView {
+    
+    gameCenterStateEnum = GAME_CENTER_PLAYING;
+    
+    localPlayer = [GKLocalPlayer localPlayer];
+    NSLog(@"local player enum = %d", localPlayerEnum);
+    onlinePara = [[OnlineParameters alloc] initWithPara:nil:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
+    //  onlinePara = [[OnlineParameters alloc] initWithPara:match:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
+    boardScreen = [[BoardViewController alloc] initWithOnlinePara:onlinePara];
+    boardScreen.delegateBoardView = self;
+    boardScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:boardScreen animated:YES];
+}
+/*
 -(void) checkAuthentication {
     if ([GKLocalPlayer localPlayer].isAuthenticated == NO) {
         label.text = @"Game center account required to play online";
     } else {
         [self performSelector:@selector(showMatchViewController) withObject:nil afterDelay:2.0];
     }
-}
-
-- (void) showMatchViewController {
-    
-     [[GameCenterHelper sharedInstance] displayMatchViewController:self delegate:self];
-    
- /*   if ([GKLocalPlayer localPlayer].isAuthenticated == YES) {
-        gameCenterStateEnum = GAME_CENTER_WAITING_FIND_MATCH;
-    }
-    
-    GKMatchRequest *request = [[GKMatchRequest alloc] init];
-    request.minPlayers = 2;
-    request.maxPlayers = 2;
-    
-    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
-    mmvc.matchmakerDelegate = self;
-    mmvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:mmvc animated:YES];*/
-}
-
-/*
-- (void)lookupPlayers {
-    
-    NSLog(@"Looking up %d players...", match.playerIDs.count);
-    [GKPlayer loadPlayersForIdentifiers:match.playerIDs withCompletionHandler:^(NSArray *players, NSError *error) {
-        
-        if (error != nil) {
-            NSLog(@"Error retrieving player info: %@", error.localizedDescription);
-            
-        } else {
-            for (GKPlayer *player in players) {
-                remotePlayer = player;
-                NSLog(@"Found player: %@", player.alias);
-                //[playersDict setObject:player forKey:player.playerID];
-                NSString *msg = @"Found player ";
-                msg = [msg stringByAppendingString:player.alias];
-               // msg = [msg stringByAppendingString:@" says HELLO !"];
-                
-                
-                label.text = msg;
-                
-            }
-            
-            // Notify delegate match can begin
-           // matchStarted = YES;
-            //[delegate matchStarted];
-            
-        }
-    }];
 }*/
 
--(void) sendRandomNumber {
-    [[GameCenterHelper sharedInstance] sendRandomNumber];
-   /* localRandomNum = arc4random()%10000;
-    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+
+
+//---------------------------------
+// GameCenterHelper delegate
+- (void) receivedGameData:(GameData*)gameData {
     
-    NSError *error;
-    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-    NSLog(@"send random number ...");*/
+    if (gameCenterStateEnum == GAME_CENTER_WAITING_RANDOM_NUMBER) {
+        if (gameData.randomNum == nil) {
+            return;
+        }
+        remoteRandomNum = [gameData.randomNum intValue];
+        gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
+        [self checkGameStart];
+       
+    } else if (gameCenterStateEnum == GAME_CENTER_PLAYING) {
+        AtonGameParameters *para = boardScreen.atonParameters;
+        AtonGameEngine *engine = boardScreen.atonGameEngine;
+        para.onlinePara.remoteGamePhaseEnum = gameData.gamePhaseEnum.intValue;
+        
+        NSLog(@"remote game phase enum : %d ", para.onlinePara.remoteGamePhaseEnum);
+        NSMutableArray *nsCardArray = gameData.cardNumArray;
+        
+        if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+            AtonPlayer *bluePlayer = [para.playerArray objectAtIndex:PLAYER_BLUE];
+            int *remoteNumberArray = malloc(sizeof(int)*4);
+            for (int i=0; i < 4; i++) {
+                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+            }
+            [bluePlayer setCardNumberArray:remoteNumberArray];
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                [engine run];
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+            AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
+            int *remoteNumberArray = malloc(sizeof(int)*4);
+            for (int i=0; i < 4; i++) {
+                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+            }
+            [redPlayer setCardNumberArray:remoteNumberArray];
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                [engine run];
+            }
+        }
+    }
 }
+
+- (void)matchFound {
+    
+    if (gameCenterStateEnum != GAME_CENTER_WAITING_FIND_MATCH) {
+        return;
+    }
+    NSLog(@"Match Hola");
+    NSLog(@"Match found ... in online view");
+   // [self dismissModalViewControllerAnimated:YES];
+   // match = theMatch;
+   // match.delegate = self;
+    
+    gameCenterStateEnum = GAME_CENTER_WAITING_RANDOM_NUMBER;
+    playGameButton.hidden = NO;
+    label.hidden = NO;
+
+}
+- (void)matchStarted{}
+- (void)matchEnded{}
+
+//------------------------------
+// Board view delegate
+- (void)dismissBoardViewWithoutAnimation:(BoardViewController *)subcontroller
+{
+    NSLog(@"Board View Back to Player View");
+    [self dismissModalViewControllerAnimated:NO];
+    [delegateOnlineView dismissOnlineViewWithoutAnimation:self];
+}
+
 @end

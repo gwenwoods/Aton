@@ -8,21 +8,27 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
-#import "OnlineViewController.h"
+#import "GameData.h"
+//#import "OnlineViewController.h"
+//#import "AtonGameEngine.h"
 
 enum GAME_CENTER_STATE_ENUM {
     GAME_CENTER_WAITING_LOCAL_AUTHENTICATION,
     GAME_CENTER_WAITING_FIND_MATCH,
     GAME_CENTER_WAITING_RANDOM_NUMBER,
-    GAME_CENTER_WAITING_GAME_START
+    GAME_CENTER_WAITING_GAME_START,
+    GAME_CENTER_PLAYING
 };
 
 
-@protocol GameCenterHelperDelegate 
+@protocol GameCenterHelperDelegate
+- (void)matchFound;
 - (void)matchStarted;
 - (void)matchEnded;
-- (void)match:(GKMatch *)match didReceiveData:(NSData *)data 
-   fromPlayer:(NSString *)playerID;
+//- (void)match:(GKMatch *)match didReceiveData:(NSData *)data 
+//   fromPlayer:(NSString *)playerID;
+- (void) receivedGameData:(GameData*)gameData;
+
 @end
 
 @interface GameCenterHelper : NSObject<GKMatchmakerViewControllerDelegate, GKMatchDelegate> {
@@ -46,7 +52,9 @@ enum GAME_CENTER_STATE_ENUM {
 -(void)displayMatchViewController:(UIViewController *) viewController 
                          delegate:(id<GameCenterHelperDelegate>)theDelegate;
 -(void) sendRandomNumber;
+-(void) sendGameData:(GameData*) gameData;
 @property (retain) UIViewController *presentingViewController;
+//@property (nonatomic, strong) AtonGameEngine* atonEngine;
 @property (retain) GKMatch *match;
 @property (assign) id <GameCenterHelperDelegate> delegate;
 

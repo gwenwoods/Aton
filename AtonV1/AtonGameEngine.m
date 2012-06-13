@@ -687,8 +687,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 [nsCardNumArray addObject:[NSNumber numberWithInt:cardNumArray[i]]];
             }
             GameData *gameData = [[GameData alloc] initWithCardArray:nsGamePhaseEnum:nsPlayerEnum:nsCardNumArray];
-            [self sendGameData:gameData];
-            
+            [[GameCenterHelper sharedInstance] sendGameData:gameData];
             
             if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
                 para.gamePhaseEnum = GAME_PHASE_COMPARE;
@@ -722,7 +721,8 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 [nsCardNumArray addObject:[NSNumber numberWithInt:cardNumArray[i]]];
             }
             GameData *gameData = [[GameData alloc] initWithCardArray:nsGamePhaseEnum:nsPlayerEnum:nsCardNumArray];
-            [self sendGameData:gameData];
+            [[GameCenterHelper sharedInstance] sendGameData:gameData];
+           // [self sendGameData:gameData];
             
             
             if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
@@ -895,20 +895,22 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:0.0];
 }
 
--(void) sendGameData:(GameData*) gameData {
+//-(void) sendGameData:(GameData*) gameData {
+    
+     //[[GameCenterHelper sharedInstance] sendGameData:gameData :self];
 
    // GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
+   /* NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
     
     GKMatch *match = para.onlinePara.match;
     NSError *error;
     [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-    NSLog(@"send game data ...");
-}
+    NSLog(@"send game data ...");*/
+//}
 
 //---------------------------------------------
 //#pragma mark GKMatchDelegate
-
+/*
 - (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
     NSLog(@"received data ... mi...");
     
@@ -958,8 +960,9 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
        // gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
        // [self checkGameStart];
     }
-}
+}*/
 
+/*
 // The player state changed (eg. connected or disconnected)
 - (void)match:(GKMatch *)theMatch player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {   
     if (para.onlinePara.match != theMatch) return;
@@ -987,6 +990,6 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     if (para.onlinePara.match != theMatch) return;
     NSLog(@"Match failed with error: %@", error.localizedDescription);
 }
-
+*/
 
 @end

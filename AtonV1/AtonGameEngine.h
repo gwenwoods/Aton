@@ -19,8 +19,9 @@
 #import "AtonAIEasy.h"
 #import "AtonGameManager.h"
 #import "GameData.h"
+#import "GameCenterHelper.h"
 
-@interface AtonGameEngine:NSObject<GKMatchDelegate> {
+@interface AtonGameEngine:NSObject {
     
     AtonMessageMaster *messageMaster;
   //  AtonGameManager *gameManager;

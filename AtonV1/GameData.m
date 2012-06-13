@@ -10,7 +10,7 @@
 
 @implementation GameData
 @synthesize randomNum, str;
-@synthesize senderEnum, gamePhaseEnum, cardNumArray;
+@synthesize senderEnum, gamePhaseEnum, gameCenterStateEnum, cardNumArray;
 @synthesize liteSlotArray;
 
 - (id)initWithPara:(NSNumber *)num :(NSString *)string
