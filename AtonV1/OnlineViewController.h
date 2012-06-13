@@ -23,7 +23,8 @@
 
 @interface OnlineViewController : UIViewController<GameCenterHelperDelegate, BoardViewDelegate> {
     //GKMatch *match;
-    GKPlayer *localPlayer, *remotePlayer;
+  //  GKPlayer *localPlayer, *remotePlayer;
+    NSString *localPlayerName, *remotePlayerName;
     int localRandomNum, remoteRandomNum;
     int localPlayerEnum;
     
@@ -39,6 +40,7 @@
     
     
     
+    
 }
 -(void) checkGameStart;
 //@property (strong, nonatomic) GKMatch *match;
@@ -46,6 +48,7 @@
 @property (nonatomic, assign) id<OnlineViewDelegate> delegateOnlineView; 
 @property (nonatomic, strong) UIButton *playGameButton;
 @property (nonatomic, strong) UILabel *label;
-@property (nonatomic, strong) GKPlayer *localPlayer, *remotePlayer;
+//@property (nonatomic, strong) GKPlayer *localPlayer, *remotePlayer;
 @property (nonatomic) int localRandomNum, remoteRandomNum;
+
 @end

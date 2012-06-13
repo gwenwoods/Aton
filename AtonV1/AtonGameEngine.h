@@ -39,6 +39,7 @@
 //-(void) imageFly:(UIImageView*) begin:(UIImageView*) end;
 @property(strong, nonatomic) AtonGameParameters *para;
 @property(strong, nonatomic) AtonGameManager *gameManager;
+@property(strong, nonatomic) AtonMessageMaster *messageMaster;
 @property(nonatomic) BOOL useAI;
 
 @end

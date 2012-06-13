@@ -16,7 +16,7 @@ static float SCARAB_MOVING_TIME = 0.5;
 static int AFTER_PEEP_DELAY_TIME = 2.0;
 
 @synthesize para;
-@synthesize gameManager;
+@synthesize gameManager, messageMaster;
 @synthesize useAI;
 
 static NSString *CARD_1_RESULT = @"Cartouche 1 Result|";
@@ -690,7 +690,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [[GameCenterHelper sharedInstance] sendGameData:gameData];
             
             if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
-                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
                 gameManager.messagePlayerEnum = PLAYER_NONE;
                 [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
             } else {
@@ -726,7 +726,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             
             
             if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
-                para.gamePhaseEnum = GAME_PHASE_COMPARE;
+                para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
                 gameManager.messagePlayerEnum = PLAYER_NONE;
                 [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
             } else {

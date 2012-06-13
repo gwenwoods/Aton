@@ -14,7 +14,7 @@
 @synthesize delegateOnlineView;
 @synthesize playGameButton, label;
 @synthesize localRandomNum, remoteRandomNum;
-@synthesize localPlayer, remotePlayer;
+//@synthesize localPlayer, remotePlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -170,7 +170,9 @@
 -(void) sendRandomNumber {
      localRandomNum = arc4random()%10000;
     // [(OnlineViewController* )presentingViewController setLocalRandomNum:localRandomNum];
-    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
+    localPlayerName = [GKLocalPlayer localPlayer].alias;
+    GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:localPlayerName];
+  //  NSLog(@"local player name %@", localPlayer.alias);
     [[GameCenterHelper sharedInstance] sendGameData:gameData];
 }
 
@@ -201,9 +203,10 @@
     
     gameCenterStateEnum = GAME_CENTER_PLAYING;
     
-    localPlayer = [GKLocalPlayer localPlayer];
+  //  localPlayer = [GKLocalPlayer localPlayer];
     NSLog(@"local player enum = %d", localPlayerEnum);
-    onlinePara = [[OnlineParameters alloc] initWithPara:nil:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
+  //  NSLog(@"remote player name = %@", remotePlayer.alias);
+    onlinePara = [[OnlineParameters alloc] initWithPara:nil:localPlayerName:remotePlayerName:localPlayerEnum];
     //  onlinePara = [[OnlineParameters alloc] initWithPara:match:localPlayer.alias:remotePlayer.alias:localPlayerEnum];
     boardScreen = [[BoardViewController alloc] initWithOnlinePara:onlinePara];
     boardScreen.delegateBoardView = self;
@@ -230,6 +233,8 @@
             return;
         }
         remoteRandomNum = [gameData.randomNum intValue];
+        remotePlayerName = gameData.str;
+        NSLog(@" in OVC, remote player name = %@", remotePlayerName);
         gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
         [self checkGameStart];
        
@@ -250,8 +255,10 @@
             [bluePlayer setCardNumberArray:remoteNumberArray];
             
             if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
-                para.gamePhaseEnum = GAME_PHASE_COMPARE;
-                [engine run];
+                para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
+                engine.gameManager.messagePlayerEnum = PLAYER_NONE;
+                [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
+            //    [engine run];
             }
         } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
             AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
@@ -262,8 +269,11 @@
             [redPlayer setCardNumberArray:remoteNumberArray];
             
             if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
-                para.gamePhaseEnum = GAME_PHASE_COMPARE;
-                [engine run];
+                para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
+                engine.gameManager.messagePlayerEnum = PLAYER_NONE;
+                [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
+                
+             //   [engine run];
             }
         }
     }
