@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LiteSlot : NSObject {
-    int templeEnum;
-    int slotID;
+@interface LiteSlot : NSObject<NSCoding> {
+    NSNumber *templeEnum, *slotId;
 }
 
-@property(nonatomic) int templeEnum, slotID;
+-(id)initWithPara:(NSNumber*) thisTempleEnum:(NSNumber*) thisSlotID;
+
+@property(nonatomic,strong) NSNumber *templeEnum, *slotId;
 @end

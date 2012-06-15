@@ -56,6 +56,7 @@
         senderEnum = [decoder decodeObjectForKey:@"senderEnum"];
         cardNumArray = [decoder decodeObjectForKey:@"cardNumArray"];
         liteSlotArray = [decoder decodeObjectForKey:@"liteSlotArray"];
+      //  liteSlotArray addObjectsFromArray:
     }
     return self;
 }
@@ -68,6 +69,7 @@
     [encoder encodeObject:senderEnum forKey:@"senderEnum"];
     [encoder encodeObject:cardNumArray forKey:@"cardNumArray"];
     [encoder encodeObject:liteSlotArray forKey:@"liteSlotArray"];
+ 
 }
 
 @end

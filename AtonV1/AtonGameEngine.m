@@ -476,10 +476,17 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [result setFirstPlayerEnum:PLAYER_BLUE];
             [result setSecondPlayerEnum:PLAYER_RED];
         } else {
-            int firstPlayerEnum = time(0)%2;
-            [result setFirstPlayerEnum:firstPlayerEnum];
-            int secondPlayerEnum = (firstPlayerEnum+1)%2;
-            [result setSecondPlayerEnum:secondPlayerEnum];
+            
+            if (para.onlineMode) {
+                [result setFirstPlayerEnum:PLAYER_RED];
+                [result setSecondPlayerEnum:PLAYER_BLUE];
+            } else {
+                int firstPlayerEnum = time(0)%2;
+                [result setFirstPlayerEnum:firstPlayerEnum];
+                int secondPlayerEnum = (firstPlayerEnum+1)%2;
+                [result setSecondPlayerEnum:secondPlayerEnum];
+            }
+            
         }
     }
 
@@ -747,9 +754,17 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [self run]; 
             
         } else {
+            if (para.onlineMode) {
+              //  if (localPlayerEnum == activePlayerEnum) {
+                NSMutableArray* liteSlotArray = [TempleUtility findAllSelectedLiteSlotArray:allSelectedSlots];
+                NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:GAME_PHASE_FIRST_REMOVE_PEEP];
+                NSNumber *nsActivePlayerEnum = [NSNumber numberWithInt:para.atonRoundResult.firstPlayerEnum];
+                GameData *gameData = [[GameData alloc] initWithSlotArray:nsGamePhaseEnum:nsActivePlayerEnum:liteSlotArray];
+                [[GameCenterHelper sharedInstance] sendGameData:gameData];
+            }
             
             [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
-             [TempleUtility disableTemplesFlame:[para templeArray]];
+            [TempleUtility disableTemplesFlame:[para templeArray]];
             
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
@@ -769,6 +784,15 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             
         } else {
             
+            if (para.onlineMode) {
+                //  if (localPlayerEnum == activePlayerEnum) {
+                NSMutableArray* liteSlotArray = [TempleUtility findAllSelectedLiteSlotArray:allSelectedSlots];
+                NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:GAME_PHASE_SECOND_REMOVE_PEEP];
+                NSNumber *nsActivePlayerEnum = [NSNumber numberWithInt:para.atonRoundResult.secondPlayerEnum];
+                GameData *gameData = [[GameData alloc] initWithSlotArray:nsGamePhaseEnum:nsActivePlayerEnum:liteSlotArray];
+                [[GameCenterHelper sharedInstance] sendGameData:gameData];
+            }
+            
             [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
              [TempleUtility disableTemplesFlame:[para templeArray]];
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
@@ -786,6 +810,14 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [TempleUtility deselectAllTempleSlots:[para templeArray]];
             [self run]; 
         } else {
+            
+            if (para.onlineMode) {
+                NSMutableArray* liteSlotArray = [TempleUtility findAllSelectedLiteSlotArray:allSelectedSlots];
+                NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:GAME_PHASE_FIRST_PLACE_PEEP];
+                NSNumber *nsActivePlayerEnum = [NSNumber numberWithInt:para.atonRoundResult.firstPlayerEnum];
+                GameData *gameData = [[GameData alloc] initWithSlotArray:nsGamePhaseEnum:nsActivePlayerEnum:liteSlotArray];
+                [[GameCenterHelper sharedInstance] sendGameData:gameData];
+            }
             int occupiedEnum = OCCUPIED_RED;
             if (para.atonRoundResult.firstPlayerEnum == PLAYER_BLUE) {
                 occupiedEnum = OCCUPIED_BLUE;
@@ -797,6 +829,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             }
             [TempleUtility disableAllTempleSlotInteractionAndFlame:[para templeArray]];
             if ([gameManager gameOverConditionSuper] != nil) {
+                // TODO: Q? do we need this if ?
                 [gameManager performSelector:@selector(showFinalResultView:) withObject:[gameManager gameOverConditionSuper] afterDelay:0.0];
                 
             } else {
@@ -816,6 +849,15 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [TempleUtility deselectAllTempleSlots:[para templeArray]];
             [self run]; 
         } else {
+            
+            if (para.onlineMode) {
+                NSMutableArray* liteSlotArray = [TempleUtility findAllSelectedLiteSlotArray:allSelectedSlots];
+                NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:GAME_PHASE_SECOND_PLACE_PEEP];
+                NSNumber *nsActivePlayerEnum = [NSNumber numberWithInt:para.atonRoundResult.secondPlayerEnum];
+                GameData *gameData = [[GameData alloc] initWithSlotArray:nsGamePhaseEnum:nsActivePlayerEnum:liteSlotArray];
+                [[GameCenterHelper sharedInstance] sendGameData:gameData];
+            }
+            
             int occupiedEnum = OCCUPIED_RED;
             if (para.atonRoundResult.secondPlayerEnum == PLAYER_BLUE) {
                 occupiedEnum = OCCUPIED_BLUE;
@@ -856,6 +898,14 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             
         } else {
             
+            if (para.onlineMode) {
+                NSMutableArray* liteSlotArray = [TempleUtility findAllSelectedLiteSlotArray:allSelectedSlots];
+                NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
+                NSNumber *nsActivePlayerEnum = [NSNumber numberWithInt:para.atonRoundResult.firstPlayerEnum];
+                GameData *gameData = [[GameData alloc] initWithSlotArray:nsGamePhaseEnum:nsActivePlayerEnum:liteSlotArray];
+                [[GameCenterHelper sharedInstance] sendGameData:gameData];
+            }
+            
             [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
             
             [TempleUtility disableTemplesFlame:[para templeArray]];
@@ -877,6 +927,14 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             [self run]; 
             
         } else {
+            
+            if (para.onlineMode) {
+                NSMutableArray* liteSlotArray = [TempleUtility findAllSelectedLiteSlotArray:allSelectedSlots];
+                NSNumber *nsGamePhaseEnum = [NSNumber numberWithInt:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+                NSNumber *nsActivePlayerEnum = [NSNumber numberWithInt:para.atonRoundResult.secondPlayerEnum];
+                GameData *gameData = [[GameData alloc] initWithSlotArray:nsGamePhaseEnum:nsActivePlayerEnum:liteSlotArray];
+                [[GameCenterHelper sharedInstance] sendGameData:gameData];
+            }
             
             [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
             [TempleUtility disableTemplesFlame:[para templeArray]];

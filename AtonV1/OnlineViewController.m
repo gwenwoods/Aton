@@ -14,6 +14,8 @@
 @synthesize delegateOnlineView;
 @synthesize playGameButton, label;
 @synthesize localRandomNum, remoteRandomNum;
+
+static int AFTER_PEEP_DELAY_TIME = 2.0;
 //@synthesize localPlayer, remotePlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -275,10 +277,153 @@
                 
              //   [engine run];
             }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_REMOVE) {
+                
+                NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
+                [self performSelector:@selector(remoteRemovePeeps:) withObject:allSelectedSlots afterDelay:2.0];
+                para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
+            // fix here ... just copy the first case
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_REMOVE) {
+                
+                NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
+                [self performSelector:@selector(remoteRemovePeeps:) withObject:allSelectedSlots afterDelay:2.0];
+                para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_PLACE) {
+                
+                NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
+                [self performSelector:@selector(remotePlacePeeps1:) withObject:allSelectedSlots afterDelay:2.0];
+                para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_PLACE) {
+                
+                NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
+                [self performSelector:@selector(remotePlacePeeps2:) withObject:allSelectedSlots afterDelay:2.0];
+                para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_REMOVE_4) {
+                
+                NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
+                [self performSelector:@selector(remoteFirstRemove4:) withObject:allSelectedSlots afterDelay:2.0];
+                para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
+            }
+        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
+            
+            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_REMOVE_4) {
+                
+                NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
+                [self performSelector:@selector(remoteSecondRemove4:) withObject:allSelectedSlots afterDelay:2.0];
+                para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
+            }
         }
+
     }
 }
 
+-(void) remoteRemovePeeps:(NSMutableArray*) allSelectedSlots {
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonGameEngine *engine = boardScreen.atonGameEngine;
+    [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
+    [TempleUtility disableTemplesFlame:[para templeArray]];
+    
+    NSString* msg = [engine.messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
+    engine.gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
+    [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+    
+}
+
+-(void) remotePlacePeeps1:(NSMutableArray*) allSelectedSlots {
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonGameEngine *engine = boardScreen.atonGameEngine;
+    int occupiedEnum = OCCUPIED_RED;
+    if (para.atonRoundResult.firstPlayerEnum == PLAYER_BLUE) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    for (int i=0; i < [allSelectedSlots count]; i++) {
+        TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
+        [selectedSlot placePeep:occupiedEnum];
+    }
+    [TempleUtility disableAllTempleSlotInteractionAndFlame:[para templeArray]];
+    if ([engine.gameManager gameOverConditionSuper] != nil) {
+        // TODO: Q? do we need this if ?
+        [engine.gameManager performSelector:@selector(showFinalResultView:) withObject:[engine.gameManager gameOverConditionSuper] afterDelay:0.0];
+        
+    } else {
+        NSString* msg = [engine.messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
+        engine.gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
+        [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+        //[firstPlayer closeMenu];
+    }    
+}
+
+-(void) remotePlacePeeps2:(NSMutableArray*) allSelectedSlots {
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonGameEngine *engine = boardScreen.atonGameEngine;
+    int occupiedEnum = OCCUPIED_RED;
+    if (para.atonRoundResult.secondPlayerEnum == PLAYER_BLUE) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    for (int i=0; i < [allSelectedSlots count]; i++) {
+        TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
+        [selectedSlot placePeep:occupiedEnum];
+    }
+    [TempleUtility disableAllTempleSlotInteractionAndFlame:[para templeArray]];
+    
+    if ([engine.gameManager gameOverConditionSuper] != nil) {
+        [engine.gameManager performSelector:@selector(showFinalResultView:) withObject:[engine.gameManager gameOverConditionSuper] afterDelay:0.0];
+        
+    } else if ([TempleUtility isDeathTempleFull:[para templeArray]]) {
+        para.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[para templeArray]];
+        
+        para.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
+        engine.gameManager.messagePlayerEnum = PLAYER_NONE;
+        [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_DEAD_KINGDOM_FULL] afterDelay:AFTER_PEEP_DELAY_TIME];
+    } else {
+        engine.gameManager.messagePlayerEnum = PLAYER_NONE;
+        [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_TURN_END] afterDelay:AFTER_PEEP_DELAY_TIME];
+        
+    }
+}
+
+-(void) remoteFirstRemove4:(NSMutableArray*) allSelectedSlots {
+    
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonGameEngine *engine = boardScreen.atonGameEngine;
+
+    [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
+    
+    [TempleUtility disableTemplesFlame:[para templeArray]];
+    engine.gameManager.messagePlayerEnum = para.atonRoundResult.lowerScorePlayer;
+    NSString* msg = [engine.messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
+    [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+   // [[para.playerArray objectAtIndex:currentPlayerEnum] closeMenu];
+
+}
+
+-(void) remoteSecondRemove4:(NSMutableArray*) allSelectedSlots {
+    
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonGameEngine *engine = boardScreen.atonGameEngine;
+    
+    [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
+    [TempleUtility disableTemplesFlame:[para templeArray]];
+    engine.gameManager.messagePlayerEnum = PLAYER_NONE;
+    [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_NEW_ROUND_BEGIN] afterDelay:AFTER_PEEP_DELAY_TIME];
+    
+    
+}
 - (void)matchFound {
     
     if (gameCenterStateEnum != GAME_CENTER_WAITING_FIND_MATCH) {

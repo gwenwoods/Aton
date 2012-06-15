@@ -685,4 +685,32 @@ double static PEEP_TO_DEATH_TIME = 0.5;
     }
     return count;
 }
+
++(NSMutableArray*) findAllSelectedLiteSlotArray:(NSMutableArray*) allSelectedArray {
+    NSMutableArray *liteSlotArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<[allSelectedArray count]; i++) {
+        TempleSlot *slot = [allSelectedArray objectAtIndex:i];
+        NSNumber *templeEnum = [NSNumber numberWithInt:slot.templeEnum];
+        NSNumber *slotId =[NSNumber numberWithInt:slot.slotID];
+        LiteSlot *liteSlot = [[LiteSlot alloc] initWithPara:templeEnum:slotId];
+        [liteSlotArray addObject:liteSlot];
+    }
+    return liteSlotArray;
+}
+
++(NSMutableArray*) selectSlotFromLiteSlotArray:(NSMutableArray*) templeArray:(NSMutableArray*) liteSlotArray {
+    NSMutableArray *selectedSlotArray = [[NSMutableArray alloc] init];
+    for (int i=0; i < [liteSlotArray count]; i++) {
+        LiteSlot *liteSlot = [liteSlotArray objectAtIndex:i];
+        NSNumber *templeEnum = liteSlot.templeEnum;
+        NSNumber *slotId =liteSlot.slotId;
+        
+        AtonTemple* atonTemple = [templeArray objectAtIndex:[templeEnum intValue]];
+        TempleSlot* templeSlot = [[atonTemple slotArray] objectAtIndex:[slotId intValue]];
+        [templeSlot select];
+        [selectedSlotArray addObject:templeSlot];
+        
+    }
+    return selectedSlotArray;
+}
 @end

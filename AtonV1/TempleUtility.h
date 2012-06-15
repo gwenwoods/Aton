@@ -12,6 +12,7 @@
 #import "TempleScoreResult.h"
 #import "AtonPlayer.h"
 #import "AtonMessageMaster.h"
+#import "LiteSlot.h"
 
 
 @interface TempleUtility : NSObject
@@ -39,5 +40,6 @@
 +(NSMutableArray*) findEligibleTempleSlots:(NSMutableArray*) templeArray:(int) maxTemple: (int) occupiedEnum;
 +(int*) findPeepDiffEachTemple: (NSMutableArray*) templeArray;
 +(int) findGreyBlueNumBeforeTempleForPlayer:(NSMutableArray*) templeArray:(int) maxTemple:(int) playerEnum;
-
++(NSMutableArray*) findAllSelectedLiteSlotArray:(NSMutableArray*) allSelectedArray;
++(NSMutableArray*) selectSlotFromLiteSlotArray:(NSMutableArray*) templeArray:(NSMutableArray*) liteSlotArray;
 @end

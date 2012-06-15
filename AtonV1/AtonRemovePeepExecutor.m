@@ -45,6 +45,7 @@ static float MESSAGE_DELAY_TIME = 0.2;
     }
     
     AtonPlayer *activePlayer = [playerArray objectAtIndex:activePlayerEnum];
+    
 
     if (activePlayerRemoveNum == 0) {
         
@@ -139,7 +140,9 @@ static float MESSAGE_DELAY_TIME = 0.2;
         
         
     } else {
+        
         [TempleUtility enableActiveTemplesFlame:para.templeArray:activePlayerEnum:activePlayerMaxTempleEnum];
+        
         if (useAI == YES && activePlayerEnum == PLAYER_BLUE) {
             double animationTime = [ai removePeepsToDeathTemple:targetPlayerEnum:activePlayerRemoveNum:activePlayerMaxTempleEnum];
             if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
@@ -159,6 +162,12 @@ static float MESSAGE_DELAY_TIME = 0.2;
 
 
         } else {
+            if (para.onlineMode) {
+                if (para.onlinePara.localPlayerEnum != activePlayerEnum) {
+                    para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE;
+                    return;
+                }
+            }
             [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: occupiedEnum];
             [activePlayer displayMenu:ACTION_REMOVE:activePlayerRemoveNum];
         }
@@ -225,6 +234,14 @@ static float MESSAGE_DELAY_TIME = 0.2;
             }
             
         } else {
+            
+            if (para.onlineMode) {
+                if (para.onlinePara.localPlayerEnum != activePlayerEnum) {
+                    para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE_4;
+                    return;
+                }
+            }
+            
             [TempleUtility enableEligibleTempleSlotInteraction:templeArray:TEMPLE_4: occupiedEnum];
             [[playerArray objectAtIndex:activePlayerEnum] displayMenu:ACTION_REMOVE:-4];
         }

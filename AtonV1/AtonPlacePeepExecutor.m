@@ -117,7 +117,13 @@ static float MESSAGE_DELAY_TIME = 0.2;
             }
                 
         } else {
-             [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
+            if (para.onlineMode) {
+                if (para.onlinePara.localPlayerEnum != activePlayerEnum) {
+                    para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_PLACE;
+                    return;
+                }
+            }
+            [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
             [activePlayer displayMenu:ACTION_PLACE:activePlayerPlaceNum];
         }
             

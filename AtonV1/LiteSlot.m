@@ -9,15 +9,27 @@
 #import "LiteSlot.h"
 
 @implementation LiteSlot
-@synthesize templeEnum, slotID;
+@synthesize templeEnum, slotId;
 
--(id)initWithPara:(int) thisTempleEnum:(int) thisSlotID {
+-(id)initWithPara:(NSNumber*) thisTempleEnum:(NSNumber*) thisSlotID {
     if (self) {
         templeEnum = thisTempleEnum;
-        slotID = thisSlotID;
+        slotId = thisSlotID;
     }
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        templeEnum = [decoder decodeObjectForKey:@"templeEnum"];
+        slotId  = [decoder decodeObjectForKey:@"slotId"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:templeEnum forKey:@"templeEnum"];
+    [encoder encodeObject:slotId forKey:@"slotId"]; 
+}
 
 @end
