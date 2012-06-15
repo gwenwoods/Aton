@@ -299,7 +299,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 
                 NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
                 [self performSelector:@selector(remotePlacePeeps1:) withObject:allSelectedSlots afterDelay:2.0];
-                para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+                para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
             }
         } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
             
