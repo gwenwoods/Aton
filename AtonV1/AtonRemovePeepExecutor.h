@@ -12,6 +12,7 @@
 #import "AtonGameManager.h"
 #import "AtonAI.h"
 #import "AtonMessageMaster.h"
+#import "GameCenterHelper.h"
 
 @interface AtonRemovePeepExecutor:AbstractExecutor{
     

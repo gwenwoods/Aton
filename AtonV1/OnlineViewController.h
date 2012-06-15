@@ -38,6 +38,8 @@
     UIButton *playGameButton;
     OnlineParameters *onlinePara;
     
+   // GameData *randomNumData, *removePeepData, *placePeepData, *remove4Data;
+    
     
     
     

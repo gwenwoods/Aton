@@ -17,6 +17,7 @@
 @synthesize audioToDeath;
 @synthesize useAI, onlineMode;
 @synthesize onlinePara;
+@synthesize removePeepData, placePeepData, firstRemove4Data, secondRemove4Data;
 
 
 -(id)initializeWithParameters:(NSMutableArray*) atonPlayerArray:(NSMutableArray*) atonTempleArray:(NSMutableArray*) atonScarabArray:(AVAudioPlayer*) audio {

@@ -117,11 +117,22 @@ static float MESSAGE_DELAY_TIME = 0.2;
             }
                 
         } else {
-            if (para.onlineMode) {
-                if (para.onlinePara.localPlayerEnum != activePlayerEnum) {
-                    para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_PLACE;
-                    return;
+            if (para.onlineMode && para.onlinePara.localPlayerEnum != activePlayerEnum) {
+                para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_PLACE;
+                if (para.placePeepData != nil) {
+                    if (para.placePeepData.gamePhaseEnum.intValue == GAME_PHASE_FIRST_PLACE_PEEP) {
+                        NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.placePeepData.liteSlotArray];
+                        [self performSelector:@selector(remotePlacePeeps1:) withObject:allSelectedSlots afterDelay:2.0];
+                        para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+                        
+                    } else if(para.placePeepData.gamePhaseEnum.intValue == GAME_PHASE_SECOND_PLACE_PEEP) {
+                        NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.placePeepData.liteSlotArray];
+                        [self performSelector:@selector(remotePlacePeeps2:) withObject:allSelectedSlots afterDelay:2.0];
+                        para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+                    }
                 }
+                return;
+
             }
             [TempleUtility enableEligibleTempleSlotInteraction:templeArray:activePlayerMaxTempleEnum: OCCUPIED_EMPTY];
             [activePlayer displayMenu:ACTION_PLACE:activePlayerPlaceNum];
@@ -157,5 +168,61 @@ static float MESSAGE_DELAY_TIME = 0.2;
         
     }
 }
+
+-(void) remotePlacePeeps1:(NSMutableArray*) allSelectedSlots {
+
+    int occupiedEnum = OCCUPIED_RED;
+    if (para.atonRoundResult.firstPlayerEnum == PLAYER_BLUE) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    for (int i=0; i < [allSelectedSlots count]; i++) {
+        TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
+        [selectedSlot placePeep:occupiedEnum];
+    }
+    [TempleUtility disableAllTempleSlotInteractionAndFlame:[para templeArray]];
+    if ([gameManager gameOverConditionSuper] != nil) {
+        // TODO: Q? do we need this if ?
+        [gameManager performSelector:@selector(showFinalResultView:) withObject:[gameManager gameOverConditionSuper] afterDelay:0.0];
+        
+    } else {
+        NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_PLACE_PEEP];
+        gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
+        //[firstPlayer closeMenu];
+    }
+    para.placePeepData = nil;
+}
+
+-(void) remotePlacePeeps2:(NSMutableArray*) allSelectedSlots {
+
+    int occupiedEnum = OCCUPIED_RED;
+    if (para.atonRoundResult.secondPlayerEnum == PLAYER_BLUE) {
+        occupiedEnum = OCCUPIED_BLUE;
+    }
+    
+    for (int i=0; i < [allSelectedSlots count]; i++) {
+        TempleSlot *selectedSlot = [allSelectedSlots objectAtIndex:i];
+        [selectedSlot placePeep:occupiedEnum];
+    }
+    [TempleUtility disableAllTempleSlotInteractionAndFlame:[para templeArray]];
+    
+    if ([gameManager gameOverConditionSuper] != nil) {
+        [gameManager performSelector:@selector(showFinalResultView:) withObject:[gameManager gameOverConditionSuper] afterDelay:0.0];
+        
+    } else if ([TempleUtility isDeathTempleFull:[para templeArray]]) {
+        para.atonRoundResult.templeScoreResultArray = [TempleUtility computeAllTempleScore:[para templeArray]];
+        
+        para.gamePhaseEnum = GAME_PHASE_ROUND_END_DEATH_FULL;
+        gameManager.messagePlayerEnum = PLAYER_NONE;
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_DEAD_KINGDOM_FULL] afterDelay:AFTER_PEEP_DELAY_TIME];
+    } else {
+        gameManager.messagePlayerEnum = PLAYER_NONE;
+        [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_TURN_END] afterDelay:AFTER_PEEP_DELAY_TIME];
+        
+    }
+    para.placePeepData = nil;
+}
+
 
 @end
