@@ -12,9 +12,11 @@
 
 static double AFTER_PEEP_DELAY_TIME = 2.0;
 static float MESSAGE_DELAY_TIME = 0.2;
+static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI {
-	if (self) {
+
+-(id)initWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI {
+    if (self = [super init]) {
         para = atonParameter;
         gameManager = atonGameManager;
         messageMaster = atonMessageMaster;
@@ -84,11 +86,19 @@ static float MESSAGE_DELAY_TIME = 0.2;
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_NONE;
+            if(para.onlineMode && para.localPlayerEnum != activePlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
             
         } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
             gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_NONE;
+            if(para.onlineMode && para.localPlayerEnum != activePlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
             
         } else {
             // code should never reach here.
@@ -104,11 +114,19 @@ static float MESSAGE_DELAY_TIME = 0.2;
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_NONE;
+            if(para.onlineMode && para.localPlayerEnum != activePlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
             
         } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
             gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_NONE;
+            if(para.onlineMode && para.localPlayerEnum != activePlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
             
         } else {
             // code should never reach here.
@@ -125,12 +143,20 @@ static float MESSAGE_DELAY_TIME = 0.2;
            NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
            gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
            [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime + MESSAGE_DELAY_TIME];
+           if(para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
+               NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+               [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:animationTime + MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
+           }
         
         } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
             //[TempleUtility disableTemplesFlame:[para templeArray]];
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime + MESSAGE_DELAY_TIME];
+            if(para.localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:animationTime + MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
+            }
             
         } else {
             // code should never reach here.
@@ -169,11 +195,19 @@ static float MESSAGE_DELAY_TIME = 0.2;
                         NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.removePeepData.liteSlotArray];
                         [self performSelector:@selector(remoteRemovePeeps1:) withObject:allSelectedSlots afterDelay:2.0];
                         para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
+                     /*   if(para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
+                            NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                            [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+                        }*/
                         
                     } else if(para.removePeepData.gamePhaseEnum.intValue == GAME_PHASE_SECOND_REMOVE_PEEP) {
                         NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.removePeepData.liteSlotArray];
                         [self performSelector:@selector(remoteRemovePeeps2:) withObject:allSelectedSlots afterDelay:2.0];
                         para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
+                    /*    if(para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
+                            NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                            [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+                        }*/
                     }
                 }
                 
@@ -314,5 +348,26 @@ static float MESSAGE_DELAY_TIME = 0.2;
     [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_NEW_ROUND_BEGIN] afterDelay:AFTER_PEEP_DELAY_TIME];
     para.secondRemove4Data = nil;
     
+}
+
+-(void) autoAdvanceGameEnum:(NSNumber*) startGamePhaseEnum {
+    NSLog(@"in auto advance");
+    if(startGamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_NONE ) {
+        // BRANCH PHASE
+         NSLog(@"call engine run 1");
+        gameManager.gamePhaseView.hidden = YES;
+        [executorDelegate engineRun];
+    } else if(startGamePhaseEnum.intValue == GAME_PHASE_SECOND_REMOVE_NONE ) {
+        // BRANCH PHASE
+        NSLog(@"call engine run 2");
+        gameManager.gamePhaseView.hidden = YES;
+        [executorDelegate engineRun];
+    }
+ /*   if (para.gamePhaseEnum == startGamePhaseEnum.intValue ) {
+        NSLog(@"call engine run");
+        gameManager.gamePhaseView.hidden = YES;
+        para.gamePhaseEnum++;
+        [executorDelegate engineRun];
+    }*/
 }
 @end

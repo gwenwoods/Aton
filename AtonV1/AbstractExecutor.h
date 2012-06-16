@@ -11,8 +11,14 @@
 #import "AtonGameParameters.h"
 #import "AtonPlayer.h"
 
+@protocol AbstractExecutorDelegate
+- (void) engineRun;
+@end
+
 @interface AbstractExecutor : NSObject {
+    __unsafe_unretained id <AbstractExecutorDelegate> executorDelegate;
  //   AtonGameParameters *para1;
 }
 
+@property (assign) id <AbstractExecutorDelegate> executorDelegate;
 @end

@@ -9,6 +9,7 @@
 #import "AbstractExecutor.h"
 
 @implementation AbstractExecutor
+@synthesize executorDelegate;
 
 /*
 

@@ -14,6 +14,8 @@
 #import "AtonMessageMaster.h"
 #import "GameCenterHelper.h"
 
+
+
 @interface AtonRemovePeepExecutor:AbstractExecutor{
     
     AtonGameParameters *para;
@@ -23,8 +25,10 @@
     
     AtonMessageMaster *messageMaster;
     
+
+    
 }
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
+-(id)initWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
 -(void) removePeep:(int) gamePhaseEnum;
 -(void) removeOneFromEachTemple:(int) gamePhaseEnum;
 @end

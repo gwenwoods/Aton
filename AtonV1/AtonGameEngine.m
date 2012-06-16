@@ -14,6 +14,7 @@ static float MESSAGE_DELAY_TIME = 0.5;
 static float ANIMATION_DELAY_TIME = 0.2;
 static float SCARAB_MOVING_TIME = 0.5;
 static int AFTER_PEEP_DELAY_TIME = 2.0;
+static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 
 @synthesize para;
 @synthesize gameManager, messageMaster;
@@ -30,7 +31,8 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         useAI = para.useAI;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para];
         placePeepEngine = [[AtonPlacePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
-        removePeepEngine = [[AtonRemovePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
+        removePeepEngine = [[AtonRemovePeepExecutor alloc] initWithParameters:para:gameManager:messageMaster:ai];
+        removePeepEngine.executorDelegate = self;
         arrangeCardExecutor = [[AtonArrangeCardsExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
     }
     return self;
@@ -181,6 +183,11 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
+            if(localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
+                NSLog(@"In compare result");
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:animationTime + AUTO_ADVANCE_WAITING_TIME];
+            }
         }
 
         
@@ -775,6 +782,11 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
             [firstPlayer closeMenu];
+            
+            if(para.onlineMode) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
@@ -804,6 +816,11 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
             [secondPlayer closeMenu];
+            
+            if(para.onlineMode) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
@@ -981,6 +998,14 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     [redPlayer setCardNumberArray:remoteNumberArray];
     para.arrangeCardData = nil;
 }
+
+-(void) autoAdvanceGameEnum:(NSNumber*) startGamePhaseEnum {
+    if (para.gamePhaseEnum == startGamePhaseEnum.intValue ) {
+        gameManager.gamePhaseView.hidden = YES;
+        para.gamePhaseEnum++;
+        [self run];
+    }
+}
 //-(void) sendGameData:(GameData*) gameData {
     
      //[[GameCenterHelper sharedInstance] sendGameData:gameData :self];
@@ -1078,4 +1103,8 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 }
 */
 
+- (void) engineRun {
+    NSLog(@"delegate run");
+    [self run];
+}
 @end

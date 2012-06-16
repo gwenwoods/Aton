@@ -21,7 +21,7 @@
 #import "GameData.h"
 #import "GameCenterHelper.h"
 
-@interface AtonGameEngine:NSObject {
+@interface AtonGameEngine:NSObject<AbstractExecutorDelegate> {
     
     AtonMessageMaster *messageMaster;
   //  AtonGameManager *gameManager;
