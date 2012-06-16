@@ -246,36 +246,28 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         para.onlinePara.remoteGamePhaseEnum = gameData.gamePhaseEnum.intValue;
         
         NSLog(@"remote game phase enum : %d ", para.onlinePara.remoteGamePhaseEnum);
-        NSMutableArray *nsCardArray = gameData.cardNumArray;
+        
         
         if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
-            AtonPlayer *bluePlayer = [para.playerArray objectAtIndex:PLAYER_BLUE];
-            int *remoteNumberArray = malloc(sizeof(int)*4);
-            for (int i=0; i < 4; i++) {
-                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
-            }
-            [bluePlayer setCardNumberArray:remoteNumberArray];
+            para.arrangeCardData = gameData;
+            
             
             if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                [self setBlueCard];
                 para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
                 engine.gameManager.messagePlayerEnum = PLAYER_NONE;
                 [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
-            //    [engine run];
+             //   para.arrangeCardData = nil;
             }
         } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
-            AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
-            int *remoteNumberArray = malloc(sizeof(int)*4);
-            for (int i=0; i < 4; i++) {
-                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
-            }
-            [redPlayer setCardNumberArray:remoteNumberArray];
-            
+            para.arrangeCardData = gameData;
+                       
             if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
+                [self setRedCard]; 
                 para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
                 engine.gameManager.messagePlayerEnum = PLAYER_NONE;
                 [engine.gameManager performSelector:@selector(showGamePhaseView:) withObject:[engine.messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
-                
-             //   [engine run];
+             //   para.arrangeCardData = nil;
             }
         } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
             para.removePeepData = gameData;
@@ -328,6 +320,30 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
         }
 
     }
+}
+
+-(void) setBlueCard {
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonPlayer *bluePlayer = [para.playerArray objectAtIndex:PLAYER_BLUE];
+    int *remoteNumberArray = malloc(sizeof(int)*4);
+    NSMutableArray *nsCardArray = para.arrangeCardData.cardNumArray;
+    for (int i=0; i < 4; i++) {
+        remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+    }
+    [bluePlayer setCardNumberArray:remoteNumberArray];
+    para.arrangeCardData = nil;
+}
+
+-(void) setRedCard {
+    AtonGameParameters *para = boardScreen.atonParameters;
+    AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
+    int *remoteNumberArray = malloc(sizeof(int)*4);
+    NSMutableArray *nsCardArray = para.arrangeCardData.cardNumArray;
+    for (int i=0; i < 4; i++) {
+        remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+    }
+    [redPlayer setCardNumberArray:remoteNumberArray];
+    para.arrangeCardData = nil;
 }
 
 -(void) remoteRemovePeeps1:(NSMutableArray*) allSelectedSlots {

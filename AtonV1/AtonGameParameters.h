@@ -32,5 +32,5 @@
 @property(strong, nonatomic) AVAudioPlayer *audioToDeath;
 @property(nonatomic) BOOL useAI, onlineMode;    
 @property(strong, nonatomic) OnlineParameters *onlinePara;
-@property(strong, nonatomic) GameData *removePeepData, *placePeepData, *firstRemove4Data, *secondRemove4Data;
+@property(strong, nonatomic) GameData *arrangeCardData, *removePeepData, *placePeepData, *firstRemove4Data, *secondRemove4Data;
 @end

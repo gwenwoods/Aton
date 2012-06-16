@@ -696,7 +696,10 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             GameData *gameData = [[GameData alloc] initWithCardArray:nsGamePhaseEnum:nsPlayerEnum:nsCardNumArray];
             [[GameCenterHelper sharedInstance] sendGameData:gameData];
             
-            if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+            if (para.arrangeCardData != nil && para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
+                [self setBlueCard];
+               // para.arrangeCardData = nil;
+                
                 para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
                 gameManager.messagePlayerEnum = PLAYER_NONE;
                 [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
@@ -732,7 +735,9 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
            // [self sendGameData:gameData];
             
             
-            if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+            if (para.arrangeCardData != nil && para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
+                [self setRedCard];
+             //   para.arrangeCardData = nil;
                 para.gamePhaseEnum = GAME_PHASE_BLUE_CLOSE_CARD;
                 gameManager.messagePlayerEnum = PLAYER_NONE;
                 [gameManager performSelector:@selector(showGamePhaseView:) withObject:[messageMaster getMessageForEnum:MSG_COMPARE_RESULTS] afterDelay:1.0];
@@ -953,6 +958,29 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
     [gameManager performSelector:@selector(showFinalResultView:) withObject:msg afterDelay:0.0];
 }
 
+-(void) setBlueCard {
+   
+    AtonPlayer *bluePlayer = [para.playerArray objectAtIndex:PLAYER_BLUE];
+    int *remoteNumberArray = malloc(sizeof(int)*4);
+    NSMutableArray *nsCardArray = para.arrangeCardData.cardNumArray;
+    for (int i=0; i < 4; i++) {
+        remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+    }
+    [bluePlayer setCardNumberArray:remoteNumberArray];
+    para.arrangeCardData = nil;
+}
+
+-(void) setRedCard {
+   
+    AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
+    int *remoteNumberArray = malloc(sizeof(int)*4);
+    NSMutableArray *nsCardArray = para.arrangeCardData.cardNumArray;
+    for (int i=0; i < 4; i++) {
+        remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
+    }
+    [redPlayer setCardNumberArray:remoteNumberArray];
+    para.arrangeCardData = nil;
+}
 //-(void) sendGameData:(GameData*) gameData {
     
      //[[GameCenterHelper sharedInstance] sendGameData:gameData :self];
