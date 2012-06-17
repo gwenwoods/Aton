@@ -293,6 +293,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
                 [self performSelector:@selector(remotePlacePeeps1:) withObject:allSelectedSlots afterDelay:2.0];
                 para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+            }  else {
+                [engine run];
             }
         } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
             para.placePeepData = gameData;
@@ -300,6 +302,8 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
                 NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:gameData.liteSlotArray];
                 [self performSelector:@selector(remotePlacePeeps2:) withObject:allSelectedSlots afterDelay:2.0];
                 para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+            } else {
+                [engine run];
             }
         } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
             para.firstRemove4Data = gameData;
@@ -371,6 +375,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 }
 
 -(void) remotePlacePeeps1:(NSMutableArray*) allSelectedSlots {
+    NSLog(@"in OV controller - remote place peep1" );
     AtonGameParameters *para = boardScreen.atonParameters;
     AtonGameEngine *engine = boardScreen.atonGameEngine;
     int occupiedEnum = OCCUPIED_RED;
@@ -397,6 +402,7 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 }
 
 -(void) remotePlacePeeps2:(NSMutableArray*) allSelectedSlots {
+    NSLog(@"in OV controller - remote place peep2" );
     AtonGameParameters *para = boardScreen.atonParameters;
     AtonGameEngine *engine = boardScreen.atonGameEngine;
     int occupiedEnum = OCCUPIED_RED;

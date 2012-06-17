@@ -189,9 +189,12 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 
         } else {
             if (para.onlineMode && para.onlinePara.localPlayerEnum != activePlayerEnum) {
-                para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE;
+                NSLog(@"remove - D");
+              //  para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE;
                 if (para.removePeepData != nil) {
+                     NSLog(@"remove - E");
                     if (para.removePeepData.gamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_PEEP) {
+                         NSLog(@"remove - F");
                         NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.removePeepData.liteSlotArray];
                         [self performSelector:@selector(remoteRemovePeeps1:) withObject:allSelectedSlots afterDelay:2.0];
                         para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
@@ -201,6 +204,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
                         }*/
                         
                     } else if(para.removePeepData.gamePhaseEnum.intValue == GAME_PHASE_SECOND_REMOVE_PEEP) {
+                         NSLog(@"remove - G");
                         NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.removePeepData.liteSlotArray];
                         [self performSelector:@selector(remoteRemovePeeps2:) withObject:allSelectedSlots afterDelay:2.0];
                         para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
@@ -209,6 +213,8 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
                             [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
                         }*/
                     }
+                } else {
+                    para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE;
                 }
                 
                 return;
@@ -306,7 +312,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 }
 
 -(void) remoteRemovePeeps1:(NSMutableArray*) allSelectedSlots {
-
+    NSLog(@"in remove peep 1");
     [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
     [TempleUtility disableTemplesFlame:[para templeArray]];
     
@@ -319,6 +325,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 
 -(void) remoteRemovePeeps2:(NSMutableArray*) allSelectedSlots {
 
+    NSLog(@"in remove peep 2");
     [TempleUtility removePeepsToDeathTemple:[para templeArray]:allSelectedSlots:para.audioToDeath];
     [TempleUtility disableTemplesFlame:[para templeArray]];
     
@@ -351,23 +358,23 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 }
 
 -(void) autoAdvanceGameEnum:(NSNumber*) startGamePhaseEnum {
-    NSLog(@"in auto advance");
+    NSLog(@"in auto advance - remove");
     if(startGamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_NONE ) {
-        // BRANCH PHASE
-         NSLog(@"call engine run 1");
-        gameManager.gamePhaseView.hidden = YES;
-        [executorDelegate engineRun];
+        if (para.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_NONE ) {
+            // BRANCH PHASE
+            NSLog(@"call engine run 1");
+            gameManager.gamePhaseView.hidden = YES;
+            [executorDelegate engineRun];
+        }
+       
     } else if(startGamePhaseEnum.intValue == GAME_PHASE_SECOND_REMOVE_NONE ) {
-        // BRANCH PHASE
-        NSLog(@"call engine run 2");
-        gameManager.gamePhaseView.hidden = YES;
-        [executorDelegate engineRun];
+        if (para.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_NONE ) {
+            // BRANCH PHASE
+            NSLog(@"call engine run 2");
+            gameManager.gamePhaseView.hidden = YES;
+            [executorDelegate engineRun];
+        }
+       
     }
- /*   if (para.gamePhaseEnum == startGamePhaseEnum.intValue ) {
-        NSLog(@"call engine run");
-        gameManager.gamePhaseView.hidden = YES;
-        para.gamePhaseEnum++;
-        [executorDelegate engineRun];
-    }*/
 }
 @end

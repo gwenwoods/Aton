@@ -30,7 +30,8 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         messageMaster = [[AtonMessageMaster alloc] initializeWithParameters:para];
         useAI = para.useAI;
         ai = [[AtonAIEasy alloc] initializeWithParameters:para];
-        placePeepEngine = [[AtonPlacePeepExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
+        placePeepEngine = [[AtonPlacePeepExecutor alloc] initWithParameters:para:gameManager:messageMaster:ai];
+        placePeepEngine.executorDelegate = self;
         removePeepEngine = [[AtonRemovePeepExecutor alloc] initWithParameters:para:gameManager:messageMaster:ai];
         removePeepEngine.executorDelegate = self;
         arrangeCardExecutor = [[AtonArrangeCardsExecutor alloc] initializeWithParameters:para:gameManager:messageMaster:ai];
@@ -40,7 +41,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 
 
 -(void) run {
-    
+     NSLog(@"engine run");
     int gamePhaseEnum = para.gamePhaseEnum;
     NSMutableArray *playerArray = para.playerArray;
    // NSMutableArray *templeArray = para.templeArray;
@@ -192,15 +193,19 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 
         
     } else if(gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+         NSLog(@"engine run remove 1");
         [removePeepEngine removePeep:GAME_PHASE_FIRST_REMOVE_PEEP];
        
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
+         NSLog(@"engine run remove 2");
         [removePeepEngine removePeep:GAME_PHASE_SECOND_REMOVE_PEEP];
                     
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
+         NSLog(@"engine run place 1");
         [placePeepEngine placePeep: GAME_PHASE_FIRST_PLACE_PEEP];
         
     } else if (gamePhaseEnum == GAME_PHASE_SECOND_PLACE_PEEP) {
+         NSLog(@"engine run place 2 ");
         [placePeepEngine placePeep: GAME_PHASE_SECOND_PLACE_PEEP];
         
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING) {
@@ -387,6 +392,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
        
     } else if (gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_NONE) {
         // BRANCH PHASE
+        NSLog(@"engine : first remove none");
         NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
         gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.0];
@@ -394,6 +400,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         
     } else if(gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_NONE) {
         // BRANCH PHASE
+        NSLog(@"engine : second remove none");
         NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
         gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
         [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:0.0];
@@ -819,7 +826,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             
             if(para.onlineMode) {
                 NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
-                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:AFTER_PEEP_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
             }
         }
         
@@ -859,6 +866,13 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
                 [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
                 [firstPlayer closeMenu];
+                
+                if(para.onlineMode) {
+                   // para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+                    NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                    [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay: AFTER_PEEP_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
+                }
+
             }
         }
         
@@ -1000,108 +1014,29 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 }
 
 -(void) autoAdvanceGameEnum:(NSNumber*) startGamePhaseEnum {
-    if (para.gamePhaseEnum == startGamePhaseEnum.intValue ) {
-        gameManager.gamePhaseView.hidden = YES;
-        para.gamePhaseEnum++;
-        [self run];
-    }
-}
-//-(void) sendGameData:(GameData*) gameData {
-    
-     //[[GameCenterHelper sharedInstance] sendGameData:gameData :self];
-
-   // GameData *gameData = [[GameData alloc] initWithPara:[NSNumber numberWithInt:localRandomNum]:@"Morning"];
-   /* NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameData];
-    
-    GKMatch *match = para.onlinePara.match;
-    NSError *error;
-    [match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
-    NSLog(@"send game data ...");*/
-//}
-
-//---------------------------------------------
-//#pragma mark GKMatchDelegate
-/*
-- (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
-    NSLog(@"received data ... mi...");
-    
-    if (para.onlinePara.match != theMatch) return;
-    
-     NSLog(@"same match");
-  //  if (gameCenterStateEnum != GAME_CENTER_WAITING_RANDOM_NUMBER) {
-  //      return;
-  //  }
-    
-    GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if (receivedData == nil) {
-        NSLog(@"received NULL data");
-    }
-    if (receivedData != nil) {
-        para.onlinePara.remoteGamePhaseEnum = receivedData.gamePhaseEnum.intValue;
-        NSLog(@"remote game phase enum : %d ", para.onlinePara.remoteGamePhaseEnum);
-        NSMutableArray *nsCardArray = receivedData.cardNumArray;
-        if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_BLUE_CLOSE_CARD) {
-            AtonPlayer *bluePlayer = [para.playerArray objectAtIndex:PLAYER_BLUE];
-            int *remoteNumberArray = malloc(sizeof(int)*4);
-            for (int i=0; i < 4; i++) {
-                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
-            }
-            [bluePlayer setCardNumberArray:remoteNumberArray];
-            
-            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
-                para.gamePhaseEnum = GAME_PHASE_COMPARE;
-                [self run];
-            }
-        } else if (para.onlinePara.remoteGamePhaseEnum == GAME_PHASE_RED_CLOSE_CARD) {
-            AtonPlayer *redPlayer = [para.playerArray objectAtIndex:PLAYER_RED];
-            int *remoteNumberArray = malloc(sizeof(int)*4);
-            for (int i=0; i < 4; i++) {
-                remoteNumberArray[i] = [[nsCardArray objectAtIndex:i] intValue];
-            }
-            [redPlayer setCardNumberArray:remoteNumberArray];
-            
-            if (para.gamePhaseEnum == GAME_PHASE_WAITING_FOR_REMOTE_ARRANGE_CARD) {
-                para.gamePhaseEnum = GAME_PHASE_COMPARE;
-                [self run];
-            }
+    if (startGamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_PEEP ) {
+        if (para.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
+            [self run];
         }
         
+    } else if (startGamePhaseEnum.intValue == GAME_PHASE_SECOND_REMOVE_PEEP ) {
+        if (para.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+            [self run];
+        }
         
-       // remoteRandomNum = [receivedData.randomNum intValue];
-       // gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
-       // [self checkGameStart];
+    } else if (startGamePhaseEnum.intValue == GAME_PHASE_FIRST_PLACE_PEEP ) {
+        if (para.gamePhaseEnum == GAME_PHASE_FIRST_PLACE_PEEP) {
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_PEEP;
+            [self run];
+        }
+        
     }
-}*/
-
-/*
-// The player state changed (eg. connected or disconnected)
-- (void)match:(GKMatch *)theMatch player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {   
-    if (para.onlinePara.match != theMatch) return;
-    switch (state) {
-        case GKPlayerStateConnected: 
-            // handle a new player connection.
-            NSLog(@"Player connected!");
-           // [self lookupPlayers];
-            break; 
-        case GKPlayerStateDisconnected:
-            // a player just disconnected. 
-            NSLog(@"Player disconnected!");
-            break;
-    }                     
 }
-
-// The match was unable to connect with the player due to an error.
-- (void)match:(GKMatch *)theMatch connectionWithPlayerFailed:(NSString *)playerID withError:(NSError *)error {
-    if (para.onlinePara.match != theMatch) return;
-    NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
-}
-
-// The match was unable to be established with any players due to an error.
-- (void)match:(GKMatch *)theMatch didFailWithError:(NSError *)error {
-    if (para.onlinePara.match != theMatch) return;
-    NSLog(@"Match failed with error: %@", error.localizedDescription);
-}
-*/
 
 - (void) engineRun {
     NSLog(@"delegate run");

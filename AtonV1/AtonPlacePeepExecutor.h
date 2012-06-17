@@ -19,6 +19,6 @@
     AtonMessageMaster *messageMaster;    
 }
 
--(id)initializeWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
+-(id)initWithParameters:(AtonGameParameters*) atonParameter:(AtonGameManager*) atonGameManager:(AtonMessageMaster*) atonMessageMaster:(AtonAI*) atonAI;
 -(void) placePeep:(int) gamePhaseEnum;
 @end
