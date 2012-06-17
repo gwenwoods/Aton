@@ -260,13 +260,15 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
         
     } else {
         
+        NSLog(@"in remove executor: remove 4");
         int targetPlayerEnum = activePlayerEnum;
         int occupiedEnum = OCCUPIED_RED;
         if (targetPlayerEnum == PLAYER_BLUE) {
             occupiedEnum = OCCUPIED_BLUE;
         }
         
-        [TempleUtility disableAllTempleSlotInteractionAndFlame:templeArray];
+       // [TempleUtility disableAllTempleSlotInteractionAndFlame:templeArray];
+        [TempleUtility disableAllTempleSlotInteraction:templeArray];
         NSMutableArray *eligibleSlotArray = [TempleUtility findEligibleTempleSlots:templeArray :TEMPLE_4:occupiedEnum];
         int arrayNum = [eligibleSlotArray count];
         
@@ -289,6 +291,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             
             para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4_NONE;
+            // TODO: the code here doesn't seem to make sense
             if (gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
                para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4_NONE;
             }
@@ -296,18 +299,20 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
         } else {
             
             if (para.onlineMode && para.onlinePara.localPlayerEnum != activePlayerEnum) {
-                para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE_4;
+                
                 if (para.firstRemove4Data != nil && para.firstRemove4Data.gamePhaseEnum.intValue == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
                     NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.firstRemove4Data.liteSlotArray];
                     [self performSelector:@selector(remoteFirstRemove4:) withObject:allSelectedSlots afterDelay:2.0];
-                    para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
+                    
                         
                 } else if(para.secondRemove4Data != nil && para.secondRemove4Data.gamePhaseEnum.intValue == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
                         NSMutableArray *allSelectedSlots = [TempleUtility selectSlotFromLiteSlotArray:para.templeArray:para.secondRemove4Data.liteSlotArray];
                     [self performSelector:@selector(remoteSecondRemove4:) withObject:allSelectedSlots afterDelay:2.0];
-                    para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
+                    
 
                     
+                } else {
+                    para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE_4;
                 }
 
                 return;
@@ -345,18 +350,23 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
 
 
 -(void) remoteFirstRemove4:(NSMutableArray*) allSelectedSlots {
-    
+    para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
     [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
+    para.firstRemove4Data = nil;
     
     [TempleUtility disableTemplesFlame:[para templeArray]];
     gameManager.messagePlayerEnum = para.atonRoundResult.lowerScorePlayer;
     NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
     [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
-    para.firstRemove4Data = nil;
+    
+    if(para.localPlayerEnum != para.atonRoundResult.lowerScorePlayer) {
+        NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+        [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+    }
 }
 
 -(void) remoteSecondRemove4:(NSMutableArray*) allSelectedSlots {
-    
+    para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
     [TempleUtility removePeepsToSupply:[para templeArray]:allSelectedSlots];
     [TempleUtility disableTemplesFlame:[para templeArray]];
     gameManager.messagePlayerEnum = PLAYER_NONE;
@@ -398,6 +408,15 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             NSLog(@"call engine run 4");
             gameManager.gamePhaseView.hidden = YES;
             para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+            [executorDelegate engineRun];
+        }
+        
+    } else if(startGamePhaseEnum.intValue == GAME_PHASE_ROUND_END_FIRST_REMOVE_4 ) {
+        if (para.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4 ) {
+            // BRANCH PHASE
+            NSLog(@"call engine run 5");
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
             [executorDelegate engineRun];
         }
         

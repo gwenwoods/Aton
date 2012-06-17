@@ -295,15 +295,28 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
                 roundResult.higherScorePlayer = PLAYER_BLUE;
                // Add Tie case - random decide
             } else if ([bluePlayer getScore] == [redPlayer getScore]) {
-                int randomFirst = rand()%2;
-                int randomSecond = (randomFirst + 1)%2;
-                roundResult.higherScorePlayer = randomFirst;
-                roundResult.lowerScorePlayer = randomSecond;
+                if (onlineMode) {
+                    higherScorePlayer = PLAYER_RED;
+                    
+                    roundResult.higherScorePlayer = PLAYER_RED;
+                    roundResult.lowerScorePlayer = PLAYER_BLUE;
+                } else {
+                    int randomFirst = rand()%2;
+                    int randomSecond = (randomFirst + 1)%2;
+                    roundResult.higherScorePlayer = randomFirst;
+                    roundResult.lowerScorePlayer = randomSecond;
+                }
+                
             }
             
             gameManager.messagePlayerEnum = roundResult.higherScorePlayer;
             NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            
+            if(onlineMode && para.localPlayerEnum != para.atonRoundResult.higherScorePlayer) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
+            }
         }
     } else if (gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
          [removePeepEngine removeOneFromEachTemple:GAME_PHASE_ROUND_END_FIRST_REMOVE_4];
@@ -960,6 +973,11 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_ROUND_END_SECOND_REMOVE_4];
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:AFTER_PEEP_DELAY_TIME];
             [[playerArray objectAtIndex:currentPlayerEnum] closeMenu];
+            
+            if (para.onlineMode) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:AFTER_PEEP_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
+            }
         }
         
     } else if (para.gamePhaseEnum == GAME_PHASE_ROUND_END_SECOND_REMOVE_4) {
@@ -1068,6 +1086,22 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
         if (para.gamePhaseEnum == GAME_PHASE_PRE_FIRST_PLACE_PEEP) {
             gameManager.gamePhaseView.hidden = YES;
             para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+            [self run];
+        }
+        
+    } else if (startGamePhaseEnum.intValue == GAME_PHASE_ROUND_END_SCORING_END ) {
+        if (para.gamePhaseEnum == GAME_PHASE_ROUND_END_SCORING_END) {
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_FIRST_REMOVE_4;
+
+            [self run];
+        }
+        
+    } else if (startGamePhaseEnum.intValue == GAME_PHASE_ROUND_END_FIRST_REMOVE_4 ) {
+        if (para.gamePhaseEnum == GAME_PHASE_ROUND_END_FIRST_REMOVE_4) {
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_ROUND_END_SECOND_REMOVE_4;
+            
             [self run];
         }
         
