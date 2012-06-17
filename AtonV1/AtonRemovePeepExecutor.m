@@ -55,12 +55,20 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_SECOND_REMOVE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.secondPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            if(para.onlineMode && para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
             return;
             
         } else if (gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP) {
             NSString* msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_PLACE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
+            if(para.onlineMode && para.localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
+                NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
+                [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:2.0 + AUTO_ADVANCE_WAITING_TIME];
+            }
             return;
             
         } else {
@@ -375,6 +383,24 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             [executorDelegate engineRun];
         }
        
+    } else if(startGamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_PEEP ) {
+        if (para.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP ) {
+            // BRANCH PHASE
+            NSLog(@"call engine run 3");
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
+            [executorDelegate engineRun];
+        }
+        
+    } else if(startGamePhaseEnum.intValue == GAME_PHASE_SECOND_REMOVE_PEEP ) {
+        if (para.gamePhaseEnum == GAME_PHASE_SECOND_REMOVE_PEEP ) {
+            // BRANCH PHASE
+            NSLog(@"call engine run 4");
+            gameManager.gamePhaseView.hidden = YES;
+            para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_PEEP;
+            [executorDelegate engineRun];
+        }
+        
     }
 }
 @end

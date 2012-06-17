@@ -57,7 +57,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             gameManager.messagePlayerEnum = roundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_NONE;
-            if(para.localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
+            if(para.onlineMode &&  para.localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
                 NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
                 [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay: MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
             }
@@ -66,7 +66,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             gameManager.messagePlayerEnum = roundResult.secondPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_NONE;
-            if(para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
+            if(para.onlineMode &&  para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
                 NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
                 [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay: MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
             }
@@ -93,7 +93,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             gameManager.messagePlayerEnum = roundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_FIRST_PLACE_NONE;
-            if(para.localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
+            if(para.onlineMode &&  para.localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
                 NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
                 [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay: MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
             }
@@ -102,7 +102,7 @@ static float AUTO_ADVANCE_WAITING_TIME = 2.0;
             gameManager.messagePlayerEnum = roundResult.secondPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:MESSAGE_DELAY_TIME];
             para.gamePhaseEnum = GAME_PHASE_SECOND_PLACE_NONE;
-            if(para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
+            if(para.onlineMode && para.localPlayerEnum != para.atonRoundResult.secondPlayerEnum) {
                 NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
                 [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay: MESSAGE_DELAY_TIME + AUTO_ADVANCE_WAITING_TIME];
             }
