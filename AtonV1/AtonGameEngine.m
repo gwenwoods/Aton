@@ -184,7 +184,7 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
             NSString *msg = [messageMaster getMessageBeforePhase:GAME_PHASE_FIRST_REMOVE_PEEP];
             gameManager.messagePlayerEnum = para.atonRoundResult.firstPlayerEnum;
             [gameManager performSelector:@selector(showGamePhaseView:) withObject:msg afterDelay:animationTime];
-            if(localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
+            if(onlineMode && localPlayerEnum != para.atonRoundResult.firstPlayerEnum) {
                 NSLog(@"In compare result");
                 NSNumber *messageGamePhaseEnum = [NSNumber numberWithInt:para.gamePhaseEnum];
                 [self performSelector:@selector(autoAdvanceGameEnum:) withObject:messageGamePhaseEnum afterDelay:animationTime + AUTO_ADVANCE_WAITING_TIME];
@@ -1014,9 +1014,21 @@ static NSString *SCORING_PHASE_END = @"Scoring Phase Ends";
 }
 
 -(void) autoAdvanceGameEnum:(NSNumber*) startGamePhaseEnum {
-    if (startGamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_PEEP ) {
+    
+    if (startGamePhaseEnum.intValue == GAME_PHASE_CARD_ONE_RESULT ) {
+        if (para.gamePhaseEnum == GAME_PHASE_CARD_ONE_RESULT) {
+            gameManager.gamePhaseView.hidden = YES;
+            // para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE;
+            para.gamePhaseEnum = GAME_PHASE_FIRST_REMOVE_PEEP;
+            [self run];
+        }
+        
+    } 
+    
+    else if (startGamePhaseEnum.intValue == GAME_PHASE_FIRST_REMOVE_PEEP ) {
         if (para.gamePhaseEnum == GAME_PHASE_FIRST_REMOVE_PEEP) {
             gameManager.gamePhaseView.hidden = YES;
+           // para.gamePhaseEnum = GAME_PHASE_WAITING_FOR_REMOTE_REMOVE;
             para.gamePhaseEnum = GAME_PHASE_SECOND_REMOVE_PEEP;
             [self run];
         }
