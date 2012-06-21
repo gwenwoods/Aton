@@ -41,10 +41,19 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
     label.hidden = YES;
     [self.view addSubview:label];
     
-    playGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    playGameButton.frame = CGRectMake(800,600,100,60);
+    
+    backToMainButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backToMainButton.frame = CGRectMake(87,605,140,70);
+    backToMainButton.userInteractionEnabled = YES;
+    [backToMainButton setBackgroundImage:[UIImage imageNamed:@"button_back.png"] forState:UIControlStateNormal];
+    [backToMainButton addTarget:self action:@selector(backToMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backToMainButton];
+    
+    
+    playGameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    playGameButton.frame = CGRectMake(811,605,140,70);
     playGameButton.userInteractionEnabled = YES;
-    [playGameButton setTitle:@"Play Game" forState:UIControlStateNormal];
+    [playGameButton setBackgroundImage:[UIImage imageNamed:@"button_play.png"] forState:UIControlStateNormal];
     [playGameButton addTarget:self action:@selector(playGame:) forControlEvents:UIControlEventTouchUpInside];
     playGameButton.hidden = YES;
     [self.view addSubview:playGameButton];
@@ -63,85 +72,6 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
-
-/*
-//---------------------------------------------------
-//#pragma mark GKMatchmakerViewControllerDelegate
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
-    NSLog(@"Match cancelled"); 
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
-    NSLog(@"Error finding match: %@", error.localizedDescription); 
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)theMatch {
-    if (gameCenterStateEnum != GAME_CENTER_WAITING_FIND_MATCH) {
-        return;
-    }
-    
-    NSLog(@"Match found");
-    [self dismissModalViewControllerAnimated:YES];
-    match = theMatch;
-    match.delegate = self;
-    
-    gameCenterStateEnum = GAME_CENTER_WAITING_RANDOM_NUMBER;
-    playGameButton.hidden = NO;
-    label.hidden = NO;
-    
-   
-}
-*/
-//---------------------------------------------
-//#pragma mark GKMatchDelegate
-/*
-- (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {    
-    NSLog(@"received data ... in online view");
-    
-    if (match != theMatch) return;
-    if (gameCenterStateEnum != GAME_CENTER_WAITING_RANDOM_NUMBER) {
-        return;
-    }
-    
-    GameData *receivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if (receivedData != nil) {
-        remoteRandomNum = [receivedData.randomNum intValue];
-        gameCenterStateEnum = GAME_CENTER_WAITING_GAME_START;
-        [self checkGameStart];
-    }
-}
-
-// The player state changed (eg. connected or disconnected)
-- (void)match:(GKMatch *)theMatch player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {   
-    if (match != theMatch) return;
-    switch (state) {
-        case GKPlayerStateConnected: 
-            // handle a new player connection.
-            NSLog(@"Player connected!");
-           //  [self lookupPlayers];
-            break; 
-        case GKPlayerStateDisconnected:
-            // a player just disconnected. 
-            NSLog(@"Player disconnected!");
-            break;
-    }                     
-}
-
-// The match was unable to connect with the player due to an error.
-- (void)match:(GKMatch *)theMatch connectionWithPlayerFailed:(NSString *)playerID withError:(NSError *)error {
-    if (match != theMatch) return;
-    NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
-}
-
-// The match was unable to be established with any players due to an error.
-- (void)match:(GKMatch *)theMatch didFailWithError:(NSError *)error {
-    if (match != theMatch) return;
-    NSLog(@"Match failed with error: %@", error.localizedDescription);
-}
-*/
-
 
 
 //--------------
@@ -478,6 +408,9 @@ static int AFTER_PEEP_DELAY_TIME = 2.0;
 - (void)matchStarted{}
 - (void)matchEnded{}
 
+-(IBAction) backToMenu:(id)sender {
+    [delegateOnlineView dismissOnlineViewWithAnimation:self];
+}
 //------------------------------
 // Board view delegate
 - (void)dismissBoardViewWithoutAnimation:(BoardViewController *)subcontroller

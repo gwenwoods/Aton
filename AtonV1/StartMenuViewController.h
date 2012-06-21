@@ -15,7 +15,7 @@
 #import "CreditViewController.h"
 
 #import "BoardViewController.h"
-#import "OnlineViewController.h"
+//#import "OnlineViewController.h"
 #import "AnimationUtility.h"
 #import "AudioUtility.h"
 
@@ -27,13 +27,13 @@
     AVAudioPlayer *audioPlayerEnterPlay, *audioPlayerOpen;
 }
 
-//-(IBAction) toPlayerView:(id)sender;
-//- (void)clickedButton:(BoardViewController *)subcontroller;
-- (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
-- (void)dismissRuleViewWithAnimation:(RuleView1Controller *)subcontroller;
-- (void)dismissCreditViewWithAnimation:(CreditViewController *)subcontroller;
+
+//- (void)dismissPlayerViewWithAnimation:(PlayerViewController *)subcontroller;
+//- (void)dismissRuleViewWithAnimation:(RuleView1Controller *)subcontroller;
+//- (void)dismissCreditViewWithAnimation:(CreditViewController *)subcontroller;
 - (void)fadeVolumeDown:(AVAudioPlayer *)aPlayer;
 
+//@property(nonatomic, strong) OnlineViewController *onlineViewScreen;
 @property(nonatomic, strong) PlayerViewController *playerViewScreen;
 @property(nonatomic, strong) CreditViewController *creditViewScreen;
 @property(nonatomic, strong) RuleView1Controller *ruleViewScreen;

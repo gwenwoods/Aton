@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BoardViewController.h"
+#import "OnlineViewController.h"
 #import "GameCenterHelper.h"
 
 @class PlayerViewController;
@@ -17,7 +18,7 @@
 -(void)dismissPlayerViewWithoutAnimation:(PlayerViewController*) subController;
 @end
 
-@interface PlayerViewController : UIViewController<BoardViewDelegate, UITextFieldDelegate> {
+@interface PlayerViewController : UIViewController<OnlineViewDelegate, BoardViewDelegate, UITextFieldDelegate> {
     
     __unsafe_unretained id delegatePlayerView;
     
@@ -34,12 +35,13 @@
     UIImageView *rotateIV;
     
     BOOL useAI;
-    UIButton *useAIButton;
+    UIButton *useAIButton, *playOnlineButton;
 }
 
 -(IBAction) backToMenu:(id)sender;
 
-@property (nonatomic, assign) id<PlayerViewDelegate> delegatePlayerView; 
+@property (nonatomic, assign) id<PlayerViewDelegate> delegatePlayerView;
+@property (nonatomic, strong) OnlineViewController *onlineViewScreen;
 @property (nonatomic, strong) BoardViewController *boardScreen;
 @property (nonatomic, strong) AVAudioPlayer *audioEnterName;
 @end

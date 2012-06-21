@@ -19,7 +19,7 @@
 
 @implementation PlayerViewController
 @synthesize delegatePlayerView;
-@synthesize boardScreen;
+@synthesize boardScreen, onlineViewScreen;
 @synthesize audioEnterName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -188,8 +188,19 @@
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioEnterName afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     
-    [[GameCenterHelper sharedInstance] authenticateLocalUser];
-    [GameCenterHelper test1];
+   // [[GameCenterHelper sharedInstance] authenticateLocalUser];
+   // [GameCenterHelper test1];
+    //-------------
+    // Game Center
+    playOnlineButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    playOnlineButton.frame = CGRectMake(480,605,100,60);
+    playOnlineButton.userInteractionEnabled = YES;
+    [playOnlineButton setTitle:@"Play Online" forState:UIControlStateNormal];
+    //  gameCenterButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
+    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
+    //  [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
+    [playOnlineButton addTarget:self action:@selector(goOnline:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:playOnlineButton];
 }
 
 - (void)viewDidUnload
@@ -204,6 +215,9 @@
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
+//----------------------
+// Action functions
+
 -(IBAction) backToMenu:(id)sender {
     if (audioEnterName.isPlaying){
         [audioEnterName stop];
@@ -213,17 +227,12 @@
     [delegatePlayerView dismissPlayerViewWithAnimation:self];
 }
 
-//-(void) toMain {
-//    [delegatePlayerView dismissPlayerViewWithAnimation:self];
-//}
 
 -(IBAction) toPlay:(id)sender {
 
     if (audioEnterName.isPlaying) 
     {
         [audioEnterName stop];
-
-      //  [self performSelector:@selector(fadeVolumeDownQuick:) withObject:audioPlayerOpen afterDelay:0.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     } else {
         audioEnterName = nil;
     }
@@ -235,6 +244,22 @@
 }
 
 
+-(IBAction) goOnline:(id)sender {
+    
+    if (audioEnterName.isPlaying) {
+        [audioEnterName stop];
+    } else {
+        audioEnterName = nil;
+    }
+    
+    onlineViewScreen = [[OnlineViewController alloc] initWithNibName:nil bundle:nil];
+    onlineViewScreen.delegateOnlineView = self;
+    onlineViewScreen.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:onlineViewScreen animated:YES];
+}
+
+//------------------------------
+// Board view delegate
 - (void)dismissBoardViewWithoutAnimation:(BoardViewController *)subcontroller
 {
     NSLog(@"Board View Back to Player View");
@@ -346,5 +371,37 @@
     } else {
         [self performSelector:@selector(fadeVolumeUp:) withObject:aPlayer afterDelay:0.1];  
     }
+}
+
+
+//--------------------------------
+// OnlineView delegate functions
+- (void)dismissOnlineViewWithAnimation:(OnlineViewController *)subcontroller
+{
+    // not used yet
+    if (audioEnterName.isPlaying) {
+        [audioEnterName stop];
+    } else {
+        audioEnterName = nil;
+    }
+    NSLog(@"Online View Back to Start Menu");
+    [self dismissModalViewControllerAnimated:YES];
+   // [self viewDidLoad];
+    self.onlineViewScreen = nil;
+}
+
+- (void)dismissOnlineViewWithoutAnimation:(OnlineViewController *)subcontroller
+{
+    if (audioEnterName.isPlaying) {
+        [audioEnterName stop];
+    } else {
+        audioEnterName = nil;
+    }
+    NSLog(@"Online View Back to Start Menu");
+    [self dismissModalViewControllerAnimated:NO];
+  //  [self viewDidLoad];
+    self.onlineViewScreen = nil;
+    [audioEnterName prepareToPlay];
+    [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
 }
 @end

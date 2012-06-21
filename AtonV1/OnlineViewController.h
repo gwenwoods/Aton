@@ -22,35 +22,27 @@
 @end
 
 @interface OnlineViewController : UIViewController<GameCenterHelperDelegate, BoardViewDelegate> {
-    //GKMatch *match;
-  //  GKPlayer *localPlayer, *remotePlayer;
+
+    __unsafe_unretained id delegateOnlineView;
     NSString *localPlayerName, *remotePlayerName;
     int localRandomNum, remoteRandomNum;
     int localPlayerEnum;
     
-    __unsafe_unretained id delegateOnlineView;
-    
     int gameCenterStateEnum;
-   // BOOL matchStarted;
-   // NSMutableDictionary *playersDict;
-   // UITextField *textField;
+
     UILabel *label;
-    UIButton *playGameButton;
+    UIButton *playGameButton, *backToMainButton;
     OnlineParameters *onlinePara;
-    
-   // GameData *randomNumData, *removePeepData, *placePeepData, *remove4Data;
-    
-    
-    
     
 }
 -(void) checkGameStart;
-//@property (strong, nonatomic) GKMatch *match;
+
+@property (nonatomic, assign) id<OnlineViewDelegate> delegateOnlineView;
 @property (nonatomic, strong) BoardViewController *boardScreen;
-@property (nonatomic, assign) id<OnlineViewDelegate> delegateOnlineView; 
+ 
 @property (nonatomic, strong) UIButton *playGameButton;
 @property (nonatomic, strong) UILabel *label;
-//@property (nonatomic, strong) GKPlayer *localPlayer, *remotePlayer;
+
 @property (nonatomic) int localRandomNum, remoteRandomNum;
 
 @end
