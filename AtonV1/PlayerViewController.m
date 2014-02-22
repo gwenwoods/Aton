@@ -187,18 +187,13 @@
     
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
     [self performSelector:@selector(fadeVolumeUp:) withObject:audioEnterName afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
-    
-   // [[GameCenterHelper sharedInstance] authenticateLocalUser];
-   // [GameCenterHelper test1];
+
     //-------------
     // Game Center
-    playOnlineButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    playOnlineButton.frame = CGRectMake(480,605,100,60);
+    playOnlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    playOnlineButton.frame = CGRectMake(400,600,243,75);
     playOnlineButton.userInteractionEnabled = YES;
-    [playOnlineButton setTitle:@"Play Online" forState:UIControlStateNormal];
-    //  gameCenterButton.titleLabel.font = [UIFont fontWithName:playerViewFont size:24];
-    // [useAIButton setBackgroundImage:[UIImage imageNamed:@"name_frame.png"] forState:UIControlStateNormal];
-    //  [useAIButton setImage:[UIImage imageNamed:@"Button_Human.png"]   forState:UIControlStateNormal];
+    [playOnlineButton setBackgroundImage:[UIImage imageNamed:@"button_playOnline.png"] forState:UIControlStateNormal];
     [playOnlineButton addTarget:self action:@selector(goOnline:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:playOnlineButton];
 }
@@ -399,7 +394,6 @@
     }
     NSLog(@"Online View Back to Start Menu");
     [self dismissModalViewControllerAnimated:NO];
-  //  [self viewDidLoad];
     self.onlineViewScreen = nil;
     [audioEnterName prepareToPlay];
     [self performSelector:@selector(playOpenMusic) withObject:nil afterDelay:3.0 inModes:[NSArray arrayWithObject: NSRunLoopCommonModes]];
